@@ -7,15 +7,7 @@ import java.sql.*;
  * @author Reinhard van Apeldoorn
  */
 public class DatabaseManager {
-
-    /**
-     *
-     */
     public static final String JDBC_EXCEPTION = "JDBC Exception: ";
-
-    /**
-     *
-     */
     public static final String SQL_EXCEPTION = "SQL Exception: ";
 
     /**
