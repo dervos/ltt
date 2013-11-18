@@ -1,0 +1,37 @@
+/LuggageTrackerTool2/nbproject/private/
+
+# Java Files
+*.class
+
+# Package Files #
+# *.jar
+*.war
+*.ear
+
+# Ant specific #
+dist/
+build/
+
+# Netbeans Files #
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+
+# Intellij IDEA files
+.idea/
+*.iml
+*.iws
+
+# General swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
+
+# Maven
+log/
+target/
