@@ -81,9 +81,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="DATE_OF_BIRTH_MM_INPUT" min="-2" pref="27" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="DATE_OF_BIRTH_YYYY_INPUT" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="DD_MM_YYYY" min="-2" pref="94" max="-2" attributes="0"/>
+                              <Component id="DATE_OF_BIRTH_YYYY_INPUT" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="MALE_BUTTON" min="-2" max="-2" attributes="0"/>
@@ -94,30 +92,33 @@
                   </Group>
                   <Component id="ADDITIONAL_OPTIONS_TITLE" min="-2" max="-2" attributes="0"/>
                   <Component id="BASIC_INFORMATION_TITLE" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ID_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="NAME_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="SURNAME_TUSSENVOEGSEL_INPUT" min="-2" pref="72" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="SURNAME_INPUT" min="-2" pref="166" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="DD_MM_YYYY" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ID_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NAME_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="SURNAME_TUSSENVOEGSEL_INPUT" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="SURNAME_INPUT" min="-2" pref="166" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="TEMP_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TEMP_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TEMP_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="HOME_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="HOME_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="HOME_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="HOME_COUNTRY_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="HOME_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MOBILE_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="HOME_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="MOBILE_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TEMP_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TEMP_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TEMP_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HOME_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HOME_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HOME_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="HOME_COUNTRY_INPUT" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -147,17 +148,14 @@
                       <Component id="SURNAME_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="DATE_OF_BIRTH" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="DATE_OF_BIRTH_DD_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DATE_OF_BIRTH_MM_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DATE_OF_BIRTH_YYYY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DD_MM_YYYY" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="DATE_OF_BIRTH" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DATE_OF_BIRTH_DD_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DATE_OF_BIRTH_MM_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DATE_OF_BIRTH_YYYY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DD_MM_YYYY" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="GENDER" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="MALE_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -180,7 +178,7 @@
                   <Component id="HOME_COUNTRY" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="HOME_COUNTRY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="HOME_CITY" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="HOME_CITY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -190,7 +188,7 @@
                   <Component id="HOME_STREET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="HOME_STREET_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="HOME_POSTAL_CODE" min="-2" max="-2" attributes="0"/>
                   <Component id="HOME_POSTAL_CODE_INPUT" min="-2" max="-2" attributes="0"/>
@@ -202,34 +200,34 @@
                   <Component id="TEMP_COUNTRY" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_COUNTRY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TEMP_CITY" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_CITY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TEMP_STREET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_STREET_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="TEMP_POSTAL_CODE" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_POSTAL_CODE_INPUT" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ADDITIONAL_OPTIONS_TITLE" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PRINT_ON_REGISTER" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="PAIR_PASSENGER_LUGGAGE" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PRINT" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="REGISTER" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
