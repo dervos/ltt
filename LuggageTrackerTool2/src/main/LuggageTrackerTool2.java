@@ -116,7 +116,7 @@ public final class LuggageTrackerTool2 {
         databaseManager.closeConnection();
     }
 
-    private static LuggageTrackerTool2 getInstance() {
+    public static LuggageTrackerTool2 getInstance() {
         return instance;
     }
 
