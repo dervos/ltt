@@ -12,7 +12,6 @@ import connectivity.DatabaseManager;
 import connectivity.QueryManager;
 
 import model.User;
-import view.MainFrame;
 
 /**
  *
@@ -71,7 +70,7 @@ public final class LuggageTrackerTool2 {
      *
      */
     public void startup() {
-        mainWindow = new MainFrame(NAME);
+        mainWindow = new JFrame(NAME);
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        mainWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
