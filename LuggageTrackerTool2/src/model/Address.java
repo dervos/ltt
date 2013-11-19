@@ -9,23 +9,20 @@ public class Address {
     private String city;
     private String streetName;
     private int streetNumber;
-    private int postalCodeNumbers;
-    private String postalCodeLetters;
+    private String postalCode;
     private String passengerId;
 
     // Constructors
-    public Address(String country, String city, String streetName, int streetNumber, int postalCodeNumbers, String postalCodeLetters, String passengerId) {
+    public Address(String country, String city, String streetName, int streetNumber, String postalCode, String passengerId) {
         this.country = country;
         this.city = city;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
-        this.postalCodeNumbers = postalCodeNumbers;
-        this.postalCodeLetters = postalCodeLetters;
+        this.postalCode = postalCode;
         this.passengerId = passengerId;
     }
 
     // Getters and Setters
-   
     /**
      * @return the country
      */
@@ -83,31 +80,17 @@ public class Address {
     }
 
     /**
-     * @return the postalCodeNumbers
+     * @return the postalCode
      */
-    public int getPostalCodeNumbers() {
-        return postalCodeNumbers;
+    public String getPostalCode() {
+        return postalCode;
     }
 
     /**
-     * @param postalCodeNumbers the postalCodeNumbers to set
+     * @param postalCode the postalCode to set
      */
-    public void setPostalCodeNumbers(int postalCodeNumbers) {
-        this.postalCodeNumbers = postalCodeNumbers;
-    }
-
-    /**
-     * @return the postalCodeLetters
-     */
-    public String getPostalCodeLetters() {
-        return postalCodeLetters;
-    }
-
-    /**
-     * @param postalCodeLetters the postalCodeLetters to set
-     */
-    public void setPostalCodeLetters(String postalCodeLetters) {
-        this.postalCodeLetters = postalCodeLetters;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     /**
