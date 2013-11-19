@@ -106,10 +106,6 @@ public class Address {
     public void setPassengerId(String passengerId) {
         this.passengerId = passengerId;
     }
-    
-    
-    
-    
 }
 
 
