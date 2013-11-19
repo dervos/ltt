@@ -26,282 +26,358 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
-        textField2 = new java.awt.TextField();
-        textField3 = new java.awt.TextField();
-        textField4 = new java.awt.TextField();
-        textField5 = new java.awt.TextField();
-        textField6 = new java.awt.TextField();
-        textField7 = new java.awt.TextField();
-        textField8 = new java.awt.TextField();
-        textField9 = new java.awt.TextField();
-        textField10 = new java.awt.TextField();
-        textField11 = new java.awt.TextField();
-        textField12 = new java.awt.TextField();
-        textField13 = new java.awt.TextField();
-        checkbox1 = new java.awt.Checkbox();
-        textField14 = new java.awt.TextField();
-        textField15 = new java.awt.TextField();
-        textField16 = new java.awt.TextField();
-        checkbox2 = new java.awt.Checkbox();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        BASIC_INFORMATION_TITLE = new javax.swing.JLabel();
+        ID = new javax.swing.JLabel();
+        ID_INPUT = new javax.swing.JTextField();
+        NAME = new javax.swing.JLabel();
+        NAME_INPUT = new javax.swing.JTextField();
+        SURNAME = new javax.swing.JLabel();
+        SURNAME_TUSSENVOEGSEL_INPUT = new javax.swing.JTextField();
+        SURNAME_INPUT = new javax.swing.JTextField();
+        DATE_OF_BIRTH = new javax.swing.JLabel();
+        DATE_OF_BIRTH_DD_INPUT = new javax.swing.JTextField();
+        DATE_OF_BIRTH_MM_INPUT = new javax.swing.JTextField();
+        DATE_OF_BIRTH_YYYY_INPUT = new javax.swing.JTextField();
+        DD_MM_YYYY = new javax.swing.JLabel();
+        GENDER = new javax.swing.JLabel();
+        MALE_BUTTON = new javax.swing.JRadioButton();
+        FEMALE_BUTTON = new javax.swing.JRadioButton();
+        HOME_PHONE_NUMBER = new javax.swing.JLabel();
+        HOME_PHONE_NUMBER_INPUT = new javax.swing.JTextField();
+        MOBILE_PHONE_NUMBER = new javax.swing.JLabel();
+        MOBILE_PHONE_NUMBER_INPUT = new javax.swing.JTextField();
+        HOME_ADDRESS_TITLE = new javax.swing.JLabel();
+        HOME_COUNTRY = new javax.swing.JLabel();
+        HOME_COUNTRY_INPUT = new javax.swing.JComboBox();
+        HOME_CITY = new javax.swing.JLabel();
+        HOME_CITY_INPUT = new javax.swing.JTextField();
+        HOME_STREET = new javax.swing.JLabel();
+        HOME_STREET_INPUT = new javax.swing.JTextField();
+        HOME_POSTAL_CODE = new javax.swing.JLabel();
+        HOME_POSTAL_CODE_INPUT = new javax.swing.JTextField();
+        TEMPORARY_ADDRESS_TITLE = new javax.swing.JLabel();
+        TEMP_COUNTRY = new javax.swing.JLabel();
+        TEMP_COUNTRY_INPUT = new javax.swing.JComboBox();
+        TEMP_CITY = new javax.swing.JLabel();
+        TEMP_CITY_INPUT = new javax.swing.JTextField();
+        TEMP_STREET = new javax.swing.JLabel();
+        TEMP_STREET_INPUT = new javax.swing.JTextField();
+        TEMP_POSTAL_CODE = new javax.swing.JLabel();
+        TEMP_POSTAL_CODE_INPUT = new javax.swing.JTextField();
+        ADDITIONAL_OPTIONS_TITLE = new javax.swing.JLabel();
+        PRINT_ON_REGISTER = new javax.swing.JCheckBox();
+        PAIR_PASSENGER_LUGGAGE = new javax.swing.JCheckBox();
+        PRINT = new javax.swing.JButton();
+        REGISTER = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Passenger"));
 
-        jLabel1.setText("ID");
+        BASIC_INFORMATION_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        BASIC_INFORMATION_TITLE.setText("Basic Information");
 
-        jLabel2.setText("Name");
+        ID.setText("ID");
 
-        jLabel3.setText("Surname");
+        NAME.setText("Name");
 
-        jLabel4.setText("Date of Birth");
+        SURNAME.setText("Surname");
 
-        jLabel5.setText("Gender");
-
-        jLabel6.setText("Home Phone Number");
-
-        jLabel7.setText("Mobile Phone Number");
-
-        jLabel8.setText("Country");
-
-        jLabel9.setText("Home Address");
-
-        jLabel10.setText("City");
-
-        jLabel11.setText("Street");
-
-        jLabel12.setText("Postal Code");
-
-        jLabel13.setText("Temporary Address");
-
-        jLabel14.setText("City");
-
-        jLabel15.setText("Street");
-
-        jLabel16.setText("Postal Code");
-
-        textField1.setText("textField1");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        SURNAME_TUSSENVOEGSEL_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(evt);
             }
         });
 
-        textField2.setText("textField2");
+        DATE_OF_BIRTH.setText("Date of Birth");
 
-        textField3.setText("textField3");
+        DATE_OF_BIRTH_DD_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DATE_OF_BIRTH_DD_INPUTActionPerformed(evt);
+            }
+        });
 
-        textField4.setText("textField4");
+        DD_MM_YYYY.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        DD_MM_YYYY.setText("(DD_MM_YYYY)");
 
-        textField5.setText("textField5");
+        GENDER.setText("Gender");
 
-        textField6.setText("textField6");
+        MALE_BUTTON.setText("Male");
+        MALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MALE_BUTTONActionPerformed(evt);
+            }
+        });
 
-        textField7.setText("textField7");
+        FEMALE_BUTTON.setText("Female");
 
-        textField8.setText("textField8");
+        HOME_PHONE_NUMBER.setText("Home Phone Number");
 
-        textField9.setText("textField9");
+        MOBILE_PHONE_NUMBER.setText("Mobile Phone Number");
 
-        textField10.setText("textField10");
+        HOME_ADDRESS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        HOME_ADDRESS_TITLE.setText("Home Address");
 
-        textField11.setText("textField11");
+        HOME_COUNTRY.setText("Country");
 
-        textField12.setText("textField12");
+        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
 
-        textField13.setText("textField13");
+        HOME_CITY.setText("City");
 
-        checkbox1.setLabel("checkbox1");
+        HOME_STREET.setText("Street");
 
-        textField14.setText("textField14");
+        HOME_POSTAL_CODE.setText("Postal Code");
 
-        textField15.setText("textField15");
+        TEMPORARY_ADDRESS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        TEMPORARY_ADDRESS_TITLE.setText("Temporary Address");
 
-        textField16.setText("textField16");
+        TEMP_COUNTRY.setText("Country");
 
-        checkbox2.setLabel("checkbox2");
+        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+
+        TEMP_CITY.setText("City");
+
+        TEMP_STREET.setText("Street");
+
+        TEMP_POSTAL_CODE.setText("Postal Code");
+
+        ADDITIONAL_OPTIONS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        ADDITIONAL_OPTIONS_TITLE.setText("Additional Options");
+
+        PRINT_ON_REGISTER.setText("Print on register.");
+
+        PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage.");
+
+        PRINT.setText("Print");
+
+        REGISTER.setText("Register");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(TEMPORARY_ADDRESS_TITLE)
+                                .addGap(60, 60, 60))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(NAME)
+                                            .addComponent(ID)
+                                            .addComponent(SURNAME)
+                                            .addComponent(DATE_OF_BIRTH)
+                                            .addComponent(GENDER)
+                                            .addComponent(TEMP_CITY)
+                                            .addComponent(TEMP_COUNTRY)
+                                            .addComponent(TEMP_STREET)
+                                            .addComponent(TEMP_POSTAL_CODE)
+                                            .addComponent(HOME_PHONE_NUMBER)
+                                            .addComponent(MOBILE_PHONE_NUMBER)
+                                            .addComponent(PRINT_ON_REGISTER)
+                                            .addComponent(PRINT)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(HOME_CITY)
+                                            .addComponent(HOME_COUNTRY)
+                                            .addComponent(HOME_STREET)
+                                            .addComponent(HOME_POSTAL_CODE))))
+                                .addGap(43, 43, 43)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkbox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textField12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
-                                .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textField7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(textField8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                            .addComponent(PAIR_PASSENGER_LUGGAGE)
+                            .addComponent(REGISTER)
+                            .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(DATE_OF_BIRTH_MM_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(DATE_OF_BIRTH_YYYY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(MALE_BUTTON)
+                                .addGap(18, 18, 18)
+                                .addComponent(FEMALE_BUTTON))))
+                    .addComponent(ADDITIONAL_OPTIONS_TITLE)
+                    .addComponent(BASIC_INFORMATION_TITLE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(HOME_ADDRESS_TITLE)
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ID_INPUT)
+                            .addComponent(NAME_INPUT)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(HOME_PHONE_NUMBER_INPUT)
+                            .addComponent(MOBILE_PHONE_NUMBER_INPUT)
+                            .addComponent(TEMP_POSTAL_CODE_INPUT)
+                            .addComponent(TEMP_STREET_INPUT)
+                            .addComponent(TEMP_CITY_INPUT)
+                            .addComponent(HOME_POSTAL_CODE_INPUT)
+                            .addComponent(HOME_STREET_INPUT)
+                            .addComponent(HOME_CITY_INPUT)
+                            .addComponent(HOME_COUNTRY_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addGap(12, 12, 12)
+                .addComponent(BASIC_INFORMATION_TITLE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(textField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6))
-                            .addComponent(textField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
-                    .addComponent(textField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(textField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11))
-                    .addComponent(textField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ID)
+                            .addComponent(ID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NAME)
+                            .addComponent(NAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SURNAME)
+                        .addGap(4, 4, 4))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(textField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(jLabel13)
+                    .addComponent(DATE_OF_BIRTH)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DATE_OF_BIRTH_MM_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DATE_OF_BIRTH_YYYY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DD_MM_YYYY)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GENDER)
+                    .addComponent(MALE_BUTTON)
+                    .addComponent(FEMALE_BUTTON))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HOME_PHONE_NUMBER)
+                    .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MOBILE_PHONE_NUMBER)
+                    .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(textField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15)
-                    .addComponent(textField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addComponent(HOME_ADDRESS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HOME_COUNTRY)
+                    .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HOME_CITY)
+                    .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HOME_STREET)
+                    .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(textField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                    .addComponent(HOME_POSTAL_CODE)
+                    .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(TEMPORARY_ADDRESS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TEMP_COUNTRY)
+                    .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TEMP_CITY)
+                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TEMP_STREET)
+                    .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkbox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(TEMP_POSTAL_CODE)
+                    .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(ADDITIONAL_OPTIONS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PRINT_ON_REGISTER)
+                    .addComponent(PAIR_PASSENGER_LUGGAGE))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PRINT)
+                    .addComponent(REGISTER))
+                .addGap(13, 13, 13))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void MALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MALE_BUTTONActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_MALE_BUTTONActionPerformed
+
+    private void DATE_OF_BIRTH_DD_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DATE_OF_BIRTH_DD_INPUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DATE_OF_BIRTH_DD_INPUTActionPerformed
+
+    private void SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Checkbox checkbox1;
-    private java.awt.Checkbox checkbox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private java.awt.TextField textField1;
-    private java.awt.TextField textField10;
-    private java.awt.TextField textField11;
-    private java.awt.TextField textField12;
-    private java.awt.TextField textField13;
-    private java.awt.TextField textField14;
-    private java.awt.TextField textField15;
-    private java.awt.TextField textField16;
-    private java.awt.TextField textField2;
-    private java.awt.TextField textField3;
-    private java.awt.TextField textField4;
-    private java.awt.TextField textField5;
-    private java.awt.TextField textField6;
-    private java.awt.TextField textField7;
-    private java.awt.TextField textField8;
-    private java.awt.TextField textField9;
+    private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
+    private javax.swing.JLabel BASIC_INFORMATION_TITLE;
+    private javax.swing.JLabel DATE_OF_BIRTH;
+    private javax.swing.JTextField DATE_OF_BIRTH_DD_INPUT;
+    private javax.swing.JTextField DATE_OF_BIRTH_MM_INPUT;
+    private javax.swing.JTextField DATE_OF_BIRTH_YYYY_INPUT;
+    private javax.swing.JLabel DD_MM_YYYY;
+    private javax.swing.JRadioButton FEMALE_BUTTON;
+    private javax.swing.JLabel GENDER;
+    private javax.swing.JLabel HOME_ADDRESS_TITLE;
+    private javax.swing.JLabel HOME_CITY;
+    private javax.swing.JTextField HOME_CITY_INPUT;
+    private javax.swing.JLabel HOME_COUNTRY;
+    private javax.swing.JComboBox HOME_COUNTRY_INPUT;
+    private javax.swing.JLabel HOME_PHONE_NUMBER;
+    private javax.swing.JTextField HOME_PHONE_NUMBER_INPUT;
+    private javax.swing.JLabel HOME_POSTAL_CODE;
+    private javax.swing.JTextField HOME_POSTAL_CODE_INPUT;
+    private javax.swing.JLabel HOME_STREET;
+    private javax.swing.JTextField HOME_STREET_INPUT;
+    private javax.swing.JLabel ID;
+    private javax.swing.JTextField ID_INPUT;
+    private javax.swing.JRadioButton MALE_BUTTON;
+    private javax.swing.JLabel MOBILE_PHONE_NUMBER;
+    private javax.swing.JTextField MOBILE_PHONE_NUMBER_INPUT;
+    private javax.swing.JLabel NAME;
+    private javax.swing.JTextField NAME_INPUT;
+    private javax.swing.JCheckBox PAIR_PASSENGER_LUGGAGE;
+    private javax.swing.JButton PRINT;
+    private javax.swing.JCheckBox PRINT_ON_REGISTER;
+    private javax.swing.JButton REGISTER;
+    private javax.swing.JLabel SURNAME;
+    private javax.swing.JTextField SURNAME_INPUT;
+    private javax.swing.JTextField SURNAME_TUSSENVOEGSEL_INPUT;
+    private javax.swing.JLabel TEMPORARY_ADDRESS_TITLE;
+    private javax.swing.JLabel TEMP_CITY;
+    private javax.swing.JTextField TEMP_CITY_INPUT;
+    private javax.swing.JLabel TEMP_COUNTRY;
+    private javax.swing.JComboBox TEMP_COUNTRY_INPUT;
+    private javax.swing.JLabel TEMP_POSTAL_CODE;
+    private javax.swing.JTextField TEMP_POSTAL_CODE_INPUT;
+    private javax.swing.JLabel TEMP_STREET;
+    private javax.swing.JTextField TEMP_STREET_INPUT;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
