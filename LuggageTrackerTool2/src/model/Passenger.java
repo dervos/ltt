@@ -15,6 +15,11 @@ public class Passenger
     private String mobileNumber;
     private String privateNumber;
 
+    public Passenger() {
+    }
+
+    
+    
     // Constructors
     public Passenger(String passengerId, String firstName, String insertion, String surname, String gender, String dateOfBirth, String mobileNumber, String privateNumber) {
         this.passengerId = passengerId;
