@@ -423,12 +423,12 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="PRINT_ON_REGISTER">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Print on register."/>
+        <Property name="text" type="java.lang.String" value="Print on register"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="PAIR_PASSENGER_LUGGAGE">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pair passenger with luggage."/>
+        <Property name="text" type="java.lang.String" value="Pair passenger with luggage"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="PRINT">

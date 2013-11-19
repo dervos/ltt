@@ -8,13 +8,14 @@
       </Border>
     </Property>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[350, 201]"/>
+      <Dimension value="[523, 279]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[350, 201]"/>
+      <Dimension value="[523, 279]"/>
     </Property>
+    <Property name="name" type="java.lang.String" value="" noResource="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[350, 201]"/>
+      <Dimension value="[523, 279]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -34,8 +35,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
@@ -45,12 +45,23 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="LUGGAGE_ID_INPUT" max="32767" attributes="0"/>
-                          <Component id="DESCRIPTION_INPUT" pref="309" max="32767" attributes="0"/>
-                          <Component id="STORAGE_LOCATION_INPUT" max="32767" attributes="0"/>
+                          <Component id="DESCRIPTION_INPUT_FRAME" pref="309" max="32767" attributes="0"/>
+                          <Component id="STORAGE_LOCATION_INPUT" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ANDERS_INPUT_FRAME" pref="307" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,18 +74,26 @@
                   <Component id="LUGGAGE_ID_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="DESCRIPTION_INPUT" min="-2" pref="61" max="-2" attributes="0"/>
-                  <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="DESCRIPTION_INPUT_FRAME" min="-2" pref="61" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="STORAGE_LOCATION_INPUT" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
-                  <Component id="STORAGE_LOCATION_INPUT" min="-2" max="-2" attributes="0"/>
+                  <Component id="ANDERS_INPUT_FRAME" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,14 +111,14 @@
         <Property name="text" type="java.lang.String" value="Description"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="DESCRIPTION_INPUT">
+    <Container class="javax.swing.JScrollPane" name="DESCRIPTION_INPUT_FRAME">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="DESCRIPTION_INPUT1">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -112,12 +131,49 @@
         <Property name="text" type="java.lang.String" value="Storage Location"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="STORAGE_LOCATION_INPUT">
+    <Component class="javax.swing.JComboBox" name="STORAGE_LOCATION_INPUT">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Opslag A"/>
+            <StringItem index="1" value="Opslag B"/>
+            <StringItem index="2" value="Opslag C"/>
+            <StringItem index="3" value="Anders .. *"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="STORAGE_LOCATION_INPUTActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="PRINT_ON_REGISTER_INPUT">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Print on register."/>
+        <Property name="text" type="java.lang.String" value="Print on register"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="ANDERS">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Anders *"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="ANDERS_INPUT_FRAME">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="ANDERS_INPUT">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Vul hier zo specifiek mogelijk de&#xa;gegevens in van de opslagplaats."/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

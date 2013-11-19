@@ -145,9 +145,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         ADDITIONAL_OPTIONS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         ADDITIONAL_OPTIONS_TITLE.setText("Additional Options");
 
-        PRINT_ON_REGISTER.setText("Print on register.");
+        PRINT_ON_REGISTER.setText("Print on register");
 
-        PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage.");
+        PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
 
         PRINT.setText("Print");
 
