@@ -7,6 +7,7 @@ package model;
 public class User {
 
     private String username, password;
+    private int rights;
     private final static User admin = new User("admin", "admin");
 
     /**
@@ -57,6 +58,20 @@ public class User {
      */
     public static User getAdmin() {
         return admin;
+    }
+    
+     /**
+     * @return the rights
+     */
+    public int getRights() {
+        return rights;
+    }
+
+    /**
+     * @param rights the rights to set
+     */
+    public void setRights(int rights) {
+        this.rights = rights;
     }
 
     @Override
