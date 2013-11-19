@@ -26,19 +26,80 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LUGGAGE_ID = new javax.swing.JLabel();
+        LUGGAGE_ID_INPUT = new javax.swing.JTextField();
+        DESCRIPTION = new javax.swing.JLabel();
+        DESCRIPTION_INPUT = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        STORAGE_LOCATION = new javax.swing.JLabel();
+        STORAGE_LOCATION_INPUT = new javax.swing.JTextField();
+        PRINT_ON_REGISTER_INPUT = new javax.swing.JCheckBox();
+
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Luggage"));
+        setMaximumSize(new java.awt.Dimension(350, 201));
+        setMinimumSize(new java.awt.Dimension(350, 201));
+        setPreferredSize(new java.awt.Dimension(350, 201));
+
+        LUGGAGE_ID.setText("Luggage ID");
+
+        DESCRIPTION.setText("Description");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        DESCRIPTION_INPUT.setViewportView(jTextArea1);
+
+        STORAGE_LOCATION.setText("Storage Location");
+
+        PRINT_ON_REGISTER_INPUT.setText("Print on register.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PRINT_ON_REGISTER_INPUT)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(STORAGE_LOCATION)
+                            .addComponent(DESCRIPTION)
+                            .addComponent(LUGGAGE_ID))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LUGGAGE_ID_INPUT)
+                            .addComponent(DESCRIPTION_INPUT, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(STORAGE_LOCATION_INPUT))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LUGGAGE_ID)
+                    .addComponent(LUGGAGE_ID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DESCRIPTION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DESCRIPTION))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(STORAGE_LOCATION)
+                    .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PRINT_ON_REGISTER_INPUT)
+                .addGap(7, 7, 7))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DESCRIPTION;
+    private javax.swing.JScrollPane DESCRIPTION_INPUT;
+    private javax.swing.JLabel LUGGAGE_ID;
+    private javax.swing.JTextField LUGGAGE_ID_INPUT;
+    private javax.swing.JCheckBox PRINT_ON_REGISTER_INPUT;
+    private javax.swing.JLabel STORAGE_LOCATION;
+    private javax.swing.JTextField STORAGE_LOCATION_INPUT;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
