@@ -5,18 +5,10 @@ package model;
  * @author reintjehard
  */
 public class User {
-<<<<<<< HEAD
 
     private String username, password;
     private int rights;
     private final static User admin = new User("admin", "admin");
-=======
-    
-    private String username, password;
-    private int rights;
-    private final static User admin = new User("admin", "admin");
-    
->>>>>>> database
 
     /**
      *
