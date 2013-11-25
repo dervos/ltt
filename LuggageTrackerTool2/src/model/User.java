@@ -6,6 +6,7 @@ package model;
  */
 public class User {
 
+    private int userId;
     private String username, password;
     private int rights;
     private final static User admin = new User("admin", "admin", 1);
@@ -21,6 +22,20 @@ public class User {
         this.rights = rights;
     }
 
+     /**
+     * @return the userId
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
     /**
      *
      * @return
@@ -79,5 +94,4 @@ public class User {
     public String toString() {
         return "User{" + "username=" + username + ", password=" + password + '}';
     }
-
 }
