@@ -13,7 +13,7 @@ public class Passenger
     private String surname;
     private String firstName;
     private String gender;
-    private Date dateOfBirth; //Needs to be Date format, also code SQL to Date conversion.
+    private Date dateOfBirth; 
     private String mobileNumber;
     private String privateNumber; /*Home telephone number or mobile one if
                                     passenger hasn't got a phone at his house.*/
