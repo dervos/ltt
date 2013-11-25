@@ -2,77 +2,54 @@ package model;
 
 /**
  *
- * @author Reinhard van Apeldoorn
+ * @author Reinhard van Apeldoorn, Tomas Slaman
  */
+
+import java.util.Date;
 public class Passenger 
 {
-    private String passengerId;
-    private String firstName;
-    private String insertion;
+    //Fields ordered as in database
+    private int passengerId;
     private String surname;
+    private String firstName;
     private String gender;
-    private String dateOfBirth;
+    private Date dateOfBirth; //Needs to be Date format, also code SQL to Date conversion.
     private String mobileNumber;
-    private String privateNumber;
-
-    public Passenger() {
-    }
-
-    
-    
+    private String privateNumber; /*Home telephone number or mobile one if
+                                    passenger hasn't got a phone at his house.*/
+    private int homeAddressId;
+    private int temporaryAddressId;
+    private String tussenvoegsel; /*Means a sort of insertion, example;
+                                    Jaap van Pot, "van" being the tussenvoegsel*/
     // Constructors
-    public Passenger(String passengerId, String firstName, String insertion, String surname, String gender, String dateOfBirth, String mobileNumber, String privateNumber) {
+    public Passenger() {
+    }    
+
+    public Passenger(int passengerId, String surname, String firstName, String gender, Date dateOfBirth, String mobileNumber, String privateNumber, int homeAddressId, int temporaryAddressId, String tussenvoegsel) {
         this.passengerId = passengerId;
-        this.firstName = firstName;
-        this.insertion = insertion;
         this.surname = surname;
+        this.firstName = firstName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
         this.privateNumber = privateNumber;
+        this.homeAddressId = homeAddressId;
+        this.temporaryAddressId = temporaryAddressId;
+        this.tussenvoegsel = tussenvoegsel;
     }
-    
-    // Getters and Setters
+
     /**
      * @return the passengerId
      */
-    public String getPassengerId() {
+    public int getPassengerId() {
         return passengerId;
     }
 
     /**
      * @param passengerId the passengerId to set
      */
-    public void setPassengerId(String passengerId) {
+    public void setPassengerId(int passengerId) {
         this.passengerId = passengerId;
-    }
-
-    /**
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * @param firstName the firstName to set
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * @return the insertion
-     */
-    public String getInsertion() {
-        return insertion;
-    }
-
-    /**
-     * @param insertion the insertion to set
-     */
-    public void setInsertion(String insertion) {
-        this.insertion = insertion;
     }
 
     /**
@@ -87,6 +64,20 @@ public class Passenger
      */
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     /**
@@ -106,14 +97,14 @@ public class Passenger
     /**
      * @return the dateOfBirth
      */
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
     /**
      * @param dateOfBirth the dateOfBirth to set
      */
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -144,6 +135,46 @@ public class Passenger
     public void setPrivateNumber(String privateNumber) {
         this.privateNumber = privateNumber;
     }
-    
-    
+
+    /**
+     * @return the homeAddressId
+     */
+    public int getHomeAddressId() {
+        return homeAddressId;
+    }
+
+    /**
+     * @param homeAddressId the homeAddressId to set
+     */
+    public void setHomeAddressId(int homeAddressId) {
+        this.homeAddressId = homeAddressId;
+    }
+
+    /**
+     * @return the temporaryAddressId
+     */
+    public int getTemporaryAddressId() {
+        return temporaryAddressId;
+    }
+
+    /**
+     * @param temporaryAddressId the temporaryAddressId to set
+     */
+    public void setTemporaryAddressId(int temporaryAddressId) {
+        this.temporaryAddressId = temporaryAddressId;
+    }
+
+    /**
+     * @return the tussenvoegsel
+     */
+    public String getTussenvoegsel() {
+        return tussenvoegsel;
+    }
+
+    /**
+     * @param tussenvoegsel the tussenvoegsel to set
+     */
+    public void setTussenvoegsel(String tussenvoegsel) {
+        this.tussenvoegsel = tussenvoegsel;
+    }
 }

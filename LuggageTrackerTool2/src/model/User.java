@@ -2,22 +2,23 @@ package model;
 
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class User {
 
     private String username, password;
     private int rights;
-    private final static User admin = new User("admin", "admin");
+    private final static User admin = new User("admin", "admin", 1);
 
     /**
      *
      * @param username
      * @param password
      */
-    public User(String username, String password) {
+    public User(String username, String password, int rights) {
         this.username = username;
         this.password = password;
+        this.rights = rights;
     }
 
     /**

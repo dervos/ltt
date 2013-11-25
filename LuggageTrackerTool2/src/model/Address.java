@@ -2,27 +2,47 @@ package model;
 
 /**
  *
- * @author Reinhard van Apeldoorn
+ * @author Reinhard van Apeldoorn, Tomas Slaman
  */
 public class Address {
-    private String country;
-    private String city;
+    
+    //Fields ordered as in database
+    private int addressId;
     private String streetName;
     private int streetNumber;
-    private String postalCode;
+    private String zipCode;
+    private String city;
+    private String country;
     private String passengerId;
 
     // Constructors
-    public Address(String country, String city, String streetName, int streetNumber, String postalCode, String passengerId) {
-        this.country = country;
-        this.city = city;
+    public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country, String passengerId) {
+        this.addressId = addressId;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
-        this.postalCode = postalCode;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
         this.passengerId = passengerId;
     }
 
     // Getters and Setters
+    /**
+     * 
+     * @return 
+     */
+    public int getAddressId() {
+        return addressId;
+    }
+    
+    /**
+     * 
+     * @param addressId 
+     */
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+    
     /**
      * @return the country
      */
@@ -80,17 +100,17 @@ public class Address {
     }
 
     /**
-     * @return the postalCode
+     * @return the zipCode
      */
-    public String getPostalCode() {
-        return postalCode;
+    public String getZipCode() {
+        return zipCode;
     }
 
     /**
-     * @param postalCode the postalCode to set
+     * @param zipCode the zipCode to set
      */
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     /**

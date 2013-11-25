@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Reinhard van Apeldoorn
+ * @author Reinhard van Apeldoorn, Tomas Slaman
  */
 public class QueryManager {
 
@@ -23,33 +23,6 @@ public class QueryManager {
     }
 
     /**
-     * Methode om passagiers aan te maken
-     * @param passengerId
-     * @return 
-     */
-    public Passenger getPassenger(int passengerId) {
-        Passenger passenger = new Passenger();
-        try {
-            String sql = "SELECT * FROM passenger WHERE passenger_id='" + passengerId + "'";
-            ResultSet result = databaseManager.doQuery(sql);
-            if (result.next()) {
-                passenger = new Passenger( // Dit werkt nog niet, kolommen zijn nog niet compleet
-                        result.getString("Passenger ID"),
-                        result.getString("Name"),
-                        result.getString("Insertion"),
-                        result.getString("Surname"),
-                        result.getString("Gender"),
-                        result.getString("Date of birth"),
-                        result.getString("Mobile phone"),
-                        result.getString("Home phone"));
-            }
-        } catch (SQLException e) {
-            System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
-        }
-        return passenger;
-    }
-
-    /**
      * Returned alle passagiers als een list
      * @return 
      */
@@ -60,19 +33,68 @@ public class QueryManager {
             String sql = "SELECT * FROM passenger";
             ResultSet result = databaseManager.doQuery(sql);
             while (result.next()) {
-                passengers.add(new Passenger( // Dit werkt nog niet, kolommen zijn nog niet compleet
-                        result.getString("Passenger ID"),
-                        result.getString("Name"),
-                        result.getString("Insertion"),
+                passengers.add(new Passenger(
+                        result.getInt("Passenger ID"),
                         result.getString("Surname"),
+                        result.getString("Name"),
                         result.getString("Gender"),
-                        result.getString("Date of birth"),
+                        result.getDate("Date of birth"),
                         result.getString("Mobile phone"),
-                        result.getString("Home phone")));
+                        result.getString("Home phone"),
+                        result.getInt("Home address ID"),
+                        result.getInt("Temporary address ID"),
+                        result.getString("Tussenvoegsel")));
             }
         } catch (SQLException e) {
             System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
         }
         return passengers;
+    }
+    
+        //addPassenger not done yet.
+        public void addPassenger(Passenger passenger) {
+        String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Tussenvoegsel)"
+                + "VALUES:(" + passenger.getPassengerId() + ", `" + passenger.getSurname()
+                + "`, `" + passenger.getFirstName() + "`, `" + passenger.getGender() + "`, `"
+                + passenger.getDateOfBirth() + "`, `" + passenger.getMobileNumber() + "`, `"
+                + passenger.getPrivateNumber() + "`, " + passenger.getHomeAddressId() + ", "
+                + passenger.getTemporaryAddressId() + ", `" + passenger.getTussenvoegsel() + "`)";
+
+        //Column address ID needs to be handled in the database, should this auto-increment?
+        //String sql_addressId = "INSERT INTO `address` (Street, Street Number, Postcode, City, Country)" 
+        //        + "VALUES:`";
+
+        this.databaseManager.insertQuery(sql_passengerTable);
+        //this.databaseManager.insertQuery(sql_addressId);
+
+    }
+        
+            /**
+     * Methode om passagiers aan te maken
+     * @param passengerId
+     * @return 
+     */
+    public Passenger getPassenger(int passengerId) {
+        Passenger passenger = new Passenger();
+        try {
+            String sql = "SELECT * FROM passenger WHERE passenger_id='" + passengerId + "'";
+            ResultSet result = databaseManager.doQuery(sql);
+            if (result.next()) {
+                passenger = new Passenger(
+                        result.getInt("Passenger ID"),
+                        result.getString("Surname"),
+                        result.getString("Name"),
+                        result.getString("Gender"),
+                        result.getDate("Date of birth"),
+                        result.getString("Mobile phone"),
+                        result.getString("Home phone"),
+                        result.getInt("Home address ID"),
+                        result.getInt("Temporary address ID"),
+                        result.getString("Tussenvoegsel"));
+            }
+        } catch (SQLException e) {
+            System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
+        }
+        return passenger;
     }
 }
