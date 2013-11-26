@@ -12,6 +12,9 @@ public class Luggage {
     private String storageLocation;
     private String status;
 
+    public Luggage() {
+    }
+
     /**
      *
      * @param luggageId

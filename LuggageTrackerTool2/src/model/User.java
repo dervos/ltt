@@ -11,6 +11,9 @@ public class User {
     private int rights;
     private final static User admin = new User("admin", "admin", 1);
 
+    public User() {
+    }
+
     /**
      *
      * @param username
@@ -22,7 +25,7 @@ public class User {
         this.rights = rights;
     }
 
-     /**
+    /**
      * @return the userId
      */
     public int getUserId() {
@@ -35,7 +38,7 @@ public class User {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    
+
     /**
      *
      * @return
