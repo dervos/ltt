@@ -27,51 +27,51 @@ public class LTTLogin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        INSTRUCTIONS_LABEL = new javax.swing.JLabel();
+        LOGIN_BUTTON = new javax.swing.JButton();
+        CANCEL_BUTTON = new javax.swing.JButton();
+        USERNAME_LABEL = new javax.swing.JLabel();
+        PASSWORD_LABEL = new javax.swing.JLabel();
+        USERNAME_INPUT = new javax.swing.JTextField();
+        PASSWORD_INPUT = new javax.swing.JPasswordField();
+        TITLE_LABEL = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
-        jLabel1.setText("Please enter your username and password.");
+        INSTRUCTIONS_LABEL.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        INSTRUCTIONS_LABEL.setText("Please enter your username and password.");
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LOGIN_BUTTON.setText("Login");
+        LOGIN_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LOGIN_BUTTONActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.setMaximumSize(new java.awt.Dimension(63, 25));
-        jButton2.setMinimumSize(new java.awt.Dimension(63, 25));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CANCEL_BUTTON.setText("Cancel");
+        CANCEL_BUTTON.setMaximumSize(new java.awt.Dimension(63, 25));
+        CANCEL_BUTTON.setMinimumSize(new java.awt.Dimension(63, 25));
+        CANCEL_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CANCEL_BUTTONActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Username:");
+        USERNAME_LABEL.setText("Username:");
 
-        jLabel3.setText("Password:");
+        PASSWORD_LABEL.setText("Password:");
 
-        jTextField1.setText("username");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        USERNAME_INPUT.setText("username");
+        USERNAME_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                USERNAME_INPUTActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setText("jPasswordField1");
+        PASSWORD_INPUT.setText("jPasswordField1");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("LUGGAGETRACKERTOOL v1.0");
+        TITLE_LABEL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        TITLE_LABEL.setText("LUGGAGETRACKERTOOL v1.0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,69 +81,69 @@ public class LTTLogin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(106, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(TITLE_LABEL))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(INSTRUCTIONS_LABEL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CANCEL_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LOGIN_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                    .addComponent(PASSWORD_LABEL)
+                                    .addComponent(USERNAME_LABEL))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(USERNAME_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel4)
+                .addComponent(TITLE_LABEL)
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
+                .addComponent(INSTRUCTIONS_LABEL)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(USERNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(USERNAME_LABEL))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(PASSWORD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PASSWORD_LABEL))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CANCEL_BUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(LOGIN_BUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void USERNAME_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_USERNAME_INPUTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_USERNAME_INPUTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LOGIN_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_BUTTONActionPerformed
     LuggageTrackerTool2.getInstance().showMainMenu();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LOGIN_BUTTONActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CANCEL_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCEL_BUTTONActionPerformed
     LuggageTrackerTool2.getInstance().exit();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CANCEL_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton CANCEL_BUTTON;
+    private javax.swing.JLabel INSTRUCTIONS_LABEL;
+    private javax.swing.JButton LOGIN_BUTTON;
+    private javax.swing.JPasswordField PASSWORD_INPUT;
+    private javax.swing.JLabel PASSWORD_LABEL;
+    private javax.swing.JLabel TITLE_LABEL;
+    private javax.swing.JTextField USERNAME_INPUT;
+    private javax.swing.JLabel USERNAME_LABEL;
     // End of variables declaration//GEN-END:variables
 }
