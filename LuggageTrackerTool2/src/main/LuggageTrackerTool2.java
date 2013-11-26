@@ -21,11 +21,10 @@ import view.MainFrame;
 public final class LuggageTrackerTool2 {
 
     // Define frame width, height and name
-
     /**
      *
      */
-        public static final int FRAME_WIDTH = 755;
+    public static final int FRAME_WIDTH = 755;
 
     /**
      *
@@ -118,6 +117,13 @@ public final class LuggageTrackerTool2 {
 
     public static LuggageTrackerTool2 getInstance() {
         return instance;
+    }
+
+    /**
+     * @return the queryManager
+     */
+    public static QueryManager getQueryManager() {
+        return getInstance().queryManager;
     }
 
     /**

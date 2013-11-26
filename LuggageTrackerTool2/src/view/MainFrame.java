@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import java.awt.HeadlessException;
@@ -13,7 +12,7 @@ import javax.swing.JFrame;
  *
  * @author reintjehard
  */
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 
     public MainFrame() {
     }
@@ -21,7 +20,5 @@ public class MainFrame extends JFrame{
     public MainFrame(String title) throws HeadlessException {
         super(title);
     }
-    
-    
-    
+
 }

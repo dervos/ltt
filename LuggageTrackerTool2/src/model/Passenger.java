@@ -4,8 +4,8 @@ package model;
  *
  * @author Reinhard van Apeldoorn
  */
-public class Passenger 
-{
+public class Passenger {
+
     private String passengerId;
     private String firstName;
     private String insertion;
@@ -18,8 +18,6 @@ public class Passenger
     public Passenger() {
     }
 
-    
-    
     // Constructors
     public Passenger(String passengerId, String firstName, String insertion, String surname, String gender, String dateOfBirth, String mobileNumber, String privateNumber) {
         this.passengerId = passengerId;
@@ -31,7 +29,7 @@ public class Passenger
         this.mobileNumber = mobileNumber;
         this.privateNumber = privateNumber;
     }
-    
+
     // Getters and Setters
     /**
      * @return the passengerId
@@ -149,8 +147,5 @@ public class Passenger
     public String toString() {
         return "Passenger{" + "passengerId=" + passengerId + ", firstName=" + firstName + ", insertion=" + insertion + ", surname=" + surname + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + '}';
     }
-    
-    
-    
-    
+
 }

@@ -5,6 +5,7 @@ package model;
  * @author Reinhard van Apeldoorn
  */
 public class Address {
+
     private String country;
     private String city;
     private String streetName;
@@ -107,6 +108,3 @@ public class Address {
         this.passengerId = passengerId;
     }
 }
-
-
-

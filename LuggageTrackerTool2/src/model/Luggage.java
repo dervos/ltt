@@ -5,6 +5,7 @@ package model;
  * @author Reinhard van Apeldoorn
  */
 public class Luggage {
+
     private String luggageId;
     private String luggageDescription;
     private String luggageStorageLocation;
@@ -58,7 +59,5 @@ public class Luggage {
     public void setLuggageStorageLocation(String luggageStorageLocation) {
         this.luggageStorageLocation = luggageStorageLocation;
     }
-    
-    
-    
+
 }

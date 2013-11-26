@@ -24,13 +24,14 @@ public class QueryManager {
 
     /**
      * Methode om passagiers aan te maken
+     *
      * @param passengerId
-     * @return 
+     * @return
      */
     public Passenger getPassenger(int passengerId) {
         Passenger passenger = new Passenger();
         try {
-            String sql = "SELECT * FROM passenger WHERE passenger_id='" + passengerId + "'";
+            String sql = "SELECT * FROM passenger WHERE `passenger id`='" + passengerId + "'";
             ResultSet result = databaseManager.doQuery(sql);
             if (result.next()) {
                 passenger = new Passenger( // Dit werkt nog niet, kolommen zijn nog niet compleet
@@ -51,7 +52,8 @@ public class QueryManager {
 
     /**
      * Returned alle passagiers als een list
-     * @return 
+     *
+     * @return
      */
     public List<Passenger> getPassengers() {
         List<Passenger> passengers = new ArrayList<Passenger>();
