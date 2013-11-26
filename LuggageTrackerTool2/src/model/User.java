@@ -2,24 +2,40 @@ package model;
 
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class User {
 
+    private int userId;
     private String username, password;
     private int rights;
-    private final static User admin = new User("admin", "admin");
+    private final static User admin = new User("admin", "admin", 1);
 
     /**
      *
      * @param username
      * @param password
      */
-    public User(String username, String password) {
+    public User(String username, String password, int rights) {
         this.username = username;
         this.password = password;
+        this.rights = rights;
     }
 
+     /**
+     * @return the userId
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
     /**
      *
      * @return
@@ -78,5 +94,4 @@ public class User {
     public String toString() {
         return "User{" + "username=" + username + ", password=" + password + '}';
     }
-
 }
