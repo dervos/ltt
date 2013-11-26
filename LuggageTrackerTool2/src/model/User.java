@@ -11,6 +11,9 @@ public class User {
     private int rights;
     private final static User admin = new User("admin", "admin", 1);
 
+    public User() {
+    }
+
     /**
      *
      * @param username
@@ -20,9 +23,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.rights = rights;
-    }
-
-    public User() {
     }
 
     /**

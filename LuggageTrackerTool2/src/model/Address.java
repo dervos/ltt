@@ -19,6 +19,9 @@ public class Address {
 
     }
 
+    public Address(String streetName, int streetNumber, String zipCode, String city, String country) {
+    }
+
     public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country) {
         this.addressId = addressId;
         this.streetName = streetName;

@@ -28,7 +28,7 @@ public class QueryManager {
      * @param passenger
      * @param address
      */
-    public void addPassenger(Passenger passenger, Address address) {
+    public void addPassenger(Passenger passenger, Address homeAddress, Address tempAddress) {
         String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Insertion)"
                 + "VALUES:('" + passenger.getPassengerId() + "', '" + passenger.getSurname()
                 + "', '" + passenger.getFirstName() + "', '" + passenger.getGender() + "', '"
@@ -37,8 +37,9 @@ public class QueryManager {
                 + passenger.getTemporaryAddressId() + "', '" + passenger.getInsertion()+ "')";
 
         //Column address ID needs to be handled in the database, should this auto-increment?
+        this.addAddress(homeAddress);
+        this.addAddress(tempAddress);
         this.databaseManager.insertQuery(sql_passengerTable);
-        this.addAddress(address);
     }
 
     /**
