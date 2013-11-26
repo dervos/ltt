@@ -11,7 +11,7 @@ import java.util.List;
  * @author Reinhard van Apeldoorn, Tomas Slaman
  */
 public class QueryManager {
-    
+
     private final DatabaseManager databaseManager;
 
     /**
@@ -29,7 +29,7 @@ public class QueryManager {
      */
     public List<Passenger> getPassengers() {
         List<Passenger> passengers = new ArrayList<Passenger>();
-        
+
         try {
             String sql = "SELECT * FROM passenger";
             ResultSet result = databaseManager.doQuery(sql);
@@ -98,11 +98,11 @@ public class QueryManager {
         }
         return passenger;
     }
-    
+
     public Address getAddress(int addressId) {
         Address address = new Address();
         try {
-            String sql = "SELECT * FROM Address WHERE Luggage ID = '" + addressId + "'";
+            String sql = "SELECT * FROM Address";
             ResultSet result = databaseManager.doQuery(sql);
             if (result.next()) {
                 address = new Address(result.getInt("Address ID"),
@@ -117,23 +117,5 @@ public class QueryManager {
         }
         
         return address;
-    }
-    
-    public Luggage getLuggage(int luggageId) {
-        Luggage luggage = new Luggage();
-        try {
-            String sql = "SELECT * FROM Luggage WHERE Luggage ID = '" + luggageId + "";
-            ResultSet result = databaseManager.doQuery(sql);
-            if (result.next()) {
-                luggage = new Luggage(result.getInt("Luggage ID"),
-                        result.getString("Description"),
-                        result.getString("Storage Location"),
-                        result.getString("Luggage Status"));
-            }
-        } catch (SQLException e) {
-            System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
-        }
-        
-        return luggage;
     }
 }
