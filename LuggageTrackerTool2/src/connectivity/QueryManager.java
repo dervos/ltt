@@ -44,7 +44,7 @@ public class QueryManager {
                         result.getString("Home phone"),
                         result.getInt("Home address ID"),
                         result.getInt("Temporary address ID"),
-                        result.getString("Tussenvoegsel")));
+                        result.getString("Insertion")));
             }
         } catch (SQLException e) {
             System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
@@ -54,7 +54,7 @@ public class QueryManager {
 
     //addPassenger not done yet.
     public void addPassenger(Passenger passenger) {
-        String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Tussenvoegsel)"
+        String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Insertion)"
                 + "VALUES:(" + passenger.getPassengerId() + ", `" + passenger.getSurname()
                 + "`, `" + passenger.getFirstName() + "`, `" + passenger.getGender() + "`, `"
                 + passenger.getDateOfBirth() + "`, `" + passenger.getMobileNumber() + "`, `"
@@ -91,7 +91,7 @@ public class QueryManager {
                         result.getString("Home phone"),
                         result.getInt("Home address ID"),
                         result.getInt("Temporary address ID"),
-                        result.getString("Tussenvoegsel"));
+                        result.getString("Insertion"));
             }
         } catch (SQLException e) {
             System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
