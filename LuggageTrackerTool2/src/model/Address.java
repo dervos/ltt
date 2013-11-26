@@ -5,7 +5,7 @@ package model;
  * @author Reinhard van Apeldoorn, Tomas Slaman
  */
 public class Address {
-    
+
     //Fields ordered as in database
     private int addressId;
     private String streetName;
@@ -15,11 +15,10 @@ public class Address {
     private String country;
 
     // Constructors
-    public Address()
-    {
-        
+    public Address() {
+
     }
-    
+
     public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country) {
         this.addressId = addressId;
         this.streetName = streetName;
@@ -31,21 +30,21 @@ public class Address {
 
     // Getters and Setters
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getAddressId() {
         return addressId;
     }
-    
+
     /**
-     * 
-     * @param addressId 
+     *
+     * @param addressId
      */
     public void setAddressId(int addressId) {
         this.addressId = addressId;
     }
-    
+
     /**
      * @return the country
      */
@@ -116,6 +115,3 @@ public class Address {
         this.zipCode = zipCode;
     }
 }
-
-
-

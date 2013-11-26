@@ -5,7 +5,7 @@ package model;
  * @author Reinhard van Apeldoorn, Tomas Slaman
  */
 public class Luggage {
-    
+
     //Fields ordered as in database
     private int luggageId;
     private String description;
@@ -13,10 +13,11 @@ public class Luggage {
     private String status;
 
     /**
-     * 
+     *
      * @param luggageId
      * @param description //color, size and anything out of the ordinary.
-     * @param storageLocation //Location where luggage got stored after being found
+     * @param storageLocation //Location where luggage got stored after being
+     * found
      * @param status //Found, lost, solved?
      */
     public Luggage(int luggageId, String description, String storageLocation, String status) {
@@ -82,7 +83,5 @@ public class Luggage {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    
+
 }

@@ -4,12 +4,15 @@
  */
 package view;
 
+import main.LuggageTrackerTool2;
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
-
+    
+    
+    private model.Passenger passenger;
     /**
      * Creates new form Passenger
      */

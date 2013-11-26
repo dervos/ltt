@@ -75,8 +75,8 @@ public class User {
     public static User getAdmin() {
         return admin;
     }
-    
-     /**
+
+    /**
      * @return the rights
      */
     public int getRights() {

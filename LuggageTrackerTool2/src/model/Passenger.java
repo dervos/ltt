@@ -1,29 +1,32 @@
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Reinhard van Apeldoorn, Tomas Slaman
  */
+public class Passenger {
 
-import java.util.Date;
-public class Passenger 
-{
     //Fields ordered as in database
     private int passengerId;
     private String surname;
     private String firstName;
     private String gender;
-    private Date dateOfBirth; 
+    private Date dateOfBirth;
     private String mobileNumber;
     private String privateNumber; /*Home telephone number or mobile one if
-                                    passenger hasn't got a phone at his house.*/
+     passenger hasn't got a phone at his house.*/
+
     private int homeAddressId;
     private int temporaryAddressId;
     private String tussenvoegsel; /*Means a sort of insertion, example;
-                                    Jaap van Pot, "van" being the tussenvoegsel*/
+     Jaap van Pot, "van" being the tussenvoegsel*/
+
+
     // Constructors
     public Passenger() {
-    }    
+    }
 
     public Passenger(int passengerId, String surname, String firstName, String gender, Date dateOfBirth, String mobileNumber, String privateNumber, int homeAddressId, int temporaryAddressId, String tussenvoegsel) {
         this.passengerId = passengerId;
@@ -177,4 +180,10 @@ public class Passenger
     public void setTussenvoegsel(String tussenvoegsel) {
         this.tussenvoegsel = tussenvoegsel;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger{" + "passengerId=" + passengerId + ", surname=" + surname + ", firstName=" + firstName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + ", homeAddressId=" + homeAddressId + ", temporaryAddressId=" + temporaryAddressId + ", tussenvoegsel=" + tussenvoegsel + '}';
+    }
+
 }

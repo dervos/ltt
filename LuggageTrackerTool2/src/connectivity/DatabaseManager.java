@@ -7,6 +7,7 @@ import java.sql.*;
  * @author Reinhard van Apeldoorn
  */
 public class DatabaseManager {
+
     public static final String JDBC_EXCEPTION = "JDBC Exception: ";
     public static final String SQL_EXCEPTION = "SQL Exception: ";
 
@@ -22,7 +23,7 @@ public class DatabaseManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost/luggage_tracker_tool_database";
+            String url = "jdbc:mysql://localhost/lttDatabase";
             String user = "root", pass = "toor";
 
             /**
@@ -65,7 +66,7 @@ public class DatabaseManager {
      * Executes a query with result.
      *
      * @param query, the SQL query
-     * @return 
+     * @return
      */
     public ResultSet doQuery(String query) {
         ResultSet result = null;
@@ -82,7 +83,7 @@ public class DatabaseManager {
      * Executes a query with result.
      *
      * @param query, the SQL query
-     * @return 
+     * @return
      */
     public ResultSet insertQuery(String query) {
         ResultSet result = null;
