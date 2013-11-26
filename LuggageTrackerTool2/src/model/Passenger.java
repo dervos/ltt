@@ -6,7 +6,6 @@ import java.util.Date;
  *
  * @author Reinhard van Apeldoorn, Tomas Slaman
  */
-
 public class Passenger {
 
     //Fields ordered as in database
@@ -140,8 +139,6 @@ public class Passenger {
         this.privateNumber = privateNumber;
     }
 
-    
-
     /**
      * @return the homeAddressId
      */
@@ -188,6 +185,5 @@ public class Passenger {
     public String toString() {
         return "Passenger{" + "passengerId=" + passengerId + ", surname=" + surname + ", firstName=" + firstName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + ", homeAddressId=" + homeAddressId + ", temporaryAddressId=" + temporaryAddressId + ", tussenvoegsel=" + tussenvoegsel + '}';
     }
-            
-            
+
 }
