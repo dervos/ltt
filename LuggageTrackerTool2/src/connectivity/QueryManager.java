@@ -2,7 +2,7 @@ package connectivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Passenger;
+import model.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,8 @@ public class QueryManager {
 
     /**
      * Returned alle passagiers als een list
-     * @return 
+     *
+     * @return
      */
     public List<Passenger> getPassengers() {
         List<Passenger> passengers = new ArrayList<Passenger>();
@@ -50,9 +51,9 @@ public class QueryManager {
         }
         return passengers;
     }
-    
-        //addPassenger not done yet.
-        public void addPassenger(Passenger passenger) {
+
+    //addPassenger not done yet.
+    public void addPassenger(Passenger passenger) {
         String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Tussenvoegsel)"
                 + "VALUES:(" + passenger.getPassengerId() + ", `" + passenger.getSurname()
                 + "`, `" + passenger.getFirstName() + "`, `" + passenger.getGender() + "`, `"
@@ -63,16 +64,16 @@ public class QueryManager {
         //Column address ID needs to be handled in the database, should this auto-increment?
         //String sql_addressId = "INSERT INTO `address` (Street, Street Number, Postcode, City, Country)" 
         //        + "VALUES:`";
-
         this.databaseManager.insertQuery(sql_passengerTable);
         //this.databaseManager.insertQuery(sql_addressId);
 
     }
-        
-            /**
+
+    /**
      * Methode om passagiers aan te maken
+     *
      * @param passengerId
-     * @return 
+     * @return
      */
     public Passenger getPassenger(int passengerId) {
         Passenger passenger = new Passenger();
@@ -96,5 +97,25 @@ public class QueryManager {
             System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
         }
         return passenger;
+    }
+
+    public Address getAddress(int addressId) {
+        Address address = new Address();
+        try {
+            String sql = "SELECT * FROM Address";
+            ResultSet result = databaseManager.doQuery(sql);
+            if (result.next()) {
+                address = new Address(result.getInt("Address ID"),
+                        result.getString("Street"),
+                        result.getInt("Street Number"),
+                        result.getString("Zipcode"),
+                        result.getString("City"),
+                        result.getString("Country"));
+            }
+        } catch (SQLException e) {
+            System.err.println(DatabaseManager.SQL_EXCEPTION + e.getMessage());
+        }
+        
+        return address;
     }
 }
