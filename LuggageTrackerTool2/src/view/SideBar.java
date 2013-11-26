@@ -6,18 +6,21 @@
 
 package view;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author reintjehard
  */
-public class MainFrame extends javax.swing.JFrame {
+public class SideBar extends javax.swing.JPanel {
 
     /**
-     * Creates new form MainFrame
+     * Creates new form SideBar
      */
-    public MainFrame() {
+    public SideBar() {
         initComponents();
-        
+        add(new view.RegistrationPassenger(), BorderLayout.NORTH);
+        add(new view.RegistrationLuggage(), BorderLayout.SOUTH);
     }
 
     /**
@@ -29,11 +32,9 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
-
-        pack();
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

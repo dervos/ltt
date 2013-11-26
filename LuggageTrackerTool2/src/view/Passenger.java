@@ -4,20 +4,43 @@
  */
 package view;
 
-import main.LuggageTrackerTool2;
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
+    private java.util.List<model.Passenger> passengerList;
+    private connectivity.QueryManager queryManager;
     
-    
-    private model.Passenger passenger;
     /**
      * Creates new form Passenger
      */
     public Passenger() {
+        queryManager = main.LuggageTrackerTool2.getQueryManager();
         initComponents();
+        addPassengerItems();
+    }
+    
+    public void refreshPassengerList() {
+        passengerList = queryManager.getPassengers();
+        
+    }
+    
+    public void addPassengerItems() {
+        refreshPassengerList();
+        for (int i = 0; i < passengerList.size(); i++) {
+            Object[] newRow = new Object[9];
+            newRow[0] = passengerList.get(i).getSurname();
+            newRow[1] = passengerList.get(i).getInsertion();
+            newRow[2] = passengerList.get(i).getFirstName();
+            newRow[3] = passengerList.get(i).getGender();
+            newRow[4] = passengerList.get(i).getDateOfBirth();
+            newRow[5] = passengerList.get(i).getMobileNumber();
+            newRow[6] = passengerList.get(i).getPrivateNumber();
+            newRow[7] = passengerList.get(i).getHomeAddressId();
+            newRow[8] = passengerList.get(i).getTemporaryAddressId();
+            ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(newRow);
+        }
     }
 
     /**
@@ -33,18 +56,15 @@ public class Passenger extends javax.swing.JPanel {
         PASSENGER_TABLE = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         CONNECT_TO_LUGGAGE_BUTTON = new javax.swing.JButton();
-        DELETE_BUTTON = new javax.swing.JButton();
         EDIT_BUTTON = new javax.swing.JButton();
+        DELETE_BUTTON = new javax.swing.JButton();
 
         PASSENGER_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Surname", "", "Name", "Gender", "DoB", "Mob", "Tel", "Home", "Temp"
             }
         ));
         jScrollPane1.setViewportView(PASSENGER_TABLE);
@@ -58,17 +78,17 @@ public class Passenger extends javax.swing.JPanel {
         CONNECT_TO_LUGGAGE_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(CONNECT_TO_LUGGAGE_BUTTON);
 
-        DELETE_BUTTON.setText("Delete");
-        DELETE_BUTTON.setFocusable(false);
-        DELETE_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        DELETE_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(DELETE_BUTTON);
-
         EDIT_BUTTON.setText("Edit");
         EDIT_BUTTON.setFocusable(false);
         EDIT_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         EDIT_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(EDIT_BUTTON);
+
+        DELETE_BUTTON.setText("Delete");
+        DELETE_BUTTON.setFocusable(false);
+        DELETE_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DELETE_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(DELETE_BUTTON);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

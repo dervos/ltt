@@ -34,7 +34,7 @@ public class QueryManager {
                 + "', '" + passenger.getFirstName() + "', '" + passenger.getGender() + "', '"
                 + passenger.getDateOfBirth() + "', '" + passenger.getMobileNumber() + "', '"
                 + passenger.getPrivateNumber() + "', '" + passenger.getHomeAddressId() + "', '"
-                + passenger.getTemporaryAddressId() + "', '" + passenger.getTussenvoegsel() + "')";
+                + passenger.getTemporaryAddressId() + "', '" + passenger.getInsertion()+ "')";
 
         //Column address ID needs to be handled in the database, should this auto-increment?
         this.addAddress(homeAddress);
@@ -87,7 +87,7 @@ public class QueryManager {
                 + "', Home phone = '" + passenger.getPrivateNumber()
                 + "', Home address ID = '" + passenger.getHomeAddressId()
                 + "', Temporary address ID = '" + passenger.getTemporaryAddressId()
-                + "', Insertion = '" + passenger.getTussenvoegsel()
+                + "', Insertion = '" + passenger.getInsertion()
                 + "' WHERE `passenger id` = '" + passenger.getPassengerId() + "'";
 
         this.databaseManager.insertQuery(sql);
@@ -108,7 +108,7 @@ public class QueryManager {
     }
 
     /**
-     * Returned alle passagiers als een list
+        * Returned alle passagiers als een list
      *
      * @return
      */

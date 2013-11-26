@@ -4,6 +4,8 @@
  */
 package view;
 
+import model.Address;
+
 /**
  *
  * @author Haris
@@ -28,8 +30,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         jToggleButton1 = new javax.swing.JToggleButton();
         BASIC_INFORMATION_TITLE = new javax.swing.JLabel();
-        ID = new javax.swing.JLabel();
-        ID_INPUT = new javax.swing.JTextField();
         NAME = new javax.swing.JLabel();
         NAME_INPUT = new javax.swing.JTextField();
         SURNAME = new javax.swing.JLabel();
@@ -77,8 +77,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         BASIC_INFORMATION_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         BASIC_INFORMATION_TITLE.setText("Basic Information");
-
-        ID.setText("ID");
 
         NAME.setText("Name");
 
@@ -152,13 +150,18 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         PRINT.setText("Print");
 
         REGISTER.setText("Register");
+        REGISTER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                REGISTERActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +174,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                         .addGap(20, 20, 20)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(NAME)
-                                            .addComponent(ID)
                                             .addComponent(SURNAME)
                                             .addComponent(DATE_OF_BIRTH)
                                             .addComponent(GENDER)
@@ -194,7 +196,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PAIR_PASSENGER_LUGGAGE)
                             .addComponent(REGISTER)
-                            .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -213,7 +214,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                             .addComponent(HOME_ADDRESS_TITLE)
                             .addGap(94, 94, 94)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ID_INPUT)
                                 .addComponent(NAME_INPUT)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +227,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                 .addComponent(HOME_CITY_INPUT)
                                 .addComponent(HOME_COUNTRY_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(HOME_PHONE_NUMBER_INPUT)
-                                .addComponent(MOBILE_PHONE_NUMBER_INPUT)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                .addComponent(MOBILE_PHONE_NUMBER_INPUT))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,10 +242,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ID)
-                            .addComponent(ID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NAME)
                             .addComponent(NAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -251,7 +250,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DATE_OF_BIRTH)
                     .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,9 +268,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MOBILE_PHONE_NUMBER)
                     .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(HOME_ADDRESS_TITLE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HOME_ADDRESS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(HOME_COUNTRY)
                     .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -288,9 +286,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HOME_POSTAL_CODE)
                     .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(TEMPORARY_ADDRESS_TITLE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TEMPORARY_ADDRESS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TEMP_COUNTRY)
                     .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,9 +304,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEMP_POSTAL_CODE)
                     .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(ADDITIONAL_OPTIONS_TITLE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ADDITIONAL_OPTIONS_TITLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PRINT_ON_REGISTER)
                     .addComponent(PAIR_PASSENGER_LUGGAGE))
@@ -316,7 +314,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PRINT)
                     .addComponent(REGISTER))
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,6 +329,24 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     private void SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
+
+    private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
+        java.util.Random rand = new java.util.Random();
+        model.Passenger passenger = new model.Passenger(
+                rand.nextInt(), 
+                SURNAME_INPUT.getText(), 
+                NAME_INPUT.getText(), 
+                GENDER.getText(), 
+                new java.util.Date(42), 
+                MOBILE_PHONE_NUMBER_INPUT.getText(), 
+                HOME_PHONE_NUMBER_INPUT.getText(), 
+                1, 
+                2, 
+                SURNAME_TUSSENVOEGSEL_INPUT.getText()
+        );
+        
+        main.LuggageTrackerTool2.getQueryManager().addPassenger(passenger, new Address(), new Address());
+    }//GEN-LAST:event_REGISTERActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
@@ -353,8 +369,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     private javax.swing.JTextField HOME_POSTAL_CODE_INPUT;
     private javax.swing.JLabel HOME_STREET;
     private javax.swing.JTextField HOME_STREET_INPUT;
-    private javax.swing.JLabel ID;
-    private javax.swing.JTextField ID_INPUT;
     private javax.swing.JRadioButton MALE_BUTTON;
     private javax.swing.JLabel MOBILE_PHONE_NUMBER;
     private javax.swing.JTextField MOBILE_PHONE_NUMBER_INPUT;

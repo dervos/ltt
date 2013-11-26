@@ -20,15 +20,15 @@ public class Passenger {
 
     private int homeAddressId;
     private int temporaryAddressId;
-    private String tussenvoegsel; /*Means a sort of insertion, example;
-     Jaap van Pot, "van" being the tussenvoegsel*/
+    private String insertion; /*Means a sort of insertion, example;
+     Jaap van Pot, "van" being the insertion*/
 
 
     // Constructors
     public Passenger() {
     }
 
-    public Passenger(int passengerId, String surname, String firstName, String gender, Date dateOfBirth, String mobileNumber, String privateNumber, int homeAddressId, int temporaryAddressId, String tussenvoegsel) {
+    public Passenger(int passengerId, String surname, String firstName, String gender, Date dateOfBirth, String mobileNumber, String privateNumber, int homeAddressId, int temporaryAddressId, String insertion) {
         this.passengerId = passengerId;
         this.surname = surname;
         this.firstName = firstName;
@@ -38,7 +38,7 @@ public class Passenger {
         this.privateNumber = privateNumber;
         this.homeAddressId = homeAddressId;
         this.temporaryAddressId = temporaryAddressId;
-        this.tussenvoegsel = tussenvoegsel;
+        this.insertion = insertion;
     }
 
     /**
@@ -168,22 +168,22 @@ public class Passenger {
     }
 
     /**
-     * @return the tussenvoegsel
+     * @return the insertion
      */
-    public String getTussenvoegsel() {
-        return tussenvoegsel;
+    public String getInsertion() {
+        return insertion;
     }
 
     /**
-     * @param tussenvoegsel the tussenvoegsel to set
+     * @param tussenvoegsel the insertion to set
      */
-    public void setTussenvoegsel(String tussenvoegsel) {
-        this.tussenvoegsel = tussenvoegsel;
+    public void setInsertion(String tussenvoegsel) {
+        this.insertion = tussenvoegsel;
     }
 
     @Override
     public String toString() {
-        return "Passenger{" + "passengerId=" + passengerId + ", surname=" + surname + ", firstName=" + firstName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + ", homeAddressId=" + homeAddressId + ", temporaryAddressId=" + temporaryAddressId + ", tussenvoegsel=" + tussenvoegsel + '}';
+        return "Passenger{" + "passengerId=" + passengerId + ", surname=" + surname + ", firstName=" + firstName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + ", homeAddressId=" + homeAddressId + ", temporaryAddressId=" + temporaryAddressId + ", tussenvoegsel=" + insertion + '}';
     }
 
 }
