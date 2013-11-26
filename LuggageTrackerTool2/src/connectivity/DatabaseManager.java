@@ -22,7 +22,7 @@ public class DatabaseManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost/luggage_tracker_tool_database";
+            String url = "jdbc:mysql://localhost/lttDatabase";
             String user = "root", pass = "toor";
 
             /**

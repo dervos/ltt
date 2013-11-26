@@ -144,6 +144,13 @@ public class Passenger
     public void setPrivateNumber(String privateNumber) {
         this.privateNumber = privateNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger{" + "passengerId=" + passengerId + ", firstName=" + firstName + ", insertion=" + insertion + ", surname=" + surname + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + '}';
+    }
+    
+    
     
     
 }
