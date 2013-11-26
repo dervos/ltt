@@ -29,8 +29,6 @@ public class Luggage {
 
     public Luggage() {
     }
-    
-    
 
     // Getters and Setters
     /**

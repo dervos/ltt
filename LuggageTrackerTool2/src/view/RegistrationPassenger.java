@@ -4,6 +4,8 @@
  */
 package view;
 
+import model.Address;
+
 /**
  *
  * @author Haris
@@ -343,7 +345,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 SURNAME_TUSSENVOEGSEL_INPUT.getText()
         );
         
-        
+        main.LuggageTrackerTool2.getQueryManager().addPassenger(passenger, new Address());
     }//GEN-LAST:event_REGISTERActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

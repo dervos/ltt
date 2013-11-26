@@ -107,7 +107,7 @@ public class QueryManager {
     }
 
     /**
-     * Returned alle passagiers als een list
+        * Returned alle passagiers als een list
      *
      * @return
      */

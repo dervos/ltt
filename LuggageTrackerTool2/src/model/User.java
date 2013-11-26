@@ -22,7 +22,10 @@ public class User {
         this.rights = rights;
     }
 
-     /**
+    public User() {
+    }
+
+    /**
      * @return the userId
      */
     public int getUserId() {
@@ -35,7 +38,7 @@ public class User {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    
+
     /**
      *
      * @return
