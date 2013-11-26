@@ -13,17 +13,15 @@ public class Address {
     private String zipCode;
     private String city;
     private String country;
-    private String passengerId;
 
     // Constructors
-    public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country, String passengerId) {
+    public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country) {
         this.addressId = addressId;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
-        this.passengerId = passengerId;
     }
 
     // Getters and Setters
@@ -111,20 +109,6 @@ public class Address {
      */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    /**
-     * @return the passengerId
-     */
-    public String getPassengerId() {
-        return passengerId;
-    }
-
-    /**
-     * @param passengerId the passengerId to set
-     */
-    public void setPassengerId(String passengerId) {
-        this.passengerId = passengerId;
     }
 }
 

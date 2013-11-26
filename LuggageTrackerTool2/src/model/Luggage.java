@@ -10,7 +10,6 @@ public class Luggage {
     private int luggageId;
     private String description;
     private String storageLocation;
-    private int passengerId;
     private String status;
 
     /**
@@ -18,14 +17,12 @@ public class Luggage {
      * @param luggageId
      * @param description //color, size and anything out of the ordinary.
      * @param storageLocation //Location where luggage got stored after being found
-     * @param passengerId
      * @param status //Found, lost, solved?
      */
-    public Luggage(int luggageId, String description, String storageLocation, int passengerId, String status) {
+    public Luggage(int luggageId, String description, String storageLocation, String status) {
         this.luggageId = luggageId;
         this.description = description;
         this.storageLocation = storageLocation;
-        this.passengerId = passengerId;
         this.status = status;
     }
 
@@ -70,20 +67,6 @@ public class Luggage {
      */
     public void setStorageLocation(String storageLocation) {
         this.storageLocation = storageLocation;
-    }
-
-    /**
-     * @return the passengerId
-     */
-    public int getPassengerId() {
-        return passengerId;
-    }
-
-    /**
-     * @param passengerId the passengerId to set
-     */
-    public void setPassengerId(int passengerId) {
-        this.passengerId = passengerId;
     }
 
     /**
