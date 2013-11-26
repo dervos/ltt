@@ -13,6 +13,9 @@ import connectivity.QueryManager;
 
 import model.User;
 import view.MainFrame;
+import view.MainMenu;
+import view.SeachBar;
+import view.SideBar;
 
 /**
  *
@@ -70,7 +73,7 @@ public final class LuggageTrackerTool2 {
      *
      */
     public void startup() {
-        mainWindow = new MainFrame(NAME);
+        mainWindow = new MainFrame();
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        mainWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
@@ -85,8 +88,10 @@ public final class LuggageTrackerTool2 {
             }
         });
 
-        mainWindow.getContentPane().setLayout(new BorderLayout());
-        showPanel(new view.MainMenu());
+        mainWindow.getContentPane().setLayout(new BorderLayout(10,10));
+        addPanel(new SeachBar(), BorderLayout.NORTH);
+        addPanel(new SideBar(), BorderLayout.LINE_START);
+        addPanel(new MainMenu(), BorderLayout.CENTER);
 
         mainWindow.setVisible(true);
     }
@@ -100,6 +105,10 @@ public final class LuggageTrackerTool2 {
         mainWindow.getContentPane().add(panel, BorderLayout.CENTER);
         mainWindow.getContentPane().validate();
         mainWindow.getContentPane().repaint();
+    }
+    
+    public void addPanel(JPanel panel , Object layout) {
+        mainWindow.getContentPane().add(panel, layout);
     }
 
     /**

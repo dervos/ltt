@@ -27,6 +27,11 @@ public class Luggage {
         this.status = status;
     }
 
+    public Luggage() {
+    }
+    
+    
+
     // Getters and Setters
     /**
      * @return the luggageId

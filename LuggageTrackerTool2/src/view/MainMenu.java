@@ -1,16 +1,28 @@
 package view;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author reintjehard
  */
-public class MainMenu extends javax.swing.JPanel {
+public class MainMenu extends JPanel {
+    private JPanel passengerTab, luggageTab, accountTab;
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
+        passengerTab = new view.Passenger();
+        luggageTab = new view.Luggage();
+        accountTab = new view.AccountManagement();
+        
         initComponents();
+        
+        jTabbedPane.addTab("Passenger", passengerTab);
+        jTabbedPane.addTab("Luggage", luggageTab);
+        jTabbedPane.addTab("Account Management", accountTab);
     }
 
     /**
@@ -22,18 +34,29 @@ public class MainMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane = new javax.swing.JTabbedPane();
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Main menu"));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane jTabbedPane;
     // End of variables declaration//GEN-END:variables
 }
