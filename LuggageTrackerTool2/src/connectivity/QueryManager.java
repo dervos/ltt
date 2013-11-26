@@ -28,7 +28,7 @@ public class QueryManager {
      * @param passenger
      * @param address
      */
-    public void addPassenger(Passenger passenger, Address address) {
+    public void addPassenger(Passenger passenger, Address homeAddress, Address tempAddress) {
         String sql_passengerTable = "INSERT INTO `passenger` (Passenger ID, Surname, Name, Gender, Date of birth, Mobile phone, Home phone, Home address ID, Temporary address ID,  Insertion)"
                 + "VALUES:('" + passenger.getPassengerId() + "', '" + passenger.getSurname()
                 + "', '" + passenger.getFirstName() + "', '" + passenger.getGender() + "', '"
@@ -37,8 +37,9 @@ public class QueryManager {
                 + passenger.getTemporaryAddressId() + "', '" + passenger.getTussenvoegsel() + "')";
 
         //Column address ID needs to be handled in the database, should this auto-increment?
+        this.addAddress(homeAddress);
+        this.addAddress(tempAddress);
         this.databaseManager.insertQuery(sql_passengerTable);
-        this.addAddress(address);
     }
 
     /**
@@ -71,9 +72,10 @@ public class QueryManager {
         return passenger;
     }
 
-    /** Updates passenger row in DB.
-     * 
-     * @param passenger 
+    /**
+     * Updates passenger row in DB.
+     *
+     * @param passenger
      */
     public void updatePassenger(Passenger passenger) {
         String sql = "UPDATE passenger SET Passenger ID = " + passenger.getPassengerId()
@@ -87,7 +89,7 @@ public class QueryManager {
                 + "', Temporary address ID = '" + passenger.getTemporaryAddressId()
                 + "', Insertion = '" + passenger.getTussenvoegsel()
                 + "' WHERE `passenger id` = '" + passenger.getPassengerId() + "'";
-        
+
         this.databaseManager.insertQuery(sql);
     }
 
@@ -174,8 +176,8 @@ public class QueryManager {
     }
 
     /**
-     * 
-     * @param address 
+     *
+     * @param address
      */
     public void updateAddress(Address address) {
         String sql = "UPDATE `Address` SET Street'" + address.getStreetName()
@@ -184,7 +186,7 @@ public class QueryManager {
                 + "', City'" + address.getCity()
                 + "', Country'" + address.getCountry()
                 + "' WHERE `Address ID` = '" + address.getAddressId() + "'";
-        
+
         this.databaseManager.insertQuery(sql);
     }
 
@@ -263,7 +265,7 @@ public class QueryManager {
                 + "', Storage Location'" + luggage.getStorageLocation()
                 + "', Luggage Status'" + luggage.getStatus()
                 + "' WHERE Luggage ID = '" + luggage.getLuggageId() + "'";
-        
+
         this.databaseManager.insertQuery(sql);
     }
 
@@ -337,15 +339,15 @@ public class QueryManager {
     }
 
     /**
-     * 
-     * @param user 
+     *
+     * @param user
      */
     public void updateUser(User user) {
         String sql = "UPDATE `User` SET Username = '" + user.getUsername()
                 + "', Password = '" + user.getPassword()
                 + "', Privileges = '" + user.getRights()
                 + "' WHERE Username = '" + user.getUsername() + "'";
-        
+
         this.databaseManager.insertQuery(sql);
     }
 
