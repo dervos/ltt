@@ -59,7 +59,7 @@ public class QueryManager {
                 + "`, `" + passenger.getFirstName() + "`, `" + passenger.getGender() + "`, `"
                 + passenger.getDateOfBirth() + "`, `" + passenger.getMobileNumber() + "`, `"
                 + passenger.getPrivateNumber() + "`, " + passenger.getHomeAddressId() + ", "
-                + passenger.getTemporaryAddressId() + ", `" + passenger.getTussenvoegsel() + "`)";
+                + passenger.getTemporaryAddressId() + ", `" + passenger.getInsertion() + "`)";
 
         //Column address ID needs to be handled in the database, should this auto-increment?
         //String sql_addressId = "INSERT INTO `address` (Street, Street Number, Postcode, City, Country)" 

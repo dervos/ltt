@@ -26,8 +26,6 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LUGGAGE_ID = new javax.swing.JLabel();
-        LUGGAGE_ID_INPUT = new javax.swing.JTextField();
         DESCRIPTION = new javax.swing.JLabel();
         DESCRIPTION_INPUT_FRAME = new javax.swing.JScrollPane();
         DESCRIPTION_INPUT1 = new javax.swing.JTextArea();
@@ -44,12 +42,11 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(523, 279));
 
-        LUGGAGE_ID.setText("Luggage ID");
-
         DESCRIPTION.setText("Description");
 
         DESCRIPTION_INPUT1.setColumns(20);
         DESCRIPTION_INPUT1.setRows(5);
+        DESCRIPTION_INPUT1.setText("asd\nasd\nasd");
         DESCRIPTION_INPUT_FRAME.setViewportView(DESCRIPTION_INPUT1);
 
         STORAGE_LOCATION.setText("Storage Location");
@@ -81,47 +78,39 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(STORAGE_LOCATION)
-                            .addComponent(DESCRIPTION)
-                            .addComponent(LUGGAGE_ID))
+                            .addComponent(DESCRIPTION))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LUGGAGE_ID_INPUT)
                             .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                             .addComponent(STORAGE_LOCATION_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PRINT_ON_REGISTER_INPUT)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(ANDERS)))
+                            .addComponent(ANDERS))
                         .addGap(18, 18, 18)
                         .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LUGGAGE_ID)
-                    .addComponent(LUGGAGE_ID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DESCRIPTION)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(STORAGE_LOCATION)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ANDERS))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PRINT_ON_REGISTER_INPUT)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,8 +125,6 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private javax.swing.JLabel DESCRIPTION;
     private javax.swing.JTextArea DESCRIPTION_INPUT1;
     private javax.swing.JScrollPane DESCRIPTION_INPUT_FRAME;
-    private javax.swing.JLabel LUGGAGE_ID;
-    private javax.swing.JTextField LUGGAGE_ID_INPUT;
     private javax.swing.JCheckBox PRINT_ON_REGISTER_INPUT;
     private javax.swing.JLabel STORAGE_LOCATION;
     private javax.swing.JComboBox STORAGE_LOCATION_INPUT;
