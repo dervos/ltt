@@ -6,85 +6,66 @@ package model;
  */
 public class Luggage {
 
-    //Fields ordered as in database
-    private int luggageId;
+    private Integer luggageid;
     private String description;
-    private String storageLocation;
-    private String status;
+    private String storagelocation;
+    private String luggagestatus;
+    private Integer passenger;
 
     public Luggage() {
     }
 
-    /**
-     *
-     * @param luggageId
-     * @param description //color, size and anything out of the ordinary.
-     * @param storageLocation //Location where luggage got stored after being
-     * found
-     * @param status //Found, lost, solved?
-     */
-    public Luggage(int luggageId, String description, String storageLocation, String status) {
-        this.luggageId = luggageId;
+    public Luggage(Integer luggageid, String description, String storagelocation, String luggagestatus, Integer passenger) {
+        this.luggageid = luggageid;
         this.description = description;
-        this.storageLocation = storageLocation;
-        this.status = status;
+        this.storagelocation = storagelocation;
+        this.luggagestatus = luggagestatus;
+        this.passenger = passenger;
     }
 
-    // Getters and Setters
-    /**
-     * @return the luggageId
-     */
-    public int getLuggageId() {
-        return luggageId;
+    public Integer getLuggageid() {
+        return luggageid;
     }
 
-    /**
-     * @param luggageId the luggageId to set
-     */
-    public void setLuggageId(int luggageId) {
-        this.luggageId = luggageId;
+    public void setLuggageid(Integer luggageid) {
+        this.luggageid = luggageid;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return the storageLocation
-     */
-    public String getStorageLocation() {
-        return storageLocation;
+    public String getStoragelocation() {
+        return storagelocation;
     }
 
-    /**
-     * @param storageLocation the storageLocation to set
-     */
-    public void setStorageLocation(String storageLocation) {
-        this.storageLocation = storageLocation;
+    public void setStoragelocation(String storagelocation) {
+        this.storagelocation = storagelocation;
     }
 
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
+    public String getLuggagestatus() {
+        return luggagestatus;
     }
 
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLuggagestatus(String luggagestatus) {
+        this.luggagestatus = luggagestatus;
+    }
+
+    public Integer getPassengerid() {
+        return passenger;
+    }
+
+    public void setPassenger(Integer passenger) {
+        this.passenger = passenger;
+    }
+
+    @Override
+    public String toString() {
+        return "Luggage{" + "luggageid=" + luggageid + ", description=" + description + ", storagelocation=" + storagelocation + ", luggagestatus=" + luggagestatus + ", passenger=" + passenger + '}';
     }
 
 }

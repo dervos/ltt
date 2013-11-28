@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.sql.Date;
 import model.Address;
 
 /**
@@ -331,21 +332,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     }//GEN-LAST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
 
     private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
-        java.util.Random rand = new java.util.Random();
-        model.Passenger passenger = new model.Passenger(
-                rand.nextInt(), 
-                SURNAME_INPUT.getText(), 
-                NAME_INPUT.getText(), 
-                GENDER.getText(), 
-                new java.util.Date(42), 
-                MOBILE_PHONE_NUMBER_INPUT.getText(), 
-                HOME_PHONE_NUMBER_INPUT.getText(), 
-                1, 
-                2, 
-                SURNAME_TUSSENVOEGSEL_INPUT.getText()
-        );
         
-        main.LuggageTrackerTool2.getQueryManager().addPassenger(passenger, new Address(), new Address());
     }//GEN-LAST:event_REGISTERActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,7 +22,7 @@ public class Passenger extends javax.swing.JPanel {
     }
     
     public void refreshPassengerList() {
-        passengerList = queryManager.getPassengers();
+//        passengerList = queryManager.getPassengers();
         
     }
     
@@ -32,13 +32,13 @@ public class Passenger extends javax.swing.JPanel {
             Object[] newRow = new Object[9];
             newRow[0] = passengerList.get(i).getSurname();
             newRow[1] = passengerList.get(i).getInsertion();
-            newRow[2] = passengerList.get(i).getFirstName();
+            newRow[2] = passengerList.get(i).getName();
             newRow[3] = passengerList.get(i).getGender();
-            newRow[4] = passengerList.get(i).getDateOfBirth();
-            newRow[5] = passengerList.get(i).getMobileNumber();
-            newRow[6] = passengerList.get(i).getPrivateNumber();
-            newRow[7] = passengerList.get(i).getHomeAddressId();
-            newRow[8] = passengerList.get(i).getTemporaryAddressId();
+            newRow[4] = passengerList.get(i).getDob();
+            newRow[5] = passengerList.get(i).getMobphone();
+            newRow[6] = passengerList.get(i).getHomephone();
+            newRow[7] = passengerList.get(i).getHomeaddressid();
+            newRow[8] = passengerList.get(i).getTempaddressid();
             ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(newRow);
         }
     }

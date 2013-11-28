@@ -38,8 +38,9 @@ public final class LuggageTrackerTool2 {
      *
      */
     public static final String NAME = "Luggage Tracker Tool";
+
     // Database Manager
-    private DatabaseManager databaseManager;
+    private static DatabaseManager databaseManager;
     private QueryManager queryManager;
     // The main window
     private JFrame mainWindow;
@@ -66,7 +67,7 @@ public final class LuggageTrackerTool2 {
         // create and initialize the connectivity
         databaseManager = new DatabaseManager();
         databaseManager.openConnection();
-        queryManager = new QueryManager(databaseManager);
+//        queryManager = new QueryManager(databaseManager);
     }
 
     /**
@@ -133,6 +134,11 @@ public final class LuggageTrackerTool2 {
      */
     public static QueryManager getQueryManager() {
         return getInstance().queryManager;
+    }
+    
+    
+    public static DatabaseManager getDatabaseManager() {
+        return databaseManager;
     }
 
     /**

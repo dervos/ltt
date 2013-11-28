@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.Collection;
 
 /**
  *
@@ -8,182 +9,126 @@ import java.util.Date;
  */
 public class Passenger {
 
-    //Fields ordered as in database
-    private int passengerId;
+    private Integer passengerid;
     private String surname;
-    private String firstName;
+    private String insertion;
+    private String name;
     private String gender;
-    private Date dateOfBirth;
-    private String mobileNumber;
-    private String privateNumber; /*Home telephone number or mobile one if
-     passenger hasn't got a phone at his house.*/
-
-    private int homeAddressId;
-    private int temporaryAddressId;
-    private String insertion; /*Means a sort of insertion, example;
-     Jaap van Pot, "van" being the insertion*/
-
+    private Date dob;
+    private String mobphone;
+    private String homephone;
+    private int homeaddressid;
+    private int tempaddressid;
+    private Collection<Luggage> luggageCollection;
 
     // Constructors
     public Passenger() {
     }
 
-    public Passenger(int passengerId, String surname, String firstName, String gender, Date dateOfBirth, String mobileNumber, String privateNumber, int homeAddressId, int temporaryAddressId, String insertion) {
-        this.passengerId = passengerId;
+    public Passenger(int passengerid, String surname, String name, String gender, Date dob, String mobphone, String homephone, int homeaddress, int tempaddress, String insertion) {
+        this.passengerid = passengerid;
         this.surname = surname;
-        this.firstName = firstName;
+        this.name = name;
         this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.mobileNumber = mobileNumber;
-        this.privateNumber = privateNumber;
-        this.homeAddressId = homeAddressId;
-        this.temporaryAddressId = temporaryAddressId;
+        this.dob = dob;
+        this.mobphone = mobphone;
+        this.homephone = homephone;
+        this.homeaddressid = homeaddress;
+        this.tempaddressid = tempaddress;
         this.insertion = insertion;
     }
 
-    /**
-     * @return the passengerId
-     */
-    public int getPassengerId() {
-        return passengerId;
+    public Integer getPassengerid() {
+        return passengerid;
     }
 
-    /**
-     * @param passengerId the passengerId to set
-     */
-    public void setPassengerId(int passengerId) {
-        this.passengerId = passengerId;
+    public void setPassengerid(Integer passengerid) {
+        this.passengerid = passengerid;
     }
 
-    /**
-     * @return the surname
-     */
     public String getSurname() {
         return surname;
     }
 
-    /**
-     * @param surname the surname to set
-     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    /**
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * @param firstName the firstName to set
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * @return the gender
-     */
-    public String getGender() {
-        return gender;
-    }
-
-    /**
-     * @param gender the gender to set
-     */
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    /**
-     * @return the dateOfBirth
-     */
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    /**
-     * @param dateOfBirth the dateOfBirth to set
-     */
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
-     * @return the mobileNumber
-     */
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    /**
-     * @param mobileNumber the mobileNumber to set
-     */
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    /**
-     * @return the privateNumber
-     */
-    public String getPrivateNumber() {
-        return privateNumber;
-    }
-
-    /**
-     * @param privateNumber the privateNumber to set
-     */
-    public void setPrivateNumber(String privateNumber) {
-        this.privateNumber = privateNumber;
-    }
-
-    /**
-     * @return the homeAddressId
-     */
-    public int getHomeAddressId() {
-        return homeAddressId;
-    }
-
-    /**
-     * @param homeAddressId the homeAddressId to set
-     */
-    public void setHomeAddressId(int homeAddressId) {
-        this.homeAddressId = homeAddressId;
-    }
-
-    /**
-     * @return the temporaryAddressId
-     */
-    public int getTemporaryAddressId() {
-        return temporaryAddressId;
-    }
-
-    /**
-     * @param temporaryAddressId the temporaryAddressId to set
-     */
-    public void setTemporaryAddressId(int temporaryAddressId) {
-        this.temporaryAddressId = temporaryAddressId;
-    }
-
-    /**
-     * @return the insertion
-     */
     public String getInsertion() {
         return insertion;
     }
 
-    /**
-     * @param tussenvoegsel the insertion to set
-     */
-    public void setInsertion(String tussenvoegsel) {
-        this.insertion = tussenvoegsel;
+    public void setInsertion(String insertion) {
+        this.insertion = insertion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getMobphone() {
+        return mobphone;
+    }
+
+    public void setMobphone(String mobphone) {
+        this.mobphone = mobphone;
+    }
+
+    public String getHomephone() {
+        return homephone;
+    }
+
+    public void setHomephone(String homephone) {
+        this.homephone = homephone;
+    }
+
+    public int getHomeaddressid() {
+        return homeaddressid;
+    }
+
+    public void setHomeaddressid(int homeaddressid) {
+        this.homeaddressid = homeaddressid;
+    }
+
+    public int getTempaddressid() {
+        return tempaddressid;
+    }
+
+    public void setTempaddressid(int tempaddressid) {
+        this.tempaddressid = tempaddressid;
+    }
+
+    public Collection<Luggage> getLuggageCollection() {
+        return luggageCollection;
+    }
+
+    public void setLuggageCollection(Collection<Luggage> luggageCollection) {
+        this.luggageCollection = luggageCollection;
     }
 
     @Override
     public String toString() {
-        return "Passenger{" + "passengerId=" + passengerId + ", surname=" + surname + ", firstName=" + firstName + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", privateNumber=" + privateNumber + ", homeAddressId=" + homeAddressId + ", temporaryAddressId=" + temporaryAddressId + ", tussenvoegsel=" + insertion + '}';
+        return "model.Passenger[ passengerid=" + passengerid + " ]";
     }
 
 }
