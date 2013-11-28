@@ -103,7 +103,7 @@ public class QueryManager {
     public void deletePassenger(int passengerId) {
         this.getPassenger(passengerId);
         String sql = "DELETE FROM `Passenger` WHERE `Passenger ID` = '" + passengerId + "'";
-        this.databaseManager.insertQuery(sql);
+        this.databaseManager.executeQuery(sql);
 
         // Do temporary address and home address ALWAYS get a value? 
         // Or does this get set to -1 or something similar if no values are inserted for address?
