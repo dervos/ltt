@@ -1,100 +1,82 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
 /**
  *
- * @author reintjehard, Tomas Slaman
+ * @author reintjehard
  */
 public class User {
 
-    private int userId;
-    private String username, password;
-    private int rights;
-    private final static User admin = new User("admin", "admin", 1);
+    public static User getAdmin() {
+        return new User(Integer.SIZE, "admin", "admin", "all");
+    }
+
+    private Integer userid;
+
+    private String username;
+
+    private String password;
+
+    private String privileges;
 
     public User() {
     }
 
-    /**
-     *
-     * @param username
-     * @param password
-     */
-    public User(String username, String password, int rights) {
+    public User(Integer userid) {
+        this.userid = userid;
+    }
+
+    public User(Integer userid, String privileges) {
+        this.userid = userid;
+        this.privileges = privileges;
+    }
+
+    public User(Integer userid, String username, String password, String privileges) {
+        this.userid = userid;
         this.username = username;
         this.password = password;
-        this.rights = rights;
+        this.privileges = privileges;
     }
 
-    /**
-     * @return the userId
-     */
-    public int getUserId() {
-        return userId;
+    public Integer getUserid() {
+        return userid;
     }
 
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getUsername() {
         return username;
     }
 
-    /**
-     *
-     * @param username
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     *
-     * @param password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     *
-     * @return
-     */
-    public static User getAdmin() {
-        return admin;
+    public String getPrivileges() {
+        return privileges;
     }
 
-    /**
-     * @return the rights
-     */
-    public int getRights() {
-        return rights;
-    }
-
-    /**
-     * @param rights the rights to set
-     */
-    public void setRights(int rights) {
-        this.rights = rights;
+    public void setPrivileges(String privileges) {
+        this.privileges = privileges;
     }
 
     @Override
     public String toString() {
-        return "User{" + "username=" + username + ", password=" + password + '}';
+        return "User{" + "userid=" + userid + ", username=" + username + ", password=" + password + ", privileges=" + privileges + '}';
     }
+
 }

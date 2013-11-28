@@ -11,25 +11,27 @@ public class DatabaseManager {
     public static final String JDBC_EXCEPTION = "JDBC Exception: ";
     public static final String SQL_EXCEPTION = "SQL Exception: ";
 
-    /**
-     *
-     */
-    public Connection connection;
+    public static final String DRIVER = "com.mysql.jdbc.Driver";
+    public static final String DBURL = "jdbc:mysql://localhost/lttDatabase";
+    public static final String DBUSER = "root";
+    public static final String DBPASS = "toor";
+
+    private ResultSet result = null;
+    private int affectedRows = -1;
+    private  Connection connection = null;
+
+    public DatabaseManager() {
+    }
 
     /**
      *
      */
     public void openConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(DRIVER);
 
-            String url = "jdbc:mysql://localhost/lttDatabase";
-            String user = "root", pass = "toor";
-
-            /**
-             * Open connection
-             */
-            connection = DriverManager.getConnection(url, user, pass);
+            // Open Connection
+            connection = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
         } catch (ClassNotFoundException e) {
             System.err.println(JDBC_EXCEPTION + e);
         } catch (java.sql.SQLException e) {
@@ -46,6 +48,26 @@ public class DatabaseManager {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        connection = null;
+    }
+
+    public ResultSet performSelect(PreparedStatement prdstmt) throws SQLException {
+        result = prdstmt.executeQuery();
+
+        return result;
+    }
+
+    public int performUpdate(PreparedStatement prdstmt) throws SQLException {
+
+        affectedRows = prdstmt.executeUpdate();
+
+        return affectedRows;
+    }
+
+    public Connection getConnection() {
+        if(connection == null)
+            openConnection();
+        return connection;
     }
 
     /**
