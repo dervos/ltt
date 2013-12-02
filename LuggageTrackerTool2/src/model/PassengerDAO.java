@@ -40,7 +40,7 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            tempPassenger.setDob(rs.getDate("name"));
+            tempPassenger.setDob(rs.getDate("dob"));
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
             tempPassenger.setHomeaddressid(rs.getInt("homeaddressid"));

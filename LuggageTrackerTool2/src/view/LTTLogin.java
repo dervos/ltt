@@ -96,9 +96,9 @@ public class LTTLogin extends javax.swing.JPanel {
                                     .addComponent(PASSWORD_LABEL)
                                     .addComponent(USERNAME_LABEL))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(USERNAME_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(PASSWORD_INPUT)
+                                    .addComponent(USERNAME_INPUT))))))
                 .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
@@ -129,7 +129,7 @@ public class LTTLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_USERNAME_INPUTActionPerformed
 
     private void LOGIN_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_BUTTONActionPerformed
-    LuggageTrackerTool2.getInstance().showMainMenu();
+        
     }//GEN-LAST:event_LOGIN_BUTTONActionPerformed
 
     private void CANCEL_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCEL_BUTTONActionPerformed

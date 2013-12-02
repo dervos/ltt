@@ -4,30 +4,38 @@
  */
 package view;
 
+import java.sql.SQLException;
+import model.PassengerDAO;
+
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
     private java.util.List<model.Passenger> passengerList;
-    private connectivity.QueryManager queryManager;
+    private model.PassengerDAO passengerDAO;
     
     /**
      * Creates new form Passenger
      */
     public Passenger() {
-        queryManager = main.LuggageTrackerTool2.getQueryManager();
+        this.passengerDAO = new PassengerDAO();
+        
         initComponents();
         addPassengerItems();
     }
     
-    public void refreshPassengerList() {
-//        passengerList = queryManager.getPassengers();
+    public void refreshPassengerList() throws SQLException {
+        passengerList = passengerDAO.readAll();
         
     }
     
     public void addPassengerItems() {
-        refreshPassengerList();
+        try {
+            refreshPassengerList();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
         for (int i = 0; i < passengerList.size(); i++) {
             Object[] newRow = new Object[9];
             newRow[0] = passengerList.get(i).getSurname();

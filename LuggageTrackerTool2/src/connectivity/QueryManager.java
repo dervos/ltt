@@ -12,15 +12,15 @@ import java.util.List;
  */
 public class QueryManager {
 
-//    private final DatabaseManager databaseManager;
+    private final DatabaseManager databaseManager;
 //
 //    /**
 //     *
 //     * @param databaseManager
 //     */
-//    public QueryManager(DatabaseManager databaseManager) {
-//        this.databaseManager = databaseManager;
-//    }
+    public QueryManager(DatabaseManager databaseManager) {
+        this.databaseManager = databaseManager;
+    }
 //
 //    
 //

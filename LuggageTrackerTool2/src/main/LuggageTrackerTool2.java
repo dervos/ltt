@@ -11,11 +11,6 @@ import javax.swing.UIManager;
 import connectivity.DatabaseManager;
 import connectivity.QueryManager;
 
-import model.User;
-import view.MainFrame;
-import view.MainMenu;
-import view.SeachBar;
-import view.SideBar;
 
 /**
  *
@@ -40,14 +35,17 @@ public final class LuggageTrackerTool2 {
     public static final String NAME = "Luggage Tracker Tool";
 
     // Database Manager
-    private static DatabaseManager databaseManager;
-    private QueryManager queryManager;
+    private static final DatabaseManager databaseManager = new connectivity.DatabaseManager();
     // The main window
     private JFrame mainWindow;
     // Admin User
-    private static final User admin = User.getAdmin();
+    private static final model.User admin = model.User.getAdmin();
     // LuggageTrackerTool2 singleton
     private static final LuggageTrackerTool2 instance = new LuggageTrackerTool2();
+    // Login frame
+    private JFrame loginWindow;
+    
+    private model.User user;
 
     /**
      *
@@ -64,17 +62,43 @@ public final class LuggageTrackerTool2 {
         } catch (Exception e) {
             System.err.println("Error setting LookAndFeelClassName: " + e);
         }
-        // create and initialize the connectivity
-        databaseManager = new DatabaseManager();
-        databaseManager.openConnection();
-//        queryManager = new QueryManager(databaseManager);
+    }
+    
+    public void login() {
+        loginWindow = new JFrame("Login");
+        loginWindow.setSize(478, 302);
+        
+        loginWindow.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent event) {
+                loginWindow.dispose();
+                databaseManager.closeConnection();
+            }
+        });
+        
+        
+        loginWindow.getContentPane().add(new view.LTTLogin());
+        loginWindow.setVisible(true);
+    }
+    
+    public void logout() {
+        shutdown();
+        login();
+    }
+    
+    public boolean authenticate(model.User user) {
+        boolean result = false;
+        model.UserDAO userDAO = new model.UserDAO();
+        
+        return result;
     }
 
     /**
      *
      */
     public void startup() {
-        mainWindow = new MainFrame();
+        mainWindow = new view.MainFrame();
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        mainWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
@@ -89,10 +113,10 @@ public final class LuggageTrackerTool2 {
             }
         });
 
-        mainWindow.getContentPane().setLayout(new BorderLayout(10,10));
-        addPanel(new SeachBar(), BorderLayout.NORTH);
-        addPanel(new SideBar(), BorderLayout.LINE_START);
-        addPanel(new MainMenu(), BorderLayout.CENTER);
+        mainWindow.getContentPane().setLayout(new BorderLayout(10, 10));
+        addPanel(new view.SeachBar(), BorderLayout.NORTH);
+        addPanel(new view.SideBar(), BorderLayout.LINE_START);
+        addPanel(new view.MainMenu(), BorderLayout.CENTER);
 
         mainWindow.setVisible(true);
     }
@@ -107,8 +131,8 @@ public final class LuggageTrackerTool2 {
         mainWindow.getContentPane().validate();
         mainWindow.getContentPane().repaint();
     }
-    
-    public void addPanel(JPanel panel , Object layout) {
+
+    public void addPanel(JPanel panel, Object layout) {
         mainWindow.getContentPane().add(panel, layout);
     }
 
@@ -129,14 +153,6 @@ public final class LuggageTrackerTool2 {
         return instance;
     }
 
-    /**
-     * @return the queryManager
-     */
-    public static QueryManager getQueryManager() {
-        return getInstance().queryManager;
-    }
-    
-    
     public static DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
@@ -155,15 +171,12 @@ public final class LuggageTrackerTool2 {
                     applicatie.startup();
                 } catch (Exception e) {
                     System.err.println("Application"
-                            + applicatie.getClass().getName() + "failed to launch.");
+                            + applicatie.getClass().getName() + " failed to launch.");
                     System.err.println("Message: " + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         });
-    }
-
-    public void showMainMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
