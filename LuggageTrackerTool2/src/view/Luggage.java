@@ -4,11 +4,14 @@
  */
 package view;
 
+import model.LuggageDAO;
+
 /**
  *
  * @author gebak_000
  */
 public class Luggage extends javax.swing.JPanel {
+    model.LuggageDAO luggageDAO = new LuggageDAO();
 
     /**
      * Creates new form Luggage

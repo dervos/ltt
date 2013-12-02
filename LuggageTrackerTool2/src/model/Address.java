@@ -6,115 +6,135 @@ package model;
  */
 public class Address {
 
-    //Fields ordered as in database
-    private int addressId;
-    private String streetName;
-    private int streetNumber;
-    private String zipCode;
+    private Integer addressid;
+    private String streetname;
+    private Integer streetnumber;
+    private String zipcode;
     private String city;
     private String country;
 
-    // Constructors
-    public Address() {
-
-    }
-
-    public Address(String streetName, int streetNumber, String zipCode, String city, String country) {
-    }
-
-    public Address(int addressId, String streetName, int streetNumber, String zipCode, String city, String country) {
-        this.addressId = addressId;
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
+    /**
+     *
+     * @param addressid
+     * @param streetname
+     * @param streetnumber
+     * @param zipcode
+     * @param city
+     * @param country
+     */
+    public Address(Integer addressid, String streetname, Integer streetnumber, String zipcode, String city, String country) {
+        this.addressid = addressid;
+        this.streetname = streetname;
+        this.streetnumber = streetnumber;
+        this.zipcode = zipcode;
         this.city = city;
         this.country = country;
     }
 
-    // Getters and Setters
+    /**
+     *
+     */
+    public Address() {
+    }
+
     /**
      *
      * @return
      */
-    public int getAddressId() {
-        return addressId;
+    public Integer getAddressid() {
+        return addressid;
     }
 
     /**
      *
-     * @param addressId
+     * @param addressid
      */
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public void setAddressid(Integer addressid) {
+        this.addressid = addressid;
     }
 
     /**
-     * @return the country
+     *
+     * @return
      */
-    public String getCountry() {
-        return country;
+    public String getStreetname() {
+        return streetname;
     }
 
     /**
-     * @param country the country to set
+     *
+     * @param streetname
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setStreetname(String streetname) {
+        this.streetname = streetname;
     }
 
     /**
-     * @return the city
+     *
+     * @return
+     */
+    public Integer getStreetnumber() {
+        return streetnumber;
+    }
+
+    /**
+     *
+     * @param streetnumber
+     */
+    public void setStreetnumber(Integer streetnumber) {
+        this.streetnumber = streetnumber;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    /**
+     *
+     * @param zipcode
+     */
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    /**
+     *
+     * @return
      */
     public String getCity() {
         return city;
     }
 
     /**
-     * @param city the city to set
+     *
+     * @param city
      */
     public void setCity(String city) {
         this.city = city;
     }
 
     /**
-     * @return the streetName
+     *
+     * @return
      */
-    public String getStreetName() {
-        return streetName;
+    public String getCountry() {
+        return country;
     }
 
     /**
-     * @param streetName the streetName to set
+     *
+     * @param country
      */
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    /**
-     * @return the streetNumber
-     */
-    public int getStreetNumber() {
-        return streetNumber;
-    }
-
-    /**
-     * @param streetNumber the streetNumber to set
-     */
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    /**
-     * @return the zipCode
-     */
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    /**
-     * @param zipCode the zipCode to set
-     */
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    @Override
+    public String toString() {
+        return "Address{" + "addressid=" + addressid + ", streetname=" + streetname + ", streetnumber=" + streetnumber + ", zipcode=" + zipcode + ", city=" + city + ", country=" + country + '}';
     }
 }
