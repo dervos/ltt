@@ -9,6 +9,7 @@ package view;
  * @author gebak_000
  */
 import main.LuggageTrackerTool2;
+
 public class LTTLogin extends javax.swing.JPanel {
 
     /**
@@ -61,14 +62,14 @@ public class LTTLogin extends javax.swing.JPanel {
 
         PASSWORD_LABEL.setText("Password:");
 
-        USERNAME_INPUT.setText("username");
+        USERNAME_INPUT.setText("admin");
         USERNAME_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 USERNAME_INPUTActionPerformed(evt);
             }
         });
 
-        PASSWORD_INPUT.setText("jPasswordField1");
+        PASSWORD_INPUT.setText("admin");
 
         TITLE_LABEL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         TITLE_LABEL.setText("LUGGAGETRACKERTOOL v1.0");
@@ -95,10 +96,10 @@ public class LTTLogin extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(PASSWORD_LABEL)
                                     .addComponent(USERNAME_LABEL))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PASSWORD_INPUT)
-                                    .addComponent(USERNAME_INPUT))))))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(USERNAME_INPUT)
+                                    .addComponent(PASSWORD_INPUT))))))
                 .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
@@ -129,11 +130,16 @@ public class LTTLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_USERNAME_INPUTActionPerformed
 
     private void LOGIN_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_BUTTONActionPerformed
-        
+        if (main.LuggageTrackerTool2.getInstance().authenticate(USERNAME_INPUT.getText(), PASSWORD_INPUT.getPassword())) {
+            main.LuggageTrackerTool2.getInstance().startup();
+        } else {
+            
+            INSTRUCTIONS_LABEL.setText("Incorrect credentials. Please try again.");
+        }
     }//GEN-LAST:event_LOGIN_BUTTONActionPerformed
 
     private void CANCEL_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCEL_BUTTONActionPerformed
-    LuggageTrackerTool2.getInstance().exit();
+        LuggageTrackerTool2.getInstance().exit();
     }//GEN-LAST:event_CANCEL_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

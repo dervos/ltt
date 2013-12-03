@@ -4,20 +4,52 @@
  */
 package view;
 
-import model.LuggageDAO;
+import java.sql.SQLException;
 
 /**
  *
  * @author gebak_000
  */
 public class Luggage extends javax.swing.JPanel {
-    model.LuggageDAO luggageDAO = new LuggageDAO();
+
+    private java.util.List<model.Luggage> luggageList = new java.util.ArrayList<>();
 
     /**
      * Creates new form Luggage
      */
     public Luggage() {
         initComponents();
+        addLuggageItemsToTable();
+    }
+
+    private void refreshLuggageList() {
+        try {
+            luggageList = model.LuggageDAO.readAll();
+        } catch (SQLException ex) {
+            System.err.println("Error getting luggage list: " + ex.getMessage());
+        }
+    }
+
+    public void addLuggageItemsToTable() {
+        
+        refreshLuggageList();
+        
+        for (model.Luggage luggage : luggageList) {
+            addLuggageToTable(luggage);
+        }
+    }
+
+    private void addRow(Object[] row) {
+        ((javax.swing.table.DefaultTableModel) LUGGAGE_TABLE.getModel()).addRow(row);
+    }
+
+    public void addLuggageToTable(model.Luggage luggage) {
+        Object[] newRow = new Object[4];
+        newRow[0] = luggage.getLuggageid();
+        newRow[1] = luggage.getDescription();
+        newRow[2] = luggage.getStoragelocation();
+        newRow[3] = luggage.getPassengerid();
+        addRow(newRow);
     }
 
     /**
@@ -41,11 +73,23 @@ public class Luggage extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Luggage ID", "Luggage Description", "Storage Location"
+                "Luggage ID", "Luggage Description", "Storage Location", "PassengerID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         LUGGAGE_TABLE.setName("Luggage"); // NOI18N
         jScrollPane1.setViewportView(LUGGAGE_TABLE);
+        if (LUGGAGE_TABLE.getColumnModel().getColumnCount() > 0) {
+            LUGGAGE_TABLE.getColumnModel().getColumn(0).setResizable(false);
+            LUGGAGE_TABLE.getColumnModel().getColumn(0).setPreferredWidth(40);
+        }
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -89,4 +133,5 @@ public class Luggage extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
 }

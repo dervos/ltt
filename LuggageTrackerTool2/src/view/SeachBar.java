@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package view;
-import main.LuggageTrackerTool2;
 
 /**
  *
@@ -62,7 +61,7 @@ public class SeachBar extends javax.swing.JPanel {
         jToolBar1.add(jButton2);
         jToolBar1.add(jSeparator1);
 
-        jLabel2.setText("[username]");
+        jLabel2.setText(main.LuggageTrackerTool2.getInstance().getCurrentUser().getUsername() + "[" + main.LuggageTrackerTool2.getInstance().getCurrentUser().getPrivileges() +"]");
         jToolBar1.add(jLabel2);
         jToolBar1.add(jSeparator2);
 
@@ -103,7 +102,7 @@ public class SeachBar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    //TODO add button actions here        
+        main.LuggageTrackerTool2.getInstance().login();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class UserDAO {
 
-    private final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
+    private static final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
 
     public UserDAO() {
     }
 
-    public List<User> readAll() throws SQLException {
+    public static List<User> readAll() throws SQLException {
         List<User> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -31,7 +31,7 @@ public class UserDAO {
         
         databaseManager.openConnection();
         
-        databaseManager.getConnection().prepareStatement(query);
+        ps = databaseManager.getConnection().prepareStatement(query);
         rs = databaseManager.performSelect(ps);
         
         while (rs.next()) {
@@ -50,12 +50,14 @@ public class UserDAO {
         return list;
     }
     
-    public User readById(int id) throws SQLException {
+    public static User readById(int id) throws SQLException {
         User tempUser = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         
         String query = "SELECT * FROM User WHERE userid=?;";
+        
+        databaseManager.openConnection();
         
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -76,12 +78,14 @@ public class UserDAO {
         return tempUser;
     }
     
-    public User readByUsername(String username) throws SQLException {
+    public static User readByUsername(String username) throws SQLException {
         User tempUser = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         
-        String query = "SELECT * FROM User WHERE userid=?;";
+        String query = "SELECT * FROM User WHERE username=?;";
+        
+        databaseManager.openConnection();
         
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setString(1, username);
@@ -102,12 +106,14 @@ public class UserDAO {
         return tempUser;
     }
     
-    public int create(User user) throws SQLException {
+    public static int create(User user) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
         String query = "INSERT INTO User (username, password, privileges)"
                 + "VALUES(?, ?, ?);";
+        
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
@@ -123,7 +129,7 @@ public class UserDAO {
         return rowsAffected;
     }
     
-    public int update(User user) throws SQLException {
+    public static int update(User user) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
@@ -132,12 +138,15 @@ public class UserDAO {
                 + "password=?, "
                 + "privileges=? "
                 + "WHERE userid=?;";
+        
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
         ps.setString(1, user.getUsername());
         ps.setString(2, user.getPassword());
         ps.setString(3, user.getPrivileges());
+        ps.setInt(4, user.getUserid());
 
         rowsAffected = ps.executeUpdate();
 
@@ -148,10 +157,13 @@ public class UserDAO {
         return rowsAffected;
     }
     
-    public int delete(int userid) throws SQLException {
+    public static int delete(int userid) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
+        
         String query = "DELETE FROM User WHERE userid=?;";
+        
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, userid);

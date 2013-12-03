@@ -4,51 +4,72 @@
  */
 package view;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import model.PassengerDAO;
 
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
+
     private java.util.List<model.Passenger> passengerList;
-    private model.PassengerDAO passengerDAO;
-    
+
     /**
      * Creates new form Passenger
      */
     public Passenger() {
-        this.passengerDAO = new PassengerDAO();
-        
+
         initComponents();
-        addPassengerItems();
+        addPassengerItemsToTable();
     }
-    
-    public void refreshPassengerList() throws SQLException {
-        passengerList = passengerDAO.readAll();
-        
-    }
-    
-    public void addPassengerItems() {
+
+    public void refreshPassengerList() {
         try {
-            refreshPassengerList();
+            passengerList = model.PassengerDAO.readAll();
         } catch (SQLException ex) {
-            System.err.println(ex);
+            System.err.println("Error getting passenger list: " + ex.getMessage());
         }
-        for (int i = 0; i < passengerList.size(); i++) {
-            Object[] newRow = new Object[9];
-            newRow[0] = passengerList.get(i).getSurname();
-            newRow[1] = passengerList.get(i).getInsertion();
-            newRow[2] = passengerList.get(i).getName();
-            newRow[3] = passengerList.get(i).getGender();
-            newRow[4] = passengerList.get(i).getDob();
-            newRow[5] = passengerList.get(i).getMobphone();
-            newRow[6] = passengerList.get(i).getHomephone();
-            newRow[7] = passengerList.get(i).getHomeaddressid();
-            newRow[8] = passengerList.get(i).getTempaddressid();
-            ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(newRow);
+    }
+
+    public void addPassengerItemsToTable() {
+
+        refreshPassengerList();
+
+        for (model.Passenger passenger : passengerList) {
+            addPassengerToTable(passenger);
         }
+    }
+
+    private void addRow(Object[] row) {
+        ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(row);
+    }
+
+    private void getRow(int index) {
+        ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).getValueAt(index, index);
+    }
+
+    public void addPassengerToTable(model.Passenger passenger) {
+        Object[] newRow = new Object[9];
+        newRow[0] = passenger.getSurname();
+        newRow[1] = passenger.getInsertion();
+        newRow[2] = passenger.getName();
+        newRow[3] = passenger.getGender();
+        newRow[4] = new Date(passenger.getDob());
+        newRow[5] = passenger.getMobphone();
+        newRow[6] = passenger.getHomephone();
+        try {
+            newRow[7] = model.AddressDAO.readById(passenger.getHomeaddressid()).getStreetname();
+        } catch (SQLException ex) {
+            
+        }
+        try {
+            newRow[8] = model.AddressDAO.readById(passenger.getTempaddressid()).getStreetname();
+        } catch (SQLException ex) {
+            
+        }
+        
+        addRow(newRow);
     }
 
     /**
@@ -67,6 +88,7 @@ public class Passenger extends javax.swing.JPanel {
         EDIT_BUTTON = new javax.swing.JButton();
         DELETE_BUTTON = new javax.swing.JButton();
 
+        PASSENGER_TABLE.setAutoCreateRowSorter(true);
         PASSENGER_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -74,7 +96,15 @@ public class Passenger extends javax.swing.JPanel {
             new String [] {
                 "Surname", "", "Name", "Gender", "DoB", "Mob", "Tel", "Home", "Temp"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(PASSENGER_TABLE);
 
         jToolBar1.setFloatable(false);
