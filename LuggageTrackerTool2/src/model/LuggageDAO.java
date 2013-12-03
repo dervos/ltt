@@ -12,15 +12,17 @@ import java.util.List;
  */
 public class LuggageDAO {
 
-    private final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
+    private static final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
 
     public LuggageDAO() {
     }
 
-    public List<Luggage> readAll() throws SQLException {
+    public static List<Luggage> readAll() throws SQLException {
         List<Luggage> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
+        
+        databaseManager.openConnection();
 
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage;";
 
@@ -44,13 +46,15 @@ public class LuggageDAO {
         return list;
     }
 
-    public Luggage readById(int id) throws SQLException {
+    public static Luggage readById(int id) throws SQLException {
         Luggage tempLuggage = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
 
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE luggageid=?;";
 
+        databaseManager.openConnection();
+        
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, id);
 
@@ -72,13 +76,15 @@ public class LuggageDAO {
         return tempLuggage;
     }
 
-    public List<Luggage> readByPersonid(int passengerid) throws SQLException {
+    public static List<Luggage> readByPersonid(int passengerid) throws SQLException {
         List<Luggage> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
 
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE passengerid=?;";
 
+        databaseManager.openConnection();
+        
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, passengerid);
 
@@ -101,12 +107,14 @@ public class LuggageDAO {
         return list;
     }
 
-    public int create(Luggage luggage) throws SQLException {
+    public static int create(Luggage luggage) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO Luggage (description, storagelocation, luggagestatus, passengerid"
+        String query = "INSERT INTO `Luggage` (`description`, `storagelocation`, `luggagestatus`, `passengerid`) "
                 + "VALUES(?, ?, ?, ?);";
+        
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
@@ -124,7 +132,7 @@ public class LuggageDAO {
         return rowsAffected;
     }
 
-    public int update(Luggage luggage) throws SQLException {
+    public static int update(Luggage luggage) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
@@ -135,6 +143,8 @@ public class LuggageDAO {
                 + "passengerid=? "
                 + "WHERE luggageid=?;";
 
+        databaseManager.openConnection();
+        
         ps = databaseManager.getConnection().prepareStatement(query);
 
         ps.setString(1, luggage.getDescription());
@@ -152,10 +162,12 @@ public class LuggageDAO {
         return rowsAffected;
     }
 
-    public int delete(int luggageid) throws SQLException {
+    public static int delete(int luggageid) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
         String query = "DELETE FROM Luggage WHERE luggageid=?;";
+        
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, luggageid);

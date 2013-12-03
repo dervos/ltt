@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class AddressDAO {
 
-    private final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
+    private static final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
 
     public AddressDAO() {
 
@@ -23,12 +23,14 @@ public class AddressDAO {
      * @return List of all addresses
      * @throws java.sql.SQLException
      */
-    public List<Address> readAll() throws SQLException {
+    public static List<Address> readAll() throws SQLException {
         List<Address> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
 
         String query = "SELECT addressid,street,streetnumber,zipcode,city,country from Address";
+
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
         rs = databaseManager.performSelect(ps);
@@ -51,12 +53,14 @@ public class AddressDAO {
         return list;
     }
 
-    public Address readById(int id) throws SQLException {
+    public static Address readById(int id) throws SQLException {
         Address tempAddress = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
 
-        String query = "SELECT addressid, FROM Address WHERE addressid=?";
+        String query = "SELECT * FROM Address WHERE addressid=?";
+
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -80,12 +84,14 @@ public class AddressDAO {
         return tempAddress;
     }
 
-    public List<Address> readByCity(String city) throws SQLException {
+    public static List<Address> readByCity(String city) throws SQLException {
         List<Address> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
 
         String query = "SELECT addressid, FROM Address WHERE city=?";
+
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setString(1, city);
@@ -117,17 +123,19 @@ public class AddressDAO {
      * @return the affected rows
      * @throws java.sql.SQLException
      */
-    public int create(Address address) throws SQLException {
+    public static int create(Address address) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO Address (streetname, streetnumber, zipcode, city, country"
+        String query = "INSERT INTO Address (streetname, streetnumber, zipcode, city, country) "
                 + "VALUES(?,?,?,?,?)";
-        
+
+        databaseManager.openConnection();
+
         ps = databaseManager.getConnection().prepareStatement(query);
 
         ps.setString(1, address.getStreetname());
-        ps.setInt(2, address.getStreetnumber());
+        ps.setInt(2, 2);
         ps.setString(3, address.getZipcode());
         ps.setString(4, address.getCity());
         ps.setString(5, address.getCountry());
@@ -147,7 +155,7 @@ public class AddressDAO {
      * @return
      * @throws java.sql.SQLException
      */
-    public int update(Address address) throws SQLException {
+    public static int update(Address address) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
@@ -158,6 +166,8 @@ public class AddressDAO {
                 + "city=?, "
                 + "country=? "
                 + "WHERE addressid=?";
+
+        databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
@@ -184,11 +194,13 @@ public class AddressDAO {
      * @return
      * @throws java.sql.SQLException
      */
-    public int delete(int addressid) throws SQLException {
+    public static int delete(int addressid) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
         String query = "DELETE FROM Address WHERE addressid=?";
-        
+
+        databaseManager.openConnection();
+
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, addressid);
 

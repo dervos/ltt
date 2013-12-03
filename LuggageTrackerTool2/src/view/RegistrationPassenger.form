@@ -75,13 +75,6 @@
                           <Component id="PAIR_PASSENGER_LUGGAGE" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="REGISTER" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="DATE_OF_BIRTH_DD_INPUT" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="DATE_OF_BIRTH_MM_INPUT" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="DATE_OF_BIRTH_YYYY_INPUT" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="MALE_BUTTON" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="FEMALE_BUTTON" min="-2" max="-2" attributes="0"/>
@@ -90,28 +83,30 @@
                   </Group>
                   <Component id="ADDITIONAL_OPTIONS_TITLE" min="-2" max="-2" attributes="0"/>
                   <Component id="BASIC_INFORMATION_TITLE" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="DD_MM_YYYY" min="-2" pref="94" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="NAME_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="SURNAME_TUSSENVOEGSEL_INPUT" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="SURNAME_INPUT" min="-2" pref="166" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="TEMP_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TEMP_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TEMP_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="HOME_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="HOME_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="HOME_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="HOME_COUNTRY_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="HOME_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
-                              <Component id="MOBILE_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="DATE_OF_BIRTH_INPUT" min="-2" pref="156" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="DD_MM_YYYY" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="NAME_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="SURNAME_TUSSENVOEGSEL_INPUT" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="SURNAME_INPUT" min="-2" pref="166" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="TEMP_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TEMP_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TEMP_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HOME_POSTAL_CODE_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HOME_STREET_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HOME_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HOME_COUNTRY_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HOME_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="MOBILE_PHONE_NUMBER_INPUT" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -146,10 +141,8 @@
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="DATE_OF_BIRTH" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DATE_OF_BIRTH_DD_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DATE_OF_BIRTH_MM_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DATE_OF_BIRTH_YYYY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="DD_MM_YYYY" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DATE_OF_BIRTH_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="GENDER" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -260,21 +253,12 @@
         <Property name="text" type="java.lang.String" value="Date of Birth"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="DATE_OF_BIRTH_DD_INPUT">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DATE_OF_BIRTH_DD_INPUTActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="DATE_OF_BIRTH_MM_INPUT">
-    </Component>
-    <Component class="javax.swing.JTextField" name="DATE_OF_BIRTH_YYYY_INPUT">
-    </Component>
     <Component class="javax.swing.JLabel" name="DD_MM_YYYY">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="(DD_MM_YYYY)"/>
+        <Property name="text" type="java.lang.String" value="(YYYYMMDD)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="GENDER">
@@ -411,11 +395,13 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="PRINT_ON_REGISTER">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Print on register"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="PAIR_PASSENGER_LUGGAGE">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Pair passenger with luggage"/>
       </Properties>
     </Component>
@@ -426,11 +412,16 @@
     </Component>
     <Component class="javax.swing.JButton" name="REGISTER">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Register"/>
+        <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="REGISTERActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="DATE_OF_BIRTH_INPUT">
+      <Properties>
+        <Property name="columns" type="int" value="3"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

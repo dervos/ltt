@@ -4,17 +4,39 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.User;
+
+
 /**
  *
  * @author gebak_000
  */
 public class AccountManagement extends javax.swing.JPanel {
+    List<model.User> list = new ArrayList<>();
+    String[] usernames;
 
     /**
      * Creates new form AccountManagement
      */
     public AccountManagement() {
+        try {
+            list = model.UserDAO.readAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        usernames = new String[list.size()];
+        int index = 0;
+        for (User user : list) {
+            usernames[index] = user.getUsername();
+            index++;
+        }
         initComponents();
+        
     }
 
     /**
@@ -72,7 +94,7 @@ public class AccountManagement extends javax.swing.JPanel {
         CHANGE_PASSWORD.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         CHANGE_PASSWORD.setText("Change Password");
 
-        USER.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User1", "User2", "User3", "User4" }));
+        USER.setModel(new javax.swing.DefaultComboBoxModel(usernames));
         USER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 USERActionPerformed(evt);
@@ -185,11 +207,27 @@ public class AccountManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_USERActionPerformed
 
     private void NEW_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NEW_CONFIRMActionPerformed
-        // TODO add your handling code here:
+        model.User user = new model.User();
+        user.setUsername(NEW_USERNAME_INPUT.getText());
+        user.setPassword(NEW_PASSWORD_INPUT.getText());
+        user.setPrivileges("Admin");
+        try {
+            model.UserDAO.create(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_NEW_CONFIRMActionPerformed
 
     private void CHANGE_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHANGE_CONFIRMActionPerformed
-        // TODO add your handling code here:
+        String pass = CHANGE_PASSWORD_INPUT.getText();
+        try {
+            model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
+            user.setPassword(pass);
+            model.UserDAO.update(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_CHANGE_CONFIRMActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

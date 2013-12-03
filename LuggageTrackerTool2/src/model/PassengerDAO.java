@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,12 +18,12 @@ import java.util.List;
  */
 public class PassengerDAO {
 
-    private final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
+    private static final connectivity.DatabaseManager databaseManager = main.LuggageTrackerTool2.getDatabaseManager();
 
     public PassengerDAO() {
     }
 
-    public List<Passenger> readAll() throws SQLException {
+    public static List<Passenger> readAll() throws SQLException {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -40,15 +41,15 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            tempPassenger.setDob(rs.getDate("dob"));
+            tempPassenger.setDob(rs.getDate("dob").getTime());
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
-            tempPassenger.setHomeaddressid(rs.getInt("homeaddressid"));
-            tempPassenger.setTempaddressid(rs.getInt("tempaddressid"));
+            tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
+            tempPassenger.setTempaddress(model.AddressDAO.readById(rs.getInt("tempaddressid")));
             list.add(tempPassenger);
         }
 
-        if (databaseManager != null) {
+        if (databaseManager.getConnection() != null) {
             databaseManager.closeConnection();
         }
 
@@ -61,7 +62,7 @@ public class PassengerDAO {
      * @param id
      * @return
      */
-    public Passenger readById(int id) throws SQLException {
+    public static Passenger readById(int id) throws SQLException {
         Passenger passenger = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -82,11 +83,11 @@ public class PassengerDAO {
             passenger.setInsertion(rs.getString("insertion"));
             passenger.setName(rs.getString("name"));
             passenger.setGender(rs.getString("gender"));
-            passenger.setDob(rs.getDate("dob"));
+            passenger.setDob(rs.getDate("dob").getTime());
             passenger.setMobphone(rs.getString("mobphone"));
             passenger.setHomephone(rs.getString("homephone"));
-            passenger.setHomeaddressid(rs.getInt("homeaddressid"));
-            passenger.setTempaddressid(rs.getInt("tempaddressid"));
+            passenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
+            passenger.setTempaddress(model.AddressDAO.readById(rs.getInt("tempaddressid")));
         }
 
         if (databaseManager != null) {
@@ -96,7 +97,7 @@ public class PassengerDAO {
         return passenger;
     }
 
-    public List<Passenger> readByName(String name) throws SQLException {
+    public static List<Passenger> readByName(String name) throws SQLException {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -116,11 +117,11 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            tempPassenger.setDob(rs.getDate("name"));
+            tempPassenger.setDob((rs.getDate("dob")).getTime());
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
-            tempPassenger.setHomeaddressid(rs.getInt("homeaddressid"));
-            tempPassenger.setTempaddressid(rs.getInt("tempaddressid"));
+            tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
+            tempPassenger.setTempaddress(model.AddressDAO.readById(rs.getInt("tempaddressid")));
             list.add(tempPassenger);
         }
 
@@ -136,12 +137,12 @@ public class PassengerDAO {
      *
      * @param passenger
      */
-    public int create(Passenger passenger) throws SQLException {
+    public static int create(Passenger passenger) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
         String query = "INSERT INTO "
-                + "passenger (surname, insertion, name, gender, dob, mobphone, homephone, homeaddessid, tempaddressid)"
+                + "`passenger` (`surname`, `insertion`, `name`, `gender`, `dob`, `mobphone`, `homephone`, `homeaddressid`, `tempaddressid`) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         databaseManager.openConnection();
@@ -152,11 +153,11 @@ public class PassengerDAO {
         ps.setString(2, passenger.getInsertion());
         ps.setString(3, passenger.getName());
         ps.setString(4, passenger.getGender());
-        ps.setDate(5, passenger.getDob());
+        ps.setDate(5, new Date(passenger.getDob()));
         ps.setString(6, passenger.getMobphone());
         ps.setString(7, passenger.getHomephone());
-        ps.setInt(8, passenger.getHomeaddressid());
-        ps.setInt(9, passenger.getTempaddressid());
+        ps.setInt(8, 1);
+        ps.setInt(9, 2);
 
         rowsAffected = ps.executeUpdate();
 
@@ -172,7 +173,7 @@ public class PassengerDAO {
      *
      * @param passenger
      */
-    public int update(Passenger passenger) throws SQLException {
+    public static int update(Passenger passenger) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
 
@@ -184,7 +185,7 @@ public class PassengerDAO {
                 + "dob=?, "
                 + "mobphone=?, "
                 + "homephone=?, "
-                + "homeaddessid=?, "
+                + "homeaddressid=?, "
                 + "tempaddressid=? "
                 + "WHERE passengerid=?";
 
@@ -196,7 +197,7 @@ public class PassengerDAO {
         ps.setString(2, passenger.getInsertion());
         ps.setString(3, passenger.getName());
         ps.setString(4, passenger.getGender());
-        ps.setDate(5, passenger.getDob());
+        ps.setDate(5, new Date(passenger.getDob()));
         ps.setString(6, passenger.getMobphone());
         ps.setString(7, passenger.getHomephone());
         ps.setInt(8, passenger.getHomeaddressid());
@@ -219,7 +220,7 @@ public class PassengerDAO {
      * @return
      * @throws java.sql.SQLException
      */
-    public int delete(int id) throws SQLException {
+    public static int delete(int id) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
         String query = "DELETE FROM passenger WHERE passengerid=?";
@@ -230,7 +231,7 @@ public class PassengerDAO {
         ps.setInt(1, id);
 
         rowsAffected = ps.executeUpdate();
-
+        
         if (databaseManager != null) {
             databaseManager.closeConnection();
         }

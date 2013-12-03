@@ -84,7 +84,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="[username]"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="main.LuggageTrackerTool2.getInstance().getCurrentUser().getUsername() + &quot;[&quot; + main.LuggageTrackerTool2.getInstance().getCurrentUser().getPrivileges() +&quot;]&quot;" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">

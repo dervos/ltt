@@ -1,6 +1,11 @@
 package connectivity;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -18,7 +23,7 @@ public class DatabaseManager {
 
     private ResultSet result = null;
     private int affectedRows = -1;
-    private  Connection connection = null;
+    private static Connection connection = null;
 
     public DatabaseManager() {
     }
@@ -45,8 +50,8 @@ public class DatabaseManager {
     public void closeConnection() {
         try {
             connection.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (SQLException e) {
+            System.err.println(SQL_EXCEPTION + e.getMessage());
         }
         connection = null;
     }
@@ -65,8 +70,6 @@ public class DatabaseManager {
     }
 
     public Connection getConnection() {
-        if(connection == null)
-            openConnection();
         return connection;
     }
 

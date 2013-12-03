@@ -4,8 +4,7 @@
  */
 package view;
 
-import java.sql.Date;
-import model.Address;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,6 +17,66 @@ public class RegistrationPassenger extends javax.swing.JPanel {
      */
     public RegistrationPassenger() {
         initComponents();
+    }
+
+    public model.Passenger createPassenger() {
+        model.Passenger tempPassenger = new model.Passenger();
+        
+        tempPassenger.setName(NAME_INPUT.getText());
+        tempPassenger.setInsertion(SURNAME_TUSSENVOEGSEL_INPUT.getText());
+        tempPassenger.setSurname(SURNAME_INPUT.getText());
+        try {
+            tempPassenger.setDob(Long.parseLong(DATE_OF_BIRTH_INPUT.getText()));
+        } catch (NumberFormatException e) {
+            
+        }
+        tempPassenger.setGender(MALE_BUTTON.isSelected() ? "m" : "f");
+
+        tempPassenger.setHomephone(HOME_PHONE_NUMBER_INPUT.getText());
+        tempPassenger.setMobphone(MOBILE_PHONE_NUMBER_INPUT.getText());
+
+        clearFields();
+        return tempPassenger;
+    }
+    
+    public model.Address createHomeAddressFromForms() {
+        model.Address address = new model.Address();
+        address.setCity(HOME_CITY_INPUT.getText());
+        address.setCountry(HOME_COUNTRY_INPUT.getSelectedItem().toString());
+        address.setStreetname(HOME_STREET_INPUT.getText());
+        address.setZipcode(HOME_POSTAL_CODE_INPUT.getText());
+        return address;
+    }
+    
+    public model.Address createTempAddressFromForms() {
+        model.Address address = new model.Address();
+        address.setCity(TEMP_CITY_INPUT.getText());
+        address.setCountry(TEMP_COUNTRY_INPUT.getSelectedItem().toString());
+        address.setStreetname(TEMP_STREET_INPUT.getText());
+        address.setZipcode(TEMP_POSTAL_CODE_INPUT.getText());
+        return address;
+    }
+
+    public void clearFields() {
+        SURNAME_INPUT.setText("");
+        SURNAME_TUSSENVOEGSEL_INPUT.setText("");
+        NAME_INPUT.setText("");
+        DATE_OF_BIRTH_INPUT.setText("");
+        MALE_BUTTON.setSelected(true);
+        FEMALE_BUTTON.setSelected(false);
+        HOME_PHONE_NUMBER_INPUT.setText("");
+        MOBILE_PHONE_NUMBER_INPUT.setText("");
+        
+        HOME_CITY_INPUT.setText("");
+        HOME_COUNTRY_INPUT.setSelectedIndex(1);
+        HOME_STREET_INPUT.setText("");
+        HOME_POSTAL_CODE_INPUT.setText("");
+        
+        TEMP_CITY_INPUT.setText("");
+        TEMP_COUNTRY_INPUT.setSelectedIndex(1);
+        TEMP_STREET_INPUT.setText("");
+        TEMP_POSTAL_CODE_INPUT.setText("");
+        
     }
 
     /**
@@ -37,9 +96,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         SURNAME_TUSSENVOEGSEL_INPUT = new javax.swing.JTextField();
         SURNAME_INPUT = new javax.swing.JTextField();
         DATE_OF_BIRTH = new javax.swing.JLabel();
-        DATE_OF_BIRTH_DD_INPUT = new javax.swing.JTextField();
-        DATE_OF_BIRTH_MM_INPUT = new javax.swing.JTextField();
-        DATE_OF_BIRTH_YYYY_INPUT = new javax.swing.JTextField();
         DD_MM_YYYY = new javax.swing.JLabel();
         GENDER = new javax.swing.JLabel();
         MALE_BUTTON = new javax.swing.JRadioButton();
@@ -71,6 +127,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         PAIR_PASSENGER_LUGGAGE = new javax.swing.JCheckBox();
         PRINT = new javax.swing.JButton();
         REGISTER = new javax.swing.JButton();
+        DATE_OF_BIRTH_INPUT = new javax.swing.JFormattedTextField();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -91,14 +148,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         DATE_OF_BIRTH.setText("Date of Birth");
 
-        DATE_OF_BIRTH_DD_INPUT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DATE_OF_BIRTH_DD_INPUTActionPerformed(evt);
-            }
-        });
-
         DD_MM_YYYY.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
-        DD_MM_YYYY.setText("(DD_MM_YYYY)");
+        DD_MM_YYYY.setText("(YYYYMMDD)");
 
         GENDER.setText("Gender");
 
@@ -144,18 +195,22 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         ADDITIONAL_OPTIONS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         ADDITIONAL_OPTIONS_TITLE.setText("Additional Options");
 
+        PRINT_ON_REGISTER.setSelected(true);
         PRINT_ON_REGISTER.setText("Print on register");
 
+        PAIR_PASSENGER_LUGGAGE.setSelected(true);
         PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
 
         PRINT.setText("Print");
 
-        REGISTER.setText("Register");
+        REGISTER.setText("Submit");
         REGISTER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 REGISTERActionPerformed(evt);
             }
         });
+
+        DATE_OF_BIRTH_INPUT.setColumns(3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -198,37 +253,33 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                             .addComponent(PAIR_PASSENGER_LUGGAGE)
                             .addComponent(REGISTER)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(DATE_OF_BIRTH_MM_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(DATE_OF_BIRTH_YYYY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(MALE_BUTTON)
                                 .addGap(18, 18, 18)
                                 .addComponent(FEMALE_BUTTON))))
                     .addComponent(ADDITIONAL_OPTIONS_TITLE)
                     .addComponent(BASIC_INFORMATION_TITLE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(HOME_ADDRESS_TITLE)
-                            .addGap(94, 94, 94)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(NAME_INPUT)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(TEMP_POSTAL_CODE_INPUT)
-                                .addComponent(TEMP_STREET_INPUT)
-                                .addComponent(TEMP_CITY_INPUT)
-                                .addComponent(HOME_POSTAL_CODE_INPUT)
-                                .addComponent(HOME_STREET_INPUT)
-                                .addComponent(HOME_CITY_INPUT)
-                                .addComponent(HOME_COUNTRY_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(HOME_PHONE_NUMBER_INPUT)
-                                .addComponent(MOBILE_PHONE_NUMBER_INPUT))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(HOME_ADDRESS_TITLE)
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -253,10 +304,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                         .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DATE_OF_BIRTH)
-                    .addComponent(DATE_OF_BIRTH_DD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DATE_OF_BIRTH_MM_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DATE_OF_BIRTH_YYYY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DD_MM_YYYY))
+                    .addComponent(DD_MM_YYYY)
+                    .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GENDER)
                     .addComponent(MALE_BUTTON)
@@ -323,25 +372,36 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_MALE_BUTTONActionPerformed
 
-    private void DATE_OF_BIRTH_DD_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DATE_OF_BIRTH_DD_INPUTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DATE_OF_BIRTH_DD_INPUTActionPerformed
-
     private void SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
 
     private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
-        
+        try {
+            model.Passenger passenger = createPassenger();
+            model.Address homeAddress = createHomeAddressFromForms();
+            model.Address tempAddress = createTempAddressFromForms();
+            homeAddress.setAddressid(1);
+            tempAddress.setAddressid(2);
+            passenger.setHomeaddress(homeAddress);
+            passenger.setTempaddress(tempAddress);
+            model.AddressDAO.create(homeAddress);
+            model.AddressDAO.create(tempAddress);
+            
+            model.PassengerDAO.create(passenger);
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerToTable(passenger);
+        } catch (SQLException ex) {
+            System.err.println("Failed to create passenger.");
+            System.err.println("Message: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_REGISTERActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;
     private javax.swing.JLabel DATE_OF_BIRTH;
-    private javax.swing.JTextField DATE_OF_BIRTH_DD_INPUT;
-    private javax.swing.JTextField DATE_OF_BIRTH_MM_INPUT;
-    private javax.swing.JTextField DATE_OF_BIRTH_YYYY_INPUT;
+    private javax.swing.JFormattedTextField DATE_OF_BIRTH_INPUT;
     private javax.swing.JLabel DD_MM_YYYY;
     private javax.swing.JRadioButton FEMALE_BUTTON;
     private javax.swing.JLabel GENDER;
