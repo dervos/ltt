@@ -5,6 +5,9 @@
 package view;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -20,15 +23,16 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     }
 
     public model.Passenger createPassenger() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         model.Passenger tempPassenger = new model.Passenger();
-        
+
         tempPassenger.setName(NAME_INPUT.getText());
         tempPassenger.setInsertion(SURNAME_TUSSENVOEGSEL_INPUT.getText());
         tempPassenger.setSurname(SURNAME_INPUT.getText());
         try {
-            tempPassenger.setDob(Long.parseLong(DATE_OF_BIRTH_INPUT.getText()));
-        } catch (NumberFormatException e) {
-            
+            tempPassenger.setDob(df.parse(DATE_OF_BIRTH_INPUT.getText()));
+        } catch (ParseException e) {
+            System.out.println(e);
         }
         tempPassenger.setGender(MALE_BUTTON.isSelected() ? "m" : "f");
 
@@ -38,7 +42,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         clearFields();
         return tempPassenger;
     }
-    
+
     public model.Address createHomeAddressFromForms() {
         model.Address address = new model.Address();
         address.setCity(HOME_CITY_INPUT.getText());
@@ -47,7 +51,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         address.setZipcode(HOME_POSTAL_CODE_INPUT.getText());
         return address;
     }
-    
+
     public model.Address createTempAddressFromForms() {
         model.Address address = new model.Address();
         address.setCity(TEMP_CITY_INPUT.getText());
@@ -66,17 +70,17 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         FEMALE_BUTTON.setSelected(false);
         HOME_PHONE_NUMBER_INPUT.setText("");
         MOBILE_PHONE_NUMBER_INPUT.setText("");
-        
+
         HOME_CITY_INPUT.setText("");
         HOME_COUNTRY_INPUT.setSelectedIndex(1);
         HOME_STREET_INPUT.setText("");
         HOME_POSTAL_CODE_INPUT.setText("");
-        
+
         TEMP_CITY_INPUT.setText("");
         TEMP_COUNTRY_INPUT.setSelectedIndex(1);
         TEMP_STREET_INPUT.setText("");
         TEMP_POSTAL_CODE_INPUT.setText("");
-        
+
     }
 
     /**
@@ -387,7 +391,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             passenger.setTempaddress(tempAddress);
             model.AddressDAO.create(homeAddress);
             model.AddressDAO.create(tempAddress);
-            
+
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerToTable(passenger);
         } catch (SQLException ex) {
