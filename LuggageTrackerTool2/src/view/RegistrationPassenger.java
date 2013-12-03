@@ -149,7 +149,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         DATE_OF_BIRTH.setText("Date of Birth");
 
         DD_MM_YYYY.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
-        DD_MM_YYYY.setText("(YYYYMMDD)");
+        DD_MM_YYYY.setText("(YYYY-MM-DD)");
 
         GENDER.setText("Gender");
 

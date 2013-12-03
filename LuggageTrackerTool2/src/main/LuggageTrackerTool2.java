@@ -82,9 +82,8 @@ public final class LuggageTrackerTool2 {
 
     public boolean authenticate(String username, char[] password) {
         model.User tempUser = null;
-        model.UserDAO userDAO = new model.UserDAO();
         try {
-            tempUser = userDAO.readByUsername(username);
+            tempUser = model.UserDAO.readByUsername(username);
             System.out.println(tempUser);
             if (tempUser != null) {
                 char[] userpass = tempUser.getPassword().toCharArray();
