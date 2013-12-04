@@ -55,7 +55,7 @@ public class Passenger extends javax.swing.JPanel {
         newRow[1] = passenger.getInsertion();
         newRow[2] = passenger.getName();
         newRow[3] = passenger.getGender();
-        newRow[4] = passenger.getDob();
+        newRow[4] = new java.sql.Date(passenger.getDob().getTime());
         newRow[5] = passenger.getMobphone();
         newRow[6] = passenger.getHomephone();
         try {

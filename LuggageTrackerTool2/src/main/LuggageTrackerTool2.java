@@ -231,6 +231,14 @@ public final class LuggageTrackerTool2 {
     public MainMenu getMainMenu() {
         return mainMenu;
     }
+    
+    public SideBar getSideBar(){
+        return this.sideBar;
+    }
+    
+    public SeachBar getSearchBar(){
+        return this.searchBar;
+    }
 
     /**
      * @param args the command line arguments
