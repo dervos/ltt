@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,24 +24,90 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         initComponents();
     }
 
-    public model.Passenger createPassenger() {
+    class CustomException extends Exception {
+
+        public CustomException(String exMessage) {
+            super(exMessage);
+        }
+    }
+
+    public model.Passenger createPassenger() throws CustomException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String name = NAME_INPUT.getText();
+        String insertion = SURNAME_TUSSENVOEGSEL_INPUT.getText();
+        String surname = SURNAME_INPUT.getText();
+        java.util.Date dob;
+        String strDob = DATE_OF_BIRTH_INPUT.getText();
+        String gender = MALE_BUTTON.isSelected() ? "m" : "f";
+        String homePhone = HOME_PHONE_NUMBER_INPUT.getText();
+        String mobPhone = MOBILE_PHONE_NUMBER_INPUT.getText();
+
+        String[] dateContent = strDob.split("-");
+
+        if (name.length() > 20) {
+            throw new CustomException("First name length is too long, 20 characters maximum");
+        }
+        if (insertion.length() > 8) {
+            throw new CustomException("Insertion length is too long, 8 characters maximum");
+        }
+        if (surname.length() > 35) {
+            throw new CustomException("Surname length is too long, 35 characters maximum");
+        }
+        if (!strDob.contains("-") || dateContent.length != 3) {
+            throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.");
+        }
+
+        for (int i = 0; i < dateContent.length; i++) {
+            int result = tryParseInt(dateContent[i]);
+            if (result == -1) {
+                switch (i) {
+                    case 0:
+                        if ((result < 1850 || result >= (Calendar.getInstance().get(Calendar.YEAR)) + 1)) {
+                            throw new CustomException("Date of Birth year is incorrect.");
+                        }
+                        break;
+                    case 1:
+                        if (result < 1 || result > 12) {
+                            throw new CustomException("Date of birth month is incorrect.");
+                        }
+                        break;
+                    case 2:
+                        if (result < 1 || result > 31) {
+                            throw new CustomException("Date of birth day is incorrect.");
+                        }
+                        break;
+                }
+            }
+        }
+        
+        if (mobPhone.length() > 12 || homePhone.length() > 12)
+            throw new CustomException("Phone numbers can't be longer than 12 characters.");
+        
+        if (hasAlpha(mobPhone) || hasAlpha(homePhone))
+            throw new CustomException("Phone numbers cannot contain letters");
+
+        try {
+            dob = df.parse(DATE_OF_BIRTH_INPUT.getText());
+        } catch (ParseException e) {
+            throw new CustomException("Date of Birth format is incorrect");
+        }
+
         model.Passenger tempPassenger = new model.Passenger();
 
-        tempPassenger.setName(NAME_INPUT.getText());
-        tempPassenger.setInsertion(SURNAME_TUSSENVOEGSEL_INPUT.getText());
-        tempPassenger.setSurname(SURNAME_INPUT.getText());
+        tempPassenger.setName(name);
+        tempPassenger.setInsertion(insertion);
+        tempPassenger.setSurname(surname);
         try {
-            tempPassenger.setDob(df.parse(DATE_OF_BIRTH_INPUT.getText()));
+            tempPassenger.setDob(dob);
         } catch (ParseException e) {
-            System.out.println(e);
+            throw new CustomException("Date of Birth format is incorrect");
         }
-        tempPassenger.setGender(MALE_BUTTON.isSelected() ? "m" : "f");
+        tempPassenger.setGender(gender);
 
-        tempPassenger.setHomephone(HOME_PHONE_NUMBER_INPUT.getText());
-        tempPassenger.setMobphone(MOBILE_PHONE_NUMBER_INPUT.getText());
+        tempPassenger.setHomephone(homePhone);
+        tempPassenger.setMobphone(mobPhone);
 
-        clearFields();
+        //clearFields();
         return tempPassenger;
     }
 
@@ -83,9 +151,37 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
     }
 
+    private int tryParseInt(String text) {
+        int result = -1;
+        try //Try catch to prevent the application from crashing when the inserted text isnt a number
+        {
+            result = Integer.parseInt(text); //try to parse text to int
+        } catch (NumberFormatException nfe) {
+            return result;
+        }
+
+        return result;
+    }
+    
+    public boolean hasAlpha(String text){
+        char[] characters = text.toCharArray();
+        for (int i = 0; i < characters.length; i++)
+        {
+            boolean isDigit = Character.isDigit(characters[i]);
+            if (!isDigit)
+            {
+                if (!(i == 0 && characters[i] == '+'))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+
     /**
-     * 
-     * @return Can be accessed from LTT2 class .sideBar.getPassengerControl().getDayOfBirthControl();
+     *
+     * @return Can be accessed from LTT2 class
+     * .sideBar.getPassengerControl().getDayOfBirthControl();
      */
     public javax.swing.JFormattedTextField getDateOfBirthControl() {
         return this.DATE_OF_BIRTH_INPUT;
@@ -402,11 +498,15 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerToTable(passenger);
+            clearFields();
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
             System.err.println("Message: " + ex.getMessage());
             ex.printStackTrace();
+        } catch (CustomException cEx) {
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_REGISTERActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -47,6 +47,7 @@ public class PassengerDAO {
             try {
                 tempPassenger.setDob((rs.getDate("dob")));
             } catch (ParseException e) {
+                System.out.println(e.getMessage());
             }
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
@@ -93,6 +94,7 @@ public class PassengerDAO {
             try {
                 passenger.setDob((rs.getDate("dob")));
             } catch (ParseException e) {
+                System.out.println(e.getMessage());
             }
             passenger.setMobphone(rs.getString("mobphone"));
             passenger.setHomephone(rs.getString("homephone"));
@@ -131,7 +133,7 @@ public class PassengerDAO {
             try {
                 tempPassenger.setDob((rs.getDate("dob")));
             } catch (ParseException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
