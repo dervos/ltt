@@ -4,11 +4,14 @@
  */
 package view;
 
+import java.awt.Component;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,13 +29,25 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
     class CustomException extends Exception {
 
+        private Component cmp = null;
+
         public CustomException(String exMessage) {
             super(exMessage);
+        }
+
+        public CustomException(String exMessage, Component comp) {
+            super(exMessage);
+            this.cmp = comp;
+        }
+
+        public Component getComponent() {
+            return this.cmp;
         }
     }
 
     public model.Passenger createPassenger() throws CustomException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
         String name = NAME_INPUT.getText();
         String insertion = SURNAME_TUSSENVOEGSEL_INPUT.getText();
         String surname = SURNAME_INPUT.getText();
@@ -45,16 +60,23 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         String[] dateContent = strDob.split("-");
 
         if (name.length() > 20) {
-            throw new CustomException("First name length is too long, 20 characters maximum");
+            throw new CustomException("First name length is too long, 20 characters maximum. You've got: " + name.length(), NAME_INPUT);
+        } else if (name.length() == 0) {
+            throw new CustomException("First name has to be filled in.", NAME_INPUT);
         }
+
         if (insertion.length() > 8) {
-            throw new CustomException("Insertion length is too long, 8 characters maximum");
+            throw new CustomException("Insertion length is too long, 8 characters maximum. You've got: " + insertion.length(), SURNAME_TUSSENVOEGSEL_INPUT);
         }
+
         if (surname.length() > 35) {
-            throw new CustomException("Surname length is too long, 35 characters maximum");
+            throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
+        } else if (surname.length() == 0) {
+            throw new CustomException("Surname has to be filled in.", SURNAME_INPUT);
         }
+
         if (!strDob.contains("-") || dateContent.length != 3) {
-            throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.");
+            throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.", DATE_OF_BIRTH_INPUT);
         }
 
         for (int i = 0; i < dateContent.length; i++) {
@@ -63,33 +85,44 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 switch (i) {
                     case 0:
                         if ((result < 1850 || result >= (Calendar.getInstance().get(Calendar.YEAR)) + 1)) {
-                            throw new CustomException("Date of Birth year is incorrect.");
+                            throw new CustomException("Date of Birth year is incorrect.", DATE_OF_BIRTH_INPUT);
                         }
                         break;
                     case 1:
                         if (result < 1 || result > 12) {
-                            throw new CustomException("Date of birth month is incorrect.");
+                            throw new CustomException("Date of birth month is incorrect.", DATE_OF_BIRTH_INPUT);
                         }
                         break;
                     case 2:
                         if (result < 1 || result > 31) {
-                            throw new CustomException("Date of birth day is incorrect.");
+                            throw new CustomException("Date of birth day is incorrect.", DATE_OF_BIRTH_INPUT);
                         }
                         break;
                 }
             }
         }
-        
-        if (mobPhone.length() > 12 || homePhone.length() > 12)
-            throw new CustomException("Phone numbers can't be longer than 12 characters.");
-        
-        if (hasAlpha(mobPhone) || hasAlpha(homePhone))
-            throw new CustomException("Phone numbers cannot contain letters");
+
+        if (homePhone.length() == 0 && mobPhone.length() == 0) {
+            throw new CustomException("Atleast 1 phone number has to be filled in.");
+        }
+
+        if (homePhone.length() > 12) {
+            throw new CustomException("Phone numbers can't be longer than 12 characters. You've got: " + homePhone.length(), HOME_PHONE_NUMBER_INPUT);
+        }
+        if (mobPhone.length() > 12) {
+            throw new CustomException("Phone numbers can't be longer than 12 characters. You've got: " + mobPhone.length(), MOBILE_PHONE_NUMBER_INPUT);
+        }
+        if (hasAlpha(homePhone)) {
+            throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
+        }
+        if (hasAlpha(mobPhone)) {
+            throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
+        }
 
         try {
             dob = df.parse(DATE_OF_BIRTH_INPUT.getText());
         } catch (ParseException e) {
-            throw new CustomException("Date of Birth format is incorrect");
+            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
         }
 
         model.Passenger tempPassenger = new model.Passenger();
@@ -100,7 +133,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         try {
             tempPassenger.setDob(dob);
         } catch (ParseException e) {
-            throw new CustomException("Date of Birth format is incorrect");
+            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
         }
         tempPassenger.setGender(gender);
 
@@ -133,9 +166,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         SURNAME_INPUT.setText("");
         SURNAME_TUSSENVOEGSEL_INPUT.setText("");
         NAME_INPUT.setText("");
-        DATE_OF_BIRTH_INPUT.setText("");
-        MALE_BUTTON.setSelected(true);
-        FEMALE_BUTTON.setSelected(false);
+        //DATE_OF_BIRTH_INPUT.setText("####-##-##");
+        DATE_OF_BIRTH_INPUT.setValue(null);
+        main.LuggageTrackerTool2.getInstance().createJFTFMask(getDateOfBirthControl(), "yyyy-MM-dd", "####-##-##");
         HOME_PHONE_NUMBER_INPUT.setText("");
         MOBILE_PHONE_NUMBER_INPUT.setText("");
 
@@ -148,7 +181,23 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         TEMP_COUNTRY_INPUT.setSelectedIndex(1);
         TEMP_STREET_INPUT.setText("");
         TEMP_POSTAL_CODE_INPUT.setText("");
+    }
 
+    public void setBackgroundColors(Color c) {
+        SURNAME_INPUT.setBackground(c);
+        SURNAME_TUSSENVOEGSEL_INPUT.setBackground(c);
+        NAME_INPUT.setBackground(c);
+        DATE_OF_BIRTH_INPUT.setBackground(c);
+        HOME_PHONE_NUMBER_INPUT.setBackground(c);
+        MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
+
+        HOME_CITY_INPUT.setBackground(c);
+        HOME_STREET_INPUT.setBackground(c);
+        HOME_POSTAL_CODE_INPUT.setBackground(c);
+
+        TEMP_CITY_INPUT.setBackground(c);
+        TEMP_STREET_INPUT.setBackground(c);
+        TEMP_POSTAL_CODE_INPUT.setBackground(c);
     }
 
     private int tryParseInt(String text) {
@@ -162,19 +211,17 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         return result;
     }
-    
-    public boolean hasAlpha(String text){
+
+    public boolean hasAlpha(String text) {
         char[] characters = text.toCharArray();
-        for (int i = 0; i < characters.length; i++)
-        {
+        for (int i = 0; i < characters.length; i++) {
             boolean isDigit = Character.isDigit(characters[i]);
-            if (!isDigit)
-            {
-                if (!(i == 0 && characters[i] == '+'))
+            if (!isDigit) {
+                if (!(i == 0 && characters[i] == '+')) {
                     return true;
+                }
             }
         }
-        
         return false;
     }
 
@@ -261,6 +308,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         GENDER.setText("Gender");
 
+        MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
         MALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +317,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         });
 
         FEMALE_BUTTON.setText("Female");
+        FEMALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FEMALE_BUTTONActionPerformed(evt);
+            }
+        });
 
         HOME_PHONE_NUMBER.setText("Home Phone Number");
 
@@ -477,7 +530,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MALE_BUTTONActionPerformed
-        // TODO add your handling code here:
+        if (FEMALE_BUTTON.isSelected()) {
+            FEMALE_BUTTON.setSelected(false);
+        } else {
+            FEMALE_BUTTON.setSelected(true);
+        }
     }//GEN-LAST:event_MALE_BUTTONActionPerformed
 
     private void SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
@@ -486,6 +543,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
     private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
         try {
+            setBackgroundColors(Color.WHITE);
             model.Passenger passenger = createPassenger();
             model.Address homeAddress = createHomeAddressFromForms();
             model.Address tempAddress = createTempAddressFromForms();
@@ -505,9 +563,20 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             ex.printStackTrace();
         } catch (CustomException cEx) {
             JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            if (cEx.cmp != null) {
+                cEx.getComponent().setBackground(Color.RED);
+            }
         }
 
     }//GEN-LAST:event_REGISTERActionPerformed
+
+    private void FEMALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FEMALE_BUTTONActionPerformed
+        if (MALE_BUTTON.isSelected()) {
+            MALE_BUTTON.setSelected(false);
+        } else {
+            MALE_BUTTON.setSelected(true);
+        }
+    }//GEN-LAST:event_FEMALE_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;

@@ -22,7 +22,8 @@ import view.SeachBar;
 
 /**
  *
- * @author Reinhard van Apeldoorn
+ * @author Reinhard van Apeldoorn, Tomas Slaman
+ * @version 1
  */
 public final class LuggageTrackerTool2 {
 
