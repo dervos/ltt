@@ -11,12 +11,11 @@ import java.text.ParseException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Haris
+ * @author Haris, Tomas Slaman
  */
 public class RegistrationPassenger extends javax.swing.JPanel {
 
@@ -47,7 +46,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
     public model.Passenger createPassenger() throws CustomException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         String name = NAME_INPUT.getText();
         String insertion = SURNAME_TUSSENVOEGSEL_INPUT.getText();
         String surname = SURNAME_INPUT.getText();
@@ -136,7 +135,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
         }
         tempPassenger.setGender(gender);
-
         tempPassenger.setHomephone(homePhone);
         tempPassenger.setMobphone(mobPhone);
 
@@ -144,21 +142,85 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         return tempPassenger;
     }
 
-    public model.Address createHomeAddressFromForms() {
+    public model.Address createHomeAddressFromForms() throws CustomException {
+        String city = HOME_CITY_INPUT.getText();
+        String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
+        String streetName = HOME_STREET_INPUT.getText();
+        String zipCode = HOME_POSTAL_CODE_INPUT.getText();
+
+        if (HOME_COUNTRY_INPUT.getSelectedIndex() == 0) {
+            throw new CustomException("A country has to be selected.", HOME_COUNTRY_INPUT);
+        }
+        if (city.length() == 0) {
+            throw new CustomException("A city has to be filled in!", HOME_CITY_INPUT);
+        }
+        if (city.length() > 20) {
+            throw new CustomException("City can't be longer than 20 characters, you've got: " + city.length(), HOME_CITY_INPUT);
+        }
+        if (streetName.length() == 0) {
+            throw new CustomException("A street has to be filled in.", HOME_STREET_INPUT);
+        }
+        if (streetName.length() > 25) {
+            throw new CustomException("Street name can't be longer than 25 characters, you've got: " + streetName.length(), HOME_STREET_INPUT);
+        }
+        if (zipCode.length() == 0) {
+            throw new CustomException("A zipcode has to be filled in.", HOME_POSTAL_CODE_INPUT);
+        }
+        if (zipCode.length() > 6) {
+            throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), HOME_POSTAL_CODE_INPUT);
+        }
+
+        if (city.length() == 0 || HOME_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
+            throw new CustomException("Not all fields of home address are filled in. Please complete all fields.");
+        }
+
         model.Address address = new model.Address();
-        address.setCity(HOME_CITY_INPUT.getText());
-        address.setCountry(HOME_COUNTRY_INPUT.getSelectedItem().toString());
-        address.setStreetname(HOME_STREET_INPUT.getText());
-        address.setZipcode(HOME_POSTAL_CODE_INPUT.getText());
+        address.setCity(city);
+        address.setCountry(country);
+        address.setStreetname(streetName);
+        address.setZipcode(zipCode);
         return address;
     }
 
-    public model.Address createTempAddressFromForms() {
+    public model.Address createTempAddressFromForms() throws CustomException {
+        String city = TEMP_CITY_INPUT.getText();
+        String country = TEMP_COUNTRY_INPUT.getSelectedItem().toString();
+        String streetName = TEMP_STREET_INPUT.getText();
+        String zipCode = TEMP_POSTAL_CODE_INPUT.getText();
+
+        if (TEMP_COUNTRY_INPUT.getSelectedIndex() == 0) {
+            throw new CustomException("A country has to be selected.", TEMP_COUNTRY_INPUT);
+        }
+
+        if (city.length() == 0) {
+            throw new CustomException("A city has to be filled in!", TEMP_CITY_INPUT);
+        }
+        if (city.length() > 20) {
+            throw new CustomException("City can't be longer than 20 characters, you've got: " + city.length(), TEMP_CITY_INPUT);
+        }
+
+        if (streetName.length() == 0) {
+            throw new CustomException("A street has to be filled in.", TEMP_STREET_INPUT);
+        }
+        if (streetName.length() > 25) {
+            throw new CustomException("Street name can't be longer than 25 characters, you've got: " + streetName.length(), TEMP_STREET_INPUT);
+        }
+        if (zipCode.length() == 0) {
+            throw new CustomException("A zipcode has to be filled in.", TEMP_POSTAL_CODE_INPUT);
+        }
+        if (zipCode.length() > 6) {
+            throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), TEMP_POSTAL_CODE_INPUT);
+        }
+
+        if (city.length() == 0 || TEMP_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
+            throw new CustomException("Not all fields of temp address are filled in. Please complete all fields.");
+        }
+
         model.Address address = new model.Address();
-        address.setCity(TEMP_CITY_INPUT.getText());
-        address.setCountry(TEMP_COUNTRY_INPUT.getSelectedItem().toString());
-        address.setStreetname(TEMP_STREET_INPUT.getText());
-        address.setZipcode(TEMP_POSTAL_CODE_INPUT.getText());
+        address.setCity(city);
+        address.setCountry(country);
+        address.setStreetname(streetName);
+        address.setZipcode(zipCode);
         return address;
     }
 
@@ -563,7 +625,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             ex.printStackTrace();
         } catch (CustomException cEx) {
             JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-            if (cEx.cmp != null) {
+            if (cEx.getComponent() != null) {
                 cEx.getComponent().setBackground(Color.RED);
             }
         }
