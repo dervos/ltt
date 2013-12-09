@@ -118,6 +118,8 @@ public class SeachBar extends javax.swing.JPanel {
                 view.Passenger passengerTab = main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab();
                 passengerTab.refreshWithSearch(Integer.parseInt(SEARCH_INPUT.getText()));
                 passengerTab.addPassengerItemsToTable();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
+                SEARCH_INPUT.setText("");
             } catch (SQLException ex) {
                 System.err.println("Passenger search not found");
             }
@@ -127,10 +129,13 @@ public class SeachBar extends javax.swing.JPanel {
                 view.Luggage luggageTab = main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab();
                 luggageTab.refreshWithSearch(Integer.parseInt(SEARCH_INPUT.getText()));
                 luggageTab.addLuggageItemsToTable();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
+                SEARCH_INPUT.setText("");
             } catch (SQLException ex) {
                 System.err.println("Luggage search not found");
             }
         }
+        
     }//GEN-LAST:event_SEARCH_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
