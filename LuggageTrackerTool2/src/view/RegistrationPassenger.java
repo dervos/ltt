@@ -4,11 +4,18 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Haris
+ * @author Haris, Tomas Slaman
  */
 public class RegistrationPassenger extends javax.swing.JPanel {
 
@@ -19,41 +26,201 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         initComponents();
     }
 
-    public model.Passenger createPassenger() {
-        model.Passenger tempPassenger = new model.Passenger();
-        
-        tempPassenger.setName(NAME_INPUT.getText());
-        tempPassenger.setInsertion(SURNAME_TUSSENVOEGSEL_INPUT.getText());
-        tempPassenger.setSurname(SURNAME_INPUT.getText());
-        try {
-            tempPassenger.setDob(Long.parseLong(DATE_OF_BIRTH_INPUT.getText()));
-        } catch (NumberFormatException e) {
-            
+    class CustomException extends Exception {
+
+        private Component cmp = null;
+
+        public CustomException(String exMessage) {
+            super(exMessage);
         }
-        tempPassenger.setGender(MALE_BUTTON.isSelected() ? "m" : "f");
 
-        tempPassenger.setHomephone(HOME_PHONE_NUMBER_INPUT.getText());
-        tempPassenger.setMobphone(MOBILE_PHONE_NUMBER_INPUT.getText());
+        public CustomException(String exMessage, Component comp) {
+            super(exMessage);
+            this.cmp = comp;
+        }
 
-        clearFields();
+        public Component getComponent() {
+            return this.cmp;
+        }
+    }
+
+    public model.Passenger createPassenger() throws CustomException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        String name = NAME_INPUT.getText();
+        String insertion = SURNAME_TUSSENVOEGSEL_INPUT.getText();
+        String surname = SURNAME_INPUT.getText();
+        java.util.Date dob;
+        String strDob = DATE_OF_BIRTH_INPUT.getText();
+        String gender = MALE_BUTTON.isSelected() ? "m" : "f";
+        String homePhone = HOME_PHONE_NUMBER_INPUT.getText();
+        String mobPhone = MOBILE_PHONE_NUMBER_INPUT.getText();
+
+        String[] dateContent = strDob.split("-");
+
+        if (name.length() > 20) {
+            throw new CustomException("First name length is too long, 20 characters maximum. You've got: " + name.length(), NAME_INPUT);
+        } else if (name.length() == 0) {
+            throw new CustomException("First name has to be filled in.", NAME_INPUT);
+        }
+
+        if (insertion.length() > 8) {
+            throw new CustomException("Insertion length is too long, 8 characters maximum. You've got: " + insertion.length(), SURNAME_TUSSENVOEGSEL_INPUT);
+        }
+
+        if (surname.length() > 35) {
+            throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
+        } else if (surname.length() == 0) {
+            throw new CustomException("Surname has to be filled in.", SURNAME_INPUT);
+        }
+
+        if (!strDob.contains("-") || dateContent.length != 3) {
+            throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.", DATE_OF_BIRTH_INPUT);
+        }
+
+        for (int i = 0; i < dateContent.length; i++) {
+            int result = tryParseInt(dateContent[i]);
+            if (result == -1) {
+                switch (i) {
+                    case 0:
+                        if ((result < 1850 || result >= (Calendar.getInstance().get(Calendar.YEAR)) + 1)) {
+                            throw new CustomException("Date of Birth year is incorrect.", DATE_OF_BIRTH_INPUT);
+                        }
+                        break;
+                    case 1:
+                        if (result < 1 || result > 12) {
+                            throw new CustomException("Date of birth month is incorrect.", DATE_OF_BIRTH_INPUT);
+                        }
+                        break;
+                    case 2:
+                        if (result < 1 || result > 31) {
+                            throw new CustomException("Date of birth day is incorrect.", DATE_OF_BIRTH_INPUT);
+                        }
+                        break;
+                }
+            }
+        }
+
+        if (homePhone.length() == 0 && mobPhone.length() == 0) {
+            throw new CustomException("Atleast 1 phone number has to be filled in.");
+        }
+
+        if (homePhone.length() > 12) {
+            throw new CustomException("Phone numbers can't be longer than 12 characters. You've got: " + homePhone.length(), HOME_PHONE_NUMBER_INPUT);
+        }
+        if (mobPhone.length() > 12) {
+            throw new CustomException("Phone numbers can't be longer than 12 characters. You've got: " + mobPhone.length(), MOBILE_PHONE_NUMBER_INPUT);
+        }
+        if (hasAlpha(homePhone)) {
+            throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
+        }
+        if (hasAlpha(mobPhone)) {
+            throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
+        }
+
+        try {
+            dob = df.parse(DATE_OF_BIRTH_INPUT.getText());
+        } catch (ParseException e) {
+            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
+        }
+
+        model.Passenger tempPassenger = new model.Passenger();
+
+        tempPassenger.setName(name);
+        tempPassenger.setInsertion(insertion);
+        tempPassenger.setSurname(surname);
+        try {
+            tempPassenger.setDob(dob);
+        } catch (ParseException e) {
+            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
+        }
+        tempPassenger.setGender(gender);
+        tempPassenger.setHomephone(homePhone);
+        tempPassenger.setMobphone(mobPhone);
+
+        //clearFields();
         return tempPassenger;
     }
-    
-    public model.Address createHomeAddressFromForms() {
+
+    public model.Address createHomeAddressFromForms() throws CustomException {
+        String city = HOME_CITY_INPUT.getText();
+        String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
+        String streetName = HOME_STREET_INPUT.getText();
+        String zipCode = HOME_POSTAL_CODE_INPUT.getText();
+
+        if (HOME_COUNTRY_INPUT.getSelectedIndex() == 0) {
+            throw new CustomException("A country has to be selected.", HOME_COUNTRY_INPUT);
+        }
+        if (city.length() == 0) {
+            throw new CustomException("A city has to be filled in!", HOME_CITY_INPUT);
+        }
+        if (city.length() > 20) {
+            throw new CustomException("City can't be longer than 20 characters, you've got: " + city.length(), HOME_CITY_INPUT);
+        }
+        if (streetName.length() == 0) {
+            throw new CustomException("A street has to be filled in.", HOME_STREET_INPUT);
+        }
+        if (streetName.length() > 25) {
+            throw new CustomException("Street name can't be longer than 25 characters, you've got: " + streetName.length(), HOME_STREET_INPUT);
+        }
+        if (zipCode.length() == 0) {
+            throw new CustomException("A zipcode has to be filled in.", HOME_POSTAL_CODE_INPUT);
+        }
+        if (zipCode.length() > 6) {
+            throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), HOME_POSTAL_CODE_INPUT);
+        }
+
+        if (city.length() == 0 || HOME_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
+            throw new CustomException("Not all fields of home address are filled in. Please complete all fields.");
+        }
+
         model.Address address = new model.Address();
-        address.setCity(HOME_CITY_INPUT.getText());
-        address.setCountry(HOME_COUNTRY_INPUT.getSelectedItem().toString());
-        address.setStreetname(HOME_STREET_INPUT.getText());
-        address.setZipcode(HOME_POSTAL_CODE_INPUT.getText());
+        address.setCity(city);
+        address.setCountry(country);
+        address.setStreetname(streetName);
+        address.setZipcode(zipCode);
         return address;
     }
-    
-    public model.Address createTempAddressFromForms() {
+
+    public model.Address createTempAddressFromForms() throws CustomException {
+        String city = TEMP_CITY_INPUT.getText();
+        String country = TEMP_COUNTRY_INPUT.getSelectedItem().toString();
+        String streetName = TEMP_STREET_INPUT.getText();
+        String zipCode = TEMP_POSTAL_CODE_INPUT.getText();
+
+        if (TEMP_COUNTRY_INPUT.getSelectedIndex() == 0) {
+            throw new CustomException("A country has to be selected.", TEMP_COUNTRY_INPUT);
+        }
+
+        if (city.length() == 0) {
+            throw new CustomException("A city has to be filled in!", TEMP_CITY_INPUT);
+        }
+        if (city.length() > 20) {
+            throw new CustomException("City can't be longer than 20 characters, you've got: " + city.length(), TEMP_CITY_INPUT);
+        }
+
+        if (streetName.length() == 0) {
+            throw new CustomException("A street has to be filled in.", TEMP_STREET_INPUT);
+        }
+        if (streetName.length() > 25) {
+            throw new CustomException("Street name can't be longer than 25 characters, you've got: " + streetName.length(), TEMP_STREET_INPUT);
+        }
+        if (zipCode.length() == 0) {
+            throw new CustomException("A zipcode has to be filled in.", TEMP_POSTAL_CODE_INPUT);
+        }
+        if (zipCode.length() > 6) {
+            throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), TEMP_POSTAL_CODE_INPUT);
+        }
+
+        if (city.length() == 0 || TEMP_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
+            throw new CustomException("Not all fields of temp address are filled in. Please complete all fields.");
+        }
+
         model.Address address = new model.Address();
-        address.setCity(TEMP_CITY_INPUT.getText());
-        address.setCountry(TEMP_COUNTRY_INPUT.getSelectedItem().toString());
-        address.setStreetname(TEMP_STREET_INPUT.getText());
-        address.setZipcode(TEMP_POSTAL_CODE_INPUT.getText());
+        address.setCity(city);
+        address.setCountry(country);
+        address.setStreetname(streetName);
+        address.setZipcode(zipCode);
         return address;
     }
 
@@ -61,22 +228,72 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         SURNAME_INPUT.setText("");
         SURNAME_TUSSENVOEGSEL_INPUT.setText("");
         NAME_INPUT.setText("");
-        DATE_OF_BIRTH_INPUT.setText("");
-        MALE_BUTTON.setSelected(true);
-        FEMALE_BUTTON.setSelected(false);
+        //DATE_OF_BIRTH_INPUT.setText("####-##-##");
+        DATE_OF_BIRTH_INPUT.setValue(null);
+        main.LuggageTrackerTool2.getInstance().createJFTFMask(getDateOfBirthControl(), "yyyy-MM-dd", "####-##-##");
         HOME_PHONE_NUMBER_INPUT.setText("");
         MOBILE_PHONE_NUMBER_INPUT.setText("");
-        
+
         HOME_CITY_INPUT.setText("");
         HOME_COUNTRY_INPUT.setSelectedIndex(1);
         HOME_STREET_INPUT.setText("");
         HOME_POSTAL_CODE_INPUT.setText("");
-        
+
         TEMP_CITY_INPUT.setText("");
         TEMP_COUNTRY_INPUT.setSelectedIndex(1);
         TEMP_STREET_INPUT.setText("");
         TEMP_POSTAL_CODE_INPUT.setText("");
-        
+    }
+
+    public void setBackgroundColors(Color c) {
+        SURNAME_INPUT.setBackground(c);
+        SURNAME_TUSSENVOEGSEL_INPUT.setBackground(c);
+        NAME_INPUT.setBackground(c);
+        DATE_OF_BIRTH_INPUT.setBackground(c);
+        HOME_PHONE_NUMBER_INPUT.setBackground(c);
+        MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
+
+        HOME_CITY_INPUT.setBackground(c);
+        HOME_STREET_INPUT.setBackground(c);
+        HOME_POSTAL_CODE_INPUT.setBackground(c);
+
+        TEMP_CITY_INPUT.setBackground(c);
+        TEMP_STREET_INPUT.setBackground(c);
+        TEMP_POSTAL_CODE_INPUT.setBackground(c);
+    }
+
+    private int tryParseInt(String text) {
+        int result = -1;
+        try //Try catch to prevent the application from crashing when the inserted text isnt a number
+        {
+            result = Integer.parseInt(text); //try to parse text to int
+        } catch (NumberFormatException nfe) {
+            return result;
+        }
+
+        return result;
+    }
+
+    public boolean hasAlpha(String text) {
+        char[] characters = text.toCharArray();
+        for (int i = 0; i < characters.length; i++) {
+            boolean isDigit = Character.isDigit(characters[i]);
+            if (!isDigit) {
+                if (!(i == 0 && characters[i] == '+')) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @return Can be accessed from LTT2 class
+     * .sideBar.getPassengerControl().getDayOfBirthControl();
+     */
+    public javax.swing.JFormattedTextField getDateOfBirthControl() {
+        return this.DATE_OF_BIRTH_INPUT;
     }
 
     /**
@@ -153,6 +370,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         GENDER.setText("Gender");
 
+        MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
         MALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +379,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         });
 
         FEMALE_BUTTON.setText("Female");
+        FEMALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FEMALE_BUTTONActionPerformed(evt);
+            }
+        });
 
         HOME_PHONE_NUMBER.setText("Home Phone Number");
 
@@ -369,7 +592,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MALE_BUTTONActionPerformed
-        // TODO add your handling code here:
+        if (FEMALE_BUTTON.isSelected()) {
+            FEMALE_BUTTON.setSelected(false);
+        } else {
+            FEMALE_BUTTON.setSelected(true);
+        }
     }//GEN-LAST:event_MALE_BUTTONActionPerformed
 
     private void SURNAME_TUSSENVOEGSEL_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SURNAME_TUSSENVOEGSEL_INPUTActionPerformed
@@ -378,6 +605,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
     private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
         try {
+            setBackgroundColors(Color.WHITE);
             model.Passenger passenger = createPassenger();
             model.Address homeAddress = createHomeAddressFromForms();
             model.Address tempAddress = createTempAddressFromForms();
@@ -387,16 +615,32 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             passenger.setTempaddress(tempAddress);
             model.AddressDAO.create(homeAddress);
             model.AddressDAO.create(tempAddress);
-            
+
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerItemsToTable();
             main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
+            clearFields();
+
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
             System.err.println("Message: " + ex.getMessage());
             ex.printStackTrace();
+        } catch (CustomException cEx) {
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            if (cEx.getComponent() != null) {
+                cEx.getComponent().setBackground(Color.RED);
+            }
         }
+
     }//GEN-LAST:event_REGISTERActionPerformed
+
+    private void FEMALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FEMALE_BUTTONActionPerformed
+        if (MALE_BUTTON.isSelected()) {
+            MALE_BUTTON.setSelected(false);
+        } else {
+            MALE_BUTTON.setSelected(true);
+        }
+    }//GEN-LAST:event_FEMALE_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;

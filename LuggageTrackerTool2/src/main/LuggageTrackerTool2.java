@@ -5,15 +5,24 @@ import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import view.MainMenu;
+import view.SeachBar;
+import view.SideBar;
 
 /**
  *
- * @author Reinhard van Apeldoorn
+ * @author Reinhard van Apeldoorn, Tomas Slaman
+ * @version 1
  */
 public final class LuggageTrackerTool2 {
 
@@ -37,7 +46,7 @@ public final class LuggageTrackerTool2 {
     private static final DatabaseManager databaseManager = new connectivity.DatabaseManager();
     // The main window
     private JFrame mainWindow;
-    
+
     // LuggageTrackerTool2 singleton
     private static final LuggageTrackerTool2 instance = new LuggageTrackerTool2();
     // Login frame
@@ -45,6 +54,8 @@ public final class LuggageTrackerTool2 {
 
     private model.User user;
     private MainMenu mainMenu;
+    private SideBar sideBar;
+    private SeachBar searchBar;
 
     /**
      *
@@ -129,15 +140,40 @@ public final class LuggageTrackerTool2 {
                 exit();
             }
         });
-        
-        mainMenu = new view.MainMenu();
+
+        mainMenu = new MainMenu();
 
         mainWindow.getContentPane().setLayout(new BorderLayout(10, 10));
-        addPanel(new view.SeachBar(), BorderLayout.NORTH);
-        addPanel(new view.SideBar(), BorderLayout.LINE_START);
-        addPanel(mainMenu, BorderLayout.CENTER);
+        this.searchBar = new SeachBar();
+        this.sideBar = new SideBar();
+        addPanel(this.searchBar, BorderLayout.NORTH);
+        addPanel(this.sideBar, BorderLayout.LINE_START);
+        addPanel(this.mainMenu, BorderLayout.CENTER);
+
+        createJFTFMask(this.sideBar.getRegPassengerControl().getDateOfBirthControl(), "yyyy-MM-dd", "####-##-##");
 
         mainWindow.setVisible(true);
+    }
+
+    /**
+     *
+     * @param jftf The JFormattedTextField to set the mask on
+     * @param format The DateFormat format example; yyyy-MM-dd
+     * @param mask String which represents format in the textfield IE ####-##-##
+     * The example above shows the dashes '-' in the textfield
+     */
+    public void createJFTFMask(JFormattedTextField jftf, String format, String mask) {
+        DateFormat df = new SimpleDateFormat(format);
+        DateFormatter dfer = new DateFormatter(df);
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(dfer);
+        jftf.setFormatterFactory(factory);
+
+        try {
+            MaskFormatter mft = new MaskFormatter(mask);
+            mft.install(jftf);
+        } catch (java.text.ParseException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -154,7 +190,6 @@ public final class LuggageTrackerTool2 {
     public void addPanel(JPanel panel, Object layout) {
         mainWindow.getContentPane().add(panel, layout);
     }
-    
 
     /**
      *
@@ -187,7 +222,7 @@ public final class LuggageTrackerTool2 {
     public static DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
-    
+
     public model.User getCurrentUser() {
         return user;
     }
@@ -196,9 +231,13 @@ public final class LuggageTrackerTool2 {
         return mainMenu;
     }
     
-    
-    
-    
+    public SideBar getSideBar(){
+        return this.sideBar;
+    }
+
+    public SeachBar getSearchBar(){
+        return this.searchBar;
+    }
 
     /**
      * @param args the command line arguments

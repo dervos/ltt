@@ -17,10 +17,15 @@ public class SideBar extends javax.swing.JPanel {
     /**
      * Creates new form SideBar
      */
+    private RegistrationPassenger regPassengerControl;
+    private RegistrationLuggage regLuggageControl;
+    
     public SideBar() {
         initComponents();
-        add(new view.RegistrationPassenger(), BorderLayout.NORTH);
-        add(new view.RegistrationLuggage(), BorderLayout.SOUTH);
+        this.regPassengerControl = new view.RegistrationPassenger();
+        this.regLuggageControl = new view.RegistrationLuggage();
+        add(this.regPassengerControl, BorderLayout.NORTH);
+        add(this.regLuggageControl, BorderLayout.SOUTH);
     }
 
     /**
@@ -38,4 +43,32 @@ public class SideBar extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the regPassengerControl
+     */
+    public RegistrationPassenger getRegPassengerControl() {
+        return regPassengerControl;
+    }
+
+    /**
+     * @param regPassengerControl the regPassengerControl to set
+     */
+    public void setRegPassengerControl(RegistrationPassenger regPassengerControl) {
+        this.regPassengerControl = regPassengerControl;
+    }
+
+    /**
+     * @return the regLuggageControl
+     */
+    public RegistrationLuggage getRegLuggageControl() {
+        return regLuggageControl;
+    }
+
+    /**
+     * @param regLuggageControl the regLuggageControl to set
+     */
+    public void setRegLuggageControl(RegistrationLuggage regLuggageControl) {
+        this.regLuggageControl = regLuggageControl;
+    }
 }
