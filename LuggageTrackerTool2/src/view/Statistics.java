@@ -4,42 +4,20 @@
  */
 package view;
 
-import java.awt.Paint;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-
 import java.awt.Dimension;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.ui.RefineryUtilities;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GradientPaint;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-
 /**
  *
  * @author Lesley
  */
 public class Statistics {
-
+    
     private DefaultCategoryDataset dataset;
     private JFreeChart chart;
     String[] weeks = {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5"};
@@ -58,11 +36,11 @@ public class Statistics {
     }
 
     public void createList() {
-        Statistics statisticsList = new Statistics("Monthly overview of exam status");
+        Statistics statisticsList = new Statistics("Weekly overview luggage");
 
-        statisticsList.addSeries(luggageLost, "Passed", weeks);
-        statisticsList.addSeries(luggageFound, "Failed", weeks);
-        statisticsList.addSeries(luggageDone, "Todo", weeks);
+        statisticsList.addSeries(luggageLost, "Lost", weeks);
+        statisticsList.addSeries(luggageFound, "Found", weeks);
+        statisticsList.addSeries(luggageDone, "Done", weeks);
     }
 
     public void BarChartDemo1(String title) {
@@ -92,5 +70,8 @@ public class Statistics {
 
     private void setContentPane(ChartPanel chartPanel) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static void main(String[] args){
+        
     }
 }
