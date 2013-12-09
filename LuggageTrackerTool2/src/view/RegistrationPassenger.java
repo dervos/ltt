@@ -4,7 +4,7 @@
  */
 package view;
 
-import java.awt.Component;
+import main.CustomException;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -24,24 +24,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
      */
     public RegistrationPassenger() {
         initComponents();
-    }
-
-    class CustomException extends Exception {
-
-        private Component cmp = null;
-
-        public CustomException(String exMessage) {
-            super(exMessage);
-        }
-
-        public CustomException(String exMessage, Component comp) {
-            super(exMessage);
-            this.cmp = comp;
-        }
-
-        public Component getComponent() {
-            return this.cmp;
-        }
     }
 
     public model.Passenger createPassenger() throws CustomException {
