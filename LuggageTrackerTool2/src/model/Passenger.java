@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Reinhard van Apeldoorn, Tomas Slaman
@@ -18,6 +20,8 @@ public class Passenger {
     private int tempaddressid;
     private model.Address homeaddress;
     private model.Address tempaddress;
+    
+    private static java.util.List<model.Passenger> passengerList = new java.util.ArrayList<>();
 
 
     // Constructors
@@ -35,6 +39,14 @@ public class Passenger {
         this.homeaddressid = homeaddress;
         this.tempaddressid = tempaddress;
         this.insertion = insertion;
+    }
+
+    public static List<Passenger> getPassengerList() {
+        return passengerList;
+    }
+    
+    public static void addToPassengerList(model.Passenger passenger) {
+        passengerList.add(passenger);
     }
 
     public Integer getPassengerid() {
@@ -123,6 +135,14 @@ public class Passenger {
 
     public void setTempaddress(model.Address tempaddress) {
         this.tempaddress = tempaddress;
+    }
+
+    public Address getHomeaddress() {
+        return homeaddress;
+    }
+
+    public Address getTempaddress() {
+        return tempaddress;
     }
 
     @Override

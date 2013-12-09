@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.sql.SQLException;
@@ -171,8 +167,8 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private void SUBMIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMIT_BUTTONActionPerformed
         try {
             model.Luggage luggage = createLuggage();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().addLuggageToTable(luggage);
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().setEnabled(true);
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().addLuggageItemsToTable();
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(2);
             model.LuggageDAO.create(luggage);
             clearFields();
         } catch (SQLException ex) {
