@@ -6,14 +6,16 @@ package view;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
+    private int selection;
 
-    private java.util.List<model.Passenger> passengerList;
+    List<model.Passenger> passengerList = model.Passenger.getPassengerList();
 
     /**
      * Creates new form Passenger
@@ -21,6 +23,7 @@ public class Passenger extends javax.swing.JPanel {
     public Passenger() {
 
         initComponents();
+        refreshPassengerList();
         addPassengerItemsToTable();
     }
 
@@ -31,10 +34,14 @@ public class Passenger extends javax.swing.JPanel {
             System.err.println("Error getting passenger list: " + ex.getMessage());
         }
     }
+    
+    public void refreshWithSearch(int id) throws SQLException {
+        removeAllFromPassengerTable();
+        
+        passengerList.add(model.PassengerDAO.readById(id));
+    }
 
     public void addPassengerItemsToTable() {
-
-        refreshPassengerList();
 
         for (model.Passenger passenger : passengerList) {
             addPassengerToTable(passenger);
@@ -45,32 +52,45 @@ public class Passenger extends javax.swing.JPanel {
         ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(row);
     }
 
-    private void getRow(int index) {
-        ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).getValueAt(index, index);
-    }
-
     public void addPassengerToTable(model.Passenger passenger) {
-        Object[] newRow = new Object[9];
-        newRow[0] = passenger.getSurname();
-        newRow[1] = passenger.getInsertion();
-        newRow[2] = passenger.getName();
-        newRow[3] = passenger.getGender();
-        newRow[4] = new Date(passenger.getDob());
-        newRow[5] = passenger.getMobphone();
-        newRow[6] = passenger.getHomephone();
+        Object[] newRow = new Object[10];
+        newRow[0] = passenger.getPassengerid();
+        newRow[1] = passenger.getSurname();
+        newRow[2] = passenger.getInsertion();
+        newRow[3] = passenger.getName();
+        newRow[4] = passenger.getGender();
+        newRow[5] = new Date(passenger.getDob());
+        newRow[6] = passenger.getMobphone();
+        newRow[7] = passenger.getHomephone();
         try {
-            newRow[7] = model.AddressDAO.readById(passenger.getHomeaddressid()).getStreetname();
+            newRow[8] = model.AddressDAO.readById(passenger.getHomeaddressid()).getStreetname();
         } catch (SQLException ex) {
             
         }
         try {
-            newRow[8] = model.AddressDAO.readById(passenger.getTempaddressid()).getStreetname();
+            newRow[9] = model.AddressDAO.readById(passenger.getTempaddressid()).getStreetname();
         } catch (SQLException ex) {
             
         }
         
         addRow(newRow);
     }
+    
+    public void removeFromPassengerTable(int id) {
+         ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).removeRow(id);
+    }
+    
+    public void removeAllFromPassengerTable () {
+        int size =  ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).getRowCount();
+//        for (int i = 0; i < size; i++) {
+//             removeFromPassengerTable(i);
+//        }
+        PASSENGER_TABLE.removeRowSelectionInterval(0, size);
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +105,7 @@ public class Passenger extends javax.swing.JPanel {
         PASSENGER_TABLE = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         CONNECT_TO_LUGGAGE_BUTTON = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         EDIT_BUTTON = new javax.swing.JButton();
         DELETE_BUTTON = new javax.swing.JButton();
 
@@ -94,11 +115,11 @@ public class Passenger extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Surname", "", "Name", "Gender", "DoB", "Mob", "Tel", "Home", "Temp"
+                "id", "Surname", "", "Name", "Gender", "DoB", "Mob", "Tel", "Home", "Temp"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -106,6 +127,10 @@ public class Passenger extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(PASSENGER_TABLE);
+        if (PASSENGER_TABLE.getColumnModel().getColumnCount() > 0) {
+            PASSENGER_TABLE.getColumnModel().getColumn(0).setResizable(false);
+            PASSENGER_TABLE.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -115,6 +140,17 @@ public class Passenger extends javax.swing.JPanel {
         CONNECT_TO_LUGGAGE_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CONNECT_TO_LUGGAGE_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(CONNECT_TO_LUGGAGE_BUTTON);
+
+        jButton1.setText("Refresh Table");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
 
         EDIT_BUTTON.setText("Edit");
         EDIT_BUTTON.setFocusable(false);
@@ -150,12 +186,19 @@ public class Passenger extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        addPassengerItemsToTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CONNECT_TO_LUGGAGE_BUTTON;
     private javax.swing.JButton DELETE_BUTTON;
     private javax.swing.JButton EDIT_BUTTON;
     private javax.swing.JTable PASSENGER_TABLE;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

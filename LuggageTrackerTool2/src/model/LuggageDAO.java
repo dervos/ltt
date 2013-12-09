@@ -21,7 +21,7 @@ public class LuggageDAO {
         List<Luggage> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
-        
+
         databaseManager.openConnection();
 
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage;";
@@ -54,7 +54,7 @@ public class LuggageDAO {
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE luggageid=?;";
 
         databaseManager.openConnection();
-        
+
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, id);
 
@@ -84,7 +84,7 @@ public class LuggageDAO {
         String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE passengerid=?;";
 
         databaseManager.openConnection();
-        
+
         ps = databaseManager.getConnection().prepareStatement(query);
         ps.setInt(1, passengerid);
 
@@ -113,7 +113,7 @@ public class LuggageDAO {
 
         String query = "INSERT INTO `Luggage` (`description`, `storagelocation`, `luggagestatus`, `passengerid`) "
                 + "VALUES(?, ?, ?, ?);";
-        
+
         databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
@@ -144,7 +144,7 @@ public class LuggageDAO {
                 + "WHERE luggageid=?;";
 
         databaseManager.openConnection();
-        
+
         ps = databaseManager.getConnection().prepareStatement(query);
 
         ps.setString(1, luggage.getDescription());
@@ -166,7 +166,7 @@ public class LuggageDAO {
         int rowsAffected;
         PreparedStatement ps = null;
         String query = "DELETE FROM Luggage WHERE luggageid=?;";
-        
+
         databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
