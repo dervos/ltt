@@ -1,6 +1,12 @@
 package model;
 
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 
 /**
  *
@@ -13,7 +19,7 @@ public class Passenger {
     private String insertion;
     private String name;
     private String gender;
-    private Long dob;
+    private Date dob;
     private String mobphone;
     private String homephone;
     private int homeaddressid;
@@ -28,12 +34,13 @@ public class Passenger {
     public Passenger() {
     }
 
-    public Passenger(int passengerid, String surname, String name, String gender, Long dob, String mobphone, String homephone, int homeaddress, int tempaddress, String insertion) {
+    public Passenger(int passengerid, String surname, String name, String gender, String dob, String mobphone, String homephone, int homeaddress, int tempaddress, String insertion) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         this.passengerid = passengerid;
         this.surname = surname;
         this.name = name;
         this.gender = gender;
-        this.dob = dob;
+        this.dob = (Date)df.parse(dob);
         this.mobphone = mobphone;
         this.homephone = homephone;
         this.homeaddressid = homeaddress;
@@ -89,11 +96,12 @@ public class Passenger {
         this.gender = gender;
     }
 
-    public Long getDob() {
-        return dob;
+    public Date getDob() {   
+        //DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        return this.dob;
     }
 
-    public void setDob(Long dob) {
+    public void setDob(Date dob) throws ParseException {
         this.dob = dob;
     }
 

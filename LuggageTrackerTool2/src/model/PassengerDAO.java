@@ -5,12 +5,14 @@
  */
 package model;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 /**
  *
@@ -27,6 +29,7 @@ public class PassengerDAO {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String query = "SELECT passengerid, surname, insertion, name, gender, dob, mobphone, homephone, homeaddressid, tempaddressid FROM passenger";
 
         databaseManager.openConnection();
@@ -41,7 +44,11 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            tempPassenger.setDob(rs.getDate("dob").getTime());
+            try {
+                tempPassenger.setDob((rs.getDate("dob")));
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
             tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -66,6 +73,7 @@ public class PassengerDAO {
         Passenger passenger = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         String query = "SELECT * FROM passenger WHERE passengerid=?";
 
@@ -83,7 +91,11 @@ public class PassengerDAO {
             passenger.setInsertion(rs.getString("insertion"));
             passenger.setName(rs.getString("name"));
             passenger.setGender(rs.getString("gender"));
-            passenger.setDob(rs.getDate("dob").getTime());
+            try {
+                passenger.setDob((rs.getDate("dob")));
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
             passenger.setMobphone(rs.getString("mobphone"));
             passenger.setHomephone(rs.getString("homephone"));
             passenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -101,6 +113,7 @@ public class PassengerDAO {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String query = "SELECT passengerid, surname, insertion, name, gender, dob, mobphone, homephone, homeaddressid, tempaddressid FROM passenger WHERE name=?";
 
         databaseManager.openConnection();
@@ -117,7 +130,11 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            tempPassenger.setDob((rs.getDate("dob")).getTime());
+            try {
+                tempPassenger.setDob((rs.getDate("dob")));
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
             tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -153,7 +170,7 @@ public class PassengerDAO {
         ps.setString(2, passenger.getInsertion());
         ps.setString(3, passenger.getName());
         ps.setString(4, passenger.getGender());
-        ps.setDate(5, new Date(passenger.getDob()));
+        ps.setDate(5, new java.sql.Date(passenger.getDob().getTime()));
         ps.setString(6, passenger.getMobphone());
         ps.setString(7, passenger.getHomephone());
         ps.setInt(8, 1);
@@ -197,7 +214,7 @@ public class PassengerDAO {
         ps.setString(2, passenger.getInsertion());
         ps.setString(3, passenger.getName());
         ps.setString(4, passenger.getGender());
-        ps.setDate(5, new Date(passenger.getDob()));
+        ps.setDate(5, new java.sql.Date(passenger.getDob().getTime()));
         ps.setString(6, passenger.getMobphone());
         ps.setString(7, passenger.getHomephone());
         ps.setInt(8, passenger.getHomeaddressid());
@@ -231,7 +248,7 @@ public class PassengerDAO {
         ps.setInt(1, id);
 
         rowsAffected = ps.executeUpdate();
-        
+
         if (databaseManager != null) {
             databaseManager.closeConnection();
         }

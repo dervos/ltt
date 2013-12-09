@@ -4,7 +4,6 @@
  */
 package view;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -59,9 +58,10 @@ public class Passenger extends javax.swing.JPanel {
         newRow[2] = passenger.getInsertion();
         newRow[3] = passenger.getName();
         newRow[4] = passenger.getGender();
-        newRow[5] = new Date(passenger.getDob());
+        newRow[5] = new java.sql.Date(passenger.getDob().getTime());
         newRow[6] = passenger.getMobphone();
         newRow[7] = passenger.getHomephone();
+
         try {
             newRow[8] = model.AddressDAO.readById(passenger.getHomeaddressid()).getStreetname();
         } catch (SQLException ex) {
