@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Reinhard van Apeldoorn, Tomas Slaman
@@ -11,6 +13,8 @@ public class Luggage {
     private String storagelocation;
     private String luggagestatus;
     private Integer passenger;
+    
+    private static java.util.List<model.Luggage> luggageList = new java.util.ArrayList<>();
 
     public Luggage() {
     }
@@ -22,6 +26,16 @@ public class Luggage {
         this.luggagestatus = luggagestatus;
         this.passenger = passenger;
     }
+    
+    public static List<model.Luggage> getLuggageList() {
+        return luggageList;
+    }
+    
+    public static void addToLuggageList(model.Luggage luggage) {
+        luggageList.add(luggage);
+    }
+    
+    /* Getters and setters */
 
     public Integer getLuggageid() {
         return luggageid;

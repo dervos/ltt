@@ -1,20 +1,32 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import java.sql.SQLException;
 
 /**
  *
  * @author Haris
  */
 public class RegistrationLuggage extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form RegistrationLuggage
      */
     public RegistrationLuggage() {
         initComponents();
+    }
+    
+    public model.Luggage createLuggage() {
+        model.Luggage luggage = new model.Luggage();
+        luggage.setDescription(DESCRIPTION_INPUT1.getText());
+        luggage.setStoragelocation(STORAGE_LOCATION_INPUT.getSelectedItem().toString());
+        luggage.setPassenger(1);
+        return luggage;
+    }
+    
+    private void clearFields() {
+        DESCRIPTION_INPUT1.setText("");
+        STORAGE_LOCATION_INPUT.setSelectedIndex(1);
+        ANDERS_INPUT.setText("");
     }
 
     /**
@@ -35,6 +47,10 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS = new javax.swing.JLabel();
         ANDERS_INPUT_FRAME = new javax.swing.JScrollPane();
         ANDERS_INPUT = new javax.swing.JTextArea();
+        PRINT_BUTTON = new javax.swing.JButton();
+        SUBMIT_BUTTON = new javax.swing.JButton();
+        LUGGAGEID_LABEL = new javax.swing.JLabel();
+        LUGGAGEID_INPUT = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Luggage"));
         setMaximumSize(new java.awt.Dimension(523, 279));
@@ -58,6 +74,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
             }
         });
 
+        PRINT_ON_REGISTER_INPUT.setSelected(true);
         PRINT_ON_REGISTER_INPUT.setText("Print on register");
 
         ANDERS.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
@@ -68,33 +85,58 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS_INPUT.setText("Vul hier zo specifiek mogelijk de\ngegevens in van de opslagplaats.");
         ANDERS_INPUT_FRAME.setViewportView(ANDERS_INPUT);
 
+        PRINT_BUTTON.setText("Print");
+
+        SUBMIT_BUTTON.setText("Submit");
+        SUBMIT_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SUBMIT_BUTTONActionPerformed(evt);
+            }
+        });
+
+        LUGGAGEID_LABEL.setText("Luggage ID");
+
+        LUGGAGEID_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LUGGAGEID_INPUTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(STORAGE_LOCATION)
-                            .addComponent(DESCRIPTION))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                            .addComponent(STORAGE_LOCATION_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PRINT_ON_REGISTER_INPUT)
-                            .addComponent(ANDERS))
-                        .addGap(18, 18, 18)
-                        .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)))
+                            .addComponent(ANDERS)
+                            .addComponent(PRINT_BUTTON))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SUBMIT_BUTTON)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(STORAGE_LOCATION)
+                            .addComponent(DESCRIPTION)
+                            .addComponent(LUGGAGEID_LABEL))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(STORAGE_LOCATION_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LUGGAGEID_INPUT))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LUGGAGEID_LABEL)
+                    .addComponent(LUGGAGEID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,6 +152,10 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                     .addComponent(ANDERS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PRINT_ON_REGISTER_INPUT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PRINT_BUTTON)
+                    .addComponent(SUBMIT_BUTTON))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -118,6 +164,22 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_STORAGE_LOCATION_INPUTActionPerformed
 
+    private void SUBMIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMIT_BUTTONActionPerformed
+        try {
+            model.Luggage luggage = createLuggage();
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().addLuggageItemsToTable();
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(2);
+            model.LuggageDAO.create(luggage);
+            clearFields();
+        } catch (SQLException ex) {
+            System.err.println("Error submitting luggage "+ ex.getMessage());
+        }
+    }//GEN-LAST:event_SUBMIT_BUTTONActionPerformed
+
+    private void LUGGAGEID_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LUGGAGEID_INPUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LUGGAGEID_INPUTActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ANDERS;
     private javax.swing.JTextArea ANDERS_INPUT;
@@ -125,8 +187,12 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private javax.swing.JLabel DESCRIPTION;
     private javax.swing.JTextArea DESCRIPTION_INPUT1;
     private javax.swing.JScrollPane DESCRIPTION_INPUT_FRAME;
+    private javax.swing.JTextField LUGGAGEID_INPUT;
+    private javax.swing.JLabel LUGGAGEID_LABEL;
+    private javax.swing.JButton PRINT_BUTTON;
     private javax.swing.JCheckBox PRINT_ON_REGISTER_INPUT;
     private javax.swing.JLabel STORAGE_LOCATION;
     private javax.swing.JComboBox STORAGE_LOCATION_INPUT;
+    private javax.swing.JButton SUBMIT_BUTTON;
     // End of variables declaration//GEN-END:variables
 }

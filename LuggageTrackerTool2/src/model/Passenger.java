@@ -1,7 +1,6 @@
 package model;
 
-import java.sql.Date;
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -14,18 +13,22 @@ public class Passenger {
     private String insertion;
     private String name;
     private String gender;
-    private Date dob;
+    private Long dob;
     private String mobphone;
     private String homephone;
     private int homeaddressid;
     private int tempaddressid;
-    private Collection<Luggage> luggageCollection;
+    private model.Address homeaddress;
+    private model.Address tempaddress;
+    
+    private static java.util.List<model.Passenger> passengerList = new java.util.ArrayList<>();
+
 
     // Constructors
     public Passenger() {
     }
 
-    public Passenger(int passengerid, String surname, String name, String gender, Date dob, String mobphone, String homephone, int homeaddress, int tempaddress, String insertion) {
+    public Passenger(int passengerid, String surname, String name, String gender, Long dob, String mobphone, String homephone, int homeaddress, int tempaddress, String insertion) {
         this.passengerid = passengerid;
         this.surname = surname;
         this.name = name;
@@ -36,6 +39,14 @@ public class Passenger {
         this.homeaddressid = homeaddress;
         this.tempaddressid = tempaddress;
         this.insertion = insertion;
+    }
+
+    public static List<Passenger> getPassengerList() {
+        return passengerList;
+    }
+    
+    public static void addToPassengerList(model.Passenger passenger) {
+        passengerList.add(passenger);
     }
 
     public Integer getPassengerid() {
@@ -78,11 +89,11 @@ public class Passenger {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public Long getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(Long dob) {
         this.dob = dob;
     }
 
@@ -103,32 +114,42 @@ public class Passenger {
     }
 
     public int getHomeaddressid() {
-        return homeaddressid;
+        return homeaddress.getAddressid();
     }
 
     public void setHomeaddressid(int homeaddressid) {
-        this.homeaddressid = homeaddressid;
+        homeaddress.setAddressid(homeaddressid);
     }
 
     public int getTempaddressid() {
-        return tempaddressid;
+        return tempaddress.getAddressid();
     }
 
     public void setTempaddressid(int tempaddressid) {
-        this.tempaddressid = tempaddressid;
+        tempaddress.setAddressid(tempaddressid);
+    }
+    
+    public void setHomeaddress(model.Address homeaddress) {
+        this.homeaddress = homeaddress;
     }
 
-    public Collection<Luggage> getLuggageCollection() {
-        return luggageCollection;
+    public void setTempaddress(model.Address tempaddress) {
+        this.tempaddress = tempaddress;
     }
 
-    public void setLuggageCollection(Collection<Luggage> luggageCollection) {
-        this.luggageCollection = luggageCollection;
+    public Address getHomeaddress() {
+        return homeaddress;
+    }
+
+    public Address getTempaddress() {
+        return tempaddress;
     }
 
     @Override
     public String toString() {
         return "model.Passenger[ passengerid=" + passengerid + " ]";
     }
+
+    
 
 }

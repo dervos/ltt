@@ -4,17 +4,39 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.User;
+
+
 /**
  *
  * @author gebak_000
  */
 public class AccountManagement extends javax.swing.JPanel {
+    List<model.User> list = new ArrayList<>();
+    String[] usernames;
 
     /**
      * Creates new form AccountManagement
      */
     public AccountManagement() {
+        try {
+            list = model.UserDAO.readAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        usernames = new String[list.size()];
+        int index = 0;
+        for (User user : list) {
+            usernames[index] = user.getUsername();
+            index++;
+        }
         initComponents();
+        
     }
 
     /**
@@ -39,6 +61,8 @@ public class AccountManagement extends javax.swing.JPanel {
         USER = new javax.swing.JComboBox();
         NEW_CONFIRM = new javax.swing.JButton();
         CHANGE_CONFIRM = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
 
         NEW_USER.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         NEW_USER.setText("New User");
@@ -72,7 +96,7 @@ public class AccountManagement extends javax.swing.JPanel {
         CHANGE_PASSWORD.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         CHANGE_PASSWORD.setText("Change Password");
 
-        USER.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User1", "User2", "User3", "User4" }));
+        USER.setModel(new javax.swing.DefaultComboBoxModel(usernames));
         USER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 USERActionPerformed(evt);
@@ -93,6 +117,15 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Rechten:");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Account Beheerder", "Manager", "Medewerker", "Admin" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ACCOUNT_MANAGEMENTLayout = new javax.swing.GroupLayout(ACCOUNT_MANAGEMENT);
         ACCOUNT_MANAGEMENT.setLayout(ACCOUNT_MANAGEMENTLayout);
         ACCOUNT_MANAGEMENTLayout.setHorizontalGroup(
@@ -101,6 +134,7 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NEW_USER)
+                    .addComponent(CHANGE_PASSWORD)
                     .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CHANGE_PASSWORD_TEXT)
@@ -110,14 +144,15 @@ public class AccountManagement extends javax.swing.JPanel {
                                     .addComponent(NEW_PASSWORD))
                                 .addComponent(CHANGE_USERNAME_TEXT, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(NEW_CONFIRM)
-                            .addComponent(CHANGE_CONFIRM))
+                            .addComponent(CHANGE_CONFIRM)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(NEW_USERNAME_INPUT)
                             .addComponent(NEW_PASSWORD_INPUT)
                             .addComponent(CHANGE_PASSWORD_INPUT)
-                            .addComponent(USER, 0, 100, Short.MAX_VALUE)))
-                    .addComponent(CHANGE_PASSWORD))
+                            .addComponent(USER, 0, 100, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
         ACCOUNT_MANAGEMENTLayout.setVerticalGroup(
@@ -133,7 +168,11 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NEW_PASSWORD)
                     .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NEW_CONFIRM)
                 .addGap(18, 18, 18)
                 .addComponent(CHANGE_PASSWORD)
@@ -185,12 +224,32 @@ public class AccountManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_USERActionPerformed
 
     private void NEW_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NEW_CONFIRMActionPerformed
-        // TODO add your handling code here:
+        model.User user = new model.User();
+        user.setUsername(NEW_USERNAME_INPUT.getText());
+        user.setPassword(NEW_PASSWORD_INPUT.getText());
+        user.setPrivileges(jComboBox2.getSelectedItem().toString());
+        try {
+            model.UserDAO.create(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_NEW_CONFIRMActionPerformed
 
     private void CHANGE_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHANGE_CONFIRMActionPerformed
-        // TODO add your handling code here:
+        String pass = CHANGE_PASSWORD_INPUT.getText();
+        try {
+            model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
+            user.setPassword(pass);
+            model.UserDAO.update(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_CHANGE_CONFIRMActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
@@ -206,5 +265,7 @@ public class AccountManagement extends javax.swing.JPanel {
     private javax.swing.JLabel NEW_USERNAME;
     private javax.swing.JTextField NEW_USERNAME_INPUT;
     private javax.swing.JComboBox USER;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

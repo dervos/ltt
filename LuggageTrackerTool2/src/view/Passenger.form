@@ -48,27 +48,34 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="PASSENGER_TABLE">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
-                <Column editable="true" title="Surname" type="java.lang.Object"/>
-                <Column editable="true" title="" type="java.lang.Object"/>
-                <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="Gender" type="java.lang.Object"/>
-                <Column editable="true" title="DoB" type="java.lang.Object"/>
-                <Column editable="true" title="Mob" type="java.lang.Object"/>
-                <Column editable="true" title="Tel" type="java.lang.Object"/>
-                <Column editable="true" title="Home" type="java.lang.Object"/>
-                <Column editable="true" title="Temp" type="java.lang.Object"/>
+              <Table columnCount="10" rowCount="0">
+                <Column editable="false" title="id" type="java.lang.Object"/>
+                <Column editable="false" title="Surname" type="java.lang.Object"/>
+                <Column editable="false" title="" type="java.lang.Object"/>
+                <Column editable="false" title="Name" type="java.lang.Object"/>
+                <Column editable="false" title="Gender" type="java.lang.Object"/>
+                <Column editable="false" title="DoB" type="java.lang.Object"/>
+                <Column editable="false" title="Mob" type="java.lang.Object"/>
+                <Column editable="false" title="Tel" type="java.lang.Object"/>
+                <Column editable="false" title="Home" type="java.lang.Object"/>
+                <Column editable="false" title="Temp" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -132,6 +139,17 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Refresh Table"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="EDIT_BUTTON">
           <Properties>

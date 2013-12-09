@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 package view;
-import main.LuggageTrackerTool2;
+
+import java.sql.SQLException;
 
 /**
  *
@@ -28,54 +29,59 @@ public class SeachBar extends javax.swing.JPanel {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SEARCH_LABEL = new javax.swing.JLabel();
+        PASSENGER_OR_LUGGAGE_SELECTOR = new javax.swing.JComboBox();
+        SEARCH_INPUT = new javax.swing.JTextField();
+        SEARCH_BUTTON = new javax.swing.JButton();
+        ADVANCED_SEARCH_BUTTON = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        jButton3 = new javax.swing.JButton();
+        LOGOUT_BUTTON = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jLabel1.setText("Search:");
-        jToolBar1.add(jLabel1);
+        SEARCH_LABEL.setText("Search:");
+        jToolBar1.add(SEARCH_LABEL);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Passenger", "Luggage" }));
-        jToolBar1.add(jComboBox1);
-        jToolBar1.add(jTextField1);
+        PASSENGER_OR_LUGGAGE_SELECTOR.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Passenger", "Luggage" }));
+        jToolBar1.add(PASSENGER_OR_LUGGAGE_SELECTOR);
+        jToolBar1.add(SEARCH_INPUT);
 
-        jButton1.setText("Search");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        SEARCH_BUTTON.setText("Search");
+        SEARCH_BUTTON.setFocusable(false);
+        SEARCH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SEARCH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        SEARCH_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SEARCH_BUTTONActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(SEARCH_BUTTON);
 
-        jButton2.setText("Advanced Search");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        ADVANCED_SEARCH_BUTTON.setText("Advanced Search");
+        ADVANCED_SEARCH_BUTTON.setFocusable(false);
+        ADVANCED_SEARCH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ADVANCED_SEARCH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(ADVANCED_SEARCH_BUTTON);
         jToolBar1.add(jSeparator1);
 
-        jLabel2.setText("[username]");
+        jLabel2.setText(main.LuggageTrackerTool2.getInstance().getCurrentUser().getUsername() + "[" + main.LuggageTrackerTool2.getInstance().getCurrentUser().getPrivileges() +"]");
         jToolBar1.add(jLabel2);
         jToolBar1.add(jSeparator2);
 
-        jButton3.setText("Log out");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        LOGOUT_BUTTON.setText("Log out");
+        LOGOUT_BUTTON.setFocusable(false);
+        LOGOUT_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LOGOUT_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LOGOUT_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                LOGOUT_BUTTONActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton3);
+        jToolBar1.add(LOGOUT_BUTTON);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setText("Corendon");
@@ -102,21 +108,42 @@ public class SeachBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    //TODO add button actions here        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void LOGOUT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUT_BUTTONActionPerformed
+        main.LuggageTrackerTool2.getInstance().login();
+    }//GEN-LAST:event_LOGOUT_BUTTONActionPerformed
+
+    private void SEARCH_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BUTTONActionPerformed
+        if("Passenger".equals(PASSENGER_OR_LUGGAGE_SELECTOR.getSelectedItem().toString())) {
+            try {
+                view.Passenger passengerTab = main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab();
+                passengerTab.refreshWithSearch(Integer.parseInt(SEARCH_INPUT.getText()));
+                passengerTab.addPassengerItemsToTable();
+            } catch (SQLException ex) {
+                System.err.println("Passenger search not found");
+            }
+        }
+        if("Luggage".equals(PASSENGER_OR_LUGGAGE_SELECTOR.getSelectedItem().toString())) {
+            try {
+                view.Luggage luggageTab = main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab();
+                luggageTab.refreshWithSearch(Integer.parseInt(SEARCH_INPUT.getText()));
+                luggageTab.addLuggageItemsToTable();
+            } catch (SQLException ex) {
+                System.err.println("Luggage search not found");
+            }
+        }
+    }//GEN-LAST:event_SEARCH_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton ADVANCED_SEARCH_BUTTON;
+    private javax.swing.JButton LOGOUT_BUTTON;
+    private javax.swing.JComboBox PASSENGER_OR_LUGGAGE_SELECTOR;
+    private javax.swing.JButton SEARCH_BUTTON;
+    private javax.swing.JTextField SEARCH_INPUT;
+    private javax.swing.JLabel SEARCH_LABEL;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,7 @@
 package view;
 
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -24,6 +24,26 @@ public class MainMenu extends JPanel {
         jTabbedPane.addTab("Luggage", luggageTab);
         jTabbedPane.addTab("Account Management", accountTab);
     }
+
+    public view.Passenger getPassengerTab() {
+        return (Passenger) passengerTab;
+    }
+
+    public view.Luggage getLuggageTab() {
+        return (Luggage) luggageTab;
+    }
+
+    public JPanel getAccountTab() {
+        return accountTab;
+    }
+
+    public JTabbedPane getjTabbedPane() {
+        return jTabbedPane;
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

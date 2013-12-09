@@ -1,16 +1,15 @@
 package main;
 
+import connectivity.DatabaseManager;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-
-import connectivity.DatabaseManager;
-import connectivity.QueryManager;
-
+import view.MainMenu;
 
 /**
  *
@@ -38,14 +37,14 @@ public final class LuggageTrackerTool2 {
     private static final DatabaseManager databaseManager = new connectivity.DatabaseManager();
     // The main window
     private JFrame mainWindow;
-    // Admin User
-    private static final model.User admin = model.User.getAdmin();
+    
     // LuggageTrackerTool2 singleton
     private static final LuggageTrackerTool2 instance = new LuggageTrackerTool2();
     // Login frame
     private JFrame loginWindow;
-    
+
     private model.User user;
+    private MainMenu mainMenu;
 
     /**
      *
@@ -63,44 +62,62 @@ public final class LuggageTrackerTool2 {
             System.err.println("Error setting LookAndFeelClassName: " + e);
         }
     }
-    
+
     public void login() {
+        shutdown();
         loginWindow = new JFrame("Login");
         loginWindow.setSize(478, 302);
-        
+
         loginWindow.addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent event) {
-                loginWindow.dispose();
-                databaseManager.closeConnection();
+                exit();
             }
         });
-        
-        
+
         loginWindow.getContentPane().add(new view.LTTLogin());
         loginWindow.setVisible(true);
     }
-    
-    public void logout() {
-        shutdown();
-        login();
-    }
-    
-    public boolean authenticate(model.User user) {
-        boolean result = false;
-        model.UserDAO userDAO = new model.UserDAO();
-        
-        return result;
+
+    public boolean authenticate(String username, char[] password) {
+        model.User tempUser = null;
+        try {
+            tempUser = model.UserDAO.readByUsername(username);
+            System.out.println(tempUser);
+            if (tempUser != null) {
+                char[] userpass = tempUser.getPassword().toCharArray();
+                if (userpass.length == password.length) {
+                    for (int i = 0; i < userpass.length; i++) {
+                        if (userpass[i] != password[i]) {
+                            return false;
+                        }
+                    }
+                    System.out.println("Authenticated user " + tempUser.getUsername());
+                    user = tempUser;
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        }
+
+        return false;
     }
 
     /**
      *
      */
     public void startup() {
+        if (loginWindow != null) {
+            loginWindow.setVisible(false);
+            loginWindow.dispose();
+        }
         mainWindow = new view.MainFrame();
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        mainWindow.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
         /**
          * Make the window closing [x] button on the frame active
@@ -109,14 +126,16 @@ public final class LuggageTrackerTool2 {
 
             @Override
             public void windowClosing(WindowEvent event) {
-                shutdown();
+                exit();
             }
         });
+        
+        mainMenu = new view.MainMenu();
 
         mainWindow.getContentPane().setLayout(new BorderLayout(10, 10));
         addPanel(new view.SeachBar(), BorderLayout.NORTH);
         addPanel(new view.SideBar(), BorderLayout.LINE_START);
-        addPanel(new view.MainMenu(), BorderLayout.CENTER);
+        addPanel(mainMenu, BorderLayout.CENTER);
 
         mainWindow.setVisible(true);
     }
@@ -135,18 +154,30 @@ public final class LuggageTrackerTool2 {
     public void addPanel(JPanel panel, Object layout) {
         mainWindow.getContentPane().add(panel, layout);
     }
+    
 
     /**
      *
      */
     public void exit() {
-        mainWindow.setVisible(false);
+        if (mainWindow != null) {
+            mainWindow.setVisible(false);
+        }
+        if (loginWindow != null) {
+            loginWindow.setVisible(false);
+        }
+        user = null;
         shutdown();
     }
 
-    private void shutdown() {
-        mainWindow.dispose();
-        databaseManager.closeConnection();
+    public void shutdown() {
+        if (mainWindow != null) {
+            mainWindow.dispose();
+        }
+        if (loginWindow != null) {
+            loginWindow.dispose();
+        }
+//        databaseManager.closeConnection();
     }
 
     public static LuggageTrackerTool2 getInstance() {
@@ -156,6 +187,18 @@ public final class LuggageTrackerTool2 {
     public static DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
+    
+    public model.User getCurrentUser() {
+        return user;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+    
+    
+    
+    
 
     /**
      * @param args the command line arguments
@@ -168,7 +211,8 @@ public final class LuggageTrackerTool2 {
             public void run() {
                 try {
                     applicatie.initialize();
-                    applicatie.startup();
+                    applicatie.login();
+//                    applicatie.startup();
                 } catch (Exception e) {
                     System.err.println("Application"
                             + applicatie.getClass().getName() + " failed to launch.");

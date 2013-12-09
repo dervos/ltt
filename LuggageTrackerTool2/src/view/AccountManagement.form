@@ -39,10 +39,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="NEW_USER" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="CHANGE_PASSWORD" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="CHANGE_PASSWORD_TEXT" min="-2" max="-2" attributes="0"/>
@@ -55,6 +56,7 @@
                               </Group>
                               <Component id="NEW_CONFIRM" min="-2" max="-2" attributes="0"/>
                               <Component id="CHANGE_CONFIRM" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -62,9 +64,9 @@
                               <Component id="NEW_PASSWORD_INPUT" alignment="0" max="32767" attributes="0"/>
                               <Component id="CHANGE_PASSWORD_INPUT" alignment="0" max="32767" attributes="0"/>
                               <Component id="USER" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="CHANGE_PASSWORD" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="165" max="32767" attributes="0"/>
               </Group>
@@ -85,7 +87,12 @@
                       <Component id="NEW_PASSWORD" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="NEW_PASSWORD_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="NEW_CONFIRM" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="CHANGE_PASSWORD" min="-2" max="-2" attributes="0"/>
@@ -160,13 +167,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="USER">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="User1"/>
-                <StringItem index="1" value="User2"/>
-                <StringItem index="2" value="User3"/>
-                <StringItem index="3" value="User4"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(usernames)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -187,6 +189,21 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHANGE_CONFIRMActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Rechten:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox2">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Account Beheerder&quot;, &quot;Manager&quot;, &quot;Medewerker&quot;, &quot;Admin&quot; })" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
