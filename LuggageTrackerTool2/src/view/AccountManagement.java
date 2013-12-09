@@ -39,6 +39,12 @@ public class AccountManagement extends javax.swing.JPanel {
         USER = new javax.swing.JComboBox();
         NEW_CONFIRM = new javax.swing.JButton();
         CHANGE_CONFIRM = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         NEW_USER.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         NEW_USER.setText("New User");
@@ -93,6 +99,19 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Delete user");
+
+        jCheckBox1.setText("check to confirm");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User 1", "User 2", "User 3", "User 4" }));
+
+        jButton1.setText("Confirm");
+
+        jLabel2.setText("Username:");
+
+        jLabel3.setText("Verify:");
+
         javax.swing.GroupLayout ACCOUNT_MANAGEMENTLayout = new javax.swing.GroupLayout(ACCOUNT_MANAGEMENT);
         ACCOUNT_MANAGEMENT.setLayout(ACCOUNT_MANAGEMENTLayout);
         ACCOUNT_MANAGEMENTLayout.setHorizontalGroup(
@@ -100,9 +119,10 @@ public class AccountManagement extends javax.swing.JPanel {
             .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
                     .addComponent(NEW_USER)
+                    .addComponent(CHANGE_PASSWORD)
                     .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CHANGE_PASSWORD_TEXT)
                             .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,15 +131,23 @@ public class AccountManagement extends javax.swing.JPanel {
                                     .addComponent(NEW_PASSWORD))
                                 .addComponent(CHANGE_USERNAME_TEXT, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(NEW_CONFIRM)
-                            .addComponent(CHANGE_CONFIRM))
+                            .addComponent(CHANGE_CONFIRM)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(NEW_USERNAME_INPUT, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(CHANGE_PASSWORD_INPUT, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(USER, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(CHANGE_PASSWORD))
-                .addContainerGap(185, Short.MAX_VALUE))
+                    .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
+                        .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox1))))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         ACCOUNT_MANAGEMENTLayout.setVerticalGroup(
             ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +164,7 @@ public class AccountManagement extends javax.swing.JPanel {
                     .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NEW_CONFIRM)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CHANGE_PASSWORD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -148,14 +176,26 @@ public class AccountManagement extends javax.swing.JPanel {
                     .addComponent(CHANGE_PASSWORD_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CHANGE_CONFIRM)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(7, 7, 7)
+                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jLabel3))
+                .addGap(13, 13, 13)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -164,12 +204,12 @@ public class AccountManagement extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 5, Short.MAX_VALUE)
                     .addComponent(ACCOUNT_MANAGEMENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 5, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,5 +251,11 @@ public class AccountManagement extends javax.swing.JPanel {
     private javax.swing.JLabel NEW_USERNAME;
     private javax.swing.JTextField NEW_USERNAME_INPUT;
     private javax.swing.JComboBox USER;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
