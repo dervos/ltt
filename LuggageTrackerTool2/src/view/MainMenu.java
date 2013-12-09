@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -35,6 +36,12 @@ public class MainMenu extends JPanel {
     public JPanel getAccountTab() {
         return accountTab;
     }
+
+    public JTabbedPane getjTabbedPane() {
+        return jTabbedPane;
+    }
+    
+    
     
     
 
