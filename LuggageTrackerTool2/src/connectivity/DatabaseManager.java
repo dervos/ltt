@@ -49,7 +49,9 @@ public class DatabaseManager {
      */
     public void closeConnection() {
         try {
-            connection.close();
+            if (connection != null) {
+                connection.close();
+            }
         } catch (SQLException e) {
             System.err.println(SQL_EXCEPTION + e.getMessage());
         }

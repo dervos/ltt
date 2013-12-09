@@ -6,12 +6,14 @@ package view;
 
 import java.sql.SQLException;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author gebak_000
  */
 public class Luggage extends javax.swing.JPanel {
+
     private int selection;
 
     private java.util.List<model.Luggage> luggageList = model.Luggage.getLuggageList();
@@ -21,6 +23,8 @@ public class Luggage extends javax.swing.JPanel {
      */
     public Luggage() {
         initComponents();
+        LUGGAGE_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
         refreshLuggageList();
         addLuggageItemsToTable();
     }
@@ -32,14 +36,14 @@ public class Luggage extends javax.swing.JPanel {
             System.err.println("Error getting luggage list: " + ex.getMessage());
         }
     }
-    
+
     public void refreshWithSearch(int id) throws SQLException {
         removeAllFromLuggageTable();
+        luggageList.clear();
         luggageList.add(model.LuggageDAO.readById(id));
     }
 
     public void addLuggageItemsToTable() {
-        
 
         for (model.Luggage luggage : luggageList) {
             addLuggageToTable(luggage);
@@ -58,7 +62,7 @@ public class Luggage extends javax.swing.JPanel {
         newRow[3] = luggage.getPassengerid();
         addRow(newRow);
     }
-    
+
     public model.Luggage getLuggageFromRow(int row) {
         model.Luggage luggage = null;
         int selectedid = Integer.parseInt(LUGGAGE_TABLE.getValueAt(row, 0).toString());
@@ -70,19 +74,17 @@ public class Luggage extends javax.swing.JPanel {
         }
         return luggage;
     }
-    
-    public void removeFromLuggageTable(int id) {
-         ((javax.swing.table.DefaultTableModel) LUGGAGE_TABLE.getModel()).removeRow(id);
+
+    public void removeAllFromLuggageTable() {
+        DefaultTableModel dtm = (DefaultTableModel) LUGGAGE_TABLE.getModel();
+        int rows = dtm.getRowCount();
+
+        for (int i = rows - 1; i >= 0; i--) {
+
+            dtm.removeRow(i);
+        }
+
     }
-    
-    public void removeAllFromLuggageTable () {
-        int size =  ((javax.swing.table.DefaultTableModel) LUGGAGE_TABLE.getModel()).getRowCount();
-//        for (int i = 0; i < size; i++) {
-//             removeFromLuggageTable(i);
-//        }
-        LUGGAGE_TABLE.removeRowSelectionInterval(0, size);
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +99,7 @@ public class Luggage extends javax.swing.JPanel {
         LUGGAGE_TABLE = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         CONNECT_TO_CUSTOMER_BUTTON = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        REFRESH_BUTTON = new javax.swing.JButton();
         EDIT_BUTTON = new javax.swing.JButton();
         DELETE_BUTTON = new javax.swing.JButton();
 
@@ -144,16 +146,16 @@ public class Luggage extends javax.swing.JPanel {
         });
         jToolBar1.add(CONNECT_TO_CUSTOMER_BUTTON);
 
-        jButton1.setText("Refresh Table");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        REFRESH_BUTTON.setText("Refresh Table");
+        REFRESH_BUTTON.setFocusable(false);
+        REFRESH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        REFRESH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        REFRESH_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                REFRESH_BUTTONActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(REFRESH_BUTTON);
 
         EDIT_BUTTON.setText("Edit");
         EDIT_BUTTON.addActionListener(new java.awt.event.ActionListener() {
@@ -194,34 +196,36 @@ public class Luggage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CONNECT_TO_CUSTOMER_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_CUSTOMER_BUTTONActionPerformed
-        model.Luggage luggage = getLuggageFromRow(selection);  
+        model.Luggage luggage = getLuggageFromRow(selection);
         System.out.println(luggage);
     }//GEN-LAST:event_CONNECT_TO_CUSTOMER_BUTTONActionPerformed
 
     private void EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_BUTTONActionPerformed
-        
+
     }//GEN-LAST:event_EDIT_BUTTONActionPerformed
 
     private void DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETE_BUTTONActionPerformed
-        
+
     }//GEN-LAST:event_DELETE_BUTTONActionPerformed
 
     private void LUGGAGE_TABLEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LUGGAGE_TABLEMouseClicked
         JTable jtable = (JTable) evt.getSource();
         selection = jtable.getSelectedRow();
-        
+
     }//GEN-LAST:event_LUGGAGE_TABLEMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void REFRESH_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REFRESH_BUTTONActionPerformed
+        removeAllFromLuggageTable();
+        refreshLuggageList();
         addLuggageItemsToTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_REFRESH_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CONNECT_TO_CUSTOMER_BUTTON;
     private javax.swing.JButton DELETE_BUTTON;
     private javax.swing.JButton EDIT_BUTTON;
     private javax.swing.JTable LUGGAGE_TABLE;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton REFRESH_BUTTON;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables

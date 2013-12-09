@@ -6,12 +6,14 @@ package view;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author gebak_000
  */
 public class Passenger extends javax.swing.JPanel {
+
     private int selection;
 
     List<model.Passenger> passengerList = model.Passenger.getPassengerList();
@@ -20,7 +22,6 @@ public class Passenger extends javax.swing.JPanel {
      * Creates new form Passenger
      */
     public Passenger() {
-
         initComponents();
         refreshPassengerList();
         addPassengerItemsToTable();
@@ -33,10 +34,10 @@ public class Passenger extends javax.swing.JPanel {
             System.err.println("Error getting passenger list: " + ex.getMessage());
         }
     }
-    
+
     public void refreshWithSearch(int id) throws SQLException {
         removeAllFromPassengerTable();
-        
+        passengerList.clear();
         passengerList.add(model.PassengerDAO.readById(id));
     }
 
@@ -65,32 +66,26 @@ public class Passenger extends javax.swing.JPanel {
         try {
             newRow[8] = model.AddressDAO.readById(passenger.getHomeaddressid()).getStreetname();
         } catch (SQLException ex) {
-            
+
         }
         try {
             newRow[9] = model.AddressDAO.readById(passenger.getTempaddressid()).getStreetname();
         } catch (SQLException ex) {
-            
+
         }
-        
+
         addRow(newRow);
     }
-    
-    public void removeFromPassengerTable(int id) {
-         ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).removeRow(id);
+
+    public void removeAllFromPassengerTable() {
+        DefaultTableModel dtm = (DefaultTableModel) PASSENGER_TABLE.getModel();
+        int rows = dtm.getRowCount();
+
+        for (int i = rows - 1; i >= 0; i--) {
+
+            dtm.removeRow(i);
+        }
     }
-    
-    public void removeAllFromPassengerTable () {
-        int size =  ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).getRowCount();
-//        for (int i = 0; i < size; i++) {
-//             removeFromPassengerTable(i);
-//        }
-        PASSENGER_TABLE.removeRowSelectionInterval(0, size);
-    }
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +100,7 @@ public class Passenger extends javax.swing.JPanel {
         PASSENGER_TABLE = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         CONNECT_TO_LUGGAGE_BUTTON = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        REFRESH_BUTTON = new javax.swing.JButton();
         EDIT_BUTTON = new javax.swing.JButton();
         DELETE_BUTTON = new javax.swing.JButton();
 
@@ -141,16 +136,16 @@ public class Passenger extends javax.swing.JPanel {
         CONNECT_TO_LUGGAGE_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(CONNECT_TO_LUGGAGE_BUTTON);
 
-        jButton1.setText("Refresh Table");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        REFRESH_BUTTON.setText("Refresh Table");
+        REFRESH_BUTTON.setFocusable(false);
+        REFRESH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        REFRESH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        REFRESH_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                REFRESH_BUTTONActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(REFRESH_BUTTON);
 
         EDIT_BUTTON.setText("Edit");
         EDIT_BUTTON.setFocusable(false);
@@ -186,19 +181,20 @@ public class Passenger extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void REFRESH_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REFRESH_BUTTONActionPerformed
+        removeAllFromPassengerTable();
+        refreshPassengerList();
         addPassengerItemsToTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_REFRESH_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CONNECT_TO_LUGGAGE_BUTTON;
     private javax.swing.JButton DELETE_BUTTON;
     private javax.swing.JButton EDIT_BUTTON;
     private javax.swing.JTable PASSENGER_TABLE;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton REFRESH_BUTTON;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
-    
 }
