@@ -4,7 +4,7 @@
  */
 package utility;
 
-import view.RegistrationPassenger;
+
 import model.*;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class PDFGenerator {
             // standard information output in pdf
             for (int i = 0; i < basicInformationOutput.length; i++) {
                 this.contentStream.beginText();
-
+                //headers
                 if (i == 0) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
                     this.contentStream.moveTextPositionByAmount(x, y);
@@ -62,16 +62,20 @@ public class PDFGenerator {
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-
+                    
+                    //basic information output
                 } else {
 
                     this.contentStream.setFont(PDType1Font.HELVETICA, 12);
                     this.contentStream.moveTextPositionByAmount(x, y);
-                    this.contentStream.drawString(basicInformationOutput[i] + passenger);
+                    // print statement
+                    this.contentStream.drawString(basicInformationOutput[i] + HomeAddress);
                     y -= 25;
                     this.contentStream.endText();
                     this.contentStream.close();
                 }
+                
+               
             }
         } catch (Exception ex) {
             ex.printStackTrace();

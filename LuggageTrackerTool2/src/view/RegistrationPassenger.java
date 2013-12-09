@@ -619,11 +619,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerItemsToTable();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
             clearFields();
             
             PDFGenerator document = new PDFGenerator();
             document.generate(passenger, homeAddress, tempAddress);
+            document.save("Informatie.pdf");
 
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
