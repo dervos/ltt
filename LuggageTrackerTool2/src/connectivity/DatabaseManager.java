@@ -19,7 +19,7 @@ public class DatabaseManager {
     public static final String DRIVER = "com.mysql.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/lttDatabase";
     public static final String DBUSER = "root";
-    public static final String DBPASS = "toor";
+    public static final String DBPASS = "root";
 
     private ResultSet result = null;
     private int affectedRows = -1;
