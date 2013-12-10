@@ -10,6 +10,7 @@ package view;
  */
 public class Management extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form Management
      */
