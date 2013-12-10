@@ -117,9 +117,9 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Rechten:");
+        jLabel1.setText("RIghts:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Account Beheerder", "Manager", "Medewerker", "Admin" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Account Manager", "Manager", "Service Employee"}));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);

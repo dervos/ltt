@@ -121,6 +121,10 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PASSENGER_TABLEMousePressed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PASSENGER_TABLEMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -132,14 +136,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="CONNECT_TO_LUGGAGE_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Connect to Luggage"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="REFRESH_BUTTON">
           <Properties>
             <Property name="text" type="java.lang.String" value="Refresh Table"/>
@@ -150,22 +146,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="REFRESH_BUTTONActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="EDIT_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="DELETE_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

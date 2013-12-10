@@ -15,6 +15,8 @@ import javax.swing.UIManager;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import model.Luggage;
+import model.Passenger;
 import view.MainMenu;
 import view.SeachBar;
 import view.SideBar;
@@ -56,6 +58,9 @@ public final class LuggageTrackerTool2 {
     private MainMenu mainMenu;
     private SideBar sideBar;
     private SeachBar searchBar;
+
+    private model.Passenger selectedPassenger;
+    private model.Luggage selectedLuggage;
 
     /**
      *
@@ -230,13 +235,60 @@ public final class LuggageTrackerTool2 {
     public MainMenu getMainMenu() {
         return mainMenu;
     }
-    
-    public SideBar getSideBar(){
+
+    public SideBar getSideBar() {
         return this.sideBar;
     }
 
-    public SeachBar getSearchBar(){
+    public SeachBar getSearchBar() {
         return this.searchBar;
+    }
+
+    public Passenger getSelectedPassenger() {
+        return selectedPassenger;
+    }
+
+    public void setSelectedPassenger(Passenger selectedPassenger) {
+        this.selectedPassenger = selectedPassenger;
+    }
+
+    public Luggage getSelectedLuggage() {
+        return selectedLuggage;
+    }
+
+    public void setSelectedLuggage(Luggage selectedLuggage) {
+        this.selectedLuggage = selectedLuggage;
+    }
+
+    public void updatePassengerInformationPanel(int selection) {
+        try {
+            selectedPassenger = model.PassengerDAO.readById(selection);
+            getMainMenu().getInformationPanel().setPassengerLabel(selectedPassenger);
+        } catch (SQLException ex) {
+//            getMainMenu().getInformationPanel().clearPassengerLabels();
+        }
+    }
+
+    public void updateLuggageInformationPanel(int selection) {
+        try {
+            selectedLuggage = model.LuggageDAO.readById(selection);
+            getMainMenu().getInformationPanel().setLuggageLabel(selectedLuggage);
+        } catch (SQLException ex) {
+//            getMainMenu().getInformationPanel().clearLuggageLabels();
+        }
+    }
+
+    public void connectLuggageToPassenger() {
+        if (selectedLuggage != null & selectedPassenger != null) {
+            selectedLuggage.setPassenger(selectedPassenger.getPassengerid());
+            try {
+                model.LuggageDAO.update(selectedLuggage);
+            } catch (SQLException ex) {
+                System.err.println("Cannot connect luggage to person");
+                System.err.println(ex.getMessage());
+
+            }
+        }
     }
 
     /**

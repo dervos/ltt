@@ -90,6 +90,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LUGGAGE_TABLEMousePressed"/>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LUGGAGE_TABLEMouseClicked"/>
           </Events>
         </Component>
@@ -103,14 +104,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="CONNECT_TO_CUSTOMER_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Connect to Customer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CONNECT_TO_CUSTOMER_BUTTONActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="REFRESH_BUTTON">
           <Properties>
             <Property name="text" type="java.lang.String" value="Refresh Table"/>
@@ -120,22 +113,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="REFRESH_BUTTONActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="EDIT_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EDIT_BUTTONActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="DELETE_BUTTON">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DELETE_BUTTONActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

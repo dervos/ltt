@@ -22,6 +22,7 @@ public class SideBar extends javax.swing.JPanel {
     
     public SideBar() {
         initComponents();
+        setLayout(new BorderLayout(10, 10));
         this.regPassengerControl = new view.RegistrationPassenger();
         this.regLuggageControl = new view.RegistrationLuggage();
         add(this.regPassengerControl, BorderLayout.NORTH);
