@@ -36,13 +36,11 @@ public class PDFGenerator {
     
     public void generate(Passenger passenger, Address HomeAddress, Address TempAddress){
          String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Description: ", "Storage location: ", "Otherwise: "};
-         
+         String gegevens = null;
          try {
             int x = 75;
             int y = 725;
-            
-            
-            
+         
             
             // standard information output in pdf
             for (int i = 0; i < basicInformationOutput.length; i++) {
@@ -71,11 +69,18 @@ public class PDFGenerator {
                 } else {
 
                     this.contentStream.setFont(PDType1Font.HELVETICA, 12);
-                    this.contentStream.drawString(basicInformationOutput[i] + passenger.getName());  
+                     
                     
                     
                     y -= 25;
-                    
+                    switch (i){
+                        case 1: gegevens = passenger.getName();
+                            break;
+                        case 2: gegevens = passenger.getSurname();
+                            break;
+                       
+                    }
+                    this.contentStream.drawString(basicInformationOutput[i] + gegevens); 
                 }
                           
                 this.contentStream.endText();
