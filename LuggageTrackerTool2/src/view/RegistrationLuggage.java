@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.CustomException;
 
 /**
  *
@@ -15,10 +18,19 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         initComponents();
     }
     
-    public model.Luggage createLuggage() {
+    public model.Luggage createLuggage() throws CustomException {
+        String description = DESCRIPTION_INPUT1.getText();
+        String storageLocation = STORAGE_LOCATION_INPUT.getSelectedItem().toString();
+        
+        if (description.length() > 45)
+            throw new CustomException("Description can't be longer than 45 characters, you've got: " + description.length(), DESCRIPTION_INPUT1);
+        
+        if (storageLocation.length() > 45)
+            throw new CustomException("Storage location can't be longer than 45 characters, you've got: " + storageLocation.length(), STORAGE_LOCATION_INPUT);
+        
         model.Luggage luggage = new model.Luggage();
-        luggage.setDescription(DESCRIPTION_INPUT1.getText());
-        luggage.setStoragelocation(STORAGE_LOCATION_INPUT.getSelectedItem().toString());
+        luggage.setDescription(description);
+        luggage.setStoragelocation(storageLocation);
         luggage.setPassenger(1);
         return luggage;
     }
@@ -175,6 +187,11 @@ public class RegistrationLuggage extends javax.swing.JPanel {
             
         } catch (SQLException ex) {
             System.err.println("Error submitting luggage "+ ex.getMessage());
+        } catch (CustomException cEx) {
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            if (cEx.getComponent() != null) {
+                cEx.getComponent().setBackground(Color.RED);
+            }
         }
     }//GEN-LAST:event_SUBMIT_BUTTONActionPerformed
 
