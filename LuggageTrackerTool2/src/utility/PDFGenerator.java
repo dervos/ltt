@@ -40,41 +40,46 @@ public class PDFGenerator {
          try {
             int x = 75;
             int y = 725;
-
+            
+            
+            
+            
             // standard information output in pdf
             for (int i = 0; i < basicInformationOutput.length; i++) {
                 this.contentStream.beginText();
+            this.contentStream.moveTextPositionByAmount(x, y);
+                
                 //headers
                 if (i == 0) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.moveTextPositionByAmount(x, y);
                     this.contentStream.drawString(basicInformationOutput[i]);
                 }
                 if (i == 7) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.moveTextPositionByAmount(x, y);
                     this.contentStream.drawString(basicInformationOutput[i]);
+                   
                 }
                 if (i == 12) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.moveTextPositionByAmount(x, y);
                     this.contentStream.drawString(basicInformationOutput[i]);
+                    
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    
+                    this.contentStream.drawString(basicInformationOutput[i]);
                     //basic information output
                 } else {
 
                     this.contentStream.setFont(PDType1Font.HELVETICA, 12);
-                    this.contentStream.moveTextPositionByAmount(x, y);
-                    // print statement
-                    this.contentStream.drawString(basicInformationOutput[i] + HomeAddress);
+                    this.contentStream.drawString(basicInformationOutput[i] + passenger.getName());  
+                    
+                    
                     y -= 25;
-                    this.contentStream.endText();
-                    this.contentStream.close();
+                    
                 }
-                
+                          
+                this.contentStream.endText();
+                this.contentStream.close();
                
             }
         } catch (Exception ex) {
