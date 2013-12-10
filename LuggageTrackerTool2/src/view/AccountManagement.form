@@ -193,13 +193,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rechten:"/>
+            <Property name="text" type="java.lang.String" value="RIghts:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Account Beheerder&quot;, &quot;Manager&quot;, &quot;Medewerker&quot;, &quot;Admin&quot; })" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Account Manager&quot;, &quot;Manager&quot;, &quot;Service Employee&quot;})" type="code"/>
             </Property>
           </Properties>
           <Events>

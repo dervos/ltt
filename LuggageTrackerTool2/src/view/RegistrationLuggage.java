@@ -56,7 +56,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(523, 279));
         setMinimumSize(new java.awt.Dimension(523, 279));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(523, 279));
+        setPreferredSize(new java.awt.Dimension(523, 280));
 
         DESCRIPTION.setText("Description");
 
@@ -167,10 +167,12 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private void SUBMIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMIT_BUTTONActionPerformed
         try {
             model.Luggage luggage = createLuggage();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().addLuggageItemsToTable();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(2);
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
             model.LuggageDAO.create(luggage);
             clearFields();
+            
+            
         } catch (SQLException ex) {
             System.err.println("Error submitting luggage "+ ex.getMessage());
         }

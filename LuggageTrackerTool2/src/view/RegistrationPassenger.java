@@ -617,8 +617,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             model.AddressDAO.create(tempAddress);
 
             model.PassengerDAO.create(passenger);
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().addPassengerItemsToTable();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
+            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
             clearFields();
 
         } catch (SQLException ex) {

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -8,17 +9,66 @@ import javax.swing.JTabbedPane;
  * @author reintjehard
  */
 public class MainMenu extends JPanel {
-    private JPanel passengerTab, luggageTab, accountTab;
+
+    private JPanel passengerTab, luggageTab, accountTab, managementTab;
+    private view.InformationPanel informationPanel;
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
+        initComponents();
+        String rights = main.LuggageTrackerTool2.getInstance().getCurrentUser().getPrivileges();
+
+        switch (rights) {
+            case "Manager":
+                addManagerTabs();
+                break;
+            case "Admin":
+                addAllTabs();
+                break;
+            case "Account Manager":
+                addAccountManagerTabs();
+                break;
+            case "Service Employee":
+                addServiceEmployeeTabs();
+                break;
+
+        }
+        
+    }
+
+    private void addManagerTabs() {
+        managementTab = new view.Management();
+        jTabbedPane.add("Manager Pane", managementTab);
+    }
+
+    private void addAllTabs() {
+        managementTab = new view.Management();
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
         accountTab = new view.AccountManagement();
+        informationPanel = new view.InformationPanel();
+        informationPanel.setVisible(true);
+        add(informationPanel, BorderLayout.PAGE_END);
+        jTabbedPane.addTab("Passenger", passengerTab);
+        jTabbedPane.addTab("Luggage", luggageTab);
+        jTabbedPane.addTab("Account Management", accountTab);
+        jTabbedPane.add("Manager Pane", managementTab);
+    }
+
+    private void addServiceEmployeeTabs() {
+        passengerTab = new view.Passenger();
+        luggageTab = new view.Luggage();
         
-        initComponents();
+        jTabbedPane.addTab("Passenger", passengerTab);
+        jTabbedPane.addTab("Luggage", luggageTab);
+    }
+
+    private void addAccountManagerTabs() {
+        passengerTab = new view.Passenger();
+        luggageTab = new view.Luggage();
+        accountTab = new view.AccountManagement();
         
         jTabbedPane.addTab("Passenger", passengerTab);
         jTabbedPane.addTab("Luggage", luggageTab);
@@ -40,10 +90,10 @@ public class MainMenu extends JPanel {
     public JTabbedPane getjTabbedPane() {
         return jTabbedPane;
     }
-    
-    
-    
-    
+
+    public InformationPanel getInformationPanel() {
+        return informationPanel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,26 +107,16 @@ public class MainMenu extends JPanel {
         jTabbedPane = new javax.swing.JTabbedPane();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Main menu"));
+        setPreferredSize(new java.awt.Dimension(800, 800));
+        setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jTabbedPane.setPreferredSize(new java.awt.Dimension(400, 650));
+        jTabbedPane.setRequestFocusEnabled(false);
+        add(jTabbedPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane;
     // End of variables declaration//GEN-END:variables
+
 }

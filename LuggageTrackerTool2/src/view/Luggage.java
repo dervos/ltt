@@ -23,13 +23,19 @@ public class Luggage extends javax.swing.JPanel {
      */
     public Luggage() {
         initComponents();
-        LUGGAGE_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        LUGGAGE_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         refreshLuggageList();
         addLuggageItemsToTable();
     }
+    
+    public void refresh() {
+        removeAllFromLuggageTable();
+        refreshLuggageList();
+        addLuggageItemsToTable();
+    }
 
-    private void refreshLuggageList() {
+    public void refreshLuggageList() {
         try {
             luggageList = model.LuggageDAO.readAll();
         } catch (SQLException ex) {
@@ -98,10 +104,7 @@ public class Luggage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         LUGGAGE_TABLE = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
-        CONNECT_TO_CUSTOMER_BUTTON = new javax.swing.JButton();
         REFRESH_BUTTON = new javax.swing.JButton();
-        EDIT_BUTTON = new javax.swing.JButton();
-        DELETE_BUTTON = new javax.swing.JButton();
 
         LUGGAGE_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +127,9 @@ public class Luggage extends javax.swing.JPanel {
         LUGGAGE_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         LUGGAGE_TABLE.getTableHeader().setReorderingAllowed(false);
         LUGGAGE_TABLE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LUGGAGE_TABLEMousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LUGGAGE_TABLEMouseClicked(evt);
             }
@@ -138,14 +144,6 @@ public class Luggage extends javax.swing.JPanel {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        CONNECT_TO_CUSTOMER_BUTTON.setText("Connect to Customer");
-        CONNECT_TO_CUSTOMER_BUTTON.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CONNECT_TO_CUSTOMER_BUTTONActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(CONNECT_TO_CUSTOMER_BUTTON);
-
         REFRESH_BUTTON.setText("Refresh Table");
         REFRESH_BUTTON.setFocusable(false);
         REFRESH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -156,22 +154,6 @@ public class Luggage extends javax.swing.JPanel {
             }
         });
         jToolBar1.add(REFRESH_BUTTON);
-
-        EDIT_BUTTON.setText("Edit");
-        EDIT_BUTTON.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EDIT_BUTTONActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(EDIT_BUTTON);
-
-        DELETE_BUTTON.setText("Delete");
-        DELETE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DELETE_BUTTONActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(DELETE_BUTTON);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -195,35 +177,27 @@ public class Luggage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CONNECT_TO_CUSTOMER_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_CUSTOMER_BUTTONActionPerformed
-        model.Luggage luggage = getLuggageFromRow(selection);
-        System.out.println(luggage);
-    }//GEN-LAST:event_CONNECT_TO_CUSTOMER_BUTTONActionPerformed
-
-    private void EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_BUTTONActionPerformed
-
-    }//GEN-LAST:event_EDIT_BUTTONActionPerformed
-
-    private void DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETE_BUTTONActionPerformed
-
-    }//GEN-LAST:event_DELETE_BUTTONActionPerformed
-
     private void LUGGAGE_TABLEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LUGGAGE_TABLEMouseClicked
-        JTable jtable = (JTable) evt.getSource();
-        selection = jtable.getSelectedRow();
+//        JTable jtable = (JTable) evt.getSource();
+//        selection = jtable.getSelectedRow();
+//        System.out.println(selection);
+//        main.LuggageTrackerTool2.getInstance().updateLuggageInformationPanel(selection);
 
     }//GEN-LAST:event_LUGGAGE_TABLEMouseClicked
 
     private void REFRESH_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REFRESH_BUTTONActionPerformed
-        removeAllFromLuggageTable();
-        refreshLuggageList();
-        addLuggageItemsToTable();
+        refresh();
     }//GEN-LAST:event_REFRESH_BUTTONActionPerformed
 
+    private void LUGGAGE_TABLEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LUGGAGE_TABLEMousePressed
+        JTable jtable = (JTable) evt.getSource();
+        int row = jtable.getSelectedRow();
+        selection = Integer.parseInt(jtable.getValueAt(row, 0).toString());
+        System.out.println(selection);
+        main.LuggageTrackerTool2.getInstance().updateLuggageInformationPanel(selection);
+    }//GEN-LAST:event_LUGGAGE_TABLEMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CONNECT_TO_CUSTOMER_BUTTON;
-    private javax.swing.JButton DELETE_BUTTON;
-    private javax.swing.JButton EDIT_BUTTON;
     private javax.swing.JTable LUGGAGE_TABLE;
     private javax.swing.JButton REFRESH_BUTTON;
     private javax.swing.JScrollPane jScrollPane1;
