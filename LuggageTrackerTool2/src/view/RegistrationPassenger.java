@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import utility.PDFGenerator;
 
 /**
  *
@@ -605,7 +606,12 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
             main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
+
             clearFields();
+            
+            PDFGenerator document = new PDFGenerator();
+            document.generate(passenger, homeAddress, tempAddress);
+            document.save("Informatie.pdf");
 
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
