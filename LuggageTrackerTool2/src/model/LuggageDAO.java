@@ -1,10 +1,12 @@
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -103,7 +105,6 @@ public class LuggageDAO {
         if (databaseManager != null) {
             databaseManager.closeConnection();
         }
-
         return list;
     }
 
@@ -177,7 +178,85 @@ public class LuggageDAO {
         if (databaseManager != null) {
             databaseManager.closeConnection();
         }
-
         return rowsAffected;
     }
+
+    public static int readFound() {
+        int found = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `found` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Found'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                found = rs.getInt("found");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return found;
+    }
+
+    public static int readLost() {
+        int lost = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `lost` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Lost'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                lost = rs.getInt("lost");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return lost;
+    }
+
+    public static int readDone() {
+        int done = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `done` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Done'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                done = rs.getInt("done");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return done;
+    }
 }
+
