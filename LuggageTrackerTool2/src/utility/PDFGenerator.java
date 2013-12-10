@@ -8,6 +8,8 @@ package utility;
 import model.*;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
@@ -35,6 +37,7 @@ public class PDFGenerator {
     }
     
     public void generate(Passenger passenger, Address HomeAddress, Address TempAddress){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
          String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Description: ", "Storage location: ", "Otherwise: "};
          String gegevens = null;
          try {
@@ -45,7 +48,7 @@ public class PDFGenerator {
             // standard information output in pdf
             for (int i = 0; i < basicInformationOutput.length; i++) {
                 this.contentStream.beginText();
-            this.contentStream.moveTextPositionByAmount(x, y);
+                this.contentStream.moveTextPositionByAmount(x, y);
                 
                 //headers
                 if (i == 0) {
@@ -74,11 +77,44 @@ public class PDFGenerator {
                     
                     y -= 25;
                     switch (i){
+                        case 0: gegevens = "";
+                            break;
                         case 1: gegevens = passenger.getName();
                             break;
                         case 2: gegevens = passenger.getSurname();
                             break;
-                       
+                        case 3: gegevens = df.format(passenger.getDob());
+                            break;
+                        case 4: gegevens = passenger.getGender();
+                            break;
+                        case 5: gegevens = passenger.getHomephone();
+                            break;
+                        case 6: gegevens = passenger.getMobphone();
+                            break;
+                        case 7: gegevens = "";
+                            break;
+                        case 8: gegevens = HomeAddress.getCountry();
+                            break;
+                        case 9: gegevens = HomeAddress.getCity();
+                            break;
+                        case 10: gegevens = HomeAddress.getStreetname();
+                            break;
+                        case 11: gegevens = TempAddress.getZipcode();
+                            break;
+                        case 12: gegevens = "";
+                            break;
+                        case 13: gegevens = TempAddress.getCountry();
+                            break;
+                        case 14: gegevens = TempAddress.getCity();
+                            break;
+                        case 15: gegevens = TempAddress.getStreetname();
+                            break;
+                        case 16: gegevens = TempAddress.getZipcode();
+                            break;
+                        default:
+                            break;
+                            
+                      
                     }
                     this.contentStream.drawString(basicInformationOutput[i] + gegevens); 
                 }
