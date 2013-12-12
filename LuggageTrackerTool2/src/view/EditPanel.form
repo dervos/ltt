@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="name" type="java.lang.String" value="" noResource="true"/>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="BASIC_INFORMATION_TITLE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="LUGGAGE_NOT_LINKED_LABEL" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="HOME_CITY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HOME_COUNTRY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HOME_STREET" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HOME_POSTAL_CODE" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="HOME_STREET_INPUT" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="HOME_CITY_INPUT" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="HOME_COUNTRY_INPUT" alignment="1" pref="200" max="32767" attributes="0"/>
+                                          <Component id="HOME_POSTAL_CODE_INPUT" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="SURNAME" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DATE_OF_BIRTH" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="GENDER" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NAME" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HOME_PHONE_NUMBER" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="MOBILE_PHONE_NUMBER" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="DATE_OF_BIRTH_INPUT" min="-2" pref="99" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="DD_MM_YYYY" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="TUSSENVOEGSEL_INPUT" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="SURNAME_INPUT" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="NAME_INPUT" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="MALE_BUTTON" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="FEMALE_BUTTON" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="HOME_PHONE_NUMBER_INPUT" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Component id="MOBILE_PHONE_NUMBER_INPUT" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Component id="LUGGAGE_NOT_LINKED_COPY" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TEMP_CITY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEMP_COUNTRY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEMP_STREET" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEMP_POSTAL_CODE" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="TEMP_COUNTRY_INPUT" max="32767" attributes="0"/>
+                                          <Component id="TEMP_CITY_INPUT" min="-2" pref="199" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="TEMP_STREET_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                                          <Component id="TEMP_POSTAL_CODE_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TEMPORARY_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="LUGGAGE_NOT_LINKED_COPY2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="LUGGAGE_INFORMATION_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="STORAGE_LOCATION" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LUGGAGEID_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DESCRIPTION" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ANDERS" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CONNECTED_LUGGAGES_LABEL" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="LUGGAGEID_INPUT" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="CONNECTED_LUGGAGES_CBOX" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="DESCRIPTION_INPUT_FRAME" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
+                                  <Component id="STORAGE_LOCATION_INPUT" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="ANDERS_INPUT_FRAME" min="-2" pref="281" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="CANCEL_BUTTON" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SAVE_BUTTON" min="-2" pref="57" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="TEMPORARY_ADDRESS_TITLE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BASIC_INFORMATION_TITLE" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="LUGGAGE_NOT_LINKED_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="LUGGAGE_NOT_LINKED_COPY2" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TEMP_COUNTRY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TEMP_COUNTRY" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TEMP_CITY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TEMP_CITY" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TEMP_STREET_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TEMP_STREET" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TEMP_POSTAL_CODE_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TEMP_POSTAL_CODE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="LUGGAGE_INFORMATION_LABEL" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Component id="NAME" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="NAME_INPUT" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TUSSENVOEGSEL_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SURNAME_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SURNAME" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="DATE_OF_BIRTH_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DD_MM_YYYY" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DATE_OF_BIRTH" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="MALE_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="FEMALE_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="GENDER" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="HOME_PHONE_NUMBER_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="HOME_PHONE_NUMBER" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="MOBILE_PHONE_NUMBER_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="MOBILE_PHONE_NUMBER" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CONNECTED_LUGGAGES_CBOX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CONNECTED_LUGGAGES_LABEL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LUGGAGEID_LABEL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LUGGAGEID_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
+                          <Component id="DESCRIPTION_INPUT_FRAME" min="-2" pref="55" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="STORAGE_LOCATION_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="STORAGE_LOCATION" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="HOME_COUNTRY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="HOME_COUNTRY" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="LUGGAGE_NOT_LINKED_COPY" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="HOME_CITY_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="HOME_CITY" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="HOME_STREET_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="HOME_STREET" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="HOME_POSTAL_CODE_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="HOME_POSTAL_CODE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
+                  <Component id="ANDERS_INPUT_FRAME" min="-2" pref="62" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="SAVE_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CANCEL_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="NAME_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TUSSENVOEGSEL_INPUT">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TUSSENVOEGSEL_INPUTActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="SURNAME_INPUT">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="DATE_OF_BIRTH_INPUT">
+      <Properties>
+        <Property name="columns" type="int" value="3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="DD_MM_YYYY">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="(YYYY-MM-DD)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="FEMALE_BUTTON">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Female"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FEMALE_BUTTONActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="MALE_BUTTON">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Male"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MALE_BUTTONActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="HOME_PHONE_NUMBER_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="MOBILE_PHONE_NUMBER_INPUT">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MOBILE_PHONE_NUMBER_INPUTActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="HOME_COUNTRY_INPUT">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Please select your country .."/>
+            <StringItem index="1" value="The Netherlands"/>
+            <StringItem index="2" value="Germany"/>
+            <StringItem index="3" value="Belgium"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="HOME_CITY_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="HOME_STREET_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="HOME_POSTAL_CODE_INPUT">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="TEMP_COUNTRY_INPUT">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Please select your country .."/>
+            <StringItem index="1" value="The Netherlands"/>
+            <StringItem index="2" value="Germany"/>
+            <StringItem index="3" value="Belgium"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TEMP_CITY_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TEMP_STREET_INPUT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TEMP_POSTAL_CODE_INPUT">
+    </Component>
+    <Component class="javax.swing.JLabel" name="TEMP_POSTAL_CODE">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Postal Code"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TEMP_STREET">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Street"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TEMP_CITY">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="City"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TEMP_COUNTRY">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TEMPORARY_ADDRESS_TITLE">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Temporary Address"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_POSTAL_CODE">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Postal Code"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_STREET">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Street"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_CITY">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="City"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_COUNTRY">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_ADDRESS_TITLE">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Home Address"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="MOBILE_PHONE_NUMBER">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mobile Phone Number"/>
+        <Property name="alignmentY" type="float" value="0.0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HOME_PHONE_NUMBER">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Home Phone Number"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="GENDER">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gender"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="DATE_OF_BIRTH">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date of Birth"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="SURNAME">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Surname"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="NAME">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="BASIC_INFORMATION_TITLE">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Basic Information"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="CONNECTED_LUGGAGES_CBOX">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CONNECTED_LUGGAGES_CBOXActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="LUGGAGEID_INPUT">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LUGGAGEID_INPUTActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LUGGAGEID_LABEL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Luggage ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="DESCRIPTION">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Description"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="DESCRIPTION_INPUT_FRAME">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="DESCRIPTION_INPUT1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JComboBox" name="STORAGE_LOCATION_INPUT">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Opslag A"/>
+            <StringItem index="1" value="Opslag B"/>
+            <StringItem index="2" value="Opslag C"/>
+            <StringItem index="3" value="Anders .. *"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="STORAGE_LOCATION_INPUTActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="ANDERS_INPUT_FRAME">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="ANDERS_INPUT">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Vul hier zo specifiek mogelijk de&#xa;gegevens in van de opslagplaats."/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="STORAGE_LOCATION">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Storage Location"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ANDERS">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Anders *"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LUGGAGE_INFORMATION_LABEL">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Luggage Information"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="CONNECTED_LUGGAGES_LABEL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Connected Luggages"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LUGGAGE_NOT_LINKED_LABEL">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LUGGAGE_NOT_LINKED_COPY">
+      <BindingProperties>
+        <BindingProperty name="foreground" source="LUGGAGE_NOT_LINKED_LABEL" sourcePath="${foreground}" target="LUGGAGE_NOT_LINKED_COPY" targetPath="foreground" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="text" source="LUGGAGE_NOT_LINKED_LABEL" sourcePath="${text}" target="LUGGAGE_NOT_LINKED_COPY" targetPath="text" updateStrategy="0" immediately="false"/>
+      </BindingProperties>
+    </Component>
+    <Component class="javax.swing.JButton" name="SAVE_BUTTON">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="CANCEL_BUTTON">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LUGGAGE_NOT_LINKED_COPY2">
+      <BindingProperties>
+        <BindingProperty name="foreground" source="LUGGAGE_NOT_LINKED_LABEL" sourcePath="${foreground}" target="LUGGAGE_NOT_LINKED_COPY2" targetPath="foreground" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="text" source="LUGGAGE_NOT_LINKED_LABEL" sourcePath="${text}" target="LUGGAGE_NOT_LINKED_COPY2" targetPath="text" updateStrategy="0" immediately="false"/>
+      </BindingProperties>
+    </Component>
+  </SubComponents>
+</Form>

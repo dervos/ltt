@@ -8,12 +8,15 @@ package view;
 import java.sql.SQLException;
 import main.LuggageTrackerTool2;
 import model.Luggage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author reintjehard
  */
 public class InformationPanel extends javax.swing.JPanel {
+
     private LuggageTrackerTool2 instance;
 
     /**
@@ -324,7 +327,19 @@ public class InformationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CONNECT_TO_PASSENGER_BUTTONActionPerformed
 
     private void PASSENGER_EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_EDIT_BUTTONActionPerformed
-        // TODO add your handling code here:
+        model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
+        if (selectedPassenger != null) {
+            JFrame editFrame = new JFrame("Edit: " + selectedPassenger.getName() + " " + selectedPassenger.getSurname());
+            EditPanel ep = new EditPanel();
+            editFrame.setSize(788, 460);
+            editFrame.setResizable(false);
+            ep.fillPassengerInformation(selectedPassenger);
+            editFrame.getContentPane().add(ep);
+            editFrame.setVisible(true);
+            editFrame.setFocusable(true);
+        } else {
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger", "", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_PASSENGER_EDIT_BUTTONActionPerformed
 
     private void PASSENGER_DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_DELETE_BUTTONActionPerformed

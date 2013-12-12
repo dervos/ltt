@@ -5,9 +5,6 @@
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 150]"/>
     </Property>
-    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[800, 150]"/>
-    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -26,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="passengerPanel" pref="476" max="32767" attributes="0"/>
+              <Component id="passengerPanel" pref="470" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="luggagePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -38,8 +35,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="passengerPanel" pref="165" max="32767" attributes="0"/>
-                  <Component id="luggagePanel" pref="165" max="32767" attributes="0"/>
+                  <Component id="passengerPanel" pref="161" max="32767" attributes="0"/>
+                  <Component id="luggagePanel" pref="161" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -240,7 +237,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jToolBar2" min="-2" pref="214" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>

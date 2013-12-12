@@ -111,8 +111,8 @@ public class LuggageDAO {
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO `Luggage` (`description`, `storagelocation`, `luggagestatus`, `passengerid`) "
-                + "VALUES(?, ?, ?, ?);";
+        String query = "INSERT INTO `Luggage` (`description`, `storagelocation`, `luggagestatus`) "
+                + "VALUES(?, ?, ?);";
 
         databaseManager.openConnection();
 
@@ -121,7 +121,6 @@ public class LuggageDAO {
         ps.setString(1, luggage.getDescription());
         ps.setString(2, luggage.getStoragelocation());
         ps.setString(3, luggage.getLuggagestatus());
-        ps.setInt(4, luggage.getPassengerid());
 
         rowsAffected = ps.executeUpdate();
 
