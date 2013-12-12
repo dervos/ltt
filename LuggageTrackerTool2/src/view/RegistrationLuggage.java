@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.CustomException;
+import model.Address;
+import utility.PDFGenerator;
 
 /**
  *
@@ -183,6 +185,8 @@ public class RegistrationLuggage extends javax.swing.JPanel {
             main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
             model.LuggageDAO.create(luggage);
             clearFields();
+            
+            
             
             
         } catch (SQLException ex) {

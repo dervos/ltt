@@ -21,6 +21,7 @@ public class PDFGenerator {
     
     PDDocument document;
     PDPageContentStream contentStream;
+    
 
     public PDFGenerator() {
         try {
@@ -49,32 +50,34 @@ public class PDFGenerator {
             for (int i = 0; i < basicInformationOutput.length; i++) {
                 this.contentStream.beginText();
                 this.contentStream.moveTextPositionByAmount(x, y);
-                
+                this.contentStream.setFont(PDType1Font.HELVETICA, 12);
+//               
                 //headers
                 if (i == 0) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.drawString(basicInformationOutput[i]);
+//                    this.contentStream.drawString(basicInformationOutput[i]);
                 }
                 if (i == 7) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.drawString(basicInformationOutput[i]);
+//                    this.contentStream.drawString(basicInformationOutput[i]);
                    
                 }
                 if (i == 12) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.drawString(basicInformationOutput[i]);
+//                    this.contentStream.drawString(basicInformationOutput[i]);
                     
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    this.contentStream.drawString(basicInformationOutput[i]);
+//                    this.contentStream.drawString(basicInformationOutput[i]);
+                }
+                if (i == 22) {
+                    this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+//                    this.contentStream.drawString(basicInformationOutput[i]);  
+            }else {
+                    this.contentStream.drawString(basicInformationOutput[i]);  
+                    
                     //basic information output
-                } else {
-
-                    this.contentStream.setFont(PDType1Font.HELVETICA, 12);
-                     
-                    
-                    
                     y -= 25;
                     switch (i){
                         case 0: gegevens = "";
@@ -111,12 +114,20 @@ public class PDFGenerator {
                             break;
                         case 16: gegevens = TempAddress.getZipcode();
                             break;
+                        case 17: gegevens = "";
+                            break;
+                        case 18: gegevens = "";
+                            break;
+                        case 19: gegevens = "";
+                            break;
+                        case 20: gegevens = "";
+                            break;        
                         default:
                             break;
                             
                       
                     }
-                    this.contentStream.drawString(basicInformationOutput[i] + gegevens); 
+                    this.contentStream.drawString(gegevens); 
                 }
                           
                 this.contentStream.endText();
