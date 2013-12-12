@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.util.List;
 import java.sql.SQLException;
 import main.LuggageTrackerTool2;
 import model.Luggage;
@@ -28,9 +29,10 @@ public class InformationPanel extends javax.swing.JPanel {
 
     public void setLuggageLabel(Luggage l) {
         String location = l.getStoragelocation();
-        if (location == null)
+        if (location == null) {
             location = l.getDifferentLocation();
-        
+        }
+
         LUGGAGE_ID_LABEL.setText(l.getLuggageLabel());
         DESCRIPTION_LABEL.setText(l.getDescription());
         STATUS_LABEL.setText(l.getLuggagestatus().name());
@@ -331,17 +333,26 @@ public class InformationPanel extends javax.swing.JPanel {
 
     private void PASSENGER_EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_EDIT_BUTTONActionPerformed
         model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
-        if (selectedPassenger != null) {
-            JFrame editFrame = new JFrame("Edit: " + selectedPassenger.getName() + " " + selectedPassenger.getSurname());
-            EditPanel ep = new EditPanel();
-            editFrame.setSize(788, 418);
-            editFrame.setResizable(false);
-            ep.fillPassengerInformation(selectedPassenger);
-            editFrame.getContentPane().add(ep);
-            editFrame.setVisible(true);
-            editFrame.setFocusable(true);
-        } else {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
+        try {
+            if (selectedPassenger != null) {
+                List<Luggage> connectedLuggages = model.LuggageDAO.readByPersonid(selectedPassenger.getPassengerid());
+                JFrame editFrame = new JFrame("Edit: " + selectedPassenger.getName() + " " + selectedPassenger.getSurname());
+                EditPanel ep = new EditPanel();
+                if (connectedLuggages.size() > 0)
+                    ep.populateComboBox(connectedLuggages);
+                else
+                    ep.setLuggageEditability(false);
+                editFrame.setSize(788, 418);
+                editFrame.setResizable(false);
+                ep.fillPassengerInformation(selectedPassenger);
+                editFrame.getContentPane().add(ep);
+                editFrame.setVisible(true);
+                editFrame.setFocusable(true);
+            } else {
+                JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_PASSENGER_EDIT_BUTTONActionPerformed
 
@@ -357,18 +368,16 @@ public class InformationPanel extends javax.swing.JPanel {
 
     private void EDIT_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_LUGGAGE_BUTTONActionPerformed
         model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
-        if (selectedLuggage != null)
-        {
+        if (selectedLuggage != null) {
             JFrame editFrame = new JFrame("Edit");
             EditPanel ep = new EditPanel();
             editFrame.setSize(788, 418);
             editFrame.setResizable(false);
-            ep.fillLuggageInformation(selectedLuggage);
+            //ep.fillLuggageInformation(selectedLuggage);
             editFrame.getContentPane().add(ep);
             editFrame.setVisible(true);
             editFrame.setFocusable(true);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_EDIT_LUGGAGE_BUTTONActionPerformed

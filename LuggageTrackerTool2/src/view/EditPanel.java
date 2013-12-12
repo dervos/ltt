@@ -6,6 +6,8 @@
 
 package view;
 
+import java.awt.Color;
+import java.util.List;
 import model.Passenger;
 import model.Luggage;
 import model.Address;
@@ -16,6 +18,8 @@ import model.Address;
  */
 public class EditPanel extends javax.swing.JPanel {
 
+    private List<Luggage> connectedLuggages;
+    
     /**
      * Creates new form EditPanel
      */
@@ -49,12 +53,47 @@ public class EditPanel extends javax.swing.JPanel {
         this.TEMP_POSTAL_CODE_INPUT.setText(ta.getZipcode());
     }
     
-    public void fillLuggageInformation(Luggage luggage)
+    public void populateComboBox(List<Luggage> conLuggages)
     {
-        this.CONNECTED_LUGGAGES_CBOX.addItem(luggage.getLuggageid());
-        this.DESCRIPTION_INPUT1.setText(luggage.getDescription());
-        //this.ANDERS_INPUT.setText(luggage.get); No "anders" column in database.
-        this.STORAGE_LOCATION_INPUT.setSelectedItem(luggage.getStoragelocation());
+        this.connectedLuggages = conLuggages;
+        conLuggages = null;
+        for (Luggage l : this.connectedLuggages)
+            this.CONNECTED_LUGGAGES_CBOX.addItem(l.getLuggageLabel());
+        
+        this.CONNECTED_LUGGAGES_CBOX.setSelectedIndex(0);
+        setLuggageEditability(true);
+    }
+    
+    public void setLuggageEditability(Boolean bool)
+    {
+        Color c = bool ? Color.WHITE : Color.LIGHT_GRAY;
+        this.CONNECTED_LUGGAGES_CBOX.setEnabled(bool);
+        this.DESCRIPTION_INPUT1.setEnabled(bool);
+        setStorageLocationEditability();
+        this.STATUS_COMBOBOX.setEnabled(bool);
+        setLuggageColors(c);
+    }
+    
+    public void setLuggageColors(Color c)
+    {
+        this.CONNECTED_LUGGAGES_CBOX.setBackground(c);
+        this.DESCRIPTION_INPUT1.setBackground(c);
+        this.STATUS_COMBOBOX.setBackground(c);
+    }
+    
+    public void setPassengerEditability(Boolean bool)
+    {
+    }
+    
+    public void setStorageLocationEditability()
+    {
+        if (STORAGE_LOCATION_INPUT.getSelectedItem().toString().equals("Other")) {
+            ANDERS_INPUT.setEnabled(true);
+            ANDERS_INPUT.setBackground(Color.WHITE);
+        } else if (ANDERS_INPUT.isEditable()) {
+            ANDERS_INPUT.setEnabled(false);
+            ANDERS_INPUT.setBackground(Color.lightGray);
+        }
     }
 
     /**
@@ -117,6 +156,8 @@ public class EditPanel extends javax.swing.JPanel {
         SAVE_BUTTON = new javax.swing.JButton();
         CANCEL_BUTTON = new javax.swing.JButton();
         LUGGAGE_NOT_LINKED_COPY2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        STATUS_COMBOBOX = new javax.swing.JComboBox();
 
         setName(""); // NOI18N
 
@@ -244,6 +285,10 @@ public class EditPanel extends javax.swing.JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${text}"), LUGGAGE_NOT_LINKED_COPY2, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel1.setText("Status");
+
+        STATUS_COMBOBOX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Missing", "Found", "Returned to Passenger", "Destroyed" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -308,42 +353,46 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TEMP_CITY)
-                                            .addComponent(TEMP_COUNTRY)
-                                            .addComponent(TEMP_STREET)
-                                            .addComponent(TEMP_POSTAL_CODE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(55, 55, 55)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(TEMP_COUNTRY_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(56, 56, 56)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(TEMPORARY_ADDRESS_TITLE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(LUGGAGE_NOT_LINKED_COPY2))
-                                    .addComponent(LUGGAGE_INFORMATION_LABEL)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(CONNECTED_LUGGAGES_LABEL)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CONNECTED_LUGGAGES_CBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(20, 20, 20)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(TEMP_CITY)
+                                                .addComponent(TEMP_COUNTRY)
+                                                .addComponent(TEMP_STREET)
+                                                .addComponent(TEMP_POSTAL_CODE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(55, 55, 55)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(TEMP_COUNTRY_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGap(56, 56, 56)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(TEMPORARY_ADDRESS_TITLE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(LUGGAGE_NOT_LINKED_COPY2)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(LUGGAGE_INFORMATION_LABEL)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(14, 14, 14)
+                                            .addComponent(CONNECTED_LUGGAGES_LABEL)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(CONNECTED_LUGGAGES_CBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(83, 83, 83))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(STORAGE_LOCATION)
                                     .addComponent(DESCRIPTION)
-                                    .addComponent(ANDERS))
+                                    .addComponent(ANDERS, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -366,6 +415,59 @@ public class EditPanel extends javax.swing.JPanel {
                     .addComponent(LUGGAGE_NOT_LINKED_COPY2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(NAME))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(NAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SURNAME))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DD_MM_YYYY)
+                                    .addComponent(DATE_OF_BIRTH))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(MALE_BUTTON)
+                                    .addComponent(FEMALE_BUTTON)
+                                    .addComponent(GENDER))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HOME_PHONE_NUMBER))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(MOBILE_PHONE_NUMBER))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(HOME_ADDRESS_TITLE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HOME_COUNTRY)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(LUGGAGE_NOT_LINKED_COPY)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HOME_CITY))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HOME_STREET))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HOME_POSTAL_CODE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TEMP_COUNTRY))
@@ -381,39 +483,8 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TEMP_POSTAL_CODE))
-                        .addGap(40, 40, 40)
-                        .addComponent(LUGGAGE_INFORMATION_LABEL))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(NAME))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(NAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(SURNAME))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(DD_MM_YYYY)
-                                .addComponent(DATE_OF_BIRTH))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(MALE_BUTTON)
-                                .addComponent(FEMALE_BUTTON)
-                                .addComponent(GENDER))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(HOME_PHONE_NUMBER))
-                            .addGap(8, 8, 8)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(MOBILE_PHONE_NUMBER)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LUGGAGE_INFORMATION_LABEL)
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CONNECTED_LUGGAGES_CBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,32 +500,12 @@ public class EditPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ANDERS)
-                            .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(HOME_ADDRESS_TITLE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HOME_COUNTRY)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LUGGAGE_NOT_LINKED_COPY)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(HOME_CITY))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(HOME_STREET))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(HOME_POSTAL_CODE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SAVE_BUTTON)
                     .addComponent(CANCEL_BUTTON))
@@ -465,7 +516,7 @@ public class EditPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void STORAGE_LOCATION_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STORAGE_LOCATION_INPUTActionPerformed
-        // TODO add your handling code here:
+        setStorageLocationEditability();
     }//GEN-LAST:event_STORAGE_LOCATION_INPUTActionPerformed
 
     private void MOBILE_PHONE_NUMBER_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MOBILE_PHONE_NUMBER_INPUTActionPerformed
@@ -493,7 +544,13 @@ public class EditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_TUSSENVOEGSEL_INPUTActionPerformed
 
     private void CONNECTED_LUGGAGES_CBOXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECTED_LUGGAGES_CBOXActionPerformed
-        // TODO add your handling code here:
+        Luggage selectedLuggage = this.connectedLuggages.get(this.CONNECTED_LUGGAGES_CBOX.getSelectedIndex());
+        
+        this.DESCRIPTION_INPUT1.setText(selectedLuggage.getDescription());
+        this.STORAGE_LOCATION_INPUT.setSelectedItem(selectedLuggage.getStoragelocation());
+        this.ANDERS_INPUT.setText(selectedLuggage.getDifferentLocation());
+        this.STATUS_COMBOBOX.setSelectedItem(selectedLuggage.getLuggagestatus());
+        
     }//GEN-LAST:event_CONNECTED_LUGGAGES_CBOXActionPerformed
 
 
@@ -534,6 +591,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel NAME;
     private javax.swing.JTextField NAME_INPUT;
     private javax.swing.JButton SAVE_BUTTON;
+    private javax.swing.JComboBox STATUS_COMBOBOX;
     private javax.swing.JLabel STORAGE_LOCATION;
     private javax.swing.JComboBox STORAGE_LOCATION_INPUT;
     private javax.swing.JLabel SURNAME;
@@ -548,6 +606,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel TEMP_STREET;
     private javax.swing.JTextField TEMP_STREET_INPUT;
     private javax.swing.JTextField TUSSENVOEGSEL_INPUT;
+    private javax.swing.JLabel jLabel1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

@@ -111,11 +111,11 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         ANDERS.setText("Other");
 
-        ANDERS_INPUT.setEditable(false);
         ANDERS_INPUT.setBackground(java.awt.Color.lightGray);
         ANDERS_INPUT.setColumns(20);
         ANDERS_INPUT.setRows(5);
         ANDERS_INPUT.setText("Vul hier zo specifiek mogelijk de\ngegevens in van de opslagplaats.");
+        ANDERS_INPUT.setEnabled(false);
         ANDERS_INPUT_FRAME.setViewportView(ANDERS_INPUT);
 
         PRINT_BUTTON.setText("Print");
@@ -210,10 +210,10 @@ public class RegistrationLuggage extends javax.swing.JPanel {
 
     private void STORAGE_LOCATION_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STORAGE_LOCATION_INPUTActionPerformed
         if (STORAGE_LOCATION_INPUT.getSelectedItem().toString().equals("Other")) {
-            ANDERS_INPUT.setEditable(true);
+            ANDERS_INPUT.setEnabled(true);
             ANDERS_INPUT.setBackground(Color.WHITE);
         } else if (ANDERS_INPUT.isEditable()) {
-            ANDERS_INPUT.setEditable(false);
+            ANDERS_INPUT.setEnabled(false);
             ANDERS_INPUT.setBackground(Color.lightGray);
         }
     }//GEN-LAST:event_STORAGE_LOCATION_INPUTActionPerformed
