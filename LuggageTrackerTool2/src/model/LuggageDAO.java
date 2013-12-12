@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import main.Status;
 
 /**
  *
@@ -24,7 +25,7 @@ public class LuggageDAO {
 
         databaseManager.openConnection();
 
-        String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage;";
+        String query = "SELECT luggageid, luggagelabel, description, luggagestatus, storagelocation, differentlocation, dateadded, passengerid FROM luggage;";
 
         ps = databaseManager.getConnection().prepareStatement(query);
         rs = databaseManager.performSelect(ps);
@@ -32,9 +33,12 @@ public class LuggageDAO {
         while (rs.next()) {
             Luggage tempLuggage = new Luggage();
             tempLuggage.setLuggageid(rs.getInt("luggageid"));
+            tempLuggage.setLuggageLabel(rs.getString("luggagelabel"));
             tempLuggage.setDescription(rs.getString("description"));
-            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
             tempLuggage.setLuggagestatus(rs.getString("luggagestatus"));
+            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
+            tempLuggage.setDifferentLocation(rs.getString("differentlocation"));
+            tempLuggage.setDateAdded(rs.getDate("dateadded"));
             tempLuggage.setPassenger(rs.getInt("passengerid"));
             list.add(tempLuggage);
         }
@@ -51,7 +55,7 @@ public class LuggageDAO {
         ResultSet rs = null;
         PreparedStatement ps = null;
 
-        String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE luggageid=?;";
+        String query = "SELECT luggageid, luggagelabel, description, luggagestatus, storagelocation, differentlocation, dateadded, passengerid FROM luggage WHERE luggageid=?;";
 
         databaseManager.openConnection();
 
@@ -63,9 +67,12 @@ public class LuggageDAO {
         if (rs.next()) {
             tempLuggage = new Luggage();
             tempLuggage.setLuggageid(rs.getInt("luggageid"));
+            tempLuggage.setLuggageLabel(rs.getString("luggagelabel"));
             tempLuggage.setDescription(rs.getString("description"));
-            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
             tempLuggage.setLuggagestatus(rs.getString("luggagestatus"));
+            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
+            tempLuggage.setDifferentLocation(rs.getString("differentlocation"));
+            tempLuggage.setDateAdded(rs.getDate("dateadded"));
             tempLuggage.setPassenger(rs.getInt("passengerid"));
         }
 
@@ -81,7 +88,7 @@ public class LuggageDAO {
         ResultSet rs = null;
         PreparedStatement ps = null;
 
-        String query = "SELECT luggageid, description, storagelocation, luggagestatus, passengerid FROM Luggage WHERE passengerid=?;";
+        String query = "SELECT luggageid, luggagelabel, description, luggagestatus, storagelocation, differentlocation, dateadded, passengerid FROM luggage WHERE passengerid=?;";
 
         databaseManager.openConnection();
 
@@ -93,9 +100,12 @@ public class LuggageDAO {
         while (rs.next()) {
             Luggage tempLuggage = new Luggage();
             tempLuggage.setLuggageid(rs.getInt("luggageid"));
+            tempLuggage.setLuggageLabel(rs.getString("luggagelabel"));
             tempLuggage.setDescription(rs.getString("description"));
-            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
             tempLuggage.setLuggagestatus(rs.getString("luggagestatus"));
+            tempLuggage.setStoragelocation(rs.getString("storagelocation"));
+            tempLuggage.setDifferentLocation(rs.getString("differentlocation"));
+            tempLuggage.setDateAdded(rs.getDate("dateadded"));
             tempLuggage.setPassenger(rs.getInt("passengerid"));
             list.add(tempLuggage);
         }
@@ -111,16 +121,18 @@ public class LuggageDAO {
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO `Luggage` (`description`, `storagelocation`, `luggagestatus`) "
-                + "VALUES(?, ?, ?);";
+        String query = "INSERT INTO `luggage` (`luggagelabel`, `description`, `luggagestatus`, `storagelocation`, `differentlocation`) "
+                + "VALUES(?, ?, ?, ?, ?);";
 
         databaseManager.openConnection();
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
-        ps.setString(1, luggage.getDescription());
-        ps.setString(2, luggage.getStoragelocation());
-        ps.setString(3, luggage.getLuggagestatus());
+        ps.setString(1, luggage.getLuggageLabel());
+        ps.setString(2, luggage.getDescription());
+        ps.setString(3, luggage.getLuggagestatus().name());
+        ps.setString(4, luggage.getStoragelocation());
+        ps.setString(5, luggage.getDifferentLocation());
 
         rowsAffected = ps.executeUpdate();
 
@@ -135,10 +147,12 @@ public class LuggageDAO {
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "UPDATE Luggage SET "
+        String query = "UPDATE luggage SET "
+                + "luggagelabel=?, "
                 + "description=?, "
-                + "storagelocation=?, "
                 + "luggagestatus=?, "
+                + "storagelocation=?, "
+                + "differentlocation=?, "
                 + "passengerid=? "
                 + "WHERE luggageid=?;";
 
@@ -146,11 +160,13 @@ public class LuggageDAO {
 
         ps = databaseManager.getConnection().prepareStatement(query);
 
-        ps.setString(1, luggage.getDescription());
-        ps.setString(2, luggage.getStoragelocation());
-        ps.setString(3, luggage.getLuggagestatus());
-        ps.setInt(4, luggage.getPassengerid());
-        ps.setInt(5, luggage.getLuggageid());
+        ps.setString(1, luggage.getLuggageLabel());
+        ps.setString(2, luggage.getDescription());
+        ps.setString(3, luggage.getLuggagestatus().name());
+        ps.setString(4, luggage.getStoragelocation());
+        ps.setString(5, luggage.getDifferentLocation());
+        ps.setInt(6, luggage.getPassengerid());
+        ps.setInt(7, luggage.getLuggageid());
 
         rowsAffected = ps.executeUpdate();
 
@@ -164,7 +180,7 @@ public class LuggageDAO {
     public static int delete(int luggageid) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
-        String query = "DELETE FROM Luggage WHERE luggageid=?;";
+        String query = "DELETE FROM luggage WHERE luggageid=?;";
 
         databaseManager.openConnection();
 

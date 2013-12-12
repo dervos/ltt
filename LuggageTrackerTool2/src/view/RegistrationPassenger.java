@@ -9,7 +9,6 @@ package view;
 import main.CustomException;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -116,16 +115,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         tempPassenger.setName(name);
         tempPassenger.setInsertion(insertion);
         tempPassenger.setSurname(surname);
-        try {
-            tempPassenger.setDob(dob);
-        } catch (ParseException e) {
-            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
-        }
+        tempPassenger.setDob(dob);
         tempPassenger.setGender(gender);
         tempPassenger.setHomephone(homePhone);
         tempPassenger.setMobphone(mobPhone);
-
-        //clearFields();
+        
         return tempPassenger;
     }
 
@@ -596,12 +590,13 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             model.Passenger passenger = createPassenger();
             model.Address homeAddress = createHomeAddressFromForms();
             model.Address tempAddress = createTempAddressFromForms();
-            homeAddress.setAddressid(1);
-            tempAddress.setAddressid(2);
+            //homeAddress.setAddressid(1);
+            //tempAddress.setAddressid(2);
+            homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
+            tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
+
             passenger.setHomeaddress(homeAddress);
             passenger.setTempaddress(tempAddress);
-            model.AddressDAO.create(homeAddress);
-            model.AddressDAO.create(tempAddress);
 
             model.PassengerDAO.create(passenger);
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();

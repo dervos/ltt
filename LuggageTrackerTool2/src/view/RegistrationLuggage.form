@@ -33,21 +33,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
-                          <Component id="ANDERS" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="PRINT_BUTTON" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ANDERS_INPUT_FRAME" min="-2" pref="312" max="-2" attributes="0"/>
-                          <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
@@ -61,8 +49,30 @@
                           <Component id="LUGGAGEID_INPUT" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
+                          <Component id="PRINT_BUTTON" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ANDERS" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="ANDERS_INPUT_FRAME" min="-2" pref="312" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="STATUS_COMBOBOX" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,6 +100,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ANDERS_INPUT_FRAME" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="STATUS_COMBOBOX" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
@@ -120,7 +135,6 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="asd&#xa;asd&#xa;asd"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -134,10 +148,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Opslag A"/>
-            <StringItem index="1" value="Opslag B"/>
-            <StringItem index="2" value="Opslag C"/>
-            <StringItem index="3" value="Anders .. *"/>
+            <StringItem index="0" value="Storage A"/>
+            <StringItem index="1" value="Storage B"/>
+            <StringItem index="2" value="Storage C"/>
+            <StringItem index="3" value="Other"/>
           </StringArray>
         </Property>
       </Properties>
@@ -156,7 +170,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Anders *"/>
+        <Property name="text" type="java.lang.String" value="Other"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="ANDERS_INPUT_FRAME">
@@ -168,6 +182,10 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="ANDERS_INPUT">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+            </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="Vul hier zo specifiek mogelijk de&#xa;gegevens in van de opslagplaats."/>
@@ -197,6 +215,23 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LUGGAGEID_INPUTActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Status"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="STATUS_COMBOBOX">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Missing"/>
+            <StringItem index="1" value="Found"/>
+            <StringItem index="2" value="Returned to Passenger"/>
+            <StringItem index="3" value="Destroyed"/>
+          </StringArray>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

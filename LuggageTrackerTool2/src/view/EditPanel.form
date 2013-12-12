@@ -93,50 +93,56 @@
                       </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TEMP_CITY" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TEMP_COUNTRY" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TEMP_STREET" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TEMP_POSTAL_CODE" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="TEMP_COUNTRY_INPUT" max="32767" attributes="0"/>
-                                          <Component id="TEMP_CITY_INPUT" min="-2" pref="199" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="TEMP_CITY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEMP_COUNTRY" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEMP_STREET" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEMP_POSTAL_CODE" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="TEMP_COUNTRY_INPUT" max="32767" attributes="0"/>
+                                                  <Component id="TEMP_CITY_INPUT" min="-2" pref="199" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="TEMP_STREET_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                                                  <Component id="TEMP_POSTAL_CODE_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TEMP_STREET_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
-                                          <Component id="TEMP_POSTAL_CODE_INPUT" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="TEMPORARY_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="LUGGAGE_NOT_LINKED_COPY2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="LUGGAGE_INFORMATION_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="CONNECTED_LUGGAGES_LABEL" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="CONNECTED_LUGGAGES_CBOX" min="-2" pref="198" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="TEMPORARY_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="LUGGAGE_NOT_LINKED_COPY2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="LUGGAGE_INFORMATION_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="STORAGE_LOCATION" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="LUGGAGEID_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="DESCRIPTION" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="ANDERS" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CONNECTED_LUGGAGES_LABEL" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="LUGGAGEID_INPUT" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
-                                  <Component id="CONNECTED_LUGGAGES_CBOX" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                                   <Component id="DESCRIPTION_INPUT_FRAME" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                                   <Component id="STORAGE_LOCATION_INPUT" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="ANDERS_INPUT_FRAME" min="-2" pref="281" max="-2" attributes="0"/>
@@ -236,12 +242,7 @@
                           <Component id="CONNECTED_LUGGAGES_CBOX" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CONNECTED_LUGGAGES_LABEL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LUGGAGEID_LABEL" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LUGGAGEID_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
                           <Component id="DESCRIPTION_INPUT_FRAME" min="-2" pref="55" max="-2" attributes="0"/>
@@ -250,6 +251,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="STORAGE_LOCATION_INPUT" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="STORAGE_LOCATION" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
+                          <Component id="ANDERS_INPUT_FRAME" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -285,17 +291,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
-                  <Component id="ANDERS_INPUT_FRAME" min="-2" pref="62" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="SAVE_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CANCEL_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -481,27 +482,12 @@
     <Component class="javax.swing.JComboBox" name="CONNECTED_LUGGAGES_CBOX">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CONNECTED_LUGGAGES_CBOXActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="LUGGAGEID_INPUT">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LUGGAGEID_INPUTActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="LUGGAGEID_LABEL">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Luggage ID"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="DESCRIPTION">
       <Properties>
@@ -530,7 +516,7 @@
             <StringItem index="0" value="Opslag A"/>
             <StringItem index="1" value="Opslag B"/>
             <StringItem index="2" value="Opslag C"/>
-            <StringItem index="3" value="Anders .. *"/>
+            <StringItem index="3" value="Other"/>
           </StringArray>
         </Property>
       </Properties>
@@ -564,7 +550,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Anders *"/>
+        <Property name="text" type="java.lang.String" value="Other"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LUGGAGE_INFORMATION_LABEL">

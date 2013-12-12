@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class InformationPanel extends javax.swing.JPanel {
 
@@ -27,10 +27,14 @@ public class InformationPanel extends javax.swing.JPanel {
     }
 
     public void setLuggageLabel(Luggage l) {
-        LUGGAGE_ID_LABEL.setText(l.getLuggageid().toString());
+        String location = l.getStoragelocation();
+        if (location == null)
+            location = l.getDifferentLocation();
+        
+        LUGGAGE_ID_LABEL.setText(l.getLuggageLabel());
         DESCRIPTION_LABEL.setText(l.getDescription());
-        STATUS_LABEL.setText(l.getLuggagestatus());
-        STORAGE_LABEL.setText(l.getStoragelocation());
+        STATUS_LABEL.setText(l.getLuggagestatus().name());
+        STORAGE_LABEL.setText(location);
     }
 
     public void clearLuggageLabels() {
@@ -95,7 +99,6 @@ public class InformationPanel extends javax.swing.JPanel {
         STORAGE_LABEL = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 150));
-        setSize(new java.awt.Dimension(800, 150));
 
         passengerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Passenger"));
         passengerPanel.setPreferredSize(new java.awt.Dimension(600, 200));
@@ -238,7 +241,7 @@ public class InformationPanel extends javax.swing.JPanel {
         });
         jToolBar2.add(LUGGAGE_DELETE_BUTTON);
 
-        jLabel3.setText("ID");
+        jLabel3.setText("Label Number");
 
         jLabel5.setText("Description");
 
@@ -267,7 +270,7 @@ public class InformationPanel extends javax.swing.JPanel {
                             .addComponent(STORAGE_LABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(luggagePanelLayout.createSequentialGroup()
                         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 62, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         luggagePanelLayout.setVerticalGroup(
@@ -299,7 +302,7 @@ public class InformationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(luggagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -309,8 +312,8 @@ public class InformationPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addComponent(luggagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
+                    .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(luggagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,14 +334,14 @@ public class InformationPanel extends javax.swing.JPanel {
         if (selectedPassenger != null) {
             JFrame editFrame = new JFrame("Edit: " + selectedPassenger.getName() + " " + selectedPassenger.getSurname());
             EditPanel ep = new EditPanel();
-            editFrame.setSize(788, 460);
+            editFrame.setSize(788, 418);
             editFrame.setResizable(false);
             ep.fillPassengerInformation(selectedPassenger);
             editFrame.getContentPane().add(ep);
             editFrame.setVisible(true);
             editFrame.setFocusable(true);
         } else {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger", "", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_PASSENGER_EDIT_BUTTONActionPerformed
 
@@ -353,7 +356,21 @@ public class InformationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_PASSENGER_DELETE_BUTTONActionPerformed
 
     private void EDIT_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_LUGGAGE_BUTTONActionPerformed
-        // TODO add your handling code here:
+        model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
+        if (selectedLuggage != null)
+        {
+            JFrame editFrame = new JFrame("Edit");
+            EditPanel ep = new EditPanel();
+            editFrame.setSize(788, 418);
+            editFrame.setResizable(false);
+            ep.fillLuggageInformation(selectedLuggage);
+            editFrame.getContentPane().add(ep);
+            editFrame.setVisible(true);
+            editFrame.setFocusable(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_EDIT_LUGGAGE_BUTTONActionPerformed
 
     private void LUGGAGE_DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LUGGAGE_DELETE_BUTTONActionPerformed

@@ -319,7 +319,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID"/>
+            <Property name="text" type="java.lang.String" value="Label Number"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">

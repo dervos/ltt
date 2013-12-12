@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class PassengerDAO {
 
@@ -44,11 +44,7 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            try {
-                tempPassenger.setDob((rs.getDate("dob")));
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
+            tempPassenger.setDob((rs.getDate("dob")));
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
             tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -91,11 +87,7 @@ public class PassengerDAO {
             passenger.setInsertion(rs.getString("insertion"));
             passenger.setName(rs.getString("name"));
             passenger.setGender(rs.getString("gender"));
-            try {
-                passenger.setDob((rs.getDate("dob")));
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
+            passenger.setDob((rs.getDate("dob")));
             passenger.setMobphone(rs.getString("mobphone"));
             passenger.setHomephone(rs.getString("homephone"));
             passenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -130,11 +122,7 @@ public class PassengerDAO {
             tempPassenger.setInsertion(rs.getString("insertion"));
             tempPassenger.setName(rs.getString("name"));
             tempPassenger.setGender(rs.getString("gender"));
-            try {
-                tempPassenger.setDob((rs.getDate("dob")));
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
+            tempPassenger.setDob((rs.getDate("dob")));
             tempPassenger.setMobphone(rs.getString("mobphone"));
             tempPassenger.setHomephone(rs.getString("homephone"));
             tempPassenger.setHomeaddress(model.AddressDAO.readById(rs.getInt("homeaddressid")));
@@ -173,8 +161,8 @@ public class PassengerDAO {
         ps.setDate(5, new java.sql.Date(passenger.getDob().getTime()));
         ps.setString(6, passenger.getMobphone());
         ps.setString(7, passenger.getHomephone());
-        ps.setInt(8, 1);
-        ps.setInt(9, 2);
+        ps.setInt(8, passenger.getHomeaddressid());
+        ps.setInt(9, passenger.getTempaddressid());
 
         rowsAffected = ps.executeUpdate();
 

@@ -101,7 +101,7 @@ public class Passenger {
         return this.dob;
     }
 
-    public void setDob(Date dob) throws ParseException {
+    public void setDob(Date dob){
         this.dob = dob;
     }
 

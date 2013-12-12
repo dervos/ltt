@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author gebak_000
+ * @author gebak_000, Tomas Slaman
  */
 public class Luggage extends javax.swing.JPanel {
 
@@ -61,11 +61,20 @@ public class Luggage extends javax.swing.JPanel {
     }
 
     public void addLuggageToTable(model.Luggage luggage) {
-        Object[] newRow = new Object[4];
+        Object location;
+        if (luggage.getStoragelocation() == null)
+            location = luggage.getDifferentLocation();
+        else 
+            location = luggage.getStoragelocation();
+        
+        Object[] newRow = new Object[7];
         newRow[0] = luggage.getLuggageid();
-        newRow[1] = luggage.getDescription();
-        newRow[2] = luggage.getStoragelocation();
-        newRow[3] = luggage.getPassengerid();
+        newRow[1] = luggage.getLuggageLabel();
+        newRow[2] = luggage.getDescription();
+        newRow[3] = location;
+        newRow[4] = luggage.getLuggagestatus().name();
+        newRow[5] = luggage.getPassengerid();
+        newRow[6] = luggage.getDateAdded();
         addRow(newRow);
     }
 
@@ -111,11 +120,11 @@ public class Luggage extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Luggage ID", "Luggage Description", "Storage Location", "PassengerID"
+                "ID", "Label Number", "Description", "Storage Location", "Status", "PassengerID", "Date Added"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -127,11 +136,11 @@ public class Luggage extends javax.swing.JPanel {
         LUGGAGE_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         LUGGAGE_TABLE.getTableHeader().setReorderingAllowed(false);
         LUGGAGE_TABLE.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LUGGAGE_TABLEMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LUGGAGE_TABLEMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LUGGAGE_TABLEMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(LUGGAGE_TABLE);

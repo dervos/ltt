@@ -8,7 +8,6 @@ public class Address {
 
     private Integer addressid;
     private String streetname;
-    private Integer streetnumber;
     private String zipcode;
     private String city;
     private String country;
@@ -22,10 +21,9 @@ public class Address {
      * @param city
      * @param country
      */
-    public Address(Integer addressid, String streetname, Integer streetnumber, String zipcode, String city, String country) {
+    public Address(Integer addressid, String streetname, String zipcode, String city, String country) {
         this.addressid = addressid;
         this.streetname = streetname;
-        this.streetnumber = streetnumber;
         this.zipcode = zipcode;
         this.city = city;
         this.country = country;
@@ -68,22 +66,6 @@ public class Address {
      */
     public void setStreetname(String streetname) {
         this.streetname = streetname;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Integer getStreetnumber() {
-        return streetnumber;
-    }
-
-    /**
-     *
-     * @param streetnumber
-     */
-    public void setStreetnumber(Integer streetnumber) {
-        this.streetnumber = streetnumber;
     }
 
     /**
@@ -136,6 +118,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" + "addressid=" + addressid + ", streetname=" + streetname + ", streetnumber=" + streetnumber + ", zipcode=" + zipcode + ", city=" + city + ", country=" + country + '}';
+        return "Address{" + "addressid=" + addressid + ", streetname=" + streetname + ", zipcode=" + zipcode + ", city=" + city + ", country=" + country + '}';
     }
 }

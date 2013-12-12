@@ -3,12 +3,14 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class AddressDAO {
 
@@ -28,7 +30,7 @@ public class AddressDAO {
         ResultSet rs = null;
         PreparedStatement ps = null;
 
-        String query = "SELECT addressid,street,streetnumber,zipcode,city,country from Address";
+        String query = "SELECT addressid,street,zipcode,city,country from Address";
 
         databaseManager.openConnection();
 
@@ -39,7 +41,6 @@ public class AddressDAO {
             Address tempAddress = new Address();
             tempAddress.setAddressid(rs.getInt("addressid"));
             tempAddress.setStreetname(rs.getString("streetname"));
-            tempAddress.setStreetnumber(rs.getInt("streetnumber"));
             tempAddress.setZipcode(rs.getString("zipcode"));
             tempAddress.setCity(rs.getString("city"));
             tempAddress.setCountry(rs.getString("country"));
@@ -71,7 +72,6 @@ public class AddressDAO {
             tempAddress = new Address();
             tempAddress.setAddressid(rs.getInt("addressid"));
             tempAddress.setStreetname(rs.getString("streetname"));
-            tempAddress.setStreetnumber(rs.getInt("streetnumber"));
             tempAddress.setZipcode(rs.getString("zipcode"));
             tempAddress.setCity(rs.getString("city"));
             tempAddress.setCountry(rs.getString("country"));
@@ -102,7 +102,6 @@ public class AddressDAO {
             Address tempAddress = new Address();
             tempAddress.setAddressid(rs.getInt("addressid"));
             tempAddress.setStreetname(rs.getString("streetname"));
-            tempAddress.setStreetnumber(rs.getInt("streetnumber"));
             tempAddress.setZipcode(rs.getString("zipcode"));
             tempAddress.setCity(rs.getString("city"));
             tempAddress.setCountry(rs.getString("country"));
@@ -120,33 +119,43 @@ public class AddressDAO {
      * Adds an address
      *
      * @param address
-     * @return the affected rows
+     * @return A list of integers, index 0 = affectedRows. index 1 = last auto_incr value of Address table.
      * @throws java.sql.SQLException
      */
-    public static int create(Address address) throws SQLException {
+    public static List<Integer> create(Address address) throws SQLException {
+        List<Integer> collList = new ArrayList<Integer>();
         int rowsAffected;
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO Address (streetname, streetnumber, zipcode, city, country) "
-                + "VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO Address (streetname, zipcode, city, country) "
+                + "VALUES(?,?,?,?)";
 
         databaseManager.openConnection();
 
-        ps = databaseManager.getConnection().prepareStatement(query);
+        ps = databaseManager.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         ps.setString(1, address.getStreetname());
-        ps.setInt(2, 2);
-        ps.setString(3, address.getZipcode());
-        ps.setString(4, address.getCity());
-        ps.setString(5, address.getCountry());
+        ps.setString(2, address.getZipcode());
+        ps.setString(3, address.getCity());
+        ps.setString(4, address.getCountry());
 
         rowsAffected = ps.executeUpdate();
-
+        collList.add(rowsAffected);
+        
+        int autoIncValue = -1;
+        
+        ResultSet rs = ps.getGeneratedKeys();
+        
+        if (rs.next())
+            autoIncValue = rs.getInt(1);
+        
+        collList.add(autoIncValue);
+        
         if (databaseManager != null) {
             databaseManager.closeConnection();
         }
 
-        return rowsAffected;
+        return collList;
     }
 
     /**
@@ -161,7 +170,6 @@ public class AddressDAO {
 
         String query = "UPDATE Address SET "
                 + "streetname=?, "
-                + "streetnumber=?, "
                 + "zipcode=?, "
                 + "city=?, "
                 + "country=? "
@@ -172,11 +180,10 @@ public class AddressDAO {
         ps = databaseManager.getConnection().prepareStatement(query);
 
         ps.setString(1, address.getStreetname());
-        ps.setInt(2, address.getStreetnumber());
-        ps.setString(3, address.getZipcode());
-        ps.setString(4, address.getCity());
-        ps.setString(5, address.getCountry());
-        ps.setInt(6, address.getAddressid());
+        ps.setString(2, address.getZipcode());
+        ps.setString(3, address.getCity());
+        ps.setString(4, address.getCountry());
+        ps.setInt(5, address.getAddressid());
 
         rowsAffected = ps.executeUpdate();
 
