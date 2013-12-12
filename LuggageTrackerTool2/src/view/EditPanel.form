@@ -218,9 +218,9 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -228,10 +228,7 @@
                                   <Component id="HOME_COUNTRY" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="LUGGAGE_NOT_LINKED_COPY" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="LUGGAGE_NOT_LINKED_COPY" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -294,9 +291,9 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="STATUS_COMBOBOX" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -613,7 +610,7 @@
           <StringArray count="4">
             <StringItem index="0" value="Missing"/>
             <StringItem index="1" value="Found"/>
-            <StringItem index="2" value="Returned to Passenger"/>
+            <StringItem index="2" value="Returned"/>
             <StringItem index="3" value="Destroyed"/>
           </StringArray>
         </Property>

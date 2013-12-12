@@ -227,7 +227,7 @@
           <StringArray count="4">
             <StringItem index="0" value="Missing"/>
             <StringItem index="1" value="Found"/>
-            <StringItem index="2" value="Returned to Passenger"/>
+            <StringItem index="2" value="Returned"/>
             <StringItem index="3" value="Destroyed"/>
           </StringArray>
         </Property>

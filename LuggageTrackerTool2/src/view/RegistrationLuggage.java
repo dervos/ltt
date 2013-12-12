@@ -137,7 +137,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
 
         jLabel1.setText("Status");
 
-        STATUS_COMBOBOX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Missing", "Found", "Returned to Passenger", "Destroyed" }));
+        STATUS_COMBOBOX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Missing", "Found", "Returned", "Destroyed" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
