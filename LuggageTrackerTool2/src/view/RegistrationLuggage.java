@@ -127,7 +127,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
             }
         });
 
-        LUGGAGEID_LABEL.setText("Luggage ID");
+        LUGGAGEID_LABEL.setText("Label Number");
 
         LUGGAGEID_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
