@@ -38,6 +38,7 @@ public class PDFGenerator {
     }
     
     public void generate(Passenger passenger, Address HomeAddress, Address TempAddress){
+         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
          String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Description: ", "Storage location: ", "Otherwise: "};
          String gegevens = null;
@@ -51,29 +52,29 @@ public class PDFGenerator {
                 this.contentStream.beginText();
                 this.contentStream.moveTextPositionByAmount(x, y);
                 this.contentStream.setFont(PDType1Font.HELVETICA, 12);
-//               
+             
                 //headers
                 if (i == 0) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-//                    this.contentStream.drawString(basicInformationOutput[i]);
+                  
                 }
                 if (i == 7) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-//                    this.contentStream.drawString(basicInformationOutput[i]);
+                  
                    
                 }
                 if (i == 12) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-//                    this.contentStream.drawString(basicInformationOutput[i]);
+                    
                     
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-//                    this.contentStream.drawString(basicInformationOutput[i]);
+                   
                 }
                 if (i == 22) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-//                    this.contentStream.drawString(basicInformationOutput[i]);  
+                     
             }else {
                     this.contentStream.drawString(basicInformationOutput[i]);  
                     
