@@ -11,6 +11,7 @@ import main.LuggageTrackerTool2;
 import model.Luggage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.PassengerDAO;
 
 /**
  *
@@ -337,12 +338,13 @@ public class InformationPanel extends javax.swing.JPanel {
             if (selectedPassenger != null) {
                 List<Luggage> connectedLuggages = model.LuggageDAO.readByPersonid(selectedPassenger.getPassengerid());
                 JFrame editFrame = new JFrame("Edit: " + selectedPassenger.getName() + " " + selectedPassenger.getSurname());
-                EditPanel ep = new EditPanel();
-                if (connectedLuggages.size() > 0)
+                EditPanel ep = new EditPanel(editFrame);
+                if (connectedLuggages.size() > 0) {
                     ep.populateComboBox(connectedLuggages);
-                else
+                } else {
                     ep.setLuggageEditability(false);
-                editFrame.setSize(788, 418);
+                }
+                editFrame.setSize(804, 470);
                 editFrame.setResizable(false);
                 ep.fillPassengerInformation(selectedPassenger);
                 editFrame.getContentPane().add(ep);
@@ -368,17 +370,31 @@ public class InformationPanel extends javax.swing.JPanel {
 
     private void EDIT_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_LUGGAGE_BUTTONActionPerformed
         model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
-        if (selectedLuggage != null) {
-            JFrame editFrame = new JFrame("Edit");
-            EditPanel ep = new EditPanel();
-            editFrame.setSize(788, 418);
-            editFrame.setResizable(false);
-            //ep.fillLuggageInformation(selectedLuggage);
-            editFrame.getContentPane().add(ep);
-            editFrame.setVisible(true);
-            editFrame.setFocusable(true);
-        } else {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
+        try {
+            if (selectedLuggage != null) {
+                model.Passenger passenger = null;
+                if (selectedLuggage.getPassengerid() != 0) {
+                    passenger = PassengerDAO.readById(selectedLuggage.getPassengerid());
+                }
+
+                JFrame editFrame = new JFrame("Edit");
+                EditPanel ep = new EditPanel(editFrame);
+                editFrame.setSize(804, 470);
+                editFrame.setResizable(false);
+                ep.fillLuggageInformation(selectedLuggage);
+                if (selectedLuggage.getPassengerid() != 0) {
+                    ep.fillPassengerInformation(passenger);
+                } else {
+                    ep.setPassengerEditability(false);
+                }
+                editFrame.getContentPane().add(ep);
+                editFrame.setVisible(true);
+                editFrame.setFocusable(true);
+            } else {
+                JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_EDIT_LUGGAGE_BUTTONActionPerformed
 

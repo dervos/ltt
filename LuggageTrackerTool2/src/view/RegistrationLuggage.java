@@ -23,30 +23,29 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         String storageLocation = STORAGE_LOCATION_INPUT.getSelectedItem().toString();
         String differentLocation = ANDERS_INPUT.getText();
         String luggageLabel = LUGGAGEID_INPUT.getText();
+        String status = STATUS_COMBOBOX.getSelectedItem().toString();
         
+        if (luggageLabel.length() > 50)
+            throw new CustomException("Luggage Label length is too long, 50 characters maximum. You've got: " + luggageLabel.length(), this.LUGGAGEID_INPUT);
         if (luggageLabel.equals(""))
             luggageLabel = null;
-
-        if (!storageLocation.equals("Other")) {
+        if (description.length() > 200)
+            throw new CustomException("Description is too long, 200 characters maximum. You've got: " + description.length(), this.DESCRIPTION_INPUT1);
+        if (differentLocation.length() > 200)
+            throw new CustomException("Other field has too much characters, 200 maximum. You've got: " + differentLocation.length(), this.ANDERS_INPUT);
+        if (!storageLocation.equals("Other"))
             differentLocation = null;
-        } else {
-            storageLocation = null;
-        }
-
-        if (description != null && description.length() > 200) {
-            throw new CustomException("Description can't be longer than 45 characters, you've got: " + description.length(), DESCRIPTION_INPUT1);
-        }
-
-        if (storageLocation != null && storageLocation.length() > 45) {
-            throw new CustomException("Storage location can't be longer than 45 characters, you've got: " + storageLocation.length(), STORAGE_LOCATION_INPUT);
-        }
+        if (storageLocation.length() > 45)
+            throw new CustomException("Storage length is too long, 45 characters maximum. You've got: " + storageLocation.length(), this.STORAGE_LOCATION_INPUT);
+        if (status.length() > 20)
+            throw new CustomException("Status length is too long, 20 characters maximum. You've got: " + status.length(), this.STATUS_COMBOBOX);
 
         model.Luggage luggage = new model.Luggage();
         luggage.setLuggageLabel(luggageLabel);
         luggage.setDescription(description);
         luggage.setStoragelocation(storageLocation);
         luggage.setDifferentLocation(differentLocation);
-        luggage.setLuggagestatus(STATUS_COMBOBOX.getSelectedItem().toString());
+        luggage.setLuggagestatus(status);
         luggage.setPassenger(null);
         return luggage;
     }

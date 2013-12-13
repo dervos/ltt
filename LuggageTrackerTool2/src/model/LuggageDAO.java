@@ -3,13 +3,12 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.LinkedList;
 import java.util.List;
-import main.Status;
-
 /**
  *
- * @author reintjehard
+ * @author reintjehard, Tomas Slaman
  */
 public class LuggageDAO {
 
@@ -165,7 +164,10 @@ public class LuggageDAO {
         ps.setString(3, luggage.getLuggagestatus().name());
         ps.setString(4, luggage.getStoragelocation());
         ps.setString(5, luggage.getDifferentLocation());
-        ps.setInt(6, luggage.getPassengerid());
+        if (luggage.getPassengerid() != 0)
+            ps.setInt(6, (Integer)luggage.getPassengerid());
+        else
+            ps.setNull(6, Types.INTEGER);
         ps.setInt(7, luggage.getLuggageid());
 
         rowsAffected = ps.executeUpdate();
