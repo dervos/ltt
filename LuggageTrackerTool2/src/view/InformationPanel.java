@@ -344,7 +344,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 } else {
                     ep.setLuggageEditability(false);
                 }
-                editFrame.setSize(804, 470);
+                editFrame.setSize(750, 475);
                 editFrame.setResizable(false);
                 ep.fillPassengerInformation(selectedPassenger);
                 editFrame.getContentPane().add(ep);
@@ -379,7 +379,7 @@ public class InformationPanel extends javax.swing.JPanel {
 
                 JFrame editFrame = new JFrame("Edit");
                 EditPanel ep = new EditPanel(editFrame);
-                editFrame.setSize(804, 470);
+                editFrame.setSize(750, 475);
                 editFrame.setResizable(false);
                 ep.fillLuggageInformation(selectedLuggage);
                 if (selectedLuggage.getPassengerid() != 0) {
