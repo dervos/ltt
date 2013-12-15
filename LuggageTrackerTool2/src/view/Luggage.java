@@ -62,7 +62,7 @@ public class Luggage extends javax.swing.JPanel {
 
     public void addLuggageToTable(model.Luggage luggage) {
         Object location;
-        if (luggage.getStoragelocation() == null)
+        if (luggage.getStoragelocation().equals("Other"))
             location = luggage.getDifferentLocation();
         else 
             location = luggage.getStoragelocation();
