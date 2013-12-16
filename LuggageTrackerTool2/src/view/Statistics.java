@@ -3,8 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
+import javax.swing.JPanel;
 import model.LuggageDAO;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -16,18 +16,16 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 
-public class Statistics extends ApplicationFrame {
+public class Statistics extends JPanel{
 
-    public Statistics(String title) {
-        super(title);
+    public Statistics() {
+//        super(title);
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart, false);
         chartPanel.setPreferredSize(new Dimension(500, 270));
-        setContentPane(chartPanel);
+        add(chartPanel);
     }
 
     private static CategoryDataset createDataset() {
@@ -125,9 +123,9 @@ public class Statistics extends ApplicationFrame {
     }
 
     public static void main(String[] args) {
-        Statistics demo = new Statistics("Bar Chart Demo 1");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
+        Statistics demo = new Statistics();
+//        demo.pack();
+//        RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
     }
 }
