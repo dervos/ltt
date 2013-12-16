@@ -8,14 +8,16 @@ package view;
  *
  * @author gebak_000
  */
-public class Management extends javax.swing.JPanel {
+public class Management extends javax.swing.JFrame {
 
     
     /**
      * Creates new form Management
      */
     public Management() {
+        Statistics bcd = new Statistics("Statistics");
         initComponents();
+        this.getContentPane().add(bcd);
     }
 
     /**
