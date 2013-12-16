@@ -1,4 +1,4 @@
-package org.jfree.chart.demo;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
