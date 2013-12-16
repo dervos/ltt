@@ -197,4 +197,82 @@ public class LuggageDAO {
 
         return rowsAffected;
     }
+        public static int readFound() {
+        int found = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `found` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Found'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                found = rs.getInt("found");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return found;
+    }
+
+    public static int readLost() {
+        int lost = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `missing` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Missing'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                lost = rs.getInt("missing");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return lost;
+    }
+
+    public static int readDone() {
+        int done = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `returned` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Returned'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                done = rs.getInt("returned");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return done;
+    }
 }
+
