@@ -382,7 +382,7 @@ public class InformationPanel extends javax.swing.JPanel {
 
                 JFrame editFrame = new JFrame("Edit");
                 EditPanel ep = new EditPanel(editFrame);
-                editFrame.setSize(750, 475);
+                editFrame.setSize(800, 600);
                 editFrame.setResizable(false);
                 ep.fillLuggageInformation(selectedLuggage);
                 if (selectedLuggage.getPassengerid() != 0) {
