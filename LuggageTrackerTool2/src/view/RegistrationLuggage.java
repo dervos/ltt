@@ -1,12 +1,9 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.CustomException;
-import model.Address;
-import utility.PDFGenerator;
 
 /**
  *
@@ -34,6 +31,9 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         }
         if (luggageLabel.equals("")) {
             luggageLabel = null;
+        }
+        if (description.length() == 0) {
+            throw new CustomException("A luggage description is required!", this.DESCRIPTION_INPUT1);
         }
         if (description.length() > 200) {
             throw new CustomException("Description is too long, 200 characters maximum. You've got: " + description.length(), this.DESCRIPTION_INPUT1);
