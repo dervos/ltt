@@ -36,3 +36,5 @@ nbproject/*
 log/
 target/
 /OOPweek3/nbproject/private/
+
+*.pdf
