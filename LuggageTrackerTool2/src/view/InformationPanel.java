@@ -26,6 +26,7 @@ public class InformationPanel extends javax.swing.JPanel {
      */
     public InformationPanel() {
         initComponents();
+        instance = LuggageTrackerTool2.getInstance();
     }
 
     public void setLuggageLabel(Luggage l) {
@@ -321,19 +322,17 @@ public class InformationPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CONNECT_TO_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_LUGGAGE_BUTTONActionPerformed
-        instance = main.LuggageTrackerTool2.getInstance();
         instance.connectLuggageToPassenger();
         instance.getMainMenu().getLuggageTab().refresh();
     }//GEN-LAST:event_CONNECT_TO_LUGGAGE_BUTTONActionPerformed
 
     private void CONNECT_TO_PASSENGER_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_PASSENGER_BUTTONActionPerformed
-        instance = LuggageTrackerTool2.getInstance();
         instance.connectLuggageToPassenger();
         instance.getMainMenu().getLuggageTab().refresh();
     }//GEN-LAST:event_CONNECT_TO_PASSENGER_BUTTONActionPerformed
 
     private void PASSENGER_EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_EDIT_BUTTONActionPerformed
-        model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
+        model.Passenger selectedPassenger = instance.getSelectedPassenger();
         try {
             if (selectedPassenger != null) {
                 List<Luggage> connectedLuggages = model.LuggageDAO.readByPersonid(selectedPassenger.getPassengerid());
@@ -351,7 +350,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 editFrame.setVisible(true);
                 editFrame.setFocusable(true);
             } else {
-                JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(instance.getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -360,7 +359,9 @@ public class InformationPanel extends javax.swing.JPanel {
 
     private void PASSENGER_DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_DELETE_BUTTONActionPerformed
         try {
-            model.PassengerDAO.delete(instance.getSelectedPassenger().getPassengerid());
+            model.Passenger pas = instance.getSelectedPassenger();
+            int id = pas.getPassengerid();
+            model.PassengerDAO.delete(id);
             instance.getMainMenu().getPassengerTab().refresh();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -369,7 +370,7 @@ public class InformationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_PASSENGER_DELETE_BUTTONActionPerformed
 
     private void EDIT_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_LUGGAGE_BUTTONActionPerformed
-        model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
+        model.Luggage selectedLuggage = instance.getSelectedLuggage();
         try {
             if (selectedLuggage != null) {
                 model.Passenger passenger = null;
@@ -391,7 +392,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 editFrame.setVisible(true);
                 editFrame.setFocusable(true);
             } else {
-                JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(instance.getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
