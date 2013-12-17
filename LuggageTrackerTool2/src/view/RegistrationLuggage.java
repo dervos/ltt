@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.CustomException;
@@ -18,6 +19,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
      */
     public RegistrationLuggage() {
         initComponents();
+        //setBounds(new Rectangle(0,0,1023,826));
     }
 
     public model.Luggage createLuggage() throws CustomException {
@@ -93,10 +95,10 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         STATUS_COMBOBOX = new javax.swing.JComboBox();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Luggage"));
-        setMaximumSize(new java.awt.Dimension(523, 279));
-        setMinimumSize(new java.awt.Dimension(523, 279));
+        setMaximumSize(new java.awt.Dimension(500, 279));
+        setMinimumSize(new java.awt.Dimension(500, 279));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(523, 280));
+        setPreferredSize(new java.awt.Dimension(500, 280));
 
         DESCRIPTION.setText("Description");
 

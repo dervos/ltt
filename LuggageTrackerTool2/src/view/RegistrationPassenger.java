@@ -9,6 +9,7 @@ package view;
 import main.CustomException;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +29,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
      */
     public RegistrationPassenger() {
         initComponents();
+        //setBounds(new Rectangle(0,0,0,0));
     }
 
     public model.Passenger createPassenger() throws CustomException {

@@ -7,6 +7,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 /**
  *
@@ -22,11 +23,14 @@ public class SideBar extends javax.swing.JPanel {
     
     public SideBar() {
         initComponents();
-        setLayout(new BorderLayout(10, 10));
+        //setLayout(new BorderLayout(10, 10));
+        setLayout(new FlowLayout());
         this.regPassengerControl = new view.RegistrationPassenger();
         this.regLuggageControl = new view.RegistrationLuggage();
-        add(this.regPassengerControl, BorderLayout.NORTH);
-        add(this.regLuggageControl, BorderLayout.SOUTH);
+        //add(this.regPassengerControl, BorderLayout.NORTH);
+        //add(this.regLuggageControl, BorderLayout.SOUTH);
+        add(this.regPassengerControl);
+        add(this.regLuggageControl);
     }
 
     /**
@@ -38,6 +42,9 @@ public class SideBar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMaximumSize(new java.awt.Dimension(600, 1000));
+        setMinimumSize(new java.awt.Dimension(600, 1000));
+        setPreferredSize(new java.awt.Dimension(600, 1000));
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
