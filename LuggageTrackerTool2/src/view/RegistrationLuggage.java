@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.CustomException;
+import model.Address;
+import utility.PDFGenerator;
 
 /**
  *
@@ -24,21 +26,28 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         String differentLocation = ANDERS_INPUT.getText();
         String luggageLabel = LUGGAGEID_INPUT.getText();
         String status = STATUS_COMBOBOX.getSelectedItem().toString();
-        
-        if (luggageLabel.length() > 50)
+
+        if (luggageLabel.length() > 50) {
             throw new CustomException("Luggage Label length is too long, 50 characters maximum. You've got: " + luggageLabel.length(), this.LUGGAGEID_INPUT);
-        if (luggageLabel.equals(""))
+        }
+        if (luggageLabel.equals("")) {
             luggageLabel = null;
-        if (description.length() > 200)
+        }
+        if (description.length() > 200) {
             throw new CustomException("Description is too long, 200 characters maximum. You've got: " + description.length(), this.DESCRIPTION_INPUT1);
-        if (differentLocation.length() > 200)
+        }
+        if (differentLocation.length() > 200) {
             throw new CustomException("Other field has too much characters, 200 maximum. You've got: " + differentLocation.length(), this.ANDERS_INPUT);
-        if (!storageLocation.equals("Other"))
+        }
+        if (!storageLocation.equals("Other")) {
             differentLocation = null;
-        if (storageLocation.length() > 45)
+        }
+        if (storageLocation.length() > 45) {
             throw new CustomException("Storage length is too long, 45 characters maximum. You've got: " + storageLocation.length(), this.STORAGE_LOCATION_INPUT);
-        if (status.length() > 20)
+        }
+        if (status.length() > 20) {
             throw new CustomException("Status length is too long, 20 characters maximum. You've got: " + status.length(), this.STATUS_COMBOBOX);
+        }
 
         model.Luggage luggage = new model.Luggage();
         luggage.setLuggageLabel(luggageLabel);
@@ -161,7 +170,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                         .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                         .addComponent(STORAGE_LOCATION_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LUGGAGEID_INPUT)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,16 +193,16 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                     .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ANDERS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PRINT_ON_REGISTER_INPUT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PRINT_BUTTON)
                     .addComponent(SUBMIT_BUTTON))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,7 +237,6 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private void LUGGAGEID_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LUGGAGEID_INPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LUGGAGEID_INPUTActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ANDERS;
     private javax.swing.JTextArea ANDERS_INPUT;
