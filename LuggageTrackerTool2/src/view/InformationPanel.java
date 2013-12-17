@@ -5,12 +5,12 @@
  */
 package view;
 
-import java.util.List;
 import java.sql.SQLException;
-import main.LuggageTrackerTool2;
-import model.Luggage;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import main.LuggageTrackerTool2;
+import model.Luggage;
 import model.PassengerDAO;
 
 /**
@@ -274,7 +274,7 @@ public class InformationPanel extends javax.swing.JPanel {
                             .addComponent(STORAGE_LABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(luggagePanelLayout.createSequentialGroup()
                         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 54, Short.MAX_VALUE)))
+                        .addGap(0, 62, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         luggagePanelLayout.setVerticalGroup(
@@ -306,7 +306,7 @@ public class InformationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(luggagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -316,7 +316,7 @@ public class InformationPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(passengerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, Short.MAX_VALUE)
                     .addComponent(luggagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -343,7 +343,9 @@ public class InformationPanel extends javax.swing.JPanel {
                 } else {
                     ep.setLuggageEditability(false);
                 }
-                editFrame.setSize(750, 475);
+                editFrame.setSize(800, 600);
+//                editFrame.pack();
+                editFrame.validate();
                 editFrame.setResizable(false);
                 ep.fillPassengerInformation(selectedPassenger);
                 editFrame.getContentPane().add(ep);

@@ -10,17 +10,16 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import main.CustomException;
-import main.Status;
-import model.Passenger;
-import model.Luggage;
 import model.Address;
+import model.Luggage;
 import model.LuggageDAO;
+import model.Passenger;
 import model.PassengerDAO;
 
 /**
@@ -727,7 +726,7 @@ public class EditPanel extends javax.swing.JPanel {
                                     .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 21, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -833,7 +832,7 @@ public class EditPanel extends javax.swing.JPanel {
                             .addComponent(TEMP_POSTAL_CODE)
                             .addComponent(SAVE_BUTTON)
                             .addComponent(CANCEL_BUTTON))
-                        .addContainerGap(25, Short.MAX_VALUE))))
+                        .addGap(25, 25, 25))))
         );
 
         bindingGroup.bind();
