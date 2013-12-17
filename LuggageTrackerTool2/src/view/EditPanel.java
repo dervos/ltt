@@ -552,7 +552,7 @@ public class EditPanel extends javax.swing.JPanel {
         DESCRIPTION_INPUT1.setRows(5);
         DESCRIPTION_INPUT_FRAME.setViewportView(DESCRIPTION_INPUT1);
 
-        STORAGE_LOCATION_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Opslag A", "Opslag B", "Opslag C", "Other" }));
+        STORAGE_LOCATION_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Storage A", "Storage B", "Storage C", "Other" }));
         STORAGE_LOCATION_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 STORAGE_LOCATION_INPUTActionPerformed(evt);
