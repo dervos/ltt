@@ -36,43 +36,26 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
-                          <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
-                          <Component id="LUGGAGEID_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="DESCRIPTION_INPUT_FRAME" pref="309" max="32767" attributes="0"/>
-                          <Component id="STORAGE_LOCATION_INPUT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="LUGGAGEID_INPUT" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
-                          <Component id="PRINT_BUTTON" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ANDERS" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="ANDERS_INPUT_FRAME" min="-2" pref="312" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="STATUS_COMBOBOX" min="-2" max="-2" attributes="0"/>
+                  <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
+                  <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
+                  <Component id="LUGGAGEID_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
+                  <Component id="ANDERS" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="PRINT_BUTTON" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
+                  <Component id="STATUS_COMBOBOX" min="-2" max="-2" attributes="0"/>
+                  <Component id="ANDERS_INPUT_FRAME" min="-2" pref="312" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="DESCRIPTION_INPUT_FRAME" pref="309" max="32767" attributes="0"/>
+                      <Component id="STORAGE_LOCATION_INPUT" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LUGGAGEID_INPUT" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,19 +84,19 @@
                   <Component id="ANDERS_INPUT_FRAME" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="ANDERS" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="STATUS_COMBOBOX" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="STATUS_COMBOBOX" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PRINT_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SUBMIT_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
