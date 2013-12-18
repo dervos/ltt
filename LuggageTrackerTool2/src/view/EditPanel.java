@@ -43,7 +43,7 @@ public class EditPanel extends javax.swing.JPanel {
         this.GENDERGROUP.add(FEMALE_BUTTON);
         this.frame = holdingFrame;
         this.connectedLuggages = new ArrayList<Luggage>();
-        
+
     }
 
     public void fillPassengerInformation(Passenger passenger) {
@@ -215,7 +215,7 @@ public class EditPanel extends javax.swing.JPanel {
                 switch (i) {
                     case 0:
                         if ((result < 1850 || result >= (Calendar.getInstance().get(Calendar.YEAR)) + 1)) {
-                            throw new CustomException("Date of Birth year is incorrect.", DATE_OF_BIRTH_INPUT);
+                            throw new CustomException("Date of birth year is incorrect.", DATE_OF_BIRTH_INPUT);
                         }
                         break;
                     case 1:
@@ -309,6 +309,9 @@ public class EditPanel extends javax.swing.JPanel {
         if (label.equals("")) {
             label = null;
         }
+        if (description.length() == 0) {
+            throw new CustomException("A luggage description is required!", this.DESCRIPTION_INPUT1);
+        }
         if (description.length() > 200) {
             throw new CustomException("Description is too long, 200 characters maximum. You've got: " + description.length(), this.DESCRIPTION_INPUT1);
         }
@@ -331,7 +334,7 @@ public class EditPanel extends javax.swing.JPanel {
         selectedLuggage.setDifferentLocation(different);
         selectedLuggage.setLuggagestatus(status);
     }
-    
+
     public model.Address createHomeAddressFromForms() throws CustomException {
         String city = HOME_CITY_INPUT.getText();
         String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
@@ -871,18 +874,19 @@ public class EditPanel extends javax.swing.JPanel {
             if (connectedLuggages != null && connectedLuggages.size() > 0) {
                 updateSelectedLuggage();
             }
-            
-            if (this.p != null)
+
+            if (this.p != null) {
                 PassengerDAO.update(p);
-            if (connectedLuggages != null && connectedLuggages.size() > 0)
-            {
-                for (Luggage l : connectedLuggages)
+            }
+            if (connectedLuggages != null && connectedLuggages.size() > 0) {
+                for (Luggage l : connectedLuggages) {
                     LuggageDAO.update(l);
+                }
             }
             main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
             main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
             this.frame.dispose();
-            
+
         } catch (CustomException cEx) {
             JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
             if (cEx.getComponent() != null) {
@@ -892,7 +896,7 @@ public class EditPanel extends javax.swing.JPanel {
             System.err.println("Couldn't save edits.");
             System.err.println(e.getMessage());
         }
-        
+
     }//GEN-LAST:event_SAVE_BUTTONActionPerformed
 
     private void CONNECTED_LUGGAGES_CBOXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CONNECTED_LUGGAGES_CBOXMouseClicked
