@@ -41,10 +41,10 @@ public class BarChartStatus extends JPanel{
         int numDestroyed = LuggageDAO.readDestroyed();
                 
         // column keys...
-        String category1 = "Week 1";
-//        String category2 = "Week 2";
-//        String category3 = "Week 3";
-//        String category4 = "Week 4";
+        String category1 = "Found";
+        String category2 = "Missing";
+        String category3 = "Returned";
+        String category4 = "Destroyed";
 //        String category5 = "Week 5";
        
         // create the dataset...
@@ -58,19 +58,19 @@ public class BarChartStatus extends JPanel{
 //        dataset.addValue(5.0, series1, category4);
 //        dataset.addValue(5.0, series1, category5);
 
-        dataset.addValue(numMissing, series2, category1);
+        dataset.addValue(numMissing, series2, category2);
 //        dataset.addValue(7.0, series2, category2);
 //        dataset.addValue(6.0, series2, category3);
 //        dataset.addValue(8.0, series2, category4);
 //        dataset.addValue(4.0, series2, category5);
         
-        dataset.addValue(numReturned, series3, category1);
+        dataset.addValue(numReturned, series3, category3);
 //        dataset.addValue(3.0, series3, category2);
 //        dataset.addValue(2.0, series3, category3);
 //        dataset.addValue(3.0, series3, category4);
 //        dataset.addValue(6.0, series3, category5);
 
-          dataset.addValue(numDestroyed, series4, category1);
+          dataset.addValue(numDestroyed, series4, category4);
 //        dataset.addValue(3.0, series3, category2);
 //        dataset.addValue(2.0, series3, category3);
 //        dataset.addValue(3.0, series3, category4);
