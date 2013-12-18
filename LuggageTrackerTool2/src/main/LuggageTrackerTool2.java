@@ -278,7 +278,7 @@ public final class LuggageTrackerTool2 {
         }
     }
 
-    public void connectLuggageToPassenger() {
+    public void connectLuggageToPassenger() throws CustomException {
         if (selectedLuggage != null & selectedPassenger != null) {
             selectedLuggage.setPassenger(selectedPassenger.getPassengerid());
             try {
@@ -286,9 +286,10 @@ public final class LuggageTrackerTool2 {
             } catch (SQLException ex) {
                 System.err.println("Cannot connect luggage to person");
                 System.err.println(ex.getMessage());
-
             }
         }
+        else
+            throw new CustomException("You need to have a passenger and a luggage piece selected.");
     }
 
     /**

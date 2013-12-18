@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import main.CustomException;
 import main.LuggageTrackerTool2;
 import model.Luggage;
 import model.PassengerDAO;
@@ -62,6 +63,22 @@ public class InformationPanel extends javax.swing.JPanel {
         DOB_LABEL.setText("");
         ADDRESS_LABEL.setText("");
         TEMP_ADDRESS_LABEL.setText("");
+    }
+
+    private void connectButton() {
+        try {
+            int result = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to connect the selected passenger and luggage?", "Question",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (result == JOptionPane.YES_OPTION) {
+
+                instance.connectLuggageToPassenger();
+                instance.getMainMenu().getLuggageTab().refresh();
+            }
+        } catch (CustomException cEx) {
+            JOptionPane.showMessageDialog(null, cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -322,13 +339,11 @@ public class InformationPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CONNECT_TO_LUGGAGE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_LUGGAGE_BUTTONActionPerformed
-        instance.connectLuggageToPassenger();
-        instance.getMainMenu().getLuggageTab().refresh();
+        this.connectButton();
     }//GEN-LAST:event_CONNECT_TO_LUGGAGE_BUTTONActionPerformed
 
     private void CONNECT_TO_PASSENGER_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONNECT_TO_PASSENGER_BUTTONActionPerformed
-        instance.connectLuggageToPassenger();
-        instance.getMainMenu().getLuggageTab().refresh();
+        this.connectButton();
     }//GEN-LAST:event_CONNECT_TO_PASSENGER_BUTTONActionPerformed
 
     private void PASSENGER_EDIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_EDIT_BUTTONActionPerformed
@@ -352,7 +367,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 editFrame.setVisible(true);
                 editFrame.setFocusable(true);
             } else {
-                JOptionPane.showMessageDialog(instance.getMainMenu(), "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -360,14 +375,39 @@ public class InformationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_PASSENGER_EDIT_BUTTONActionPerformed
 
     private void PASSENGER_DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSENGER_DELETE_BUTTONActionPerformed
-        try {
-            model.Passenger pas = instance.getSelectedPassenger();
-            int id = pas.getPassengerid();
-            model.PassengerDAO.delete(id);
-            instance.getMainMenu().getPassengerTab().refresh();
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            System.err.println("Cannot delete passenger");
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to delete the selected passenger?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                model.Passenger pas = instance.getSelectedPassenger();
+                if (pas != null) {
+                    int id = pas.getPassengerid();
+                    if (instance.getMainMenu().getLuggageTab().passengerIDExistsInLuggage(id)) //If passenger is connected to luggage, set the luggage ID to null.
+                    {
+                        model.LuggageDAO.updatePassengerIDToNull(id);
+                        instance.getMainMenu().getLuggageTab().refresh();
+                    }
+
+                    model.PassengerDAO.delete(id);
+
+                    int haid = pas.getHomeaddressid();
+                    int taid = pas.getTempaddressid();
+                    if (haid != 0) {
+                        model.AddressDAO.delete(haid);
+                    }
+                    if (taid != 0) {
+                        model.AddressDAO.delete(taid);
+                    }
+                    instance.getMainMenu().getPassengerTab().refresh();
+                } else {
+                    JOptionPane.showMessageDialog(null, "You need to select a passenger first.", "", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                System.err.println("Cannot delete passenger");
+            }
         }
     }//GEN-LAST:event_PASSENGER_DELETE_BUTTONActionPerformed
 
@@ -394,7 +434,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 editFrame.setVisible(true);
                 editFrame.setFocusable(true);
             } else {
-                JOptionPane.showMessageDialog(instance.getMainMenu(), "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You need to select luggage first.", "", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -402,13 +442,19 @@ public class InformationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_EDIT_LUGGAGE_BUTTONActionPerformed
 
     private void LUGGAGE_DELETE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LUGGAGE_DELETE_BUTTONActionPerformed
-        try {
-            model.LuggageDAO.delete(instance.getSelectedLuggage().getLuggageid());
-            instance.getMainMenu().getLuggageTab().refresh();
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            System.err.println("Cannot delete luggage");
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to delete the selected passenger?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                model.LuggageDAO.delete(instance.getSelectedLuggage().getLuggageid());
+                instance.getMainMenu().getLuggageTab().refresh();
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                System.err.println("Cannot delete luggage");
+            }
         }
+
     }//GEN-LAST:event_LUGGAGE_DELETE_BUTTONActionPerformed
 
 
