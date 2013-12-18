@@ -244,4 +244,27 @@ public class PassengerDAO {
         return rowsAffected;
     }
 
+    public static int readTotalPassenger() {
+        int totalPassenger = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query =  "SELECT COUNT(*) AS passengerid FROM passenger";
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                totalPassenger = rs.getInt("Passengerid");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return totalPassenger;
+    }
+    
 }

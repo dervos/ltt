@@ -223,8 +223,8 @@ public class LuggageDAO {
         return found;
     }
 
-    public static int readLost() {
-        int lost = -1;
+    public static int readMissing() {
+        int missing = -1;
 
         databaseManager.openConnection();
 
@@ -239,18 +239,18 @@ public class LuggageDAO {
             System.out.println(rs);
 
             if (rs.next()) {
-                lost = rs.getInt("missing");
+            missing = rs.getInt("missing");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             databaseManager.closeConnection();
         }
-        return lost;
+        return missing;
     }
 
-    public static int readDone() {
-        int done = -1;
+    public static int readReturned() {
+        int returned = -1;
 
         databaseManager.openConnection();
 
@@ -265,14 +265,63 @@ public class LuggageDAO {
             System.out.println(rs);
 
             if (rs.next()) {
-                done = rs.getInt("returned");
+                returned = rs.getInt("returned");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             databaseManager.closeConnection();
         }
-        return done;
+        return returned;
+    }
+    
+     public static int readDestroyed() {
+        int destroyed = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query = "SELECT count(*) as `destroyed` "
+                    + "FROM Luggage "
+                    + "WHERE luggagestatus = 'Destroyed'";
+
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                destroyed = rs.getInt("destroyed");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return destroyed;
+    }
+    
+     public static int readTotalLuggage() {
+        int totalLuggage = -1;
+
+        databaseManager.openConnection();
+
+        try {
+            String query =  "SELECT COUNT(*) AS luggageid FROM luggage";
+
+            ResultSet rs = databaseManager.doQuery(query);
+
+            System.out.println(rs);
+
+            if (rs.next()) {
+                totalLuggage = rs.getInt("LuggageId");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            databaseManager.closeConnection();
+        }
+        return totalLuggage;
     }
 }
 
