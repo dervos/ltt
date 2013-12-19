@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.User;
-
 
 /**
  *
- * @author gebak_000
+ * @author gebak_000, Tomas Slaman
  */
 public class AccountManagement extends javax.swing.JPanel {
+
     List<model.User> list = new ArrayList<>();
     String[] usernames;
 
@@ -36,7 +37,7 @@ public class AccountManagement extends javax.swing.JPanel {
             index++;
         }
         initComponents();
-        
+
     }
 
     /**
@@ -145,6 +146,11 @@ public class AccountManagement extends javax.swing.JPanel {
         jLabel4.setText("Verify:");
 
         jButton2.setText("Confirm");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("check to confirm");
 
@@ -175,12 +181,11 @@ public class AccountManagement extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jCheckBox1)
-                            .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(NEW_USERNAME_INPUT)
-                                .addComponent(NEW_PASSWORD_INPUT)
-                                .addComponent(CHANGE_PASSWORD_INPUT)
-                                .addComponent(USER, 0, 100, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(NEW_USERNAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CHANGE_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
@@ -222,9 +227,9 @@ public class AccountManagement extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jCheckBox1))
+                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jLabel4))
                 .addGap(7, 7, 7)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -265,32 +270,86 @@ public class AccountManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_USERActionPerformed
 
     private void NEW_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NEW_CONFIRMActionPerformed
-        model.User user = new model.User();
-        user.setUsername(NEW_USERNAME_INPUT.getText());
-        user.setPassword(NEW_PASSWORD_INPUT.getText());
-        user.setPrivileges(jComboBox2.getSelectedItem().toString());
-        try {
-            model.UserDAO.create(user);
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        boolean canEdit = true;
+        String username = NEW_USERNAME_INPUT.getText();
+        String password = NEW_PASSWORD_INPUT.getText();
+
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to create a new user?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (username.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Username needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
+        }
+        if (username.length() > 45) {
+            JOptionPane.showMessageDialog(null, "Username is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
+        }
+        if (password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Password needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
+        }
+        if (password.length() > 45) {
+            JOptionPane.showMessageDialog(null, "Password is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
+        }
+
+        if (result == JOptionPane.YES_OPTION && canEdit) {
+            model.User user = new model.User();
+            user.setUsername(NEW_USERNAME_INPUT.getText());
+            user.setPassword(NEW_PASSWORD_INPUT.getText());
+            user.setPrivileges(jComboBox2.getSelectedItem().toString());
+            try {
+                model.UserDAO.create(user);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_NEW_CONFIRMActionPerformed
 
     private void CHANGE_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHANGE_CONFIRMActionPerformed
+        boolean canEdit = true;
+
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to change the user's password?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
         String pass = CHANGE_PASSWORD_INPUT.getText();
-        try {
-            model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
-            user.setPassword(pass);
-            model.UserDAO.update(user);
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        if (pass.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Password needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
         }
-        
+        if (pass.length() > 45) {
+            JOptionPane.showMessageDialog(null, "Password is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
+            canEdit = false;
+        }
+
+        if (result == JOptionPane.YES_OPTION && canEdit) {
+            try {
+                model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
+                user.setPassword(pass);
+                model.UserDAO.update(user);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_CHANGE_CONFIRMActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to change the user's password?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            // Actually delete the user in here
+            //
+            //
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
