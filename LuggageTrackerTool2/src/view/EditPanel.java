@@ -145,26 +145,26 @@ public class EditPanel extends javax.swing.JPanel {
 
     }
 
-    /*public void setPassengerColors(Color c)
-     {
-     this.NAME_INPUT.setBackground(c);
-     this.SURNAME_INPUT.setBackground(c);
-     this.DATE_OF_BIRTH_INPUT.setBackground(c);
-     this.MALE_BUTTON.setBackground(c);
-     this.FEMALE_BUTTON.setBackground(c);
-     this.HOME_PHONE_NUMBER_INPUT.setBackground(c);
-     this.MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
-        
-     this.HOME_COUNTRY_INPUT.setBackground(c);
-     this.HOME_CITY_INPUT.setBackground(c);
-     this.HOME_STREET_INPUT.setBackground(c);
-     this.HOME_POSTAL_CODE_INPUT.setBackground(c);
-        
-     this.TEMP_COUNTRY_INPUT.setBackground(c);
-     this.TEMP_CITY_INPUT.setBackground(c);
-     this.TEMP_STREET_INPUT.setBackground(c);
-     this.TEMP_POSTAL_CODE_INPUT.setBackground(c);
-     }*/
+    public void setPassengerColors(Color c) {
+        this.NAME_INPUT.setBackground(c);
+        this.SURNAME_INPUT.setBackground(c);
+        this.DATE_OF_BIRTH_INPUT.setBackground(c);
+        this.MALE_BUTTON.setBackground(c);
+        this.FEMALE_BUTTON.setBackground(c);
+        this.HOME_PHONE_NUMBER_INPUT.setBackground(c);
+        this.MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
+
+        this.HOME_COUNTRY_INPUT.setBackground(c);
+        this.HOME_CITY_INPUT.setBackground(c);
+        this.HOME_STREET_INPUT.setBackground(c);
+        this.HOME_POSTAL_CODE_INPUT.setBackground(c);
+
+        this.TEMP_COUNTRY_INPUT.setBackground(c);
+        this.TEMP_CITY_INPUT.setBackground(c);
+        this.TEMP_STREET_INPUT.setBackground(c);
+        this.TEMP_POSTAL_CODE_INPUT.setBackground(c);
+    }
+
     public void setStorageLocationEditability() {
         if (STORAGE_LOCATION_INPUT.getSelectedItem().toString().equals("Other")) {
             ANDERS_INPUT.setEnabled(true);
@@ -861,42 +861,50 @@ public class EditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CANCEL_BUTTONActionPerformed
 
     private void SAVE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SAVE_BUTTONActionPerformed
-        try {
-            if (this.p != null) {
-                p = createPassenger(p.getPassengerid());
-                Address homeAddress = createHomeAddressFromForms();
-                Address tempAddress = createTempAddressFromForms();
-                homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
-                tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
-                p.setHomeaddress(homeAddress);
-                p.setTempaddress(tempAddress);
-            }
-            if (connectedLuggages != null && connectedLuggages.size() > 0) {
-                updateSelectedLuggage();
-            }
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to save these changes?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            if (this.p != null) {
-                PassengerDAO.update(p);
-            }
-            if (connectedLuggages != null && connectedLuggages.size() > 0) {
-                for (Luggage l : connectedLuggages) {
-                    LuggageDAO.update(l);
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                if (this.p != null) {
+                    p = createPassenger(p.getPassengerid());
+                    Address homeAddress = createHomeAddressFromForms();
+                    Address tempAddress = createTempAddressFromForms();
+                    homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
+                    tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
+                    p.setHomeaddress(homeAddress);
+                    p.setTempaddress(tempAddress);
                 }
-            }
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
-            this.frame.dispose();
+                if (connectedLuggages != null && connectedLuggages.size() > 0) {
+                    updateSelectedLuggage();
+                }
 
-        } catch (CustomException cEx) {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-            if (cEx.getComponent() != null) {
-                cEx.getComponent().setBackground(Color.RED);
+                if (this.p != null) {
+                    PassengerDAO.update(p);
+                }
+                if (connectedLuggages != null && connectedLuggages.size() > 0) {
+                    for (Luggage l : connectedLuggages) {
+                        LuggageDAO.update(l);
+                    }
+                }
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
+                this.frame.dispose();
+
+            } catch (CustomException cEx) {
+                JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+                if (cEx.getComponent() != null) {
+                    cEx.getComponent().setBackground(Color.RED);
+                }
+            } catch (SQLException e) {
+                System.err.println("Couldn't save edits.");
+                System.err.println(e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Couldn't save edits.");
-            System.err.println(e.getMessage());
         }
-
+        else {
+            this.setPassengerColors(Color.WHITE);
+        }
     }//GEN-LAST:event_SAVE_BUTTONActionPerformed
 
     private void CONNECTED_LUGGAGES_CBOXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CONNECTED_LUGGAGES_CBOXMouseClicked

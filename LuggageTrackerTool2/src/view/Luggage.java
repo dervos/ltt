@@ -95,10 +95,18 @@ public class Luggage extends javax.swing.JPanel {
         int rows = dtm.getRowCount();
 
         for (int i = rows - 1; i >= 0; i--) {
-
             dtm.removeRow(i);
         }
-
+    }
+    
+    public boolean passengerIDExistsInLuggage(int id) {
+        for(model.Luggage l : this.luggageList)
+        {
+            if (l.getPassengerid() == id)
+                return true;
+        }
+        
+        return false;
     }
 
     /**

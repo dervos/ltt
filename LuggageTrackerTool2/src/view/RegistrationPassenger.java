@@ -4,8 +4,6 @@
  */
 package view;
 
-
-
 import main.CustomException;
 
 import java.awt.Color;
@@ -121,7 +119,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         tempPassenger.setGender(gender);
         tempPassenger.setHomephone(homePhone);
         tempPassenger.setMobphone(mobPhone);
-        
+
         return tempPassenger;
     }
 
@@ -592,30 +590,34 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             model.Passenger passenger = createPassenger();
             model.Address homeAddress = createHomeAddressFromForms();
             model.Address tempAddress = createTempAddressFromForms();
-            //homeAddress.setAddressid(1);
-            //tempAddress.setAddressid(2);
-            homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
-            tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
+            int result = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to register a new passenger?", "Question",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            passenger.setHomeaddress(homeAddress);
-            passenger.setTempaddress(tempAddress);
+            if (result == JOptionPane.YES_OPTION) {
+                homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
+                tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
 
-            model.PassengerDAO.create(passenger);
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
+                passenger.setHomeaddress(homeAddress);
+                passenger.setTempaddress(tempAddress);
 
-            clearFields();
-            
-            PDFGenerator document = new PDFGenerator();
-            document.generate(passenger, homeAddress, tempAddress);
-            document.save("Informatie.pdf");
+                model.PassengerDAO.create(passenger);
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
+
+                clearFields();
+
+                PDFGenerator document = new PDFGenerator();
+                document.generate(passenger, homeAddress, tempAddress);
+                document.save("Informatie.pdf");
+            }
 
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
             System.err.println("Message: " + ex.getMessage());
             ex.printStackTrace();
         } catch (CustomException cEx) {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
             if (cEx.getComponent() != null) {
                 cEx.getComponent().setBackground(Color.RED);
             }

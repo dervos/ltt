@@ -15,6 +15,10 @@ public class CustomException extends Exception {
 
     private Component cmp = null;
 
+    public CustomException() {
+        
+    }
+    
     public CustomException(String exMessage) {
         super(exMessage);
     }

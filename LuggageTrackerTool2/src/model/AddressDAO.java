@@ -204,7 +204,7 @@ public class AddressDAO {
     public static int delete(int addressid) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
-        String query = "DELETE FROM Address WHERE addressid=?";
+        String query = "DELETE FROM address WHERE addressid=?";
 
         databaseManager.openConnection();
 

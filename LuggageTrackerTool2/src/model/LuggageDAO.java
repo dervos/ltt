@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.LinkedList;
 import java.util.List;
+
 /**
  *
  * @author reintjehard, Tomas Slaman
@@ -164,11 +165,35 @@ public class LuggageDAO {
         ps.setString(3, luggage.getLuggagestatus().name());
         ps.setString(4, luggage.getStoragelocation());
         ps.setString(5, luggage.getDifferentLocation());
-        if (luggage.getPassengerid() != 0)
-            ps.setInt(6, (Integer)luggage.getPassengerid());
-        else
+        if (luggage.getPassengerid() != 0) {
+            ps.setInt(6, (Integer) luggage.getPassengerid());
+        } else {
             ps.setNull(6, Types.INTEGER);
+        }
         ps.setInt(7, luggage.getLuggageid());
+
+        rowsAffected = ps.executeUpdate();
+
+        if (databaseManager != null) {
+            databaseManager.closeConnection();
+        }
+
+        return rowsAffected;
+    }
+    
+    public static int updatePassengerIDToNull(int id) throws SQLException
+    {
+        int rowsAffected;
+        PreparedStatement ps = null;
+        String query = "UPDATE luggage SET " 
+                + "passengerid=? "
+                + "WHERE passengerid=?";
+
+        databaseManager.openConnection();
+
+        ps = databaseManager.getConnection().prepareStatement(query);
+        ps.setNull(1, Types.INTEGER);
+        ps.setInt(2, id);
 
         rowsAffected = ps.executeUpdate();
 
@@ -197,7 +222,8 @@ public class LuggageDAO {
 
         return rowsAffected;
     }
-        public static int readFound() {
+
+    public static int readFound() {
         int found = -1;
 
         databaseManager.openConnection();
@@ -206,7 +232,6 @@ public class LuggageDAO {
             String query = "SELECT count(*) as `found` "
                     + "FROM Luggage "
                     + "WHERE luggagestatus = 'Found'";
-
 
             ResultSet rs = databaseManager.doQuery(query);
 
@@ -233,13 +258,12 @@ public class LuggageDAO {
                     + "FROM Luggage "
                     + "WHERE luggagestatus = 'Missing'";
 
-
             ResultSet rs = databaseManager.doQuery(query);
 
             System.out.println(rs);
 
             if (rs.next()) {
-            missing = rs.getInt("missing");
+                missing = rs.getInt("missing");
             }
 
         } catch (SQLException e) {
@@ -259,7 +283,6 @@ public class LuggageDAO {
                     + "FROM Luggage "
                     + "WHERE luggagestatus = 'Returned'";
 
-
             ResultSet rs = databaseManager.doQuery(query);
 
             System.out.println(rs);
@@ -274,8 +297,8 @@ public class LuggageDAO {
         }
         return returned;
     }
-    
-     public static int readDestroyed() {
+
+    public static int readDestroyed() {
         int destroyed = -1;
 
         databaseManager.openConnection();
@@ -284,7 +307,6 @@ public class LuggageDAO {
             String query = "SELECT count(*) as `destroyed` "
                     + "FROM Luggage "
                     + "WHERE luggagestatus = 'Destroyed'";
-
 
             ResultSet rs = databaseManager.doQuery(query);
 
@@ -300,14 +322,14 @@ public class LuggageDAO {
         }
         return destroyed;
     }
-    
-     public static int readTotalLuggage() {
+
+    public static int readTotalLuggage() {
         int totalLuggage = -1;
 
         databaseManager.openConnection();
 
         try {
-            String query =  "SELECT COUNT(*) AS luggageid FROM luggage";
+            String query = "SELECT COUNT(*) AS luggageid FROM luggage";
 
             ResultSet rs = databaseManager.doQuery(query);
 
@@ -324,4 +346,3 @@ public class LuggageDAO {
         return totalLuggage;
     }
 }
-

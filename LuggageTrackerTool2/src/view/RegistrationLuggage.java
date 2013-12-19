@@ -41,6 +41,8 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         if (differentLocation.length() > 200) {
             throw new CustomException("Other field has too much characters, 200 maximum. You've got: " + differentLocation.length(), this.ANDERS_INPUT);
         }
+        if (storageLocation.equals("Other") && differentLocation.length() == 0)
+            throw new CustomException("Other field is required! Please clarify the location the luggage is being held.", this.ANDERS_INPUT);
         if (!storageLocation.equals("Other")) {
             differentLocation = null;
         }
@@ -67,6 +69,18 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         STORAGE_LOCATION_INPUT.setSelectedIndex(0);
         STATUS_COMBOBOX.setSelectedIndex(0);
         ANDERS_INPUT.setText("");
+    }
+    
+    public void setBackgroundColor(Color c)
+    {
+        this.STATUS_COMBOBOX.setBackground(c);
+        this.STORAGE_LOCATION_INPUT.setBackground(c);
+        if (STORAGE_LOCATION_INPUT.getSelectedItem().toString().equals("Other"))
+            this.ANDERS_INPUT.setBackground(c);
+        else
+            this.ANDERS_INPUT.setBackground(Color.LIGHT_GRAY);
+        this.DESCRIPTION_INPUT1.setBackground(c);
+        this.LUGGAGEID_INPUT.setBackground(c);
     }
 
     /**
@@ -220,16 +234,24 @@ public class RegistrationLuggage extends javax.swing.JPanel {
 
     private void SUBMIT_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMIT_BUTTONActionPerformed
         try {
+            this.setBackgroundColor(Color.WHITE);
             model.Luggage luggage = createLuggage();
-            model.LuggageDAO.create(luggage);
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
-            main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
-            clearFields();
+
+            int result = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to register new luggage?", "Question",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (result == JOptionPane.YES_OPTION) {
+                model.LuggageDAO.create(luggage);
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(1);
+                clearFields();
+            }
 
         } catch (SQLException ex) {
             System.err.println("Error submitting luggage " + ex.getMessage());
         } catch (CustomException cEx) {
-            JOptionPane.showMessageDialog(main.LuggageTrackerTool2.getInstance().getMainMenu(), cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, cEx.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
             if (cEx.getComponent() != null) {
                 cEx.getComponent().setBackground(Color.RED);
             }
