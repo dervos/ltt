@@ -176,4 +176,25 @@ public class UserDAO {
 
         return rowsAffected;
     }
+    
+    public static boolean userExistsByUsername(String username) throws SQLException
+    {
+        int count = 1;
+        PreparedStatement ps = null;
+        
+        String query = "SELECT COUNT(*) as `users` FROM User WHERE username = '" + username + "';";
+        
+        databaseManager.openConnection();
+        
+        ResultSet rs = databaseManager.doQuery(query);
+        if (rs.next())
+            count = rs.getInt("users");
+        //count = ps.executeUpdate();
+
+        if (databaseManager != null) {
+            databaseManager.closeConnection();
+        }
+        
+        return count > 0;
+    }
 }

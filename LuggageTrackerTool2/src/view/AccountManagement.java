@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.User;
 
@@ -18,8 +19,9 @@ import model.User;
  */
 public class AccountManagement extends javax.swing.JPanel {
 
-    List<model.User> list = new ArrayList<>();
-    String[] usernames;
+    private DefaultComboBoxModel dcm;
+    private List<model.User> list = new ArrayList<>();
+    private String[] usernames;
 
     /**
      * Creates new form AccountManagement
@@ -30,14 +32,31 @@ public class AccountManagement extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         usernames = new String[list.size()];
         int index = 0;
         for (User user : list) {
             usernames[index] = user.getUsername();
             index++;
         }
+
         initComponents();
 
+    }
+    
+    private void updateUSERModel()
+    {
+        USER.removeAllItems();
+        
+        try {
+            list = model.UserDAO.readAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (User user : list) {
+            USER.addItem(user.getUsername());
+        }
     }
 
     /**
@@ -271,12 +290,9 @@ public class AccountManagement extends javax.swing.JPanel {
 
     private void NEW_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NEW_CONFIRMActionPerformed
         boolean canEdit = true;
+        boolean userExists = true;
         String username = NEW_USERNAME_INPUT.getText();
         String password = NEW_PASSWORD_INPUT.getText();
-
-        int result = JOptionPane.showConfirmDialog(null,
-                "Are you sure you want to create a new user?", "Question",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (username.length() == 0) {
             JOptionPane.showMessageDialog(null, "Username needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
@@ -294,17 +310,31 @@ public class AccountManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Password is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
+        
+        try {
+            userExists = model.UserDAO.userExistsByUsername(username);
+        }
+        catch (SQLException e) { System.err.println(e.getMessage());}
+        
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to create a new user?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (result == JOptionPane.YES_OPTION && canEdit) {
+        if (result == JOptionPane.YES_OPTION && canEdit && !userExists) {
             model.User user = new model.User();
             user.setUsername(NEW_USERNAME_INPUT.getText());
             user.setPassword(NEW_PASSWORD_INPUT.getText());
             user.setPrivileges(jComboBox2.getSelectedItem().toString());
             try {
                 model.UserDAO.create(user);
+                updateUSERModel();
+                JOptionPane.showMessageDialog(null, "Succesfully created user: " + username, "Message", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        else if (userExists){
+            JOptionPane.showMessageDialog(null, "Username already exists!", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_NEW_CONFIRMActionPerformed
 
