@@ -39,12 +39,12 @@ public class MainMenu extends JPanel {
     }
 
     private void addManagerTabs() {
-        managementTab = new view.BarChartStatus();
+        managementTab = new view.BarChartMonthStatus2014();
         jTabbedPane.add("Manager Pane", managementTab);
     }
 
     private void addAllTabs() {
-        managementTab = new view.BarChartStatus();
+        managementTab = new view.BarChartMonthStatus2014();
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
         accountTab = new view.AccountManagement();
