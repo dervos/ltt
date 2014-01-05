@@ -7,7 +7,6 @@ package view;
 import main.CustomException;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -49,17 +48,23 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         } else if (name.length() == 0) {
             throw new CustomException("First name has to be filled in.", NAME_INPUT);
         }
-
+        if (hasDigit(name)) {
+            throw new CustomException("First name can't contain digits.", NAME_INPUT);
+        }
         if (insertion.length() > 8) {
             throw new CustomException("Insertion length is too long, 8 characters maximum. You've got: " + insertion.length(), SURNAME_TUSSENVOEGSEL_INPUT);
         }
-
+        if (hasDigit(insertion)) {
+            throw new CustomException("Insertion can't contain digits.", SURNAME_TUSSENVOEGSEL_INPUT);
+        }
         if (surname.length() > 35) {
             throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
         } else if (surname.length() == 0) {
             throw new CustomException("Surname has to be filled in.", SURNAME_INPUT);
         }
-
+        if (hasDigit(surname)) {
+            throw new CustomException("Surname can't contain digits.", SURNAME_INPUT);
+        }
         if (!strDob.contains("-") || dateContent.length != 3) {
             throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.", DATE_OF_BIRTH_INPUT);
         }
@@ -265,6 +270,17 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 }
             }
         }
+        return false;
+    }
+
+    public boolean hasDigit(String text) {
+        char[] characters = text.toCharArray();
+        for (int i = 0; i < characters.length; i++) {
+            if (Character.isDigit(characters[i])) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -632,7 +648,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             MALE_BUTTON.setSelected(true);
         }
     }//GEN-LAST:event_FEMALE_BUTTONActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;
