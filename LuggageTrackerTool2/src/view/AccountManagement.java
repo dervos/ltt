@@ -290,35 +290,38 @@ public class AccountManagement extends javax.swing.JPanel {
 
     private void NEW_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NEW_CONFIRMActionPerformed
         boolean canEdit = true;
-        boolean userExists = true;
+        boolean userExists = false;
         String username = NEW_USERNAME_INPUT.getText();
         String password = NEW_PASSWORD_INPUT.getText();
+        int result = JOptionPane.CANCEL_OPTION;
 
         if (username.length() == 0) {
             JOptionPane.showMessageDialog(null, "Username needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
-        if (username.length() > 45) {
+        if (username.length() > 45 && canEdit) {
             JOptionPane.showMessageDialog(null, "Username is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
-        if (password.length() == 0) {
+        if (password.length() == 0 && canEdit) {
             JOptionPane.showMessageDialog(null, "Password needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
-        if (password.length() > 45) {
+        if (password.length() > 45 && canEdit) {
             JOptionPane.showMessageDialog(null, "Password is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
+        if (canEdit)
+        {
+            try {
+                userExists = model.UserDAO.userExistsByUsername(username);
+            }
+            catch (SQLException e) { System.err.println(e.getMessage());}
         
-        try {
-            userExists = model.UserDAO.userExistsByUsername(username);
+            result = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to create a new user?", "Question",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         }
-        catch (SQLException e) { System.err.println(e.getMessage());}
-        
-        int result = JOptionPane.showConfirmDialog(null,
-                "Are you sure you want to create a new user?", "Question",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (result == JOptionPane.YES_OPTION && canEdit && !userExists) {
             model.User user = new model.User();
@@ -341,10 +344,6 @@ public class AccountManagement extends javax.swing.JPanel {
     private void CHANGE_CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHANGE_CONFIRMActionPerformed
         boolean canEdit = true;
 
-        int result = JOptionPane.showConfirmDialog(null,
-                "Are you sure you want to change the user's password?", "Question",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
         String pass = CHANGE_PASSWORD_INPUT.getText();
         if (pass.length() == 0) {
             JOptionPane.showMessageDialog(null, "Password needs to be longer than 0 characters", "Error", JOptionPane.WARNING_MESSAGE);
@@ -354,6 +353,10 @@ public class AccountManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Password is too long 45 characters maximum", "Error", JOptionPane.WARNING_MESSAGE);
             canEdit = false;
         }
+        
+        int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to change the user's password?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (result == JOptionPane.YES_OPTION && canEdit) {
             try {
@@ -372,7 +375,7 @@ public class AccountManagement extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int result = JOptionPane.showConfirmDialog(null,
-                "Are you sure you want to change the user's password?", "Question",
+                "Are you sure you want to delete the user?", "Question",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (result == JOptionPane.YES_OPTION) {
             // Actually delete the user in here
