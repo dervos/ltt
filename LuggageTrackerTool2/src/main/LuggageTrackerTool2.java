@@ -7,6 +7,9 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +20,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import model.Luggage;
 import model.Passenger;
+import model.LuggageDAO;
 import view.MainMenu;
 import view.SeachBar;
 import view.SideBar;
@@ -145,7 +149,7 @@ public final class LuggageTrackerTool2 {
                 exit();
             }
         });
-
+        removePastDateLuggage();
         mainMenu = new MainMenu();
 
         mainWindow.getContentPane().setLayout(new BorderLayout(10, 10));
@@ -287,9 +291,31 @@ public final class LuggageTrackerTool2 {
                 System.err.println("Cannot connect luggage to person");
                 System.err.println(ex.getMessage());
             }
-        }
-        else
+        } else {
             throw new CustomException("You need to have a passenger and a luggage piece selected.");
+        }
+    }
+
+    public void removePastDateLuggage() {
+        Date date = new Date();
+        try {            
+            List<Luggage> allLuggage = LuggageDAO.readAll();
+            for (Luggage l : allLuggage)
+            {
+                if (addMonthsToDate(l.getDateAdded(), 2).before(date))
+                    LuggageDAO.delete(l.getLuggageid());
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
+    
+    public Date addMonthsToDate(Date date, int months)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, months);
+        return cal.getTime();
     }
 
     /**

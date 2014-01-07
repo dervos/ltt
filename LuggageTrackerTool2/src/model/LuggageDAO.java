@@ -49,6 +49,7 @@ public class LuggageDAO {
 
         return list;
     }
+    
 
     public static Luggage readById(int id) throws SQLException {
         Luggage tempLuggage = null;
@@ -238,7 +239,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -264,7 +265,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -290,7 +291,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -316,7 +317,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -342,7 +343,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -368,7 +369,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -394,7 +395,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -420,7 +421,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -446,7 +447,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -472,7 +473,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -498,7 +499,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -524,7 +525,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -550,7 +551,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -576,7 +577,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -602,7 +603,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -628,7 +629,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -654,7 +655,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -680,7 +681,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -706,7 +707,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -732,7 +733,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -758,7 +759,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -784,7 +785,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -810,7 +811,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -836,7 +837,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -862,7 +863,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -888,7 +889,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -914,7 +915,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -940,7 +941,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -966,7 +967,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -992,7 +993,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1018,7 +1019,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1044,7 +1045,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1070,7 +1071,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1096,7 +1097,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1122,7 +1123,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1148,7 +1149,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1174,7 +1175,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1200,7 +1201,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1226,7 +1227,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1252,7 +1253,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1278,7 +1279,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1304,7 +1305,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1330,7 +1331,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1356,7 +1357,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1382,7 +1383,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1408,7 +1409,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1434,7 +1435,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1460,7 +1461,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1486,7 +1487,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1512,7 +1513,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1540,7 +1541,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1566,7 +1567,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1592,7 +1593,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1618,7 +1619,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1644,7 +1645,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1670,7 +1671,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1696,7 +1697,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1722,7 +1723,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            ///System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1748,7 +1749,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1774,7 +1775,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1800,7 +1801,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1826,7 +1827,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1852,7 +1853,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1878,7 +1879,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -1904,7 +1905,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -1930,7 +1931,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -1956,7 +1957,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -1982,7 +1983,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2008,7 +2009,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2034,7 +2035,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2060,7 +2061,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2086,7 +2087,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2112,7 +2113,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2138,7 +2139,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2164,7 +2165,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2190,7 +2191,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2216,7 +2217,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+           //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2242,7 +2243,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2268,7 +2269,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2294,7 +2295,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2320,7 +2321,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2346,7 +2347,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2372,7 +2373,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2398,7 +2399,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2424,7 +2425,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2450,7 +2451,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2476,7 +2477,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2502,7 +2503,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2528,7 +2529,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2554,7 +2555,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2580,7 +2581,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2606,7 +2607,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2632,7 +2633,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 found = rs.getInt("found");
@@ -2658,7 +2659,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 missing = rs.getInt("missing");
@@ -2684,7 +2685,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 returned = rs.getInt("returned");
@@ -2710,7 +2711,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 destroyed = rs.getInt("destroyed");
@@ -2733,7 +2734,7 @@ public class LuggageDAO {
 
             ResultSet rs = databaseManager.doQuery(query);
 
-            System.out.println(rs);
+            //System.out.println(rs);
 
             if (rs.next()) {
                 totalLuggage = rs.getInt("LuggageId");
