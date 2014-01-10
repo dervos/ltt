@@ -10,7 +10,7 @@ import javax.swing.JTabbedPane;
  */
 public class MainMenu extends JPanel {
 
-    private JPanel passengerTab, luggageTab, accountTab, managementTab;
+    private JPanel passengerTab, luggageTab, accountTab, managementTab, managerSettingsTab, ManagerLuggageGraph;
     private view.InformationPanel informationPanel;
 
     /**
@@ -40,7 +40,13 @@ public class MainMenu extends JPanel {
 
     private void addManagerTabs() {
         managementTab = new view.BarChartMonthStatus2014();
-        jTabbedPane.add("Manager Pane", managementTab);
+        managerSettingsTab = new view.ManagerMenu();
+        ManagerLuggageGraph = new view.BarChartStatus();
+        jTabbedPane.addTab("Manager Pane", managementTab);
+//        JTabbedPane.addTab("Graph settings", managerSettingsTab);
+//        JTabbedPane.addTab("luggage graph",ManagerLuggageGraph);
+        
+        
     }
 
     private void addAllTabs() {
