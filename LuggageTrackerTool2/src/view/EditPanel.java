@@ -194,10 +194,24 @@ public class EditPanel extends javax.swing.JPanel {
         } else if (name.length() == 0) {
             throw new CustomException("First name has to be filled in.", NAME_INPUT);
         }
+        
+        if (hasDigit(name)) {
+            throw new CustomException("First name can't contain digits.", NAME_INPUT);
+        }
 
         if (insertion.length() > 8) {
             throw new CustomException("Insertion length is too long, 8 characters maximum. You've got: " + insertion.length(), SURNAME_TUSSENVOEGSEL_INPUT);
         }
+        
+        if (hasDigit(insertion)) {
+            throw new CustomException("Insertion can't contain digits.", SURNAME_TUSSENVOEGSEL_INPUT);
+        }
+        
+        if (hasDigit(surname)) {
+            throw new CustomException("Surname can't contain digits.", SURNAME_INPUT);
+        }
+        
+        
 
         if (surname.length() > 35) {
             throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
@@ -267,6 +281,17 @@ public class EditPanel extends javax.swing.JPanel {
         tempPassenger.setPassengerid(id);
 
         return tempPassenger;
+    }
+    
+    public boolean hasDigit(String text) {
+        char[] characters = text.toCharArray();
+        for (int i = 0; i < characters.length; i++) {
+            if (Character.isDigit(characters[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean hasAlpha(String text) {
