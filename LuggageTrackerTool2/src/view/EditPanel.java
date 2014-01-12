@@ -15,8 +15,11 @@ import java.util.Calendar;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import main.CustomException;
 import model.Address;
+import model.AddressDAO;
 import model.Luggage;
 import model.LuggageDAO;
 import model.Passenger;
@@ -31,6 +34,7 @@ public class EditPanel extends javax.swing.JPanel {
     private List<Luggage> connectedLuggages;
     private JFrame frame;
     private Passenger p = null;
+    private boolean addressesWereEqual = false;
 
     /**
      * Creates new form EditPanel
@@ -43,7 +47,79 @@ public class EditPanel extends javax.swing.JPanel {
         this.GENDERGROUP.add(FEMALE_BUTTON);
         this.frame = holdingFrame;
         this.connectedLuggages = new ArrayList<Luggage>();
+        setDocumentListeners();
 
+    }
+
+    public void setDocumentListeners() {
+        HOME_CITY_INPUT.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+                }
+            }
+        });
+
+        HOME_POSTAL_CODE_INPUT.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+                }
+            }
+        });
+
+        HOME_STREET_INPUT.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (EQUALCHECKBOX.isSelected()) {
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+                }
+            }
+        });
     }
 
     public void fillPassengerInformation(Passenger passenger) {
@@ -71,6 +147,14 @@ public class EditPanel extends javax.swing.JPanel {
         this.TEMP_CITY_INPUT.setText(ta.getCity());
         this.TEMP_STREET_INPUT.setText(ta.getStreetname());
         this.TEMP_POSTAL_CODE_INPUT.setText(ta.getZipcode());
+
+        if (addressesAreEqual()) {
+            this.EQUALCHECKBOX.setSelected(true);
+            this.setAddressesWereEqual(true);
+        } else {
+            this.EQUALCHECKBOX.setSelected(false);
+            this.setAddressesWereEqual(false);
+        }
     }
 
     public void fillLuggageInformation(Luggage luggage) {
@@ -154,15 +238,15 @@ public class EditPanel extends javax.swing.JPanel {
         this.HOME_PHONE_NUMBER_INPUT.setBackground(c);
         this.MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
 
-        this.HOME_COUNTRY_INPUT.setBackground(c);
         this.HOME_CITY_INPUT.setBackground(c);
         this.HOME_STREET_INPUT.setBackground(c);
         this.HOME_POSTAL_CODE_INPUT.setBackground(c);
 
-        this.TEMP_COUNTRY_INPUT.setBackground(c);
-        this.TEMP_CITY_INPUT.setBackground(c);
-        this.TEMP_STREET_INPUT.setBackground(c);
-        this.TEMP_POSTAL_CODE_INPUT.setBackground(c);
+        if (!EQUALCHECKBOX.isSelected()) {
+            TEMP_CITY_INPUT.setBackground(c);
+            TEMP_STREET_INPUT.setBackground(c);
+            TEMP_POSTAL_CODE_INPUT.setBackground(c);
+        }
     }
 
     public void setStorageLocationEditability() {
@@ -264,6 +348,10 @@ public class EditPanel extends javax.swing.JPanel {
         tempPassenger.setGender(gender);
         tempPassenger.setHomephone(homePhone);
         tempPassenger.setMobphone(mobPhone);
+        tempPassenger.setHomeaddress(p.getHomeaddress());
+        tempPassenger.setTempaddress(p.getTempaddress());
+        tempPassenger.setHomeaddressid(p.getHomeaddressid());
+        tempPassenger.setTempaddressid(p.getTempaddressid());
         tempPassenger.setPassengerid(id);
 
         return tempPassenger;
@@ -335,7 +423,7 @@ public class EditPanel extends javax.swing.JPanel {
         selectedLuggage.setLuggagestatus(status);
     }
 
-    public model.Address createHomeAddressFromForms() throws CustomException {
+    public model.Address createHomeAddressFromForms(int addressID) throws CustomException {
         String city = HOME_CITY_INPUT.getText();
         String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
         String streetName = HOME_STREET_INPUT.getText();
@@ -368,6 +456,7 @@ public class EditPanel extends javax.swing.JPanel {
         }
 
         model.Address address = new model.Address();
+        address.setAddressid(addressID);
         address.setCity(city);
         address.setCountry(country);
         address.setStreetname(streetName);
@@ -375,7 +464,7 @@ public class EditPanel extends javax.swing.JPanel {
         return address;
     }
 
-    public model.Address createTempAddressFromForms() throws CustomException {
+    public model.Address createTempAddressFromForms(int addressID) throws CustomException {
         String city = TEMP_CITY_INPUT.getText();
         String country = TEMP_COUNTRY_INPUT.getSelectedItem().toString();
         String streetName = TEMP_STREET_INPUT.getText();
@@ -410,11 +499,27 @@ public class EditPanel extends javax.swing.JPanel {
         }
 
         model.Address address = new model.Address();
+        address.setAddressid(addressID);
         address.setCity(city);
         address.setCountry(country);
         address.setStreetname(streetName);
         address.setZipcode(zipCode);
         return address;
+    }
+
+    public boolean addressesAreEqual() {
+        return ((this.HOME_COUNTRY_INPUT.getSelectedIndex() == this.TEMP_COUNTRY_INPUT.getSelectedIndex())
+                && (this.HOME_CITY_INPUT.getText().equals(this.TEMP_CITY_INPUT.getText()))
+                && (this.HOME_POSTAL_CODE_INPUT.getText().equals(this.TEMP_POSTAL_CODE_INPUT.getText()))
+                && (this.HOME_STREET_INPUT.getText().equals(this.TEMP_STREET_INPUT.getText())));
+    }
+
+    public void setAddressesWereEqual(boolean bool) {
+        this.addressesWereEqual = bool;
+    }
+
+    public boolean getAddressesWereEqual() {
+        return this.addressesWereEqual;
     }
 
     /**
@@ -477,12 +582,12 @@ public class EditPanel extends javax.swing.JPanel {
         LUGGAGE_NOT_LINKED_COPY = new javax.swing.JLabel();
         SAVE_BUTTON = new javax.swing.JButton();
         CANCEL_BUTTON = new javax.swing.JButton();
-        LUGGAGE_NOT_LINKED_COPY2 = new javax.swing.JLabel();
         STATUS_LABEL = new javax.swing.JLabel();
         STATUS_COMBOBOX = new javax.swing.JComboBox();
         LUGGAGE_LABEL_TEXTBOX = new javax.swing.JTextField();
         LUGGAGE_LABEL = new javax.swing.JLabel();
         PASSENGER_NOT_LINKED = new javax.swing.JLabel();
+        EQUALCHECKBOX = new javax.swing.JCheckBox();
 
         setName(""); // NOI18N
 
@@ -497,8 +602,25 @@ public class EditPanel extends javax.swing.JPanel {
         MALE_BUTTON.setText("Male");
 
         HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        HOME_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HOME_COUNTRY_INPUTActionPerformed(evt);
+            }
+        });
 
         TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_COUNTRY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_CITY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_STREET_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_POSTAL_CODE_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         TEMP_POSTAL_CODE.setText("Postal Code");
 
@@ -580,7 +702,7 @@ public class EditPanel extends javax.swing.JPanel {
         LUGGAGE_NOT_LINKED_LABEL.setForeground(java.awt.Color.red);
         LUGGAGE_NOT_LINKED_LABEL.setToolTipText("");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${foreground}"), LUGGAGE_NOT_LINKED_COPY, org.jdesktop.beansbinding.BeanProperty.create("foreground"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${foreground}"), LUGGAGE_NOT_LINKED_COPY, org.jdesktop.beansbinding.BeanProperty.create("foreground"));
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${text}"), LUGGAGE_NOT_LINKED_COPY, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -599,11 +721,6 @@ public class EditPanel extends javax.swing.JPanel {
             }
         });
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${foreground}"), LUGGAGE_NOT_LINKED_COPY2, org.jdesktop.beansbinding.BeanProperty.create("foreground"));
-        bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, LUGGAGE_NOT_LINKED_LABEL, org.jdesktop.beansbinding.ELProperty.create("${text}"), LUGGAGE_NOT_LINKED_COPY2, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
         STATUS_LABEL.setText("Status");
 
         STATUS_COMBOBOX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Missing", "Found", "Returned", "Destroyed" }));
@@ -613,6 +730,14 @@ public class EditPanel extends javax.swing.JPanel {
         PASSENGER_NOT_LINKED.setForeground(java.awt.Color.red);
         PASSENGER_NOT_LINKED.setToolTipText("");
 
+        EQUALCHECKBOX.setSelected(true);
+        EQUALCHECKBOX.setText("Same as Home Address");
+        EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EQUALCHECKBOXActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -621,114 +746,116 @@ public class EditPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BASIC_INFORMATION_TITLE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LUGGAGE_NOT_LINKED_LABEL))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BASIC_INFORMATION_TITLE)
+                                .addGap(18, 18, 18)
+                                .addComponent(LUGGAGE_NOT_LINKED_LABEL))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(SURNAME)
+                                            .addComponent(DATE_OF_BIRTH)
+                                            .addComponent(GENDER)
+                                            .addComponent(NAME)))
+                                    .addComponent(MOBILE_PHONE_NUMBER)
+                                    .addComponent(HOME_PHONE_NUMBER)
+                                    .addComponent(HOME_ADDRESS_TITLE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(MALE_BUTTON)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(FEMALE_BUTTON)
+                                            .addGap(75, 75, 75))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addGap(103, 103, 103)
+                                                    .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(SURNAME_INPUT))
+                                                .addComponent(NAME_INPUT))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(LUGGAGE_NOT_LINKED_COPY))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SURNAME)
-                                    .addComponent(DATE_OF_BIRTH)
-                                    .addComponent(GENDER)
-                                    .addComponent(NAME)))
-                            .addComponent(MOBILE_PHONE_NUMBER)
-                            .addComponent(HOME_PHONE_NUMBER)
-                            .addComponent(HOME_ADDRESS_TITLE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(MALE_BUTTON)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(FEMALE_BUTTON)
-                                    .addGap(75, 75, 75))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(103, 103, 103)
-                                            .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(SURNAME_INPUT))
-                                        .addComponent(NAME_INPUT))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(LUGGAGE_NOT_LINKED_COPY))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(HOME_CITY)
+                                            .addComponent(HOME_COUNTRY)
+                                            .addComponent(HOME_STREET)
+                                            .addComponent(HOME_POSTAL_CODE))
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TEMP_CITY)
+                                            .addComponent(TEMP_COUNTRY)
+                                            .addComponent(TEMP_STREET)
+                                            .addComponent(TEMP_POSTAL_CODE))
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(EQUALCHECKBOX, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(LUGGAGE_INFORMATION_LABEL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PASSENGER_NOT_LINKED)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CANCEL_BUTTON)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SAVE_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(LUGGAGE_LABEL)
+                                                    .addComponent(DESCRIPTION)
+                                                    .addComponent(STORAGE_LOCATION)
+                                                    .addComponent(ANDERS, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(STATUS_LABEL))
+                                                .addGap(33, 33, 33))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(CONNECTED_LUGGAGES_LABEL)
+                                                .addGap(18, 18, 18)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LUGGAGE_LABEL_TEXTBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CONNECTED_LUGGAGES_CBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TEMPORARY_ADDRESS_TITLE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LUGGAGE_NOT_LINKED_COPY2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(HOME_CITY)
-                                    .addComponent(HOME_COUNTRY)
-                                    .addComponent(HOME_STREET)
-                                    .addComponent(HOME_POSTAL_CODE))
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEMP_CITY)
-                                    .addComponent(TEMP_COUNTRY)
-                                    .addComponent(TEMP_STREET)
-                                    .addComponent(TEMP_POSTAL_CODE))
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(LUGGAGE_INFORMATION_LABEL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PASSENGER_NOT_LINKED)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CANCEL_BUTTON)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SAVE_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(LUGGAGE_LABEL)
-                                            .addComponent(DESCRIPTION)
-                                            .addComponent(STORAGE_LOCATION)
-                                            .addComponent(ANDERS, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(STATUS_LABEL))
-                                        .addGap(33, 33, 33))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(CONNECTED_LUGGAGES_LABEL)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LUGGAGE_LABEL_TEXTBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CONNECTED_LUGGAGES_CBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(STORAGE_LOCATION_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ANDERS_INPUT_FRAME, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -816,7 +943,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TEMPORARY_ADDRESS_TITLE)
-                            .addComponent(LUGGAGE_NOT_LINKED_COPY2))
+                            .addComponent(EQUALCHECKBOX))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -861,6 +988,8 @@ public class EditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CANCEL_BUTTONActionPerformed
 
     private void SAVE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SAVE_BUTTONActionPerformed
+        boolean delete = false;
+        int tempaddr = 0;
         int result = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to save these changes?", "Question",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -869,25 +998,64 @@ public class EditPanel extends javax.swing.JPanel {
             try {
                 if (this.p != null) {
                     p = createPassenger(p.getPassengerid());
-                    Address homeAddress = createHomeAddressFromForms();
-                    Address tempAddress = createTempAddressFromForms();
-                    homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
-                    tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
+                    Address homeAddress = createHomeAddressFromForms(p.getHomeaddressid());
+                    Address tempAddress = createTempAddressFromForms(p.getTempaddressid());
+
                     p.setHomeaddress(homeAddress);
                     p.setTempaddress(tempAddress);
+                    p.setHomeaddressid(homeAddress.getAddressid());
+                    p.setTempaddressid(tempAddress.getAddressid());
                 }
                 if (connectedLuggages != null && connectedLuggages.size() > 0) {
                     updateSelectedLuggage();
                 }
 
                 if (this.p != null) {
+                    AddressDAO.update(p.getHomeaddress());
+                    
+                    if (this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected())
+                    {
+                        if (addressesAreEqual())
+                        {
+                            p.setTempaddressid(p.getHomeaddress().getAddressid());
+                            p.setTempaddress(p.getHomeaddress());
+                            //No need to update the address again as its the same ID as home ID
+                        }
+                        else
+                            p.setTempaddressid(AddressDAO.create(p.getTempaddress()).get(1));
+                    }
+                    else if (!this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected())
+                    {
+                        if (addressesAreEqual())
+                        {
+                            p.setTempaddressid(p.getHomeaddress().getAddressid());
+                            p.setTempaddress(p.getHomeaddress());
+                        }
+                        else
+                            AddressDAO.update(p.getTempaddress());
+                    }
+                    else if (!this.addressesWereEqual && this.EQUALCHECKBOX.isSelected())
+                    {
+                        tempaddr = p.getTempaddressid();
+                        p.setTempaddressid(p.getHomeaddress().getAddressid());
+                        p.setTempaddress(p.getHomeaddress());
+                        delete = true;
+                    }
+                    //else if (this.addressesWereEqual && this.EQUALCHECKBOX.isSelected())
+                        // Do nothing, temp already is == to home, no changes to temp needed.                    
                     PassengerDAO.update(p);
+                    if (delete)
+                        AddressDAO.delete(tempaddr);
                 }
                 if (connectedLuggages != null && connectedLuggages.size() > 0) {
                     for (Luggage l : connectedLuggages) {
                         LuggageDAO.update(l);
                     }
                 }
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getInformationPanel().clearLuggageLabels();
+                main.LuggageTrackerTool2.getInstance().getMainMenu().getInformationPanel().clearPassengerLabels();
+                main.LuggageTrackerTool2.getInstance().setSelectedLuggage(null);
+                main.LuggageTrackerTool2.getInstance().setSelectedPassenger(null);
                 main.LuggageTrackerTool2.getInstance().getMainMenu().getLuggageTab().refresh();
                 main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
                 this.frame.dispose();
@@ -901,8 +1069,7 @@ public class EditPanel extends javax.swing.JPanel {
                 System.err.println("Couldn't save edits.");
                 System.err.println(e.getMessage());
             }
-        }
-        else {
+        } else {
             this.setPassengerColors(Color.WHITE);
         }
     }//GEN-LAST:event_SAVE_BUTTONActionPerformed
@@ -917,6 +1084,21 @@ public class EditPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_CONNECTED_LUGGAGES_CBOXMouseClicked
+
+    private void HOME_COUNTRY_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HOME_COUNTRY_INPUTActionPerformed
+        if (this.EQUALCHECKBOX.isSelected()) {
+            this.TEMP_COUNTRY_INPUT.setSelectedIndex(this.HOME_COUNTRY_INPUT.getSelectedIndex());
+        }
+    }//GEN-LAST:event_HOME_COUNTRY_INPUTActionPerformed
+
+    private void EQUALCHECKBOXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EQUALCHECKBOXActionPerformed
+        if (EQUALCHECKBOX.isSelected()) {
+            TEMP_COUNTRY_INPUT.setSelectedIndex(HOME_COUNTRY_INPUT.getSelectedIndex());
+            TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+            TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+            TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+        }
+    }//GEN-LAST:event_EQUALCHECKBOXActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -933,6 +1115,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel DESCRIPTION;
     private javax.swing.JTextArea DESCRIPTION_INPUT1;
     private javax.swing.JScrollPane DESCRIPTION_INPUT_FRAME;
+    private javax.swing.JCheckBox EQUALCHECKBOX;
     private javax.swing.JRadioButton FEMALE_BUTTON;
     private javax.swing.JLabel GENDER;
     private javax.swing.ButtonGroup GENDERGROUP;
@@ -951,7 +1134,6 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel LUGGAGE_LABEL;
     private javax.swing.JTextField LUGGAGE_LABEL_TEXTBOX;
     private javax.swing.JLabel LUGGAGE_NOT_LINKED_COPY;
-    private javax.swing.JLabel LUGGAGE_NOT_LINKED_COPY2;
     private javax.swing.JLabel LUGGAGE_NOT_LINKED_LABEL;
     private javax.swing.JRadioButton MALE_BUTTON;
     private javax.swing.JLabel MOBILE_PHONE_NUMBER;

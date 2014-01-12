@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import utility.PDFGenerator;
 
 /**
@@ -26,7 +28,82 @@ public class RegistrationPassenger extends javax.swing.JPanel {
      */
     public RegistrationPassenger() {
         initComponents();
-        //setBounds(new Rectangle(0,0,0,0));
+        setDocumentListeners();
+    }
+    
+    public void setDocumentListeners()
+    {
+        HOME_CITY_INPUT.getDocument().addDocumentListener(new DocumentListener() 
+        {
+            @Override
+            public void changedUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+            }
+            
+            @Override
+            public void insertUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+            }
+        });
+        
+        HOME_POSTAL_CODE_INPUT.getDocument().addDocumentListener(new DocumentListener() 
+        {
+            @Override
+            public void changedUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+            }
+            
+            @Override
+            public void insertUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+            }
+        });
+        
+        HOME_STREET_INPUT.getDocument().addDocumentListener(new DocumentListener() 
+        {
+            @Override
+            public void changedUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+            }
+            
+            @Override
+            public void insertUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e)
+            {
+                if (EQUALCHECKBOX.isSelected())
+                    TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+            }
+        });
     }
 
     public model.Passenger createPassenger() throws CustomException {
@@ -243,9 +320,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         HOME_STREET_INPUT.setBackground(c);
         HOME_POSTAL_CODE_INPUT.setBackground(c);
 
-        TEMP_CITY_INPUT.setBackground(c);
-        TEMP_STREET_INPUT.setBackground(c);
-        TEMP_POSTAL_CODE_INPUT.setBackground(c);
+        if (!EQUALCHECKBOX.isSelected()) {
+            TEMP_CITY_INPUT.setBackground(c);
+            TEMP_STREET_INPUT.setBackground(c);
+            TEMP_POSTAL_CODE_INPUT.setBackground(c);
+        }
     }
 
     private int tryParseInt(String text) {
@@ -301,6 +380,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jToggleButton1 = new javax.swing.JToggleButton();
         BASIC_INFORMATION_TITLE = new javax.swing.JLabel();
@@ -342,6 +422,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         PRINT = new javax.swing.JButton();
         REGISTER = new javax.swing.JButton();
         DATE_OF_BIRTH_INPUT = new javax.swing.JFormattedTextField();
+        EQUALCHECKBOX = new javax.swing.JCheckBox();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -392,6 +473,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         HOME_COUNTRY.setText("Country");
 
         HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        HOME_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HOME_COUNTRY_INPUTActionPerformed(evt);
+            }
+        });
 
         HOME_CITY.setText("City");
 
@@ -406,11 +492,23 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_COUNTRY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         TEMP_CITY.setText("City");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_CITY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         TEMP_STREET.setText("Street");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_STREET_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         TEMP_POSTAL_CODE.setText("Postal Code");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_POSTAL_CODE_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         ADDITIONAL_OPTIONS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         ADDITIONAL_OPTIONS_TITLE.setText("Additional Options");
@@ -431,6 +529,14 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         });
 
         DATE_OF_BIRTH_INPUT.setColumns(3);
+
+        EQUALCHECKBOX.setSelected(true);
+        EQUALCHECKBOX.setText("Same as Home Address");
+        EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EQUALCHECKBOXActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -470,40 +576,48 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                             .addComponent(HOME_POSTAL_CODE))))
                                 .addGap(43, 43, 43)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PAIR_PASSENGER_LUGGAGE)
-                            .addComponent(REGISTER)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(MALE_BUTTON)
-                                .addGap(18, 18, 18)
-                                .addComponent(FEMALE_BUTTON))))
-                    .addComponent(ADDITIONAL_OPTIONS_TITLE)
-                    .addComponent(BASIC_INFORMATION_TITLE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PAIR_PASSENGER_LUGGAGE)
+                                    .addComponent(REGISTER)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(MALE_BUTTON)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(FEMALE_BUTTON))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(EQUALCHECKBOX)))
+                                .addGap(119, 119, 119))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(HOME_ADDRESS_TITLE)
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ADDITIONAL_OPTIONS_TITLE)
+                            .addComponent(BASIC_INFORMATION_TITLE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(NAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                                .addComponent(HOME_ADDRESS_TITLE)
+                                .addGap(94, 94, 94)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(NAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HOME_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HOME_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,7 +671,9 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     .addComponent(HOME_POSTAL_CODE)
                     .addComponent(HOME_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TEMPORARY_ADDRESS_TITLE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TEMPORARY_ADDRESS_TITLE)
+                    .addComponent(EQUALCHECKBOX))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TEMP_COUNTRY)
@@ -586,6 +702,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     .addComponent(REGISTER))
                 .addContainerGap())
         );
+
+        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void MALE_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MALE_BUTTONActionPerformed
@@ -612,10 +730,14 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
             if (result == JOptionPane.YES_OPTION) {
                 homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
-                tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
+                if (!EQUALCHECKBOX.isSelected())
+                    tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
 
                 passenger.setHomeaddress(homeAddress);
-                passenger.setTempaddress(tempAddress);
+                if (EQUALCHECKBOX.isSelected())
+                    passenger.setTempaddress(homeAddress);
+                else
+                    passenger.setTempaddress(tempAddress);
 
                 model.PassengerDAO.create(passenger);
                 main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
@@ -648,12 +770,30 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             MALE_BUTTON.setSelected(true);
         }
     }//GEN-LAST:event_FEMALE_BUTTONActionPerformed
+
+    private void EQUALCHECKBOXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EQUALCHECKBOXActionPerformed
+        if (EQUALCHECKBOX.isSelected())
+        {
+            TEMP_COUNTRY_INPUT.setSelectedIndex(HOME_COUNTRY_INPUT.getSelectedIndex());
+            TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
+            TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
+            TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
+        }
+    }//GEN-LAST:event_EQUALCHECKBOXActionPerformed
+
+    private void HOME_COUNTRY_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HOME_COUNTRY_INPUTActionPerformed
+        if (EQUALCHECKBOX.isSelected()) {
+            TEMP_COUNTRY_INPUT.setSelectedIndex(HOME_COUNTRY_INPUT.getSelectedIndex());
+        }
+    }//GEN-LAST:event_HOME_COUNTRY_INPUTActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;
     private javax.swing.JLabel DATE_OF_BIRTH;
     private javax.swing.JFormattedTextField DATE_OF_BIRTH_INPUT;
     private javax.swing.JLabel DD_MM_YYYY;
+    private javax.swing.JCheckBox EQUALCHECKBOX;
     private javax.swing.JRadioButton FEMALE_BUTTON;
     private javax.swing.JLabel GENDER;
     private javax.swing.JLabel HOME_ADDRESS_TITLE;
@@ -689,5 +829,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     private javax.swing.JLabel TEMP_STREET;
     private javax.swing.JTextField TEMP_STREET_INPUT;
     private javax.swing.JToggleButton jToggleButton1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

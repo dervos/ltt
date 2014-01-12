@@ -358,7 +358,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 } else {
                     ep.setLuggageEditability(false);
                 }
-                editFrame.setSize(800, 600);
+                editFrame.setSize(725, 480);
 //                editFrame.pack();
                 editFrame.validate();
                 editFrame.setResizable(false);
@@ -397,7 +397,7 @@ public class InformationPanel extends javax.swing.JPanel {
                     if (haid != 0) {
                         model.AddressDAO.delete(haid);
                     }
-                    if (taid != 0) {
+                    if (taid != 0 && (taid != haid)) {
                         model.AddressDAO.delete(taid);
                     }
                     instance.getMainMenu().getPassengerTab().refresh();
@@ -422,7 +422,7 @@ public class InformationPanel extends javax.swing.JPanel {
 
                 JFrame editFrame = new JFrame("Edit");
                 EditPanel ep = new EditPanel(editFrame);
-                editFrame.setSize(800, 600);
+                editFrame.setSize(725, 480);
                 editFrame.setResizable(false);
                 ep.fillLuggageInformation(selectedLuggage);
                 if (selectedLuggage.getPassengerid() != 0) {
