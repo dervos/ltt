@@ -4,17 +4,56 @@
  */
 package view;
 
+import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author gebak_000
  */
-public class ManagerMenu extends javax.swing.JPanel {
+public class ManagerMenu extends JPanel {
 
     /**
      * Creates new form ManagerMenu
      */
     public ManagerMenu() {
         initComponents();
+        dateFormat1();
+        dateFormat2();
+    }
+
+    public JRadioButton getL_DESTROYED_CHECK() {
+        return L_DESTROYED_CHECK;
+    }
+
+    public JRadioButton getL_FOUND_CHECK() {
+        return L_FOUND_CHECK;
+    }
+
+    public JRadioButton getL_MISSING_CHECK() {
+        return L_MISSING_CHECK;
+    }
+
+    public JRadioButton getL_RETURNED_CHECK() {
+        return L_RETURNED_CHECK;
+    }
+
+    public JRadioButton getL_TOTAL_CHECK() {
+        return L_TOTAL_CHECK;
+    }
+
+    public JRadioButton getP_TOTAL_CHECK() {
+        return P_TOTAL_CHECK;
+    }
+
+    public JRadioButton getP_WITHOUT_LUGGAGE_CHECK() {
+        return P_WITHOUT_LUGGAGE_CHECK;
+    }
+
+    public JRadioButton getP_WITH_LUGGAGE_CHECK() {
+        return P_WITH_LUGGAGE_CHECK;
     }
 
     /**
@@ -26,17 +65,188 @@ public class ManagerMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TITLE = new javax.swing.JLabel();
+        FIRST_DATE_LABEL = new javax.swing.JLabel();
+        LAST_DATE_LABEL = new javax.swing.JLabel();
+        FIRST_DATE_INPUT = new javax.swing.JFormattedTextField();
+        LAST_DATE_INPUT = new javax.swing.JFormattedTextField();
+        FIRST_DATE_FORMAT = new javax.swing.JLabel();
+        LAST_DATE_FORMAT = new javax.swing.JLabel();
+        TEXT_LABEL = new javax.swing.JLabel();
+        L_FOUND_CHECK = new javax.swing.JRadioButton();
+        L_MISSING_CHECK = new javax.swing.JRadioButton();
+        L_RETURNED_CHECK = new javax.swing.JRadioButton();
+        L_DESTROYED_CHECK = new javax.swing.JRadioButton();
+        L_TOTAL_CHECK = new javax.swing.JRadioButton();
+        LUGGAGE_LABEL = new javax.swing.JLabel();
+        PASSENGERS_LABEL = new javax.swing.JLabel();
+        P_WITH_LUGGAGE_CHECK = new javax.swing.JRadioButton();
+        P_WITHOUT_LUGGAGE_CHECK = new javax.swing.JRadioButton();
+        P_TOTAL_CHECK = new javax.swing.JRadioButton();
+        CONFIRM_BUTTON = new javax.swing.JButton();
+
+        TITLE.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        TITLE.setText("Graph Settings");
+
+        FIRST_DATE_LABEL.setText("Firste date:");
+
+        LAST_DATE_LABEL.setText("Last date:");
+
+        FIRST_DATE_FORMAT.setText("(YYYY-MM-DD)");
+
+        LAST_DATE_FORMAT.setText("(YYYY-MM-DD)");
+
+        TEXT_LABEL.setText("What you want to see in the graph:");
+
+        L_FOUND_CHECK.setText("Found");
+
+        L_MISSING_CHECK.setText("Missing");
+
+        L_RETURNED_CHECK.setText("Returned");
+
+        L_DESTROYED_CHECK.setText("Destroyed");
+
+        L_TOTAL_CHECK.setText("Total");
+        L_TOTAL_CHECK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L_TOTAL_CHECKActionPerformed(evt);
+            }
+        });
+
+        LUGGAGE_LABEL.setText("Luggage:");
+
+        PASSENGERS_LABEL.setText("Passangers:");
+
+        P_WITH_LUGGAGE_CHECK.setText("With luggage");
+
+        P_WITHOUT_LUGGAGE_CHECK.setText("without luggage");
+
+        P_TOTAL_CHECK.setText("Total");
+
+        CONFIRM_BUTTON.setText("Confirm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TITLE)
+                    .addComponent(TEXT_LABEL)
+                    .addComponent(L_TOTAL_CHECK)
+                    .addComponent(L_DESTROYED_CHECK)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(LUGGAGE_LABEL))
+                            .addComponent(L_FOUND_CHECK)
+                            .addComponent(L_MISSING_CHECK)
+                            .addComponent(L_RETURNED_CHECK)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(FIRST_DATE_LABEL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(FIRST_DATE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LAST_DATE_LABEL)
+                                .addGap(18, 18, 18)
+                                .addComponent(LAST_DATE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(P_TOTAL_CHECK)
+                            .addComponent(P_WITHOUT_LUGGAGE_CHECK)
+                            .addComponent(P_WITH_LUGGAGE_CHECK)
+                            .addComponent(PASSENGERS_LABEL)
+                            .addComponent(FIRST_DATE_FORMAT, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(LAST_DATE_FORMAT, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CONFIRM_BUTTON)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TITLE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FIRST_DATE_LABEL)
+                    .addComponent(FIRST_DATE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FIRST_DATE_FORMAT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LAST_DATE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LAST_DATE_FORMAT)
+                    .addComponent(LAST_DATE_LABEL))
+                .addGap(18, 18, 18)
+                .addComponent(TEXT_LABEL)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LUGGAGE_LABEL)
+                    .addComponent(PASSENGERS_LABEL))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_FOUND_CHECK)
+                    .addComponent(P_WITH_LUGGAGE_CHECK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_MISSING_CHECK)
+                    .addComponent(P_WITHOUT_LUGGAGE_CHECK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_RETURNED_CHECK)
+                    .addComponent(P_TOTAL_CHECK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(L_DESTROYED_CHECK)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(L_TOTAL_CHECK)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CONFIRM_BUTTON)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void L_TOTAL_CHECKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L_TOTAL_CHECKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L_TOTAL_CHECKActionPerformed
+    
+    public JFormattedTextField getFIRST_DATE_INPUT() {
+        return FIRST_DATE_INPUT;
+    }
+    
+    public void dateFormat1 (){
+        main.LuggageTrackerTool2.getInstance().createJFTFMask(getFIRST_DATE_INPUT(), "yyyy-MM-dd", "####-##-##");
+    }
+    
+    public JFormattedTextField getLAST_DATE_INPUT() {
+        return LAST_DATE_INPUT;
+    }
+
+    public void dateFormat2 () {
+        main.LuggageTrackerTool2.getInstance().createJFTFMask(getLAST_DATE_INPUT(), "yyyy-MM-dd", "####-##-##");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CONFIRM_BUTTON;
+    private javax.swing.JLabel FIRST_DATE_FORMAT;
+    private javax.swing.JFormattedTextField FIRST_DATE_INPUT;
+    private javax.swing.JLabel FIRST_DATE_LABEL;
+    private javax.swing.JLabel LAST_DATE_FORMAT;
+    private javax.swing.JFormattedTextField LAST_DATE_INPUT;
+    private javax.swing.JLabel LAST_DATE_LABEL;
+    private javax.swing.JLabel LUGGAGE_LABEL;
+    private javax.swing.JRadioButton L_DESTROYED_CHECK;
+    private javax.swing.JRadioButton L_FOUND_CHECK;
+    private javax.swing.JRadioButton L_MISSING_CHECK;
+    private javax.swing.JRadioButton L_RETURNED_CHECK;
+    private javax.swing.JRadioButton L_TOTAL_CHECK;
+    private javax.swing.JLabel PASSENGERS_LABEL;
+    private javax.swing.JRadioButton P_TOTAL_CHECK;
+    private javax.swing.JRadioButton P_WITHOUT_LUGGAGE_CHECK;
+    private javax.swing.JRadioButton P_WITH_LUGGAGE_CHECK;
+    private javax.swing.JLabel TEXT_LABEL;
+    private javax.swing.JLabel TITLE;
     // End of variables declaration//GEN-END:variables
 }
