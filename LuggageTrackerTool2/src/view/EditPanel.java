@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -48,9 +49,26 @@ public class EditPanel extends javax.swing.JPanel {
         this.frame = holdingFrame;
         this.connectedLuggages = new ArrayList<Luggage>();
         setDocumentListeners();
+        fillYearOfBirth();
 
     }
 
+    /**
+     * Fills YEAROFBIRTH combobox with years.
+     */
+    public void fillYearOfBirth() {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        this.YEAROFBIRTH.removeAllItems();
+        this.YEAROFBIRTH.addItem("YYYY");
+        for (int i = year; i >= year - 150; i--) {
+            this.YEAROFBIRTH.addItem(i);
+        }
+    }
+    
+    /**
+     * Sets document listeners, so text can be copied from home address fields
+     * to temp address fields if needed.
+     */
     public void setDocumentListeners() {
         HOME_CITY_INPUT.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -122,14 +140,22 @@ public class EditPanel extends javax.swing.JPanel {
         });
     }
 
+    /**
+     * Fills the passenger's information in EditPanel
+     * @param passenger 
+     */
     public void fillPassengerInformation(Passenger passenger) {
         p = passenger;
+        Calendar date = Calendar.getInstance();
+        date.setTime(p.getDob());
         Address ha = passenger.getHomeaddress();
         Address ta = passenger.getTempaddress();
         this.NAME_INPUT.setText(passenger.getName());
         this.SURNAME_TUSSENVOEGSEL_INPUT.setText(passenger.getInsertion());
         this.SURNAME_INPUT.setText(passenger.getSurname());
-        this.DATE_OF_BIRTH_INPUT.setText(passenger.getDob().toString());
+        this.MONTHOFBIRTH.setSelectedIndex(date.get(Calendar.MONTH) + 1);
+        this.YEAROFBIRTH.setSelectedItem(date.get(Calendar.YEAR));
+        this.DAYOFBIRTH.setSelectedItem(date.get(Calendar.DAY_OF_MONTH));
         if (passenger.getGender().equals("m")) {
             this.MALE_BUTTON.setSelected(true);
         } else {
@@ -157,6 +183,10 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Fills luggage information in edit panel.
+     * @param luggage 
+     */
     public void fillLuggageInformation(Luggage luggage) {
         this.connectedLuggages.add(luggage);
         this.LUGGAGE_LABEL_TEXTBOX.setText(luggage.getLuggageLabel());
@@ -168,6 +198,10 @@ public class EditPanel extends javax.swing.JPanel {
         this.setStorageLocationEditability();
     }
 
+    /**
+     * Fills connectedLuggages combobox in edit panel.
+     * @param conLuggages 
+     */
     public void populateComboBox(List<Luggage> conLuggages) {
         this.connectedLuggages = conLuggages;
         conLuggages = null;
@@ -179,6 +213,10 @@ public class EditPanel extends javax.swing.JPanel {
         setLuggageEditability(true);
     }
 
+    /**
+     * Enables or disables luggage fields.
+     * @param bool 
+     */
     public void setLuggageEditability(Boolean bool) {
         Color c = bool ? Color.WHITE : Color.LIGHT_GRAY;
         this.LUGGAGE_LABEL_TEXTBOX.setEnabled(bool);
@@ -188,24 +226,20 @@ public class EditPanel extends javax.swing.JPanel {
         this.STATUS_COMBOBOX.setEnabled(bool);
         this.STORAGE_LOCATION_INPUT.setEnabled(bool);
         this.DESCRIPTION_INPUT1.setBackground(c);
-        if (bool) {
-            //this.PASSENGER_NOT_LINKED.setText("");
-        } else {
-            //this.PASSENGER_NOT_LINKED.setText("No luggage connected to this passenger.");
-        }
     }
 
-    /*public void setLuggageColors(Color c) {
-     this.CONNECTED_LUGGAGES_CBOX.setBackground(c);
-     this.DESCRIPTION_INPUT1.setBackground(c);
-     this.STATUS_COMBOBOX.setBackground(c);
-     }*/
+    /**
+     * enables or disables passenger fields.
+     * @param bool 
+     */
     public void setPassengerEditability(Boolean bool) {
         //Color c = bool ? Color.WHITE : Color.LIGHT_GRAY;
         this.NAME_INPUT.setEnabled(bool);
         this.SURNAME_INPUT.setEnabled(bool);
         this.SURNAME_TUSSENVOEGSEL_INPUT.setEnabled(bool);
-        this.DATE_OF_BIRTH_INPUT.setEnabled(bool);
+        this.DAYOFBIRTH.setEnabled(bool);
+        this.YEAROFBIRTH.setEnabled(bool);
+        this.MONTHOFBIRTH.setEnabled(bool);
         this.MALE_BUTTON.setEnabled(bool);
         this.FEMALE_BUTTON.setEnabled(bool);
         this.HOME_PHONE_NUMBER_INPUT.setEnabled(bool);
@@ -229,10 +263,14 @@ public class EditPanel extends javax.swing.JPanel {
 
     }
 
+    /**
+     * sets passenger background color.
+     * @param c 
+     */
     public void setPassengerColors(Color c) {
         this.NAME_INPUT.setBackground(c);
         this.SURNAME_INPUT.setBackground(c);
-        this.DATE_OF_BIRTH_INPUT.setBackground(c);
+        //this.DATE_OF_BIRTH_INPUT.setBackground(c);
         this.MALE_BUTTON.setBackground(c);
         this.FEMALE_BUTTON.setBackground(c);
         this.HOME_PHONE_NUMBER_INPUT.setBackground(c);
@@ -249,6 +287,9 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Enables or disables field for storage location
+     */
     public void setStorageLocationEditability() {
         if (STORAGE_LOCATION_INPUT.getSelectedItem().toString().equals("Other")) {
             ANDERS_INPUT.setEnabled(true);
@@ -259,19 +300,20 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Creates a passenger model out of the info in the edit panel.
+     * @param id
+     * @return
+     * @throws CustomException 
+     */
     public model.Passenger createPassenger(int id) throws CustomException {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
         String name = NAME_INPUT.getText();
         String insertion = SURNAME_TUSSENVOEGSEL_INPUT.getText();
         String surname = SURNAME_INPUT.getText();
         java.util.Date dob;
-        String strDob = DATE_OF_BIRTH_INPUT.getText();
         String gender = MALE_BUTTON.isSelected() ? "m" : "f";
         String homePhone = HOME_PHONE_NUMBER_INPUT.getText();
         String mobPhone = MOBILE_PHONE_NUMBER_INPUT.getText();
-
-        String[] dateContent = strDob.split("-");
 
         if (name.length() > 20) {
             throw new CustomException("First name length is too long, 20 characters maximum. You've got: " + name.length(), NAME_INPUT);
@@ -295,39 +337,17 @@ public class EditPanel extends javax.swing.JPanel {
             throw new CustomException("Surname can't contain digits.", SURNAME_INPUT);
         }
         
-        
+        if (this.DAYOFBIRTH.getSelectedIndex() == 0)
+            throw new CustomException("Please select a valid month for the passenger's day of birth.");
+        if (this.DAYOFBIRTH.getSelectedIndex() == 0)
+            throw new CustomException("Please select a valid day for the passenger's day of birth.");
+        if (this.YEAROFBIRTH.getSelectedIndex() == 0)
+            throw new CustomException("Please select a valid year for the passenger's day of birth.");
 
         if (surname.length() > 35) {
             throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
         } else if (surname.length() == 0) {
             throw new CustomException("Surname has to be filled in.", SURNAME_INPUT);
-        }
-
-        if (!strDob.contains("-") || dateContent.length != 3) {
-            throw new CustomException("Date of birth is not in the correct format, please use: yyyy-mm-dd as format.", DATE_OF_BIRTH_INPUT);
-        }
-
-        for (int i = 0; i < dateContent.length; i++) {
-            int result = tryParseInt(dateContent[i]);
-            if (result == -1) {
-                switch (i) {
-                    case 0:
-                        if ((result < 1850 || result >= (Calendar.getInstance().get(Calendar.YEAR)) + 1)) {
-                            throw new CustomException("Date of birth year is incorrect.", DATE_OF_BIRTH_INPUT);
-                        }
-                        break;
-                    case 1:
-                        if (result < 1 || result > 12) {
-                            throw new CustomException("Date of birth month is incorrect.", DATE_OF_BIRTH_INPUT);
-                        }
-                        break;
-                    case 2:
-                        if (result < 1 || result > 31) {
-                            throw new CustomException("Date of birth day is incorrect.", DATE_OF_BIRTH_INPUT);
-                        }
-                        break;
-                }
-            }
         }
 
         if (homePhone.length() == 0 && mobPhone.length() == 0) {
@@ -347,12 +367,14 @@ public class EditPanel extends javax.swing.JPanel {
             throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
         }
 
-        try {
-            dob = df.parse(DATE_OF_BIRTH_INPUT.getText());
-        } catch (ParseException e) {
-            throw new CustomException("Date of Birth format is incorrect", DATE_OF_BIRTH_INPUT);
-        }
-
+        int year = Integer.parseInt(YEAROFBIRTH.getSelectedItem().toString());
+        int month = Integer.parseInt(MONTHOFBIRTH.getSelectedItem().toString());
+        int day = Integer.parseInt(DAYOFBIRTH.getSelectedItem().toString());
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.set(year, month - 1, day);
+        
+        dob = cal.getTime();
+        
         model.Passenger tempPassenger = new model.Passenger();
 
         tempPassenger.setName(name);
@@ -371,6 +393,11 @@ public class EditPanel extends javax.swing.JPanel {
         return tempPassenger;
     }
     
+    /**
+     * Checks if string contains digit
+     * @param text
+     * @return 
+     */
     public boolean hasDigit(String text) {
         char[] characters = text.toCharArray();
         for (int i = 0; i < characters.length; i++) {
@@ -382,6 +409,11 @@ public class EditPanel extends javax.swing.JPanel {
         return false;
     }
 
+    /**
+     * checks if string anything else besides a digit.
+     * @param text
+     * @return 
+     */
     public boolean hasAlpha(String text) {
         char[] characters = text.toCharArray();
         for (int i = 0; i < characters.length; i++) {
@@ -395,6 +427,11 @@ public class EditPanel extends javax.swing.JPanel {
         return false;
     }
 
+    /**
+     * safely convert string to int
+     * @param text
+     * @return 
+     */
     private int tryParseInt(String text) {
         int result = -1;
         try //Try catch to prevent the application from crashing when the inserted text isnt a number
@@ -407,6 +444,10 @@ public class EditPanel extends javax.swing.JPanel {
         return result;
     }
 
+    /**
+     * Updates the information on edit panel into the array of luggages.
+     * @throws CustomException 
+     */
     public void updateSelectedLuggage() throws CustomException {
         Luggage selectedLuggage = this.connectedLuggages.get(this.CONNECTED_LUGGAGES_CBOX.getSelectedIndex());
 
@@ -448,6 +489,12 @@ public class EditPanel extends javax.swing.JPanel {
         selectedLuggage.setLuggagestatus(status);
     }
 
+    /**
+     * 
+     * @param addressID
+     * @return
+     * @throws CustomException 
+     */
     public model.Address createHomeAddressFromForms(int addressID) throws CustomException {
         String city = HOME_CITY_INPUT.getText();
         String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
@@ -489,6 +536,12 @@ public class EditPanel extends javax.swing.JPanel {
         return address;
     }
 
+    /**
+     * 
+     * @param addressID
+     * @return
+     * @throws CustomException 
+     */
     public model.Address createTempAddressFromForms(int addressID) throws CustomException {
         String city = TEMP_CITY_INPUT.getText();
         String country = TEMP_COUNTRY_INPUT.getSelectedItem().toString();
@@ -532,6 +585,10 @@ public class EditPanel extends javax.swing.JPanel {
         return address;
     }
 
+    /**
+     * Compares if home & temp address are equal.
+     * @return 
+     */
     public boolean addressesAreEqual() {
         return ((this.HOME_COUNTRY_INPUT.getSelectedIndex() == this.TEMP_COUNTRY_INPUT.getSelectedIndex())
                 && (this.HOME_CITY_INPUT.getText().equals(this.TEMP_CITY_INPUT.getText()))
@@ -539,10 +596,18 @@ public class EditPanel extends javax.swing.JPanel {
                 && (this.HOME_STREET_INPUT.getText().equals(this.TEMP_STREET_INPUT.getText())));
     }
 
+    /**
+     * 
+     * @param bool 
+     */
     public void setAddressesWereEqual(boolean bool) {
         this.addressesWereEqual = bool;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean getAddressesWereEqual() {
         return this.addressesWereEqual;
     }
@@ -561,8 +626,6 @@ public class EditPanel extends javax.swing.JPanel {
         NAME_INPUT = new javax.swing.JTextField();
         SURNAME_TUSSENVOEGSEL_INPUT = new javax.swing.JTextField();
         SURNAME_INPUT = new javax.swing.JTextField();
-        DATE_OF_BIRTH_INPUT = new javax.swing.JFormattedTextField();
-        DD_MM_YYYY = new javax.swing.JLabel();
         FEMALE_BUTTON = new javax.swing.JRadioButton();
         MALE_BUTTON = new javax.swing.JRadioButton();
         HOME_PHONE_NUMBER_INPUT = new javax.swing.JTextField();
@@ -613,13 +676,11 @@ public class EditPanel extends javax.swing.JPanel {
         LUGGAGE_LABEL = new javax.swing.JLabel();
         PASSENGER_NOT_LINKED = new javax.swing.JLabel();
         EQUALCHECKBOX = new javax.swing.JCheckBox();
+        MONTHOFBIRTH = new javax.swing.JComboBox();
+        DAYOFBIRTH = new javax.swing.JComboBox();
+        YEAROFBIRTH = new javax.swing.JComboBox();
 
         setName(""); // NOI18N
-
-        DATE_OF_BIRTH_INPUT.setColumns(3);
-
-        DD_MM_YYYY.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
-        DD_MM_YYYY.setText("(YYYY-MM-DD)");
 
         FEMALE_BUTTON.setText("Female");
 
@@ -763,6 +824,22 @@ public class EditPanel extends javax.swing.JPanel {
             }
         });
 
+        MONTHOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MM", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        MONTHOFBIRTH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MONTHOFBIRTHActionPerformed(evt);
+            }
+        });
+
+        DAYOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DD" }));
+
+        YEAROFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "YYYY" }));
+        YEAROFBIRTH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YEAROFBIRTHActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -789,24 +866,21 @@ public class EditPanel extends javax.swing.JPanel {
                                     .addComponent(HOME_PHONE_NUMBER)
                                     .addComponent(HOME_ADDRESS_TITLE))
                                 .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(MALE_BUTTON)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(FEMALE_BUTTON)
-                                            .addGap(75, 75, 75))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addGap(103, 103, 103)
-                                                    .addComponent(DD_MM_YYYY, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(SURNAME_INPUT))
-                                                .addComponent(NAME_INPUT))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(MONTHOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(DAYOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(YEAROFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(MALE_BUTTON)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(FEMALE_BUTTON))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SURNAME_INPUT))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -814,7 +888,8 @@ public class EditPanel extends javax.swing.JPanel {
                                             .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
-                                                .addComponent(LUGGAGE_NOT_LINKED_COPY))))))
+                                                .addComponent(LUGGAGE_NOT_LINKED_COPY))))
+                                    .addComponent(NAME_INPUT)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -843,6 +918,7 @@ public class EditPanel extends javax.swing.JPanel {
                                             .addComponent(TEMP_STREET_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(EQUALCHECKBOX, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
@@ -928,10 +1004,12 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DATE_OF_BIRTH_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DD_MM_YYYY)
                             .addComponent(DATE_OF_BIRTH)
-                            .addComponent(DESCRIPTION))
+                            .addComponent(DESCRIPTION)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(MONTHOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DAYOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(YEAROFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(MALE_BUTTON)
@@ -1125,6 +1203,56 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_EQUALCHECKBOXActionPerformed
 
+    private void MONTHOFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MONTHOFBIRTHActionPerformed
+        if (this.MONTHOFBIRTH.getSelectedIndex() == 0) {
+            this.DAYOFBIRTH.removeAllItems();
+            this.DAYOFBIRTH.addItem("DD");
+            this.DAYOFBIRTH.setSelectedIndex(0);
+        } else {
+            int maximum = 0;
+            int month = Integer.parseInt(this.MONTHOFBIRTH.getSelectedItem().toString());
+            if (this.YEAROFBIRTH.getSelectedIndex() != 0 && month == 2 && Integer.parseInt(this.YEAROFBIRTH.getSelectedItem().toString()) % 4 == 0) {
+                maximum = 29;
+            } else if (month == 2) //february
+            {
+                maximum = 28;
+            } else if ((month < 8 && month % 2 == 0) || (month > 7 && month % 2 == 1)) {
+                maximum = 30;
+            } else if ((month > 7 && month % 2 == 0) || (month < 8 && month % 2 == 1)) {
+                maximum = 31;
+            }
+
+            this.DAYOFBIRTH.removeAllItems();
+            this.DAYOFBIRTH.addItem("DD");
+            for (int i = 1; i <= maximum; i++) {
+                this.DAYOFBIRTH.addItem(i);
+            }
+        }
+    }//GEN-LAST:event_MONTHOFBIRTHActionPerformed
+
+    private void YEAROFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YEAROFBIRTHActionPerformed
+        if (this.YEAROFBIRTH.getSelectedIndex() > 0) {
+            int year = Integer.parseInt(this.YEAROFBIRTH.getSelectedItem().toString());
+            int month = -1;
+            if (this.MONTHOFBIRTH.getSelectedIndex() > 0) {
+                month = Integer.parseInt(this.MONTHOFBIRTH.getSelectedItem().toString());
+                if (month == 2 && year % 4 == 0) {
+                    this.DAYOFBIRTH.removeAllItems();
+                    this.DAYOFBIRTH.addItem("DD");
+                    for (int i = 1; i <= 29; i++) {
+                        this.DAYOFBIRTH.addItem(i);
+                    }
+                } else if (month == 2 && year % 4 != 0 && this.DAYOFBIRTH.getItemCount() == 30) {
+                    this.DAYOFBIRTH.removeAllItems();
+                    this.DAYOFBIRTH.addItem("DD");
+                    for (int i = 1; i <= 28; i++) {
+                        this.DAYOFBIRTH.addItem(i);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_YEAROFBIRTHActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ANDERS;
@@ -1135,8 +1263,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox CONNECTED_LUGGAGES_CBOX;
     private javax.swing.JLabel CONNECTED_LUGGAGES_LABEL;
     private javax.swing.JLabel DATE_OF_BIRTH;
-    private javax.swing.JFormattedTextField DATE_OF_BIRTH_INPUT;
-    private javax.swing.JLabel DD_MM_YYYY;
+    private javax.swing.JComboBox DAYOFBIRTH;
     private javax.swing.JLabel DESCRIPTION;
     private javax.swing.JTextArea DESCRIPTION_INPUT1;
     private javax.swing.JScrollPane DESCRIPTION_INPUT_FRAME;
@@ -1163,6 +1290,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton MALE_BUTTON;
     private javax.swing.JLabel MOBILE_PHONE_NUMBER;
     private javax.swing.JTextField MOBILE_PHONE_NUMBER_INPUT;
+    private javax.swing.JComboBox MONTHOFBIRTH;
     private javax.swing.JLabel NAME;
     private javax.swing.JTextField NAME_INPUT;
     private javax.swing.JLabel PASSENGER_NOT_LINKED;
@@ -1183,6 +1311,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JTextField TEMP_POSTAL_CODE_INPUT;
     private javax.swing.JLabel TEMP_STREET;
     private javax.swing.JTextField TEMP_STREET_INPUT;
+    private javax.swing.JComboBox YEAROFBIRTH;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

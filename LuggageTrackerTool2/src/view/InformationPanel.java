@@ -30,6 +30,10 @@ public class InformationPanel extends javax.swing.JPanel {
         instance = LuggageTrackerTool2.getInstance();
     }
 
+    /**
+     * Sets luggage information in the panel.
+     * @param l 
+     */
     public void setLuggageLabel(Luggage l) {
         String location = l.getStoragelocation();
         if (location == null) {
@@ -42,6 +46,9 @@ public class InformationPanel extends javax.swing.JPanel {
         STORAGE_LABEL.setText(location);
     }
 
+    /**
+     * Removes the luggage information on panel
+     */
     public void clearLuggageLabels() {
         LUGGAGE_ID_LABEL.setText("");
         DESCRIPTION_LABEL.setText("");
@@ -49,6 +56,10 @@ public class InformationPanel extends javax.swing.JPanel {
         STORAGE_LABEL.setText("");
     }
 
+    /**
+     * Sets passenger information on panel
+     * @param p 
+     */
     public void setPassengerLabel(model.Passenger p) {
         ID_LABEL.setText(p.getPassengerid().toString());
         NAME_LABEL.setText(p.getName() + " " + p.getInsertion() + " " + p.getSurname());
@@ -57,6 +68,9 @@ public class InformationPanel extends javax.swing.JPanel {
         TEMP_ADDRESS_LABEL.setText(p.getTempaddress().getStreetname());
     }
 
+    /**
+     * Removes passenger information on panel.
+     */
     public void clearPassengerLabels() {
         ID_LABEL.setText("");
         NAME_LABEL.setText("");
@@ -65,6 +79,9 @@ public class InformationPanel extends javax.swing.JPanel {
         TEMP_ADDRESS_LABEL.setText("");
     }
 
+    /**
+     * Connect luggage to passenger button triggers this on click.
+     */
     private void connectButton() {
         try {
             int result = JOptionPane.showConfirmDialog(null,

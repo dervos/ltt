@@ -5,6 +5,8 @@
 package view;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,12 +31,18 @@ public class Passenger extends javax.swing.JPanel {
         PASSENGER_TABLE.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     }
     
+    /**
+     * 
+     */
     public void refresh() {
         removeAllFromPassengerTable();
         refreshPassengerList();
         addPassengerItemsToTable();
     }
 
+    /**
+     * Refreshes passengers in table.
+     */
     public void refreshPassengerList() {
         try {
             passengerList = model.PassengerDAO.readAll();
@@ -43,12 +51,20 @@ public class Passenger extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * 
+     * @param id
+     * @throws SQLException 
+     */
     public void refreshWithSearch(int id) throws SQLException {
         removeAllFromPassengerTable();
         passengerList.clear();
         passengerList.add(model.PassengerDAO.readById(id));
     }
 
+    /**
+     * 
+     */
     public void addPassengerItemsToTable() {
 
         for (model.Passenger passenger : passengerList) {
@@ -56,18 +72,27 @@ public class Passenger extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Adds the new row
+     * @param row contains the new row's information
+     */
     private void addRow(Object[] row) {
         ((javax.swing.table.DefaultTableModel) PASSENGER_TABLE.getModel()).addRow(row);
     }
 
+    /**
+     * Fills a row
+     * @param passenger 
+     */
     public void addPassengerToTable(model.Passenger passenger) {
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Object[] newRow = new Object[10];
         newRow[0] = passenger.getPassengerid();
         newRow[1] = passenger.getSurname();
         newRow[2] = passenger.getInsertion();
         newRow[3] = passenger.getName();
         newRow[4] = passenger.getGender();
-        newRow[5] = new java.sql.Date(passenger.getDob().getTime());
+        newRow[5] = df.format(passenger.getDob());
         newRow[6] = passenger.getMobphone();
         newRow[7] = passenger.getHomephone();
 
@@ -85,6 +110,9 @@ public class Passenger extends javax.swing.JPanel {
         addRow(newRow);
     }
 
+    /**
+     * 
+     */
     public void removeAllFromPassengerTable() {
         DefaultTableModel dtm = (DefaultTableModel) PASSENGER_TABLE.getModel();
         int rows = dtm.getRowCount();

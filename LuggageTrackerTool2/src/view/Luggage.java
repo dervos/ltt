@@ -5,6 +5,8 @@
 package view;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,12 +31,18 @@ public class Luggage extends javax.swing.JPanel {
         addLuggageItemsToTable();
     }
     
+    /**
+     * 
+     */
     public void refresh() {
         removeAllFromLuggageTable();
         refreshLuggageList();
         addLuggageItemsToTable();
     }
 
+    /**
+     * Refreshes all luggage in the table.
+     */
     public void refreshLuggageList() {
         try {
             luggageList = model.LuggageDAO.readAll();
@@ -43,12 +51,20 @@ public class Luggage extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * 
+     * @param id
+     * @throws SQLException 
+     */
     public void refreshWithSearch(int id) throws SQLException {
         removeAllFromLuggageTable();
         luggageList.clear();
         luggageList.add(model.LuggageDAO.readById(id));
     }
 
+    /**
+     * Adds all luggage to the table
+     */
     public void addLuggageItemsToTable() {
 
         for (model.Luggage luggage : luggageList) {
@@ -56,11 +72,20 @@ public class Luggage extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Adds the new row
+     * @param row, contains all the row's information
+     */
     private void addRow(Object[] row) {
         ((javax.swing.table.DefaultTableModel) LUGGAGE_TABLE.getModel()).addRow(row);
     }
 
+    /**
+     * Fills an object with the luggage information
+     * @param luggage 
+     */
     public void addLuggageToTable(model.Luggage luggage) {
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Object location;
         if (luggage.getStoragelocation().equals("Other"))
             location = luggage.getDifferentLocation();
@@ -74,10 +99,15 @@ public class Luggage extends javax.swing.JPanel {
         newRow[3] = location;
         newRow[4] = luggage.getLuggagestatus().name();
         newRow[5] = luggage.getPassengerid();
-        newRow[6] = luggage.getDateAdded();
+        newRow[6] = df.format(luggage.getDateAdded());
         addRow(newRow);
     }
 
+    /**
+     * Gets the luggage from a clicked row.
+     * @param row
+     * @return 
+     */
     public model.Luggage getLuggageFromRow(int row) {
         model.Luggage luggage = null;
         int selectedid = Integer.parseInt(LUGGAGE_TABLE.getValueAt(row, 0).toString());
@@ -90,6 +120,9 @@ public class Luggage extends javax.swing.JPanel {
         return luggage;
     }
 
+    /**
+     * 
+     */
     public void removeAllFromLuggageTable() {
         DefaultTableModel dtm = (DefaultTableModel) LUGGAGE_TABLE.getModel();
         int rows = dtm.getRowCount();
@@ -99,6 +132,11 @@ public class Luggage extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public boolean passengerIDExistsInLuggage(int id) {
         for(model.Luggage l : this.luggageList)
         {

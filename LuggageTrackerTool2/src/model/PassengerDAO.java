@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +28,6 @@ public class PassengerDAO {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String query = "SELECT passengerid, surname, insertion, name, gender, dob, mobphone, homephone, homeaddressid, tempaddressid FROM passenger";
 
         databaseManager.openConnection();
@@ -69,7 +67,6 @@ public class PassengerDAO {
         Passenger passenger = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         String query = "SELECT * FROM passenger WHERE passengerid=?";
 
@@ -105,7 +102,6 @@ public class PassengerDAO {
         List<Passenger> list = new LinkedList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String query = "SELECT passengerid, surname, insertion, name, gender, dob, mobphone, homephone, homeaddressid, tempaddressid FROM passenger WHERE name=?";
 
         databaseManager.openConnection();

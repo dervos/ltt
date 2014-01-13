@@ -83,6 +83,9 @@ public final class LuggageTrackerTool2 {
         }
     }
 
+    /**
+     * 
+     */
     public void login() {
         shutdown();
         loginWindow = new JFrame("Login");
@@ -100,6 +103,12 @@ public final class LuggageTrackerTool2 {
         loginWindow.setVisible(true);
     }
 
+    /**
+     * Authenticates the user's login credentials.
+     * @param username
+     * @param password
+     * @return 
+     */
     public boolean authenticate(String username, char[] password) {
         model.User tempUser = null;
         try {
@@ -129,7 +138,7 @@ public final class LuggageTrackerTool2 {
     }
 
     /**
-     *
+     * Adds GUI JPanels, sidebar, searchbar, mainmenu/ tabs
      */
     public void startup() {
         if (loginWindow != null) {
@@ -158,8 +167,6 @@ public final class LuggageTrackerTool2 {
         addPanel(this.searchBar, BorderLayout.NORTH);
         addPanel(this.sideBar, BorderLayout.LINE_START);
         addPanel(this.mainMenu, BorderLayout.CENTER);
-
-        createJFTFMask(this.sideBar.getRegPassengerControl().getDateOfBirthControl(), "yyyy-MM-dd", "####-##-##");
 
         mainWindow.setVisible(true);
     }
@@ -196,12 +203,17 @@ public final class LuggageTrackerTool2 {
         mainWindow.getContentPane().repaint();
     }
 
+    /**
+     * 
+     * @param panel
+     * @param layout 
+     */
     public void addPanel(JPanel panel, Object layout) {
         mainWindow.getContentPane().add(panel, layout);
     }
 
     /**
-     *
+     * 
      */
     public void exit() {
         if (mainWindow != null) {
@@ -214,6 +226,9 @@ public final class LuggageTrackerTool2 {
         shutdown();
     }
 
+    /**
+     * Disposes of the GUI.
+     */
     public void shutdown() {
         if (mainWindow != null) {
             mainWindow.dispose();
@@ -224,46 +239,90 @@ public final class LuggageTrackerTool2 {
 //        databaseManager.closeConnection();
     }
 
+    /**
+     * 
+     * @return 
+     */
     public static LuggageTrackerTool2 getInstance() {
         return instance;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public static DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public model.User getCurrentUser() {
         return user;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public MainMenu getMainMenu() {
         return mainMenu;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public SideBar getSideBar() {
         return this.sideBar;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public SeachBar getSearchBar() {
         return this.searchBar;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Passenger getSelectedPassenger() {
         return selectedPassenger;
     }
 
+    /**
+     * 
+     * @param selectedPassenger 
+     */
     public void setSelectedPassenger(Passenger selectedPassenger) {
         this.selectedPassenger = selectedPassenger;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Luggage getSelectedLuggage() {
         return selectedLuggage;
     }
 
+    /**
+     * 
+     * @param selectedLuggage 
+     */
     public void setSelectedLuggage(Luggage selectedLuggage) {
         this.selectedLuggage = selectedLuggage;
     }
 
+    /**
+     * 
+     * @param selection 
+     */
     public void updatePassengerInformationPanel(int selection) {
         try {
             selectedPassenger = model.PassengerDAO.readById(selection);
@@ -273,6 +332,10 @@ public final class LuggageTrackerTool2 {
         }
     }
 
+    /**
+     * 
+     * @param selection 
+     */
     public void updateLuggageInformationPanel(int selection) {
         try {
             selectedLuggage = model.LuggageDAO.readById(selection);
@@ -282,6 +345,10 @@ public final class LuggageTrackerTool2 {
         }
     }
 
+    /**
+     * Connects luggage to passenger, performs SQL update query.
+     * @throws CustomException 
+     */
     public void connectLuggageToPassenger() throws CustomException {
         if (selectedLuggage != null & selectedPassenger != null) {
             selectedLuggage.setPassenger(selectedPassenger.getPassengerid());
@@ -296,22 +363,30 @@ public final class LuggageTrackerTool2 {
         }
     }
 
+    /**
+     * Removes luggage which has been missing over 2 months
+     */
     public void removePastDateLuggage() {
         Date date = new Date();
-        try {            
+        try {
             List<Luggage> allLuggage = LuggageDAO.readAll();
-            for (Luggage l : allLuggage)
-            {
-                if (addMonthsToDate(l.getDateAdded(), 2).before(date))
+            for (Luggage l : allLuggage) {
+                if (addMonthsToDate(l.getDateAdded(), 2).before(date) && l.getLuggagestatus() == Status.Missing) {
                     LuggageDAO.delete(l.getLuggageid());
+                }
             }
         } catch (SQLException e) {
             System.err.println(e);
         }
     }
-    
-    public Date addMonthsToDate(Date date, int months)
-    {
+
+    /**
+     * Returns result of date + months
+     * @param date the date to calculate from
+     * @param months amount of months to add.
+     * @return 
+     */
+    public Date addMonthsToDate(Date date, int months) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, months);
