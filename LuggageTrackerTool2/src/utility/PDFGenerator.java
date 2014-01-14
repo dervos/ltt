@@ -117,12 +117,16 @@ public class PDFGenerator {
                             break;
                         case 17: gegevens = "";
                             break;
-                        case 18: gegevens = luggage.getLuggageLabel();
+                        case 18: gegevens = luggage.getLuggageid().toString();
                             break;
-                        case 19: gegevens = luggage.getDescription();
+                        case 19: gegevens = luggage.getLuggageLabel();
                             break;
-                        case 20: gegevens = luggage.getStoragelocation();
+                        case 20: gegevens = luggage.getDescription();
                             break;        
+                        case 21: gegevens = luggage.getStoragelocation();
+                                break;
+                        case 22: gegevens = luggage.getLuggagestatus().toString();
+                            break;
                         default:
                             break;
                             
