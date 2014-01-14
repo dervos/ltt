@@ -565,6 +565,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
 
         PRINT.setText("Print");
+        PRINT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRINTActionPerformed(evt);
+            }
+        });
 
         REGISTER.setText("Submit");
         REGISTER.addActionListener(new java.awt.event.ActionListener() {
@@ -816,9 +821,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
                 clearFields();
 
-                PDFGenerator document = new PDFGenerator();
-                document.generate(passenger, homeAddress, tempAddress);
-                document.save("Informatie.pdf");
+                
+               
             }
 
         } catch (SQLException ex) {
@@ -921,6 +925,21 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
         }
     }//GEN-LAST:event_YEAROFBIRTHActionPerformed
+
+    private void PRINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTActionPerformed
+        
+        
+        model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
+        model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
+        
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.generate(selectedPassenger, selectedLuggage);
+        pdf.save("Informatie.pdf");
+        
+        
+        
+    }//GEN-LAST:event_PRINTActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;

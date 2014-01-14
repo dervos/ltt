@@ -37,10 +37,10 @@ public class PDFGenerator {
         }
     }
     
-    public void generate(Passenger passenger, Address HomeAddress, Address TempAddress){
+    public void generate(Passenger passenger, Luggage luggage){
          
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Description: ", "Storage location: ", "Otherwise: "};
+         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Otherwise: ", "Status: "};
          String gegevens = null;
          try {
             int x = 75;
@@ -97,31 +97,31 @@ public class PDFGenerator {
                             break;
                         case 7: gegevens = "";
                             break;
-                        case 8: gegevens = HomeAddress.getCountry();
+                        case 8: gegevens = passenger.getHomeaddress().getCountry();
                             break;
-                        case 9: gegevens = HomeAddress.getCity();
+                        case 9: gegevens = passenger.getHomeaddress().getCity();
                             break;
-                        case 10: gegevens = HomeAddress.getStreetname();
+                        case 10: gegevens = passenger.getHomeaddress().getStreetname();
                             break;
-                        case 11: gegevens = TempAddress.getZipcode();
+                        case 11: gegevens = passenger.getHomeaddress().getZipcode();
                             break;
                         case 12: gegevens = "";
                             break;
-                        case 13: gegevens = TempAddress.getCountry();
+                        case 13: gegevens = passenger.getTempaddress().getCountry();
                             break;
-                        case 14: gegevens = TempAddress.getCity();
+                        case 14: gegevens = passenger.getTempaddress().getCity();
                             break;
-                        case 15: gegevens = TempAddress.getStreetname();
+                        case 15: gegevens = passenger.getTempaddress().getStreetname();
                             break;
-                        case 16: gegevens = TempAddress.getZipcode();
+                        case 16: gegevens = passenger.getTempaddress().getZipcode();
                             break;
                         case 17: gegevens = "";
                             break;
-                        case 18: gegevens = "";
+                        case 18: gegevens = luggage.getLuggageLabel();
                             break;
-                        case 19: gegevens = "";
+                        case 19: gegevens = luggage.getDescription();
                             break;
-                        case 20: gegevens = "";
+                        case 20: gegevens = luggage.getStoragelocation();
                             break;        
                         default:
                             break;
