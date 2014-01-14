@@ -40,7 +40,7 @@ public class PDFGenerator {
     public void generate(Passenger passenger, Luggage luggage){
          
          DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Otherwise: ", "Status: "};
+         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Status: "};
          String gegevens = null;
          try {
             int x = 75;
@@ -72,7 +72,7 @@ public class PDFGenerator {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
                    
                 }
-                if (i == 22) {
+                if (i == 23) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
                      
             }else {
@@ -125,7 +125,7 @@ public class PDFGenerator {
                             break;        
                         case 21: gegevens = luggage.getStoragelocation();
                                 break;
-                        case 22: gegevens = luggage.getLuggagestatus().toString();
+                        case 22: gegevens = luggage.getLuggagestatus().name();
                             break;
                         default:
                             break;
