@@ -12,6 +12,7 @@ public class MainMenu extends JPanel {
 
     private JPanel passengerTab, luggageTab, accountTab, managementTab, managerSettingsTab, ManagerLuggageGraph;
     private view.InformationPanel informationPanel;
+    private view.ManagerGraph managerLuggageGraph;
 
     /**
      * Creates new form MainMenu
@@ -39,18 +40,17 @@ public class MainMenu extends JPanel {
     }
 
     private void addManagerTabs() {
-        managementTab = new view.BarChartMonthStatus2014();
+        managementTab = new view.ManagerMenu();
         managerSettingsTab = new view.ManagerMenu();
-        ManagerLuggageGraph = new view.BarChartStatus();
+        ManagerLuggageGraph = new view.ManagerGraph();
         jTabbedPane.addTab("Manager Pane", managementTab);
-//        JTabbedPane.addTab("Graph settings", managerSettingsTab);
-//        JTabbedPane.addTab("luggage graph",ManagerLuggageGraph);
+        jTabbedPane.add("Manager Graph", managerLuggageGraph);
         
         
     }
 
     private void addAllTabs() {
-        managementTab = new view.BarChartMonthStatus2014();
+        managementTab = new view.ManagerMenu();
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
         accountTab = new view.AccountManagement();
@@ -61,6 +61,7 @@ public class MainMenu extends JPanel {
         jTabbedPane.addTab("Luggage", luggageTab);
         jTabbedPane.addTab("Account Management", accountTab);
         jTabbedPane.add("Manager Pane", managementTab);
+        jTabbedPane.add("Manager Graph", managerLuggageGraph);
     }
 
     private void addServiceEmployeeTabs() {

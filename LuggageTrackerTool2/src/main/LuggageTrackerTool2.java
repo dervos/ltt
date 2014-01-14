@@ -24,6 +24,7 @@ import model.LuggageDAO;
 import view.MainMenu;
 import view.SeachBar;
 import view.SideBar;
+import view.ManagerGraph;
 
 /**
  *
@@ -414,6 +415,9 @@ public final class LuggageTrackerTool2 {
                 }
             }
         });
+        
+        
+        
     }
 
 }
