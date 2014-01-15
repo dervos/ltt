@@ -33,7 +33,6 @@ public class SeachBar extends javax.swing.JPanel {
         PASSENGER_OR_LUGGAGE_SELECTOR = new javax.swing.JComboBox();
         SEARCH_INPUT = new javax.swing.JTextField();
         SEARCH_BUTTON = new javax.swing.JButton();
-        ADVANCED_SEARCH_BUTTON = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -60,12 +59,6 @@ public class SeachBar extends javax.swing.JPanel {
             }
         });
         jToolBar1.add(SEARCH_BUTTON);
-
-        ADVANCED_SEARCH_BUTTON.setText("Advanced Search");
-        ADVANCED_SEARCH_BUTTON.setFocusable(false);
-        ADVANCED_SEARCH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ADVANCED_SEARCH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(ADVANCED_SEARCH_BUTTON);
         jToolBar1.add(jSeparator1);
 
         jLabel2.setText(main.LuggageTrackerTool2.getInstance().getCurrentUser().getUsername() + "[" + main.LuggageTrackerTool2.getInstance().getCurrentUser().getPrivileges() +"]");
@@ -139,7 +132,6 @@ public class SeachBar extends javax.swing.JPanel {
     }//GEN-LAST:event_SEARCH_BUTTONActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ADVANCED_SEARCH_BUTTON;
     private javax.swing.JButton LOGOUT_BUTTON;
     private javax.swing.JComboBox PASSENGER_OR_LUGGAGE_SELECTOR;
     private javax.swing.JButton SEARCH_BUTTON;
