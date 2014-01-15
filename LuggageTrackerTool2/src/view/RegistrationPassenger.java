@@ -1,6 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  
+ *  
+ * 
  */
 package view;
 
@@ -515,7 +516,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         HOME_COUNTRY.setText("Country");
 
-        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
         HOME_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HOME_COUNTRY_INPUTActionPerformed(evt);
@@ -533,10 +534,16 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         TEMP_COUNTRY.setText("Country");
 
-        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_COUNTRY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        TEMP_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEMP_COUNTRY_INPUTActionPerformed(evt);
+            }
+        });
 
         TEMP_CITY.setText("City");
 
@@ -753,7 +760,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(PAIR_PASSENGER_LUGGAGE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PRINT)
                     .addComponent(REGISTER))
                 .addContainerGap())
@@ -911,9 +918,13 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
         }
     }//GEN-LAST:event_YEAROFBIRTHActionPerformed
-
+    // This is the print button.
     private void PRINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTActionPerformed
         
+         int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to print the information?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+         if (result == JOptionPane.YES_OPTION){
         
         model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
         model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
@@ -921,10 +932,16 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         PDFGenerator pdf = new PDFGenerator();
         pdf.generate(selectedPassenger, selectedLuggage);
         pdf.save("Informatie.pdf");
+         }
+        
         
         
         
     }//GEN-LAST:event_PRINTActionPerformed
+
+    private void TEMP_COUNTRY_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEMP_COUNTRY_INPUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEMP_COUNTRY_INPUTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;
