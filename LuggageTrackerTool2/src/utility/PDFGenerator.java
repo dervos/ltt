@@ -5,7 +5,6 @@
 package utility;
 
 
-import com.sun.servicetag.RegistrationData;
 import model.*;
 
 import java.io.IOException;
@@ -38,10 +37,10 @@ public class PDFGenerator {
         }
     }
     
-    public void generate(Passenger passenger, Luggage luggage){
+    public void generate(Passenger passenger, Address HomeAddress, Address TempAddress){
          
-         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         String basicInformationOutput[] = {"Personal information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Status: ", " " ,  "Employee information: " , "Employee: ", "Date: "};
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Description: ", "Storage location: ", "Otherwise: "};
          String gegevens = null;
          try {
             int x = 75;
@@ -71,11 +70,11 @@ public class PDFGenerator {
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                     }
-                if (i == 23) {
+                   
+                }
+                if (i == 22) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                
-                  
+                     
             }else {
                     this.contentStream.drawString(basicInformationOutput[i]);  
                     
@@ -98,44 +97,32 @@ public class PDFGenerator {
                             break;
                         case 7: gegevens = "";
                             break;
-                        case 8: gegevens = passenger.getHomeaddress().getCountry();
+                        case 8: gegevens = HomeAddress.getCountry();
                             break;
-                        case 9: gegevens = passenger.getHomeaddress().getCity();
+                        case 9: gegevens = HomeAddress.getCity();
                             break;
-                        case 10: gegevens = passenger.getHomeaddress().getStreetname();
+                        case 10: gegevens = HomeAddress.getStreetname();
                             break;
-                        case 11: gegevens = passenger.getHomeaddress().getZipcode();
+                        case 11: gegevens = TempAddress.getZipcode();
                             break;
                         case 12: gegevens = "";
                             break;
-                        case 13: gegevens = passenger.getTempaddress().getCountry();
+                        case 13: gegevens = TempAddress.getCountry();
                             break;
-                        case 14: gegevens = passenger.getTempaddress().getCity();
+                        case 14: gegevens = TempAddress.getCity();
                             break;
-                        case 15: gegevens = passenger.getTempaddress().getStreetname();
+                        case 15: gegevens = TempAddress.getStreetname();
                             break;
-                        case 16: gegevens = passenger.getTempaddress().getZipcode();
+                        case 16: gegevens = TempAddress.getZipcode();
                             break;
                         case 17: gegevens = "";
                             break;
-                        case 18: gegevens = luggage.getLuggageid().toString();
+                        case 18: gegevens = "";
                             break;
-                        case 19: gegevens = luggage.getLuggageLabel();
+                        case 19: gegevens = "";
                             break;
-                        case 20: gegevens = luggage.getDescription();
+                        case 20: gegevens = "";
                             break;        
-                        case 21: gegevens = luggage.getStoragelocation();
-                            break;
-                        case 22: gegevens = luggage.getLuggagestatus().name();
-                            break;
-                        case 23: gegevens = "Employee information: ";
-                            break;
-                        case 24: gegevens = "";
-                            break;
-                        case 25: gegevens = User.getAdmin().getUsername();
-                            break;
-                        case 26: gegevens = luggage.getDateAdded().toString();
-                            break;
                         default:
                             break;
                             

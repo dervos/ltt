@@ -97,9 +97,11 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         DESCRIPTION_INPUT1 = new javax.swing.JTextArea();
         STORAGE_LOCATION = new javax.swing.JLabel();
         STORAGE_LOCATION_INPUT = new javax.swing.JComboBox();
+        PRINT_ON_REGISTER_INPUT = new javax.swing.JCheckBox();
         ANDERS = new javax.swing.JLabel();
         ANDERS_INPUT_FRAME = new javax.swing.JScrollPane();
         ANDERS_INPUT = new javax.swing.JTextArea();
+        PRINT_BUTTON = new javax.swing.JButton();
         SUBMIT_BUTTON = new javax.swing.JButton();
         LUGGAGEID_LABEL = new javax.swing.JLabel();
         LUGGAGEID_INPUT = new javax.swing.JTextField();
@@ -127,6 +129,9 @@ public class RegistrationLuggage extends javax.swing.JPanel {
             }
         });
 
+        PRINT_ON_REGISTER_INPUT.setSelected(true);
+        PRINT_ON_REGISTER_INPUT.setText("Print on register");
+
         ANDERS.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         ANDERS.setText("Other");
 
@@ -135,6 +140,8 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS_INPUT.setRows(5);
         ANDERS_INPUT.setEnabled(false);
         ANDERS_INPUT_FRAME.setViewportView(ANDERS_INPUT);
+
+        PRINT_BUTTON.setText("Print");
 
         SUBMIT_BUTTON.setText("Submit");
         SUBMIT_BUTTON.addActionListener(new java.awt.event.ActionListener() {
@@ -165,9 +172,11 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                     .addComponent(STORAGE_LOCATION)
                     .addComponent(DESCRIPTION)
                     .addComponent(LUGGAGEID_LABEL)
+                    .addComponent(PRINT_ON_REGISTER_INPUT)
                     .addComponent(ANDERS, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(35, 35, 35)
+                    .addComponent(jLabel1)
+                    .addComponent(PRINT_BUTTON))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SUBMIT_BUTTON)
                     .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,8 +211,12 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(STATUS_COMBOBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(27, 27, 27)
-                .addComponent(SUBMIT_BUTTON)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PRINT_ON_REGISTER_INPUT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PRINT_BUTTON)
+                    .addComponent(SUBMIT_BUTTON))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -256,6 +269,8 @@ public class RegistrationLuggage extends javax.swing.JPanel {
     private javax.swing.JScrollPane DESCRIPTION_INPUT_FRAME;
     private javax.swing.JTextField LUGGAGEID_INPUT;
     private javax.swing.JLabel LUGGAGEID_LABEL;
+    private javax.swing.JButton PRINT_BUTTON;
+    private javax.swing.JCheckBox PRINT_ON_REGISTER_INPUT;
     private javax.swing.JComboBox STATUS_COMBOBOX;
     private javax.swing.JLabel STORAGE_LOCATION;
     private javax.swing.JComboBox STORAGE_LOCATION_INPUT;
