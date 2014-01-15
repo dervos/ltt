@@ -133,7 +133,6 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS_INPUT.setBackground(java.awt.Color.lightGray);
         ANDERS_INPUT.setColumns(20);
         ANDERS_INPUT.setRows(5);
-        ANDERS_INPUT.setText("Vul hier zo specifiek mogelijk de\ngegevens in van de opslagplaats.");
         ANDERS_INPUT.setEnabled(false);
         ANDERS_INPUT_FRAME.setViewportView(ANDERS_INPUT);
 

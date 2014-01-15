@@ -176,7 +176,12 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox1.setText("check to confirm");
+        jCheckBox1.setText("Check to confirm");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ACCOUNT_MANAGEMENTLayout = new javax.swing.GroupLayout(ACCOUNT_MANAGEMENT);
         ACCOUNT_MANAGEMENT.setLayout(ACCOUNT_MANAGEMENTLayout);
@@ -393,7 +398,12 @@ public class AccountManagement extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

@@ -5,12 +5,12 @@
 package utility;
 
 
-import com.sun.servicetag.RegistrationData;
-import model.*;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import model.Luggage;
+import model.Passenger;
+import model.User;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;

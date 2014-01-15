@@ -66,7 +66,9 @@ public class MainMenu extends JPanel {
     private void addServiceEmployeeTabs() {
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
-        
+        informationPanel = new view.InformationPanel();
+        informationPanel.setVisible(true);
+        add(informationPanel, BorderLayout.PAGE_END);
         jTabbedPane.addTab("Passenger", passengerTab);
         jTabbedPane.addTab("Luggage", luggageTab);
     }
