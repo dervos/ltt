@@ -155,7 +155,12 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User 1", "User 2", "User 3", "User 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(usernames));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Delete user");
@@ -211,7 +216,11 @@ public class AccountManagement extends javax.swing.JPanel {
                             .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+<<<<<<< HEAD
                 .addContainerGap(123, Short.MAX_VALUE))
+=======
+                .addContainerGap(191, Short.MAX_VALUE))
+>>>>>>> origin/PrintZooi
         );
         ACCOUNT_MANAGEMENTLayout.setVerticalGroup(
             ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,15 +392,25 @@ public class AccountManagement extends javax.swing.JPanel {
                 "Are you sure you want to delete the user?", "Question",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (result == JOptionPane.YES_OPTION) {
-            // Actually delete the user in here
-            //
-            //
+             try {
+                model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
+                user.getUserid();
+                model.UserDAO.delete(user.getUserid());
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+<<<<<<< HEAD
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+=======
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+>>>>>>> origin/PrintZooi
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
