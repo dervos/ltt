@@ -5,6 +5,7 @@
 package utility;
 
 
+import com.sun.servicetag.RegistrationData;
 import model.*;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class PDFGenerator {
     public void generate(Passenger passenger, Luggage luggage){
          
          DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         String basicInformationOutput[] = {"Basic information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Status: "};
+         String basicInformationOutput[] = {"Personal information", "Name: ", "Surname: ", "Date of birth: ", "Gender: ", "Home phone number: ", "Mobile phone number:", "Home address", "Country: ", "City: ", "Street: ", "Postal code: ", "Temporary address", "Country: ", "City: ", "Street: ", "Postal code: ", "Luggage", "Label Id: " ,"Label number: " ,"Description: ", "Storage location: ", "Status: ", " " ,  "Employee information: " , "Employee: ", "Date: "};
          String gegevens = null;
          try {
             int x = 75;
@@ -70,11 +71,11 @@ public class PDFGenerator {
                 }
                 if (i == 17) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                   
-                }
+                     }
                 if (i == 23) {
                     this.contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                     
+                
+                  
             }else {
                     this.contentStream.drawString(basicInformationOutput[i]);  
                     
@@ -124,8 +125,16 @@ public class PDFGenerator {
                         case 20: gegevens = luggage.getDescription();
                             break;        
                         case 21: gegevens = luggage.getStoragelocation();
-                                break;
+                            break;
                         case 22: gegevens = luggage.getLuggagestatus().name();
+                            break;
+                        case 23: gegevens = "Employee information: ";
+                            break;
+                        case 24: gegevens = "";
+                            break;
+                        case 25: gegevens = User.getAdmin().getUsername();
+                            break;
+                        case 26: gegevens = luggage.getDateAdded().toString();
                             break;
                         default:
                             break;

@@ -59,8 +59,6 @@
                                                   <Component id="TEMP_POSTAL_CODE" min="-2" max="-2" attributes="0"/>
                                                   <Component id="HOME_PHONE_NUMBER" min="-2" max="-2" attributes="0"/>
                                                   <Component id="MOBILE_PHONE_NUMBER" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="PRINT_ON_REGISTER" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="PRINT" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="SURNAME" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -97,7 +95,6 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="ADDITIONAL_OPTIONS_TITLE" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="HOME_ADDRESS_TITLE" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
@@ -113,6 +110,7 @@
                                   <Component id="TEMP_CITY_INPUT" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="PRINT" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
@@ -227,16 +225,11 @@
                   <Component id="TEMP_POSTAL_CODE" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_POSTAL_CODE_INPUT" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ADDITIONAL_OPTIONS_TITLE" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PRINT_ON_REGISTER" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="PAIR_PASSENGER_LUGGAGE" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="PAIR_PASSENGER_LUGGAGE" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PRINT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PRINT" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="REGISTER" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -419,20 +412,6 @@
       <BindingProperties>
         <BindingProperty name="enabled" source="EQUALCHECKBOX" sourcePath="${!selected}" target="TEMP_POSTAL_CODE_INPUT" targetPath="enabled" updateStrategy="0" immediately="false"/>
       </BindingProperties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="ADDITIONAL_OPTIONS_TITLE">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="13" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Additional Options"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="PRINT_ON_REGISTER">
-      <Properties>
-        <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Print on register"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="PAIR_PASSENGER_LUGGAGE">
       <Properties>
