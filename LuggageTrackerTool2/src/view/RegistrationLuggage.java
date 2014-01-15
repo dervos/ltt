@@ -138,7 +138,6 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         ANDERS_INPUT.setBackground(java.awt.Color.lightGray);
         ANDERS_INPUT.setColumns(20);
         ANDERS_INPUT.setRows(5);
-        ANDERS_INPUT.setText("Vul hier zo specifiek mogelijk de\ngegevens in van de opslagplaats.");
         ANDERS_INPUT.setEnabled(false);
         ANDERS_INPUT_FRAME.setViewportView(ANDERS_INPUT);
 
@@ -186,7 +185,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
                         .addComponent(DESCRIPTION_INPUT_FRAME, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                         .addComponent(STORAGE_LOCATION_INPUT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LUGGAGEID_INPUT)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
