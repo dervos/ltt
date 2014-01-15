@@ -171,7 +171,12 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox1.setText("check to confirm");
+        jCheckBox1.setText("Check to confirm");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ACCOUNT_MANAGEMENTLayout = new javax.swing.GroupLayout(ACCOUNT_MANAGEMENT);
         ACCOUNT_MANAGEMENT.setLayout(ACCOUNT_MANAGEMENTLayout);
@@ -206,7 +211,7 @@ public class AccountManagement extends javax.swing.JPanel {
                             .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         ACCOUNT_MANAGEMENTLayout.setVerticalGroup(
             ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,6 +388,10 @@ public class AccountManagement extends javax.swing.JPanel {
             //
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
