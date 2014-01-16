@@ -51,6 +51,8 @@ public class ManagerMenu extends JPanel {
         LAST_DATE_FORMAT = new javax.swing.JLabel();
         CONFIRM_BUTTON = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 223, 162));
+
         TITLE.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         TITLE.setText("Graph Settings");
 
