@@ -46,6 +46,7 @@ public class AccountManagement extends javax.swing.JPanel {
     
     private void updateUSERModel()
     {
+        updateDeleteCBox();
         USER.removeAllItems();
         
         try {
@@ -56,6 +57,21 @@ public class AccountManagement extends javax.swing.JPanel {
         
         for (User user : list) {
             USER.addItem(user.getUsername());
+        }
+    }
+    
+    private void updateDeleteCBox()
+    {
+        jComboBox1.removeAllItems();
+        
+        try {
+            list = model.UserDAO.readAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (User user : list) {
+            jComboBox1.addItem(user.getUsername());
         }
     }
 
@@ -160,11 +176,6 @@ public class AccountManagement extends javax.swing.JPanel {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(usernames));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Delete user");
@@ -392,11 +403,12 @@ public class AccountManagement extends javax.swing.JPanel {
         int result = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to delete the user?", "Question",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_OPTION) {
+        if (result == JOptionPane.YES_OPTION && jComboBox1.getSelectedIndex() != -1 && !jComboBox1.getSelectedItem().toString().equals("")) {
              try {
-                model.User user = model.UserDAO.readByUsername(USER.getSelectedItem().toString());
-                user.getUserid();
+                model.User user = model.UserDAO.readByUsername(jComboBox1.getSelectedItem().toString());
+                //user.getUserid();
                 model.UserDAO.delete(user.getUserid());
+                updateUSERModel();
             } catch (SQLException ex) {
                 Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -407,10 +419,6 @@ public class AccountManagement extends javax.swing.JPanel {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
