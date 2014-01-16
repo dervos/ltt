@@ -12,13 +12,15 @@ import java.awt.Color;
 import main.LuggageTrackerTool2;
 
 public class LTTLogin extends javax.swing.JPanel {
-
+     
     /**
      * Creates new form LTTLogin
      */
     public LTTLogin() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +40,7 @@ public class LTTLogin extends javax.swing.JPanel {
         PASSWORD_INPUT = new javax.swing.JPasswordField();
         TITLE_LABEL = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(156, 9, 9));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         INSTRUCTIONS_LABEL.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
