@@ -463,7 +463,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         TEMP_STREET_INPUT = new javax.swing.JTextField();
         TEMP_POSTAL_CODE = new javax.swing.JLabel();
         TEMP_POSTAL_CODE_INPUT = new javax.swing.JTextField();
-        PAIR_PASSENGER_LUGGAGE = new javax.swing.JCheckBox();
         PRINT = new javax.swing.JButton();
         REGISTER = new javax.swing.JButton();
         EQUALCHECKBOX = new javax.swing.JCheckBox();
@@ -563,10 +562,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_POSTAL_CODE_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        PAIR_PASSENGER_LUGGAGE.setBackground(new java.awt.Color(254, 223, 162));
-        PAIR_PASSENGER_LUGGAGE.setSelected(true);
-        PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
-
         PRINT.setText("Print");
         PRINT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -650,7 +645,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                     .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PAIR_PASSENGER_LUGGAGE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(MALE_BUTTON)
                                                 .addGap(18, 18, 18)
@@ -659,7 +653,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                                 .addGap(1, 1, 1)
                                                 .addComponent(EQUALCHECKBOX))
                                             .addComponent(REGISTER))
-                                        .addGap(95, 95, 95))))
+                                        .addGap(118, 118, 118))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(HOME_ADDRESS_TITLE)
                                 .addGap(94, 94, 94)
@@ -762,9 +756,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEMP_POSTAL_CODE)
                     .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(PAIR_PASSENGER_LUGGAGE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PRINT)
                     .addComponent(REGISTER))
@@ -972,7 +964,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     private javax.swing.JComboBox MONTHOFBIRTH;
     private javax.swing.JLabel NAME;
     private javax.swing.JTextField NAME_INPUT;
-    private javax.swing.JCheckBox PAIR_PASSENGER_LUGGAGE;
     private javax.swing.JButton PRINT;
     private javax.swing.JButton REGISTER;
     private javax.swing.JLabel SURNAME;

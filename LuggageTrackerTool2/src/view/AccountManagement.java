@@ -103,9 +103,7 @@ public class AccountManagement extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
 
         jButton1.setText("jButton1");
 
@@ -182,20 +180,10 @@ public class AccountManagement extends javax.swing.JPanel {
 
         jLabel3.setText("Username:");
 
-        jLabel4.setText("Verify:");
-
         jButton2.setText("Confirm");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setBackground(new java.awt.Color(254, 223, 162));
-        jCheckBox1.setText("Check to confirm");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
             }
         });
 
@@ -207,7 +195,6 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
-                    .addComponent(jLabel4)
                     .addComponent(NEW_USER)
                     .addComponent(CHANGE_PASSWORD)
                     .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
@@ -225,11 +212,10 @@ public class AccountManagement extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jCheckBox1)
                             .addComponent(NEW_USERNAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CHANGE_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, 105, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(191, Short.MAX_VALUE))
@@ -271,11 +257,7 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel4))
-                .addGap(7, 7, 7)
+                .addGap(37, 37, 37)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -416,10 +398,6 @@ public class AccountManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
     private javax.swing.JButton CHANGE_CONFIRM;
@@ -436,12 +414,10 @@ public class AccountManagement extends javax.swing.JPanel {
     private javax.swing.JComboBox USER;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

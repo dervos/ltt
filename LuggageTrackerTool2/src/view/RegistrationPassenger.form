@@ -82,7 +82,6 @@
                                   <Component id="TEMP_COUNTRY_INPUT" alignment="1" min="-2" pref="256" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="PAIR_PASSENGER_LUGGAGE" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="MALE_BUTTON" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -94,7 +93,7 @@
                                           </Group>
                                           <Component id="REGISTER" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -228,9 +227,7 @@
                   <Component id="TEMP_POSTAL_CODE" min="-2" max="-2" attributes="0"/>
                   <Component id="TEMP_POSTAL_CODE_INPUT" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="PAIR_PASSENGER_LUGGAGE" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="PRINT" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="REGISTER" min="-2" max="-2" attributes="0"/>
@@ -482,15 +479,6 @@
       <BindingProperties>
         <BindingProperty name="enabled" source="EQUALCHECKBOX" sourcePath="${!selected}" target="TEMP_POSTAL_CODE_INPUT" targetPath="enabled" updateStrategy="0" immediately="false"/>
       </BindingProperties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="PAIR_PASSENGER_LUGGAGE">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="a2" green="df" red="fe" type="rgb"/>
-        </Property>
-        <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Pair passenger with luggage"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="PRINT">
       <Properties>
