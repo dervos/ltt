@@ -12,6 +12,7 @@ public class MainMenu extends JPanel {
 
     private JPanel passengerTab, luggageTab, accountTab, managementTab, managerSettingsTab, ManagerLuggageGraph;
     private view.InformationPanel informationPanel;
+    private view.BarChart managerBarChart;
 
     /**
      * Creates new form MainMenu
@@ -35,32 +36,32 @@ public class MainMenu extends JPanel {
                 break;
 
         }
-        
+
     }
 
     private void addManagerTabs() {
-        managementTab = new view.BarChartMonthStatus2014();
+        managementTab = new view.ManagerMenu();
         managerSettingsTab = new view.ManagerMenu();
-        ManagerLuggageGraph = new view.BarChartStatus();
+        managerBarChart = new view.BarChart();
         jTabbedPane.addTab("Manager Pane", managementTab);
-//        JTabbedPane.addTab("Graph settings", managerSettingsTab);
-//        JTabbedPane.addTab("luggage graph",ManagerLuggageGraph);
-        
-        
+        jTabbedPane.addTab("Manager Graph", managerBarChart);
+
     }
 
     private void addAllTabs() {
-        managementTab = new view.BarChartMonthStatus2014();
+        managementTab = new view.ManagerMenu();
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
         accountTab = new view.AccountManagement();
         informationPanel = new view.InformationPanel();
+        managerBarChart = new view.BarChart();
         informationPanel.setVisible(true);
         add(informationPanel, BorderLayout.PAGE_END);
         jTabbedPane.addTab("Passenger", passengerTab);
         jTabbedPane.addTab("Luggage", luggageTab);
         jTabbedPane.addTab("Account Management", accountTab);
-        jTabbedPane.add("Manager Pane", managementTab);
+        jTabbedPane.addTab("Manager Pane", managementTab);
+        jTabbedPane.addTab("Manager Graph", managerBarChart);
     }
 
     private void addServiceEmployeeTabs() {
@@ -77,7 +78,7 @@ public class MainMenu extends JPanel {
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
         accountTab = new view.AccountManagement();
-        
+
         jTabbedPane.addTab("Passenger", passengerTab);
         jTabbedPane.addTab("Luggage", luggageTab);
         jTabbedPane.addTab("Account Management", accountTab);
@@ -127,5 +128,9 @@ public class MainMenu extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane;
     // End of variables declaration//GEN-END:variables
+
+    public view.BarChart getManagerBarChart() {
+        return managerBarChart;
+    }
 
 }
