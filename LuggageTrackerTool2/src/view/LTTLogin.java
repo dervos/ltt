@@ -63,14 +63,11 @@ public class LTTLogin extends javax.swing.JPanel {
 
         PASSWORD_LABEL.setText("Password:");
 
-        USERNAME_INPUT.setText("admin");
         USERNAME_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 USERNAME_INPUTActionPerformed(evt);
             }
         });
-
-        PASSWORD_INPUT.setText("admin");
 
         TITLE_LABEL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         TITLE_LABEL.setText("LUGGAGETRACKERTOOL v1.0");
