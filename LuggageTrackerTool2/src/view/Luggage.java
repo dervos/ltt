@@ -161,6 +161,8 @@ public class Luggage extends javax.swing.JPanel {
         jToolBar1 = new javax.swing.JToolBar();
         REFRESH_BUTTON = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 223, 162));
+
         LUGGAGE_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -191,11 +193,10 @@ public class Luggage extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(LUGGAGE_TABLE);
         LUGGAGE_TABLE.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (LUGGAGE_TABLE.getColumnModel().getColumnCount() > 0) {
-            LUGGAGE_TABLE.getColumnModel().getColumn(0).setResizable(false);
-            LUGGAGE_TABLE.getColumnModel().getColumn(0).setPreferredWidth(40);
-        }
+        LUGGAGE_TABLE.getColumnModel().getColumn(0).setResizable(false);
+        LUGGAGE_TABLE.getColumnModel().getColumn(0).setPreferredWidth(40);
 
+        jToolBar1.setBackground(new java.awt.Color(254, 223, 162));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 

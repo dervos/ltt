@@ -7,6 +7,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 /**
@@ -25,6 +26,7 @@ public class SideBar extends javax.swing.JPanel {
         initComponents();
         //setLayout(new BorderLayout(10, 10));
         setLayout(new FlowLayout());
+        setBackground(new Color(156, 9, 9));
         this.regPassengerControl = new view.RegistrationPassenger();
         this.regLuggageControl = new view.RegistrationLuggage();
         //add(this.regPassengerControl, BorderLayout.NORTH);

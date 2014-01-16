@@ -67,7 +67,9 @@ public class MainMenu extends JPanel {
     private void addServiceEmployeeTabs() {
         passengerTab = new view.Passenger();
         luggageTab = new view.Luggage();
-
+        informationPanel = new view.InformationPanel();
+        informationPanel.setVisible(true);
+        add(informationPanel, BorderLayout.PAGE_END);
         jTabbedPane.addTab("Passenger", passengerTab);
         jTabbedPane.addTab("Luggage", luggageTab);
     }
@@ -113,6 +115,7 @@ public class MainMenu extends JPanel {
 
         jTabbedPane = new javax.swing.JTabbedPane();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setBorder(javax.swing.BorderFactory.createTitledBorder("Main menu"));
         setPreferredSize(new java.awt.Dimension(800, 800));
         setLayout(new java.awt.BorderLayout());

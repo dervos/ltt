@@ -1,6 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  
+ *  
+ * 
  */
 package view;
 
@@ -32,7 +33,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         setDocumentListeners();
         fillYearOfBirth();
     }
-    
+
     /**
      * Fills YEAROFBIRTH combobox with years.
      */
@@ -44,7 +45,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             this.YEAROFBIRTH.addItem(i);
         }
     }
-    
+
     /**
      * Sets document listeners, so text can be copied from home address fields
      * to temp address fields if needed.
@@ -57,14 +58,14 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
                     TEMP_CITY_INPUT.setText(HOME_CITY_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
@@ -72,7 +73,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 }
             }
         });
-        
+
         HOME_POSTAL_CODE_INPUT.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -80,14 +81,14 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
                     TEMP_POSTAL_CODE_INPUT.setText(HOME_POSTAL_CODE_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
@@ -95,7 +96,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 }
             }
         });
-        
+
         HOME_STREET_INPUT.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -103,14 +104,14 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                     TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
                     TEMP_STREET_INPUT.setText(HOME_STREET_INPUT.getText());
                 }
             }
-            
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (EQUALCHECKBOX.isSelected()) {
@@ -119,11 +120,12 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
     }
-    
+
     /**
      * Creates a passenger model out of the info in the edit panel.
+     *
      * @return
-     * @throws CustomException 
+     * @throws CustomException
      */
     public model.Passenger createPassenger() throws CustomException {
         String name = NAME_INPUT.getText();
@@ -157,7 +159,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         if (hasDigit(surname)) {
             throw new CustomException("Surname can't contain digits.", SURNAME_INPUT);
         }
-        
+
         if (this.DAYOFBIRTH.getSelectedIndex() == 0) {
             throw new CustomException("Please select a valid month for the passenger's day of birth.");
         }
@@ -167,11 +169,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         if (this.YEAROFBIRTH.getSelectedIndex() == 0) {
             throw new CustomException("Please select a valid year for the passenger's day of birth.");
         }
-        
+
         if (homePhone.length() == 0 && mobPhone.length() == 0) {
             throw new CustomException("Atleast 1 phone number has to be filled in.");
         }
-        
+
         if (homePhone.length() > 12) {
             throw new CustomException("Phone numbers can't be longer than 12 characters. You've got: " + homePhone.length(), HOME_PHONE_NUMBER_INPUT);
         }
@@ -184,17 +186,17 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         if (hasAlpha(mobPhone)) {
             throw new CustomException("Phone numbers cannot contain letters", HOME_PHONE_NUMBER_INPUT);
         }
-        
+
         int year = Integer.parseInt(YEAROFBIRTH.getSelectedItem().toString());
         int month = Integer.parseInt(MONTHOFBIRTH.getSelectedItem().toString());
         int day = Integer.parseInt(DAYOFBIRTH.getSelectedItem().toString());
         Calendar cal = GregorianCalendar.getInstance();
         cal.set(year, month - 1, day);
-        
+
         dob = cal.getTime();
-        
+
         model.Passenger tempPassenger = new model.Passenger();
-        
+
         tempPassenger.setName(name);
         tempPassenger.setInsertion(insertion);
         tempPassenger.setSurname(surname);
@@ -202,21 +204,20 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         tempPassenger.setGender(gender);
         tempPassenger.setHomephone(homePhone);
         tempPassenger.setMobphone(mobPhone);
-        
+
         return tempPassenger;
     }
-    
+
     /**
-     * 
-     * @return
-     * @throws CustomException 
+     *
+     * @return @throws CustomException
      */
     public model.Address createHomeAddressFromForms() throws CustomException {
         String city = HOME_CITY_INPUT.getText();
         String country = HOME_COUNTRY_INPUT.getSelectedItem().toString();
         String streetName = HOME_STREET_INPUT.getText();
         String zipCode = HOME_POSTAL_CODE_INPUT.getText();
-        
+
         if (HOME_COUNTRY_INPUT.getSelectedIndex() == 0) {
             throw new CustomException("A country has to be selected.", HOME_COUNTRY_INPUT);
         }
@@ -238,11 +239,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         if (zipCode.length() > 6) {
             throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), HOME_POSTAL_CODE_INPUT);
         }
-        
+
         if (city.length() == 0 || HOME_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
             throw new CustomException("Not all fields of home address are filled in. Please complete all fields.");
         }
-        
+
         model.Address address = new model.Address();
         address.setCity(city);
         address.setCountry(country);
@@ -250,29 +251,28 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         address.setZipcode(zipCode);
         return address;
     }
-    
+
     /**
-     * 
-     * @return
-     * @throws CustomException 
+     *
+     * @return @throws CustomException
      */
     public model.Address createTempAddressFromForms() throws CustomException {
         String city = TEMP_CITY_INPUT.getText();
         String country = TEMP_COUNTRY_INPUT.getSelectedItem().toString();
         String streetName = TEMP_STREET_INPUT.getText();
         String zipCode = TEMP_POSTAL_CODE_INPUT.getText();
-        
+
         if (TEMP_COUNTRY_INPUT.getSelectedIndex() == 0) {
             throw new CustomException("A country has to be selected.", TEMP_COUNTRY_INPUT);
         }
-        
+
         if (city.length() == 0) {
             throw new CustomException("A city has to be filled in!", TEMP_CITY_INPUT);
         }
         if (city.length() > 20) {
             throw new CustomException("City can't be longer than 20 characters, you've got: " + city.length(), TEMP_CITY_INPUT);
         }
-        
+
         if (streetName.length() == 0) {
             throw new CustomException("A street has to be filled in.", TEMP_STREET_INPUT);
         }
@@ -285,11 +285,11 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         if (zipCode.length() > 6) {
             throw new CustomException("Zipcode can't be longer than 6 characters, you've got: " + zipCode.length(), TEMP_POSTAL_CODE_INPUT);
         }
-        
+
         if (city.length() == 0 || TEMP_COUNTRY_INPUT.getSelectedIndex() == 0 || streetName.length() == 0 || zipCode.length() == 0) {
             throw new CustomException("Not all fields of temp address are filled in. Please complete all fields.");
         }
-        
+
         model.Address address = new model.Address();
         address.setCity(city);
         address.setCountry(country);
@@ -297,7 +297,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         address.setZipcode(zipCode);
         return address;
     }
-    
+
     /**
      * Clears all fields in the registration passenger panel.
      */
@@ -310,21 +310,22 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         //main.LuggageTrackerTool2.getInstance().createJFTFMask(getDateOfBirthControl(), "yyyy-MM-dd", "####-##-##");
         HOME_PHONE_NUMBER_INPUT.setText("");
         MOBILE_PHONE_NUMBER_INPUT.setText("");
-        
+
         HOME_CITY_INPUT.setText("");
         HOME_COUNTRY_INPUT.setSelectedIndex(1);
         HOME_STREET_INPUT.setText("");
         HOME_POSTAL_CODE_INPUT.setText("");
-        
+
         TEMP_CITY_INPUT.setText("");
         TEMP_COUNTRY_INPUT.setSelectedIndex(1);
         TEMP_STREET_INPUT.setText("");
         TEMP_POSTAL_CODE_INPUT.setText("");
     }
-    
+
     /**
      * Sets background colors of the fields in registration passenger panel.
-     * @param c 
+     *
+     * @param c
      */
     public void setBackgroundColors(Color c) {
         SURNAME_INPUT.setBackground(c);
@@ -333,22 +334,23 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         //DATE_OF_BIRTH_INPUT.setBackground(c);
         HOME_PHONE_NUMBER_INPUT.setBackground(c);
         MOBILE_PHONE_NUMBER_INPUT.setBackground(c);
-        
+
         HOME_CITY_INPUT.setBackground(c);
         HOME_STREET_INPUT.setBackground(c);
         HOME_POSTAL_CODE_INPUT.setBackground(c);
-        
+
         if (!EQUALCHECKBOX.isSelected()) {
             TEMP_CITY_INPUT.setBackground(c);
             TEMP_STREET_INPUT.setBackground(c);
             TEMP_POSTAL_CODE_INPUT.setBackground(c);
         }
     }
-    
+
     /**
      * Safely convert string to int.
+     *
      * @param text
-     * @return 
+     * @return
      */
     private int tryParseInt(String text) {
         int result = -1;
@@ -358,14 +360,15 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         } catch (NumberFormatException nfe) {
             return result;
         }
-        
+
         return result;
     }
-    
+
     /**
      * checks if string anything else besides a digit.
+     *
      * @param text
-     * @return 
+     * @return
      */
     public boolean hasAlpha(String text) {
         char[] characters = text.toCharArray();
@@ -379,11 +382,12 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         }
         return false;
     }
-    
+
     /**
      * Checks if string contains digit
+     *
      * @param text
-     * @return 
+     * @return
      */
     public boolean hasDigit(String text) {
         char[] characters = text.toCharArray();
@@ -392,7 +396,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -459,9 +463,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         TEMP_STREET_INPUT = new javax.swing.JTextField();
         TEMP_POSTAL_CODE = new javax.swing.JLabel();
         TEMP_POSTAL_CODE_INPUT = new javax.swing.JTextField();
-        ADDITIONAL_OPTIONS_TITLE = new javax.swing.JLabel();
-        PRINT_ON_REGISTER = new javax.swing.JCheckBox();
-        PAIR_PASSENGER_LUGGAGE = new javax.swing.JCheckBox();
         PRINT = new javax.swing.JButton();
         REGISTER = new javax.swing.JButton();
         EQUALCHECKBOX = new javax.swing.JCheckBox();
@@ -471,6 +472,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         jToggleButton1.setText("jToggleButton1");
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Passenger"));
 
         BASIC_INFORMATION_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -490,6 +492,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         GENDER.setText("Gender");
 
+        MALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
         MALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
@@ -498,6 +501,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
 
+        FEMALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         FEMALE_BUTTON.setText("Female");
         FEMALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,7 +518,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         HOME_COUNTRY.setText("Country");
 
-        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
         HOME_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HOME_COUNTRY_INPUTActionPerformed(evt);
@@ -532,10 +536,16 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         TEMP_COUNTRY.setText("Country");
 
-        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_COUNTRY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        TEMP_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEMP_COUNTRY_INPUTActionPerformed(evt);
+            }
+        });
 
         TEMP_CITY.setText("City");
 
@@ -552,16 +562,12 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_POSTAL_CODE_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        ADDITIONAL_OPTIONS_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        ADDITIONAL_OPTIONS_TITLE.setText("Additional Options");
-
-        PRINT_ON_REGISTER.setSelected(true);
-        PRINT_ON_REGISTER.setText("Print on register");
-
-        PAIR_PASSENGER_LUGGAGE.setSelected(true);
-        PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
-
         PRINT.setText("Print");
+        PRINT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRINTActionPerformed(evt);
+            }
+        });
 
         REGISTER.setText("Submit");
         REGISTER.addActionListener(new java.awt.event.ActionListener() {
@@ -570,6 +576,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
 
+        EQUALCHECKBOX.setBackground(new java.awt.Color(254, 223, 162));
         EQUALCHECKBOX.setSelected(true);
         EQUALCHECKBOX.setText("Same as Home Address");
         EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {
@@ -585,7 +592,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
 
-        DAYOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DD" }));
+        DAYOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DD", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         YEAROFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "YYYY" }));
         YEAROFBIRTH.addActionListener(new java.awt.event.ActionListener() {
@@ -625,8 +632,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                                     .addComponent(TEMP_POSTAL_CODE)
                                                     .addComponent(HOME_PHONE_NUMBER)
                                                     .addComponent(MOBILE_PHONE_NUMBER)
-                                                    .addComponent(PRINT_ON_REGISTER)
-                                                    .addComponent(PRINT)
                                                     .addComponent(SURNAME)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(21, 21, 21)
@@ -640,7 +645,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                     .addComponent(TEMP_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PAIR_PASSENGER_LUGGAGE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(MALE_BUTTON)
                                                 .addGap(18, 18, 18)
@@ -649,8 +653,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                                 .addGap(1, 1, 1)
                                                 .addComponent(EQUALCHECKBOX))
                                             .addComponent(REGISTER))
-                                        .addGap(95, 95, 95))))
-                            .addComponent(ADDITIONAL_OPTIONS_TITLE)
+                                        .addGap(118, 118, 118))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(HOME_ADDRESS_TITLE)
                                 .addGap(94, 94, 94)
@@ -663,7 +666,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                                     .addComponent(HOME_COUNTRY_INPUT, javax.swing.GroupLayout.Alignment.LEADING, 0, 256, Short.MAX_VALUE)
                                     .addComponent(HOME_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(MOBILE_PHONE_NUMBER_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(TEMP_CITY_INPUT, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(PRINT, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(188, 188, 188)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -696,7 +700,6 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                         .addComponent(SURNAME_TUSSENVOEGSEL_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SURNAME_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SURNAME)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MONTHOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DAYOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -753,14 +756,8 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEMP_POSTAL_CODE)
                     .addComponent(TEMP_POSTAL_CODE_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ADDITIONAL_OPTIONS_TITLE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PRINT_ON_REGISTER)
-                    .addComponent(PAIR_PASSENGER_LUGGAGE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PRINT)
                     .addComponent(REGISTER))
                 .addContainerGap())
@@ -790,35 +787,34 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             int result = JOptionPane.showConfirmDialog(null,
                     "Are you sure you want to register a new passenger?", "Question",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
+
             if (result == JOptionPane.YES_OPTION) {
                 homeAddress.setAddressid(model.AddressDAO.create(homeAddress).get(1));
                 if (!EQUALCHECKBOX.isSelected() && addressesAreEqual()) {
                     EQUALCHECKBOX.setSelected(true);
                 }
-                
+
                 if (!EQUALCHECKBOX.isSelected()) {
                     tempAddress.setAddressid(model.AddressDAO.create(tempAddress).get(1));
                 }
-                
+
                 passenger.setHomeaddress(homeAddress);
                 if (EQUALCHECKBOX.isSelected()) {
                     passenger.setTempaddress(homeAddress);
                 } else {
                     passenger.setTempaddress(tempAddress);
                 }
-                
+
                 model.PassengerDAO.create(passenger);
                 main.LuggageTrackerTool2.getInstance().getMainMenu().getPassengerTab().refresh();
                 main.LuggageTrackerTool2.getInstance().getMainMenu().getjTabbedPane().setSelectedIndex(0);
-                
+
                 clearFields();
+
                 
-                PDFGenerator document = new PDFGenerator();
-                document.generate(passenger, homeAddress, tempAddress);
-                document.save("Informatie.pdf");
+               
             }
-            
+
         } catch (SQLException ex) {
             System.err.println("Failed to create passenger.");
             System.err.println("Message: " + ex.getMessage());
@@ -856,10 +852,15 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     }//GEN-LAST:event_HOME_COUNTRY_INPUTActionPerformed
 
     private void MONTHOFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MONTHOFBIRTHActionPerformed
+        int daySelectedIndex = this.DAYOFBIRTH.getSelectedIndex();
+
         if (this.MONTHOFBIRTH.getSelectedIndex() == 0) {
             this.DAYOFBIRTH.removeAllItems();
             this.DAYOFBIRTH.addItem("DD");
-            this.DAYOFBIRTH.setSelectedIndex(0);
+            for (int i = 1; i <= 31; i++) {
+                this.DAYOFBIRTH.addItem(i);
+            }
+
         } else {
             int maximum = 0;
             int month = Integer.parseInt(this.MONTHOFBIRTH.getSelectedItem().toString());
@@ -873,16 +874,22 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             } else if ((month > 7 && month % 2 == 0) || (month < 8 && month % 2 == 1)) {
                 maximum = 31;
             }
-            
+
             this.DAYOFBIRTH.removeAllItems();
             this.DAYOFBIRTH.addItem("DD");
             for (int i = 1; i <= maximum; i++) {
                 this.DAYOFBIRTH.addItem(i);
             }
         }
+
+        if (this.DAYOFBIRTH.getItemCount() - 1 >= daySelectedIndex) {
+            this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
+        }
     }//GEN-LAST:event_MONTHOFBIRTHActionPerformed
 
     private void YEAROFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YEAROFBIRTHActionPerformed
+        int daySelectedIndex = this.DAYOFBIRTH.getSelectedIndex();
+
         if (this.YEAROFBIRTH.getSelectedIndex() > 0) {
             int year = Integer.parseInt(this.YEAROFBIRTH.getSelectedItem().toString());
             int month = -1;
@@ -903,10 +910,37 @@ public class RegistrationPassenger extends javax.swing.JPanel {
                 }
             }
         }
+
+        if (this.DAYOFBIRTH.getItemCount() - 1 >= daySelectedIndex) {
+            this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
+        }
     }//GEN-LAST:event_YEAROFBIRTHActionPerformed
+    // This is the print button.
+    private void PRINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTActionPerformed
+        
+         int result = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to print the information?", "Question",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+         if (result == JOptionPane.YES_OPTION){
+        
+        model.Passenger selectedPassenger = main.LuggageTrackerTool2.getInstance().getSelectedPassenger();
+        model.Luggage selectedLuggage = main.LuggageTrackerTool2.getInstance().getSelectedLuggage();
+        
+        PDFGenerator pdf = new PDFGenerator();
+        pdf.generate(selectedPassenger, selectedLuggage);
+        pdf.save("Informatie.pdf");
+         }
+        
+        
+        
+        
+    }//GEN-LAST:event_PRINTActionPerformed
+
+    private void TEMP_COUNTRY_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEMP_COUNTRY_INPUTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEMP_COUNTRY_INPUTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ADDITIONAL_OPTIONS_TITLE;
     private javax.swing.JLabel BASIC_INFORMATION_TITLE;
     private javax.swing.JLabel DATE_OF_BIRTH;
     private javax.swing.JComboBox DAYOFBIRTH;
@@ -930,9 +964,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
     private javax.swing.JComboBox MONTHOFBIRTH;
     private javax.swing.JLabel NAME;
     private javax.swing.JTextField NAME_INPUT;
-    private javax.swing.JCheckBox PAIR_PASSENGER_LUGGAGE;
     private javax.swing.JButton PRINT;
-    private javax.swing.JCheckBox PRINT_ON_REGISTER;
     private javax.swing.JButton REGISTER;
     private javax.swing.JLabel SURNAME;
     private javax.swing.JTextField SURNAME_INPUT;

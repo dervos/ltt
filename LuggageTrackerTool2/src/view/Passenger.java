@@ -137,6 +137,8 @@ public class Passenger extends javax.swing.JPanel {
         jToolBar1 = new javax.swing.JToolBar();
         REFRESH_BUTTON = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 223, 162));
+
         PASSENGER_TABLE.setAutoCreateRowSorter(true);
         PASSENGER_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,19 +157,18 @@ public class Passenger extends javax.swing.JPanel {
             }
         });
         PASSENGER_TABLE.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PASSENGER_TABLEMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PASSENGER_TABLEMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PASSENGER_TABLEMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(PASSENGER_TABLE);
-        if (PASSENGER_TABLE.getColumnModel().getColumnCount() > 0) {
-            PASSENGER_TABLE.getColumnModel().getColumn(0).setResizable(false);
-            PASSENGER_TABLE.getColumnModel().getColumn(2).setResizable(false);
-        }
+        PASSENGER_TABLE.getColumnModel().getColumn(0).setResizable(false);
+        PASSENGER_TABLE.getColumnModel().getColumn(2).setResizable(false);
 
+        jToolBar1.setBackground(new java.awt.Color(254, 223, 162));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 

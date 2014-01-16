@@ -2,6 +2,9 @@
 
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="a2" green="df" red="fe" type="rgb"/>
+    </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
         <TitledBorder title="Register Luggage"/>
@@ -39,12 +42,10 @@
                   <Component id="STORAGE_LOCATION" min="-2" max="-2" attributes="0"/>
                   <Component id="DESCRIPTION" min="-2" max="-2" attributes="0"/>
                   <Component id="LUGGAGEID_LABEL" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
                   <Component id="ANDERS" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="PRINT_BUTTON" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
                   <Component id="STATUS_COMBOBOX" min="-2" max="-2" attributes="0"/>
@@ -55,7 +56,7 @@
                       <Component id="LUGGAGEID_INPUT" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,13 +90,8 @@
                   <Component id="STATUS_COMBOBOX" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="PRINT_ON_REGISTER_INPUT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PRINT_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="SUBMIT_BUTTON" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="SUBMIT_BUTTON" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -142,12 +138,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="STORAGE_LOCATION_INPUTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="PRINT_ON_REGISTER_INPUT">
-      <Properties>
-        <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Print on register"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="ANDERS">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -170,17 +160,11 @@
             </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Vul hier zo specifiek mogelijk de&#xa;gegevens in van de opslagplaats."/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="PRINT_BUTTON">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Print"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="SUBMIT_BUTTON">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>

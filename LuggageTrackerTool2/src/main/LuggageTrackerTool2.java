@@ -2,6 +2,7 @@ package main;
 
 import connectivity.DatabaseManager;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public final class LuggageTrackerTool2 {
     private static final DatabaseManager databaseManager = new connectivity.DatabaseManager();
     // The main window
     private JFrame mainWindow;
-
+    
     // LuggageTrackerTool2 singleton
     private static final LuggageTrackerTool2 instance = new LuggageTrackerTool2();
     // Login frame
@@ -168,7 +169,7 @@ public final class LuggageTrackerTool2 {
         addPanel(this.searchBar, BorderLayout.NORTH);
         addPanel(this.sideBar, BorderLayout.LINE_START);
         addPanel(this.mainMenu, BorderLayout.CENTER);
-
+        mainWindow.getContentPane().setBackground(new Color(156, 9, 9));
         mainWindow.setVisible(true);
     }
 

@@ -7,9 +7,6 @@ package view;
 
 import java.awt.Color;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -64,7 +61,7 @@ public class EditPanel extends javax.swing.JPanel {
             this.YEAROFBIRTH.addItem(i);
         }
     }
-    
+
     /**
      * Sets document listeners, so text can be copied from home address fields
      * to temp address fields if needed.
@@ -142,7 +139,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills the passenger's information in EditPanel
-     * @param passenger 
+     *
+     * @param passenger
      */
     public void fillPassengerInformation(Passenger passenger) {
         p = passenger;
@@ -185,7 +183,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills luggage information in edit panel.
-     * @param luggage 
+     *
+     * @param luggage
      */
     public void fillLuggageInformation(Luggage luggage) {
         this.connectedLuggages.add(luggage);
@@ -200,7 +199,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills connectedLuggages combobox in edit panel.
-     * @param conLuggages 
+     *
+     * @param conLuggages
      */
     public void populateComboBox(List<Luggage> conLuggages) {
         this.connectedLuggages = conLuggages;
@@ -215,7 +215,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Enables or disables luggage fields.
-     * @param bool 
+     *
+     * @param bool
      */
     public void setLuggageEditability(Boolean bool) {
         Color c = bool ? Color.WHITE : Color.LIGHT_GRAY;
@@ -230,10 +231,10 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * enables or disables passenger fields.
-     * @param bool 
+     *
+     * @param bool
      */
     public void setPassengerEditability(Boolean bool) {
-        //Color c = bool ? Color.WHITE : Color.LIGHT_GRAY;
         this.NAME_INPUT.setEnabled(bool);
         this.SURNAME_INPUT.setEnabled(bool);
         this.SURNAME_TUSSENVOEGSEL_INPUT.setEnabled(bool);
@@ -259,13 +260,12 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             this.LUGGAGE_NOT_LINKED_LABEL.setText("No passenger linked to this luggage.");
         }
-        //setPassengerColors(c);
-
     }
 
     /**
      * sets passenger background color.
-     * @param c 
+     *
+     * @param c
      */
     public void setPassengerColors(Color c) {
         this.NAME_INPUT.setBackground(c);
@@ -302,9 +302,10 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Creates a passenger model out of the info in the edit panel.
+     *
      * @param id
      * @return
-     * @throws CustomException 
+     * @throws CustomException
      */
     public model.Passenger createPassenger(int id) throws CustomException {
         String name = NAME_INPUT.getText();
@@ -320,7 +321,7 @@ public class EditPanel extends javax.swing.JPanel {
         } else if (name.length() == 0) {
             throw new CustomException("First name has to be filled in.", NAME_INPUT);
         }
-        
+
         if (hasDigit(name)) {
             throw new CustomException("First name can't contain digits.", NAME_INPUT);
         }
@@ -328,21 +329,24 @@ public class EditPanel extends javax.swing.JPanel {
         if (insertion.length() > 8) {
             throw new CustomException("Insertion length is too long, 8 characters maximum. You've got: " + insertion.length(), SURNAME_TUSSENVOEGSEL_INPUT);
         }
-        
+
         if (hasDigit(insertion)) {
             throw new CustomException("Insertion can't contain digits.", SURNAME_TUSSENVOEGSEL_INPUT);
         }
-        
+
         if (hasDigit(surname)) {
             throw new CustomException("Surname can't contain digits.", SURNAME_INPUT);
         }
-        
-        if (this.DAYOFBIRTH.getSelectedIndex() == 0)
+
+        if (this.DAYOFBIRTH.getSelectedIndex() == 0) {
             throw new CustomException("Please select a valid month for the passenger's day of birth.");
-        if (this.DAYOFBIRTH.getSelectedIndex() == 0)
+        }
+        if (this.DAYOFBIRTH.getSelectedIndex() == 0) {
             throw new CustomException("Please select a valid day for the passenger's day of birth.");
-        if (this.YEAROFBIRTH.getSelectedIndex() == 0)
+        }
+        if (this.YEAROFBIRTH.getSelectedIndex() == 0) {
             throw new CustomException("Please select a valid year for the passenger's day of birth.");
+        }
 
         if (surname.length() > 35) {
             throw new CustomException("Surname length is too long, 35 characters maximum. You've got: " + surname.length(), SURNAME_INPUT);
@@ -372,9 +376,9 @@ public class EditPanel extends javax.swing.JPanel {
         int day = Integer.parseInt(DAYOFBIRTH.getSelectedItem().toString());
         Calendar cal = GregorianCalendar.getInstance();
         cal.set(year, month - 1, day);
-        
+
         dob = cal.getTime();
-        
+
         model.Passenger tempPassenger = new model.Passenger();
 
         tempPassenger.setName(name);
@@ -392,11 +396,12 @@ public class EditPanel extends javax.swing.JPanel {
 
         return tempPassenger;
     }
-    
+
     /**
      * Checks if string contains digit
+     *
      * @param text
-     * @return 
+     * @return
      */
     public boolean hasDigit(String text) {
         char[] characters = text.toCharArray();
@@ -411,8 +416,9 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * checks if string anything else besides a digit.
+     *
      * @param text
-     * @return 
+     * @return
      */
     public boolean hasAlpha(String text) {
         char[] characters = text.toCharArray();
@@ -428,25 +434,9 @@ public class EditPanel extends javax.swing.JPanel {
     }
 
     /**
-     * safely convert string to int
-     * @param text
-     * @return 
-     */
-    private int tryParseInt(String text) {
-        int result = -1;
-        try //Try catch to prevent the application from crashing when the inserted text isnt a number
-        {
-            result = Integer.parseInt(text); //try to parse text to int
-        } catch (NumberFormatException nfe) {
-            return result;
-        }
-
-        return result;
-    }
-
-    /**
      * Updates the information on edit panel into the array of luggages.
-     * @throws CustomException 
+     *
+     * @throws CustomException
      */
     public void updateSelectedLuggage() throws CustomException {
         Luggage selectedLuggage = this.connectedLuggages.get(this.CONNECTED_LUGGAGES_CBOX.getSelectedIndex());
@@ -490,10 +480,10 @@ public class EditPanel extends javax.swing.JPanel {
     }
 
     /**
-     * 
+     *
      * @param addressID
      * @return
-     * @throws CustomException 
+     * @throws CustomException
      */
     public model.Address createHomeAddressFromForms(int addressID) throws CustomException {
         String city = HOME_CITY_INPUT.getText();
@@ -537,10 +527,10 @@ public class EditPanel extends javax.swing.JPanel {
     }
 
     /**
-     * 
+     *
      * @param addressID
      * @return
-     * @throws CustomException 
+     * @throws CustomException
      */
     public model.Address createTempAddressFromForms(int addressID) throws CustomException {
         String city = TEMP_CITY_INPUT.getText();
@@ -587,7 +577,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Compares if home & temp address are equal.
-     * @return 
+     *
+     * @return
      */
     public boolean addressesAreEqual() {
         return ((this.HOME_COUNTRY_INPUT.getSelectedIndex() == this.TEMP_COUNTRY_INPUT.getSelectedIndex())
@@ -597,16 +588,16 @@ public class EditPanel extends javax.swing.JPanel {
     }
 
     /**
-     * 
-     * @param bool 
+     *
+     * @param bool
      */
     public void setAddressesWereEqual(boolean bool) {
         this.addressesWereEqual = bool;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean getAddressesWereEqual() {
         return this.addressesWereEqual;
@@ -680,21 +671,24 @@ public class EditPanel extends javax.swing.JPanel {
         DAYOFBIRTH = new javax.swing.JComboBox();
         YEAROFBIRTH = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setName(""); // NOI18N
 
+        FEMALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         FEMALE_BUTTON.setText("Female");
 
+        MALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
 
-        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        HOME_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
         HOME_COUNTRY_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HOME_COUNTRY_INPUTActionPerformed(evt);
             }
         });
 
-        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "The Netherlands", "Germany", "Belgium" }));
+        TEMP_COUNTRY_INPUT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please select your country ..", "Belgium", "Albania", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Ireland", "Italy", "The Netherlands", "Norway", "Poland", "Portugal", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom" }));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_COUNTRY_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
@@ -816,6 +810,7 @@ public class EditPanel extends javax.swing.JPanel {
         PASSENGER_NOT_LINKED.setForeground(java.awt.Color.red);
         PASSENGER_NOT_LINKED.setToolTipText("");
 
+        EQUALCHECKBOX.setBackground(new java.awt.Color(254, 223, 162));
         EQUALCHECKBOX.setSelected(true);
         EQUALCHECKBOX.setText("Same as Home Address");
         EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {
@@ -831,7 +826,7 @@ public class EditPanel extends javax.swing.JPanel {
             }
         });
 
-        DAYOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DD" }));
+        DAYOFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DD", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         YEAROFBIRTH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "YYYY" }));
         YEAROFBIRTH.addActionListener(new java.awt.event.ActionListener() {
@@ -929,7 +924,6 @@ public class EditPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CANCEL_BUTTON)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(SAVE_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1003,13 +997,14 @@ public class EditPanel extends javax.swing.JPanel {
                             .addComponent(ANDERS))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DATE_OF_BIRTH)
-                            .addComponent(DESCRIPTION)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(MONTHOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(DAYOFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(YEAROFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(YEAROFBIRTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(DATE_OF_BIRTH)
+                                .addComponent(DESCRIPTION)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(MALE_BUTTON)
@@ -1115,40 +1110,34 @@ public class EditPanel extends javax.swing.JPanel {
 
                 if (this.p != null) {
                     AddressDAO.update(p.getHomeaddress());
-                    
-                    if (this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected())
-                    {
-                        if (addressesAreEqual())
-                        {
+
+                    if (this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected()) {
+                        if (addressesAreEqual()) {
                             p.setTempaddressid(p.getHomeaddress().getAddressid());
                             p.setTempaddress(p.getHomeaddress());
                             //No need to update the address again as its the same ID as home ID
-                        }
-                        else
+                        } else {
                             p.setTempaddressid(AddressDAO.create(p.getTempaddress()).get(1));
-                    }
-                    else if (!this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected())
-                    {
-                        if (addressesAreEqual())
-                        {
+                        }
+                    } else if (!this.addressesWereEqual && !this.EQUALCHECKBOX.isSelected()) {
+                        if (addressesAreEqual()) {
                             p.setTempaddressid(p.getHomeaddress().getAddressid());
                             p.setTempaddress(p.getHomeaddress());
-                        }
-                        else
+                        } else {
                             AddressDAO.update(p.getTempaddress());
-                    }
-                    else if (!this.addressesWereEqual && this.EQUALCHECKBOX.isSelected())
-                    {
+                        }
+                    } else if (!this.addressesWereEqual && this.EQUALCHECKBOX.isSelected()) {
                         tempaddr = p.getTempaddressid();
                         p.setTempaddressid(p.getHomeaddress().getAddressid());
                         p.setTempaddress(p.getHomeaddress());
                         delete = true;
                     }
                     //else if (this.addressesWereEqual && this.EQUALCHECKBOX.isSelected())
-                        // Do nothing, temp already is == to home, no changes to temp needed.                    
+                    // Do nothing, temp already is == to home, no changes to temp needed.                    
                     PassengerDAO.update(p);
-                    if (delete)
+                    if (delete) {
                         AddressDAO.delete(tempaddr);
+                    }
                 }
                 if (connectedLuggages != null && connectedLuggages.size() > 0) {
                     for (Luggage l : connectedLuggages) {
@@ -1204,10 +1193,15 @@ public class EditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_EQUALCHECKBOXActionPerformed
 
     private void MONTHOFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MONTHOFBIRTHActionPerformed
+        int daySelectedIndex = this.DAYOFBIRTH.getSelectedIndex();
+        
         if (this.MONTHOFBIRTH.getSelectedIndex() == 0) {
             this.DAYOFBIRTH.removeAllItems();
             this.DAYOFBIRTH.addItem("DD");
-            this.DAYOFBIRTH.setSelectedIndex(0);
+            for (int i = 1; i <= 31; i++) {
+                this.DAYOFBIRTH.addItem(i);
+            }
+
         } else {
             int maximum = 0;
             int month = Integer.parseInt(this.MONTHOFBIRTH.getSelectedItem().toString());
@@ -1228,9 +1222,14 @@ public class EditPanel extends javax.swing.JPanel {
                 this.DAYOFBIRTH.addItem(i);
             }
         }
+        
+        if (this.DAYOFBIRTH.getItemCount() - 1 >= daySelectedIndex )
+            this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
     }//GEN-LAST:event_MONTHOFBIRTHActionPerformed
 
     private void YEAROFBIRTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YEAROFBIRTHActionPerformed
+        int daySelectedIndex = this.DAYOFBIRTH.getSelectedIndex();
+        
         if (this.YEAROFBIRTH.getSelectedIndex() > 0) {
             int year = Integer.parseInt(this.YEAROFBIRTH.getSelectedItem().toString());
             int month = -1;
@@ -1251,8 +1250,10 @@ public class EditPanel extends javax.swing.JPanel {
                 }
             }
         }
+        
+        if (this.DAYOFBIRTH.getItemCount() - 1 >= daySelectedIndex )
+            this.DAYOFBIRTH.setSelectedIndex(daySelectedIndex);
     }//GEN-LAST:event_YEAROFBIRTHActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ANDERS;

@@ -46,6 +46,7 @@ public class AccountManagement extends javax.swing.JPanel {
     
     private void updateUSERModel()
     {
+        updateDeleteCBox();
         USER.removeAllItems();
         
         try {
@@ -56,6 +57,21 @@ public class AccountManagement extends javax.swing.JPanel {
         
         for (User user : list) {
             USER.addItem(user.getUsername());
+        }
+    }
+    
+    private void updateDeleteCBox()
+    {
+        jComboBox1.removeAllItems();
+        
+        try {
+            list = model.UserDAO.readAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (User user : list) {
+            jComboBox1.addItem(user.getUsername());
         }
     }
 
@@ -87,11 +103,13 @@ public class AccountManagement extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
 
         jButton1.setText("jButton1");
+
+        setBackground(new java.awt.Color(254, 223, 162));
+
+        ACCOUNT_MANAGEMENT.setBackground(new java.awt.Color(254, 223, 162));
 
         NEW_USER.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         NEW_USER.setText("New User");
@@ -155,14 +173,12 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User 1", "User 2", "User 3", "User 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(usernames));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Delete user");
 
         jLabel3.setText("Username:");
-
-        jLabel4.setText("Verify:");
 
         jButton2.setText("Confirm");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -170,8 +186,6 @@ public class AccountManagement extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jCheckBox1.setText("check to confirm");
 
         javax.swing.GroupLayout ACCOUNT_MANAGEMENTLayout = new javax.swing.GroupLayout(ACCOUNT_MANAGEMENT);
         ACCOUNT_MANAGEMENT.setLayout(ACCOUNT_MANAGEMENTLayout);
@@ -181,7 +195,6 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
-                    .addComponent(jLabel4)
                     .addComponent(NEW_USER)
                     .addComponent(CHANGE_PASSWORD)
                     .addGroup(ACCOUNT_MANAGEMENTLayout.createSequentialGroup()
@@ -199,14 +212,13 @@ public class AccountManagement extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jCheckBox1)
                             .addComponent(NEW_USERNAME_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NEW_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CHANGE_PASSWORD_INPUT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(USER, javax.swing.GroupLayout.Alignment.LEADING, 0, 105, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         ACCOUNT_MANAGEMENTLayout.setVerticalGroup(
             ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +257,7 @@ public class AccountManagement extends javax.swing.JPanel {
                 .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(ACCOUNT_MANAGEMENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel4))
-                .addGap(7, 7, 7)
+                .addGap(37, 37, 37)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -377,12 +385,18 @@ public class AccountManagement extends javax.swing.JPanel {
         int result = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to delete the user?", "Question",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_OPTION) {
-            // Actually delete the user in here
-            //
-            //
+        if (result == JOptionPane.YES_OPTION && jComboBox1.getSelectedIndex() != -1 && !jComboBox1.getSelectedItem().toString().equals("")) {
+             try {
+                model.User user = model.UserDAO.readByUsername(jComboBox1.getSelectedItem().toString());
+                //user.getUserid();
+                model.UserDAO.delete(user.getUserid());
+                updateUSERModel();
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ACCOUNT_MANAGEMENT;
@@ -400,12 +414,10 @@ public class AccountManagement extends javax.swing.JPanel {
     private javax.swing.JComboBox USER;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
