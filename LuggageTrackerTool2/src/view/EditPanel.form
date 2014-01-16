@@ -6,6 +6,9 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="a2" green="df" red="fe" type="rgb"/>
+    </Property>
     <Property name="name" type="java.lang.String" value="" noResource="true"/>
   </Properties>
   <AuxValues>
@@ -324,11 +327,17 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="FEMALE_BUTTON">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a2" green="df" red="fe" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Female"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="MALE_BUTTON">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a2" green="df" red="fe" type="rgb"/>
+        </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Male"/>
       </Properties>
@@ -635,6 +644,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="EQUALCHECKBOX">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a2" green="df" red="fe" type="rgb"/>
+        </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Same as Home Address"/>
       </Properties>

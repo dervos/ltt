@@ -114,6 +114,7 @@ public class MainMenu extends JPanel {
 
         jTabbedPane = new javax.swing.JTabbedPane();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setBorder(javax.swing.BorderFactory.createTitledBorder("Main menu"));
         setPreferredSize(new java.awt.Dimension(800, 800));
         setLayout(new java.awt.BorderLayout());

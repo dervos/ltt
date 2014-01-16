@@ -671,10 +671,13 @@ public class EditPanel extends javax.swing.JPanel {
         DAYOFBIRTH = new javax.swing.JComboBox();
         YEAROFBIRTH = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setName(""); // NOI18N
 
+        FEMALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         FEMALE_BUTTON.setText("Female");
 
+        MALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
 
@@ -807,6 +810,7 @@ public class EditPanel extends javax.swing.JPanel {
         PASSENGER_NOT_LINKED.setForeground(java.awt.Color.red);
         PASSENGER_NOT_LINKED.setToolTipText("");
 
+        EQUALCHECKBOX.setBackground(new java.awt.Color(254, 223, 162));
         EQUALCHECKBOX.setSelected(true);
         EQUALCHECKBOX.setText("Same as Home Address");
         EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {

@@ -93,6 +93,10 @@ public class AccountManagement extends javax.swing.JPanel {
 
         jButton1.setText("jButton1");
 
+        setBackground(new java.awt.Color(254, 223, 162));
+
+        ACCOUNT_MANAGEMENT.setBackground(new java.awt.Color(254, 223, 162));
+
         NEW_USER.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         NEW_USER.setText("New User");
 
@@ -176,6 +180,7 @@ public class AccountManagement extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox1.setBackground(new java.awt.Color(254, 223, 162));
         jCheckBox1.setText("Check to confirm");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,7 +405,7 @@ public class AccountManagement extends javax.swing.JPanel {
 
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

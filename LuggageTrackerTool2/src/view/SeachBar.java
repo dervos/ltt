@@ -41,6 +41,9 @@ public class SeachBar extends javax.swing.JPanel {
         LOGOUT_BUTTON = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(156, 9, 9));
+
+        jToolBar1.setBackground(new java.awt.Color(156, 9, 9));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
@@ -54,6 +57,7 @@ public class SeachBar extends javax.swing.JPanel {
         SEARCH_BUTTON.setText("Search");
         SEARCH_BUTTON.setFocusable(false);
         SEARCH_BUTTON.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SEARCH_BUTTON.setPreferredSize(new java.awt.Dimension(75, 25));
         SEARCH_BUTTON.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         SEARCH_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +85,7 @@ public class SeachBar extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(156, 9, 9));
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Corendon Image.jpg"))); // NOI18N
         jLabel3.setText("Corendon");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -88,20 +93,22 @@ public class SeachBar extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3)
-                .addGap(440, 440, 440)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(467, 467, 467)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                .addGap(18, 18, 18)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

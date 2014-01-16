@@ -106,6 +106,7 @@ public class RegistrationLuggage extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         STATUS_COMBOBOX = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Luggage"));
         setMaximumSize(new java.awt.Dimension(500, 279));
         setMinimumSize(new java.awt.Dimension(500, 279));

@@ -473,6 +473,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         jToggleButton1.setText("jToggleButton1");
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setBorder(javax.swing.BorderFactory.createTitledBorder("Register Passenger"));
 
         BASIC_INFORMATION_TITLE.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -492,6 +493,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
 
         GENDER.setText("Gender");
 
+        MALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         MALE_BUTTON.setSelected(true);
         MALE_BUTTON.setText("Male");
         MALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
@@ -500,6 +502,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
 
+        FEMALE_BUTTON.setBackground(new java.awt.Color(254, 223, 162));
         FEMALE_BUTTON.setText("Female");
         FEMALE_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -560,6 +563,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, EQUALCHECKBOX, org.jdesktop.beansbinding.ELProperty.create("${!selected}"), TEMP_POSTAL_CODE_INPUT, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
+        PAIR_PASSENGER_LUGGAGE.setBackground(new java.awt.Color(254, 223, 162));
         PAIR_PASSENGER_LUGGAGE.setSelected(true);
         PAIR_PASSENGER_LUGGAGE.setText("Pair passenger with luggage");
 
@@ -577,6 +581,7 @@ public class RegistrationPassenger extends javax.swing.JPanel {
             }
         });
 
+        EQUALCHECKBOX.setBackground(new java.awt.Color(254, 223, 162));
         EQUALCHECKBOX.setSelected(true);
         EQUALCHECKBOX.setText("Same as Home Address");
         EQUALCHECKBOX.addActionListener(new java.awt.event.ActionListener() {

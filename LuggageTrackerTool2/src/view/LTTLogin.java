@@ -8,6 +8,7 @@ package view;
  *
  * @author gebak_000
  */
+import java.awt.Color;
 import main.LuggageTrackerTool2;
 
 public class LTTLogin extends javax.swing.JPanel {

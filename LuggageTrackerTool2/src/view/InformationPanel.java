@@ -136,8 +136,10 @@ public class InformationPanel extends javax.swing.JPanel {
         STATUS_LABEL = new javax.swing.JLabel();
         STORAGE_LABEL = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(254, 223, 162));
         setPreferredSize(new java.awt.Dimension(800, 150));
 
+        passengerPanel.setBackground(new java.awt.Color(254, 223, 162));
         passengerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Passenger"));
         passengerPanel.setPreferredSize(new java.awt.Dimension(600, 200));
 
@@ -210,7 +212,7 @@ public class InformationPanel extends javax.swing.JPanel {
                             .addComponent(TEMP_ADDRESS_LABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(passengerPanelLayout.createSequentialGroup()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 247, Short.MAX_VALUE)))
+                        .addGap(0, 271, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         passengerPanelLayout.setVerticalGroup(
@@ -240,6 +242,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        luggagePanel.setBackground(new java.awt.Color(254, 223, 162));
         luggagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Luggage"));
         luggagePanel.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -308,7 +311,7 @@ public class InformationPanel extends javax.swing.JPanel {
                             .addComponent(STORAGE_LABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(luggagePanelLayout.createSequentialGroup()
                         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 62, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         luggagePanelLayout.setVerticalGroup(
@@ -329,7 +332,7 @@ public class InformationPanel extends javax.swing.JPanel {
                 .addGroup(luggagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(STORAGE_LABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -340,7 +343,7 @@ public class InformationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(luggagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -350,7 +353,7 @@ public class InformationPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passengerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(passengerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                     .addComponent(luggagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
