@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.sql.SQLException;
 
 /**
@@ -17,6 +18,7 @@ public class SeachBar extends javax.swing.JPanel {
      */
     public SeachBar() {
         initComponents();
+        setBackground(new Color(156, 9, 9));
     }
 
     /**
@@ -76,7 +78,9 @@ public class SeachBar extends javax.swing.JPanel {
         });
         jToolBar1.add(LOGOUT_BUTTON);
 
+        jLabel3.setBackground(new java.awt.Color(156, 9, 9));
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(240, 240, 240));
         jLabel3.setText("Corendon");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

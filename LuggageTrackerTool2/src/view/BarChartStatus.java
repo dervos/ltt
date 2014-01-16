@@ -61,10 +61,10 @@ public class BarChartStatus extends JPanel {
 //        dataset.addValue(5.0, series1, category5);
 
         dataset.addValue(totalLuggage, series2, category2);
-//        dataset.addValue(readFound, series2, category2);
-//        dataset.addValue(readMissing, series2, category2);
-//        dataset.addValue(readReturned, series2, category2);
-//        dataset.addValue(readDestroyed, series2, category2);
+        dataset.addValue(foundLuggage, series2, category2);
+        dataset.addValue(missingLuggage, series2, category2);
+        dataset.addValue(returnedLuggage, series2, category2);
+        dataset.addValue(destroyedLuggage, series2, category2);
 
 //        dataset.addValue(4.0, series3, category1);
 //        dataset.addValue(3.0, series3, category2);

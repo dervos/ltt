@@ -24,7 +24,7 @@ public class BarChartMonthStatus2014 extends JPanel{
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart, false);
-        chartPanel.setPreferredSize(new Dimension(1200, 670));
+        chartPanel.setPreferredSize(new Dimension(800, 570));
         add(chartPanel);
     }
 
