@@ -7,6 +7,7 @@ import java.sql.Types;
 import java.util.LinkedList;
 import java.util.List;
 import view.ManagerMenu;
+
 /**
  *
  * @author reintjehard, Tomas Slaman
@@ -49,7 +50,6 @@ public class LuggageDAO {
 
         return list;
     }
-    
 
     public static Luggage readById(int id) throws SQLException {
         Luggage tempLuggage = null;
@@ -181,12 +181,11 @@ public class LuggageDAO {
 
         return rowsAffected;
     }
-    
-    public static int updatePassengerIDToNull(int id) throws SQLException
-    {
+
+    public static int updatePassengerIDToNull(int id) throws SQLException {
         int rowsAffected;
         PreparedStatement ps = null;
-        String query = "UPDATE luggage SET " 
+        String query = "UPDATE luggage SET "
                 + "passengerid=? "
                 + "WHERE passengerid=?";
 
@@ -223,84 +222,82 @@ public class LuggageDAO {
 
         return rowsAffected;
     }
-    
-    public static int readDateLost (String firstDate, String lastDate) throws SQLException {
-        int lost = -1;
- 
+
+    public static int readDateMissing(String firstDate, String lastDate) throws SQLException {
+        int missing = -1;
+
         databaseManager.openConnection();
- 
-        String query = "SELECT count (*) as 'lost'"
-                    + "FROM Luggage"
-                    + "Where luggagestatus = 'Lost'"
-                    + "AND dateadded BETWEEN " + firstDate + "00:00:00' AND" + lastDate + "23:59:59'";
- 
+
+        String query = "SELECT count(*) as 'missing' "
+                + "FROM Luggage "
+                + "WHERE luggagestatus = 'Missing' "
+                + "AND dateadded BETWEEN '" + firstDate + " 00:00:00' AND '" + lastDate + " 23:59:59'";
+
         ResultSet rs = databaseManager.doQuery(query);
- 
-            //System.out.println(rs);
- 
+
+        System.out.println(rs);
+        if( rs != null){
             if (rs.next()) {
-                lost = rs.getInt("lost");
+                missing = rs.getInt("missing");
             }
-        return lost;
+        }
+        return missing;
     }
-        
-    public static int readDateFound (String firstDate, String lastDate) throws SQLException {
+
+    public static int readDateFound(String firstDate, String lastDate) throws SQLException {
         int found = -1;
- 
+
         databaseManager.openConnection();
- 
-        String query = "SELECT count (*) as 'found'"
-                    + "FROM Luggage"
-                    + "Where luggagestatus = 'Found'"
-                    + "AND dateadded BETWEEN " + firstDate + "00:00:00' AND" + lastDate + "23:59:59'";
- 
+
+        String query = "SELECT count(*) as 'found' "
+                + "FROM Luggage "
+                + "Where luggagestatus = 'Found' "
+                + "AND dateadded BETWEEN '" + firstDate + " 00:00:00' AND '" + lastDate + " 23:59:59'";
+
         ResultSet rs = databaseManager.doQuery(query);
- 
-            //System.out.println(rs);
- 
-            if (rs.next()) {
-                found = rs.getInt("found");
-            }
+
+        System.out.println(rs);
+        if (rs.next()) {
+            found = rs.getInt("found");
+        }
         return found;
     }
- 
-    public static int readDateReturned (String firstDate, String lastDate) throws SQLException {
+
+    public static int readDateReturned(String firstDate, String lastDate) throws SQLException {
         int returned = -1;
- 
+
         databaseManager.openConnection();
- 
-        String query = "SELECT count (*) as 'returned'"
-                    + "FROM Luggage"
-                    + "Where luggagestatus = 'Returned'"
-                    + "AND dateadded BETWEEN " + firstDate + "00:00:00' AND" + lastDate + "23:59:59'";
- 
+
+        String query = "SELECT count(*) as 'returned' "
+                + "FROM Luggage "
+                + "Where luggagestatus = 'Returned' "
+                + "AND dateadded BETWEEN '" + firstDate + " 00:00:00' AND '" + lastDate + " 23:59:59'";
+
         ResultSet rs = databaseManager.doQuery(query);
- 
-            //System.out.println(rs);
- 
-            if (rs.next()) {
-                returned = rs.getInt("returned");
-            }
+
+        System.out.println(rs);
+        if (rs.next()) {
+            returned = rs.getInt("returned");
+        }
         return returned;
     }
-    
-    public static int readDateDestroyed (String firstDate, String lastDate) throws SQLException {
+
+    public static int readDateDestroyed(String firstDate, String lastDate) throws SQLException {
         int destroyed = -1;
- 
+
         databaseManager.openConnection();
- 
-        String query = "SELECT count (*) as 'destroyed'"
-                    + "FROM Luggage"
-                    + "Where luggagestatus = 'Destroyed'"
-                    + "AND dateadded BETWEEN " + firstDate + "00:00:00' AND" + lastDate + "23:59:59'";
- 
+
+        String query = "SELECT count(*) as 'destroyed' "
+                + "FROM Luggage "
+                + "Where luggagestatus = 'Destroyed' "
+                + "AND dateadded BETWEEN '" + firstDate + " 00:00:00' AND '" + lastDate + " 23:59:59'";
+
         ResultSet rs = databaseManager.doQuery(query);
- 
-            //System.out.println(rs);
- 
-            if (rs.next()) {
-                destroyed = rs.getInt("destroyed");
-            }
+
+        System.out.println(rs);
+        if (rs.next()) {
+            destroyed = rs.getInt("destroyed");
+        }
         return destroyed;
     }
 }

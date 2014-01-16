@@ -63,6 +63,11 @@ public class ManagerMenu extends JPanel {
         LAST_DATE_FORMAT.setText("(YYYY-MM-DD)");
 
         CONFIRM_BUTTON.setText("Confirm");
+        CONFIRM_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CONFIRM_BUTTONActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,6 +117,10 @@ public class ManagerMenu extends JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CONFIRM_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONFIRM_BUTTONActionPerformed
+          main.LuggageTrackerTool2.getInstance().getMainMenu().getManagerBarChart().refresh(getFIRST_DATE_INPUT().getText(), getLAST_DATE_INPUT().getText());
+    }//GEN-LAST:event_CONFIRM_BUTTONActionPerformed
     
     public JFormattedTextField getFIRST_DATE_INPUT() {
         return FIRST_DATE_INPUT;
