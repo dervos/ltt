@@ -379,7 +379,6 @@ public class InformationPanel extends javax.swing.JPanel {
                     ep.setLuggageEditability(false);
                 }
                 editFrame.setSize(725, 480);
-//                editFrame.pack();
                 editFrame.validate();
                 editFrame.setResizable(false);
                 ep.fillPassengerInformation(selectedPassenger);

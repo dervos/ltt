@@ -139,7 +139,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills the passenger's information in EditPanel
-     *
+     * Passenger gets pulled from selected passenger.
      * @param passenger
      */
     public void fillPassengerInformation(Passenger passenger) {
@@ -183,7 +183,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills luggage information in edit panel.
-     *
+     * Luggage gets pulled from the selected luggage.
      * @param luggage
      */
     public void fillLuggageInformation(Luggage luggage) {
@@ -199,7 +199,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     /**
      * Fills connectedLuggages combobox in edit panel.
-     *
+     * Requires a list of luggages
      * @param conLuggages
      */
     public void populateComboBox(List<Luggage> conLuggages) {
